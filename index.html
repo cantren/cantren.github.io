@@ -56,15 +56,13 @@
 				document.body.appendChild( container );
 
 				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 2000 );
-				camera.position.x = 0;
-				camera.position.y = 0;
-				camera.position.z = 200;
+				camera.position.z = 100;
 
 				// scene
 
 				scene = new THREE.Scene();
 				
-				scene.addFogExp2({density : 0.1});
+				//scene.addFogExp2({density : 0.1});
 
 				var ambient = new THREE.AmbientLight( 0x101030 );
 				scene.add( ambient );
