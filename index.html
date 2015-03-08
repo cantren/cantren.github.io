@@ -102,7 +102,7 @@
 				// model
 
 				var loader = new THREE.OBJLoader( manager );
-				loader.load( 'obj/male02/male02.obj', function ( object ) {
+				loader.load( 'obj/transdec/transdec.obj', function ( object ) {
 
 					object.traverse( function ( child ) {
 
@@ -166,7 +166,7 @@
 
 				camera.position.x += ( mouseX - camera.position.x ) * .05;
 				camera.position.y += ( - mouseY - camera.position.y ) * .05;
-				camera.position.z -= 0.5;
+				camera.position.z -= 2.0;
 
 				camera.lookAt( scene.position );
 
