@@ -115,7 +115,7 @@
 					} );
 
 					object.position.y = - 80;
-					object.scale.set(.25,.25,.25)
+					object.scale.set(.025,.025,.025)
 					scene.add( object );
 
 				}, onProgress, onError );
@@ -167,7 +167,7 @@
 
 				camera.position.x += ( mouseX - camera.position.x ) * .05;
 				camera.position.y += ( - mouseY - camera.position.y ) * .05;
-				camera.position.z -= 2.0;
+				//camera.position.z -= 2.0;
 
 				camera.lookAt( scene.position );
 
