@@ -6,12 +6,14 @@
     <title>Example 09.07 - first person camera </title>		
     <script src="js/three.min.js"></script>
     <script src="js/loaders/OBJLoader.js"></script>
+    <script type="text/javascript" src="https://raw.githubusercontent.com/josdirksen/learning-threejs/blob/master/libs/MTLLoader.js"></script>
+    <script type="text/javascript" src="https://raw.githubusercontent.com/josdirksen/learning-threejs/blob/master/libs/OBJMTLLoader.js"></script>
     <script src="js/controls/FirstPersonControls.js"></script>
 
 
-    <script type="text/javascript" src="github.com/josdirksen/learning-threejs/blob/master/libs/stats.js"></script>
-    <script type="text/javascript" src="github.com/josdirksen/learning-threejs/blob/master/libs/dat.gui.js"></script>
-    <script type="text/javascript" src="github.com/josdirksen/learning-threejs/blob/master/libs/chroma.js"></script>
+    <script type="text/javascript" src="https://raw.githubusercontent.com/josdirksen/learning-threejs/blob/master/libs/stats.js"></script>
+    <script type="text/javascript" src="https://raw.githubusercontent.com/josdirksen/learning-threejs/blob/master/libs/dat.gui.js"></script>
+    <script type="text/javascript" src="https://raw.githubusercontent.com/josdirksen/learning-threejs/blob/master/libs/chroma.js"></script>
 
     <style>
         body {
@@ -98,7 +100,7 @@
         var gui = new dat.GUI();
         var mesh;
 
-        var loader = new THREE.OBJLoader();
+        var loader = new THREE.OBJMTLLoader();
         var load = function (object) {
             var scale = chroma.scale(['red', 'green', 'blue']);
             setRandomColors(object, scale);
@@ -107,9 +109,9 @@
         };
 
 
-        var texture = THREE.ImageUtils.loadTexture('textures/UV_Grid_Sm.jpg');
+        var texture = THREE.ImageUtils.loadTexture('https://raw.githubusercontent.com/josdirksen/learning-threejs/blob/master/assets/textures/Metro01.JPG');
         //texture.wrapS = texture.wrapT = THREE.MirroredRepeatWrapping;
-        loader.load('obj/transdec/transdec.obj', load);
+        loader.load('https://raw.githubusercontent.com/josdirksen/learning-threejs/blob/master/assets/models/city.obj', 'https://raw.githubusercontent.com/josdirksen/learning-threejs/blob/master/assets/models/city.mtl', load);
         //texture.repeat.set( 1 , 1);
 
 
