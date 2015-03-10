@@ -1,214 +1,179 @@
-
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-		<title>three.js webgl - loaders - OBJ loader</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-		<style>
-		
-		body {
-				color: #61443e;
-				font-family:Monospace;
-				font-size:13px;
-				text-align:center;
 
-				background-color: #efd1b5;
-				margin: 0px;
-				overflow: hidden;
-			}
+<html>
 
-			#info {
-				position: absolute;
-				top: 0px; width: 100%;
-				padding: 5px;
-			}
+<head>
+    <title>Example 09.07 - first person camera </title>		
+    <script src="js/three.min.js"></script>
+    <script src="js/loaders/OBJLoader.js"></script>
+    <script src="js/controls/FirstPersonControls.js"></script>
 
-			a {
 
-				color: #a06851;
-			}
-		
-		</style>
-	</head>
+    <script type="text/javascript" src="../libs/stats.js"></script>
+    <script type="text/javascript" src="../libs/dat.gui.js"></script>
+    <script type="text/javascript" src="../libs/chroma.js"></script>
 
-	<body>
-		<div id="info">
-		<a href="http://threejs.org" target="_blank">three.js</a> - OBJLoader test
-		</div>
+    <style>
+        body {
+            /* set margin to 0 and overflow to hidden, to go fullscreen */
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
 
-		<script src="js/three.min.js"></script>
-		<script src="js/loaders/OBJLoader.js"></script>
-		<script src="js/controls/FirstPersonControls.js"></script>
+<div id="Stats-output">
+</div>
+<!-- Div which will hold the Output -->
+<div id="WebGL-output">
+</div>
 
-		<script src="js/ImprovedNoise.js"></script>
+<!-- Javascript code that runs our Three.js examples -->
+<script type="text/javascript">
 
-		<script src="js/Detector.js"></script>
-		<script src="js/libs/stats.min.js"></script>
+    // once everything is loaded, we run our Three.js stuff.
+    function init() {
 
-		<script>
 
-			
+        var clock = new THREE.Clock();
 
-			
+        var stats = initStats();
 
+        // create a scene, that will hold all our elements such as objects, cameras and lights.
+        var scene = new THREE.Scene();
 
-			var container, stats;
+        // create a camera, which defines where we're looking at.
+        var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
 
-			var camera, controls, scene, renderer;
 
-			var mesh, texture;
+        // create a render and set the size
+        var webGLRenderer = new THREE.WebGLRenderer();
+        webGLRenderer.setClearColor(new THREE.Color(0x000, 1.0));
+        webGLRenderer.setSize(window.innerWidth, window.innerHeight);
+        webGLRenderer.shadowMapEnabled = true;
 
-			var worldWidth = 256, worldDepth = 256,
-			worldHalfWidth = worldWidth / 2, worldHalfDepth = worldDepth / 2;
+        // position and point the camera to the center of the scene
+        camera.position.x = 100;
+        camera.position.y = 10;
+        camera.position.z = 10;
+        camera.lookAt(new THREE.Vector3(0, 0, 0));
 
-			var clock = new THREE.Clock();
 
-			init();
-			animate();
+        var camControls = new THREE.FirstPersonControls(camera);
+        camControls.lookSpeed = 0.4;
+        camControls.movementSpeed = 20;
+        camControls.noFly = true;
+        camControls.lookVertical = true;
+        camControls.constrainVertical = true;
+        camControls.verticalMin = 1.0;
+        camControls.verticalMax = 2.0;
+        camControls.lon = -150;
+        camControls.lat = 120;
 
 
-			function init() {
-				
-				
-				
-				container = document.getElementById( 'container' );
+        var ambientLight = new THREE.AmbientLight(0x383838);
+        scene.add(ambientLight);
 
-				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 10000 );
+        // add spotlight for the shadows
+        var spotLight = new THREE.SpotLight(0xffffff);
+        spotLight.position.set(100, 140, 130);
+        spotLight.intensity = 2;
+        scene.add(spotLight);
 
-				controls = new THREE.FirstPersonControls( camera );
-				controls.movementSpeed = 150;
-				controls.lookSpeed = 0.1;
+        // add the output of the renderer to the html element
+        document.getElementById("WebGL-output").appendChild(webGLRenderer.domElement);
 
-				scene = new THREE.Scene();
-				scene.fog = new THREE.FogExp2( 0xefd1b5, 0.0025 );
+        // call the render function
+        var step = 0;
 
-				data = generateHeight( worldWidth, worldDepth );
 
-				camera.position.y = data[ worldHalfWidth + worldHalfDepth * worldWidth ] * 10 + 500;
+        // setup the control gui
+        var controls = new function () {
+            // we need the first child, since it's a multimaterial
 
-				var geometry = new THREE.PlaneBufferGeometry( 7500, 7500, worldWidth - 1, worldDepth - 1 );
-				geometry.applyMatrix( new THREE.Matrix4().makeRotationX( - Math.PI / 2 ) );
 
-				var vertices = geometry.attributes.position.array;
+        };
 
-				for ( var i = 0, j = 0, l = vertices.length; i < l; i ++, j += 3 ) {
+        var gui = new dat.GUI();
+        var mesh;
 
-					vertices[ j + 1 ] = data[ i ] * 10;
+        var loader = new THREE.OBJLoader();
+        var load = function (object) {
+            var scale = chroma.scale(['red', 'green', 'blue']);
+            setRandomColors(object, scale);
+            mesh = object;
+            scene.add(mesh);
+        };
 
-				}
 
-				texture = new THREE.Texture( generateTexture( data, worldWidth, worldDepth ), THREE.UVMapping, THREE.ClampToEdgeWrapping, THREE.ClampToEdgeWrapping );
-				texture.needsUpdate = true;
+        var texture = THREE.ImageUtils.loadTexture('../assets/textures/Metro01.JPG');
+        //texture.wrapS = texture.wrapT = THREE.MirroredRepeatWrapping;
+        loader.load('obj/transdec/transdec.obj', load);
+        //texture.repeat.set( 1 , 1);
 
-				mesh = new THREE.Mesh( geometry, new THREE.MeshBasicMaterial( { map: texture } ) );
-				scene.add( mesh );
 
-				renderer = new THREE.WebGLRenderer();
-				renderer.setClearColor( 0xefd1b5 );
-				renderer.setPixelRatio( window.devicePixelRatio );
-				renderer.setSize( window.innerWidth, window.innerHeight );
+        function setCamControls() {
 
-				container.innerHTML = "";
+        }
 
-				container.appendChild( renderer.domElement );
+        render();
 
-				stats = new Stats();
-				stats.domElement.style.position = 'absolute';
-				stats.domElement.style.top = '0px';
-				container.appendChild( stats.domElement );
+        function setRandomColors(object, scale) {
+            var children = object.children;
 
 
-				//
+            if (children && children.length > 0) {
+                children.forEach(function (e) {
+                    setRandomColors(e, scale)
+                });
+            } else {
+                // no children assume contains a mesh
+                if (object instanceof THREE.Mesh) {
 
-				window.addEventListener( 'resize', onWindowResize, false );
-				
-				
-				
-				
-				
-				
+                    object.material.color = new THREE.Color(scale(Math.random()).hex());
+                    if (object.material.name.indexOf("building") == 0) {
+                        object.material.emissive = new THREE.Color(0x444444);
+                        object.material.transparent = true;
+                        object.material.opacity = 0.8;
+                    }
+                }
+            }
+        }
 
-				var manager = new THREE.LoadingManager();
-				manager.onProgress = function ( item, loaded, total ) {
 
-					console.log( item, loaded, total );
+        function render() {
+            stats.update();
+            var delta = clock.getDelta();
 
-				};
+            if (mesh) {
+                //   mesh.rotation.y+=0.006;
+            }
 
-				var texture = new THREE.Texture();
 
-				var onProgress = function ( xhr ) {
-					if ( xhr.lengthComputable ) {
-						var percentComplete = xhr.loaded / xhr.total * 100;
-						console.log( Math.round(percentComplete, 2) + '% downloaded' );
-					}
-				};
+            camControls.update(delta);
+            webGLRenderer.clear();
+            // render using requestAnimationFrame
+            requestAnimationFrame(render);
+            webGLRenderer.render(scene, camera)
+        }
 
-				var onError = function ( xhr ) {
-				};
+        function initStats() {
 
+            var stats = new Stats();
+            stats.setMode(0); // 0: fps, 1: ms
 
-				var loader = new THREE.ImageLoader( manager );
-				loader.load( 'textures/skyboxsun25degtest.png', function ( image ) {
+            // Align top-left
+            stats.domElement.style.position = 'absolute';
+            stats.domElement.style.left = '0px';
+            stats.domElement.style.top = '0px';
 
-					texture.image = image;
-					texture.needsUpdate = true;
+            document.getElementById("Stats-output").appendChild(stats.domElement);
 
-				} );
-
-				// model
-
-				var loader = new THREE.OBJLoader( manager );
-				loader.load( 'obj/transdec/transdec.obj', function ( object ) {
-
-					object.traverse( function ( child ) {
-
-						if ( child instanceof THREE.Mesh ) {
-
-							child.material.map = texture;
-
-						}
-
-					} );
-
-					object.position.y = - 80;
-					object.scale.set(.025,.025,.025)
-					scene.add( object );
-
-				}, onProgress, onError );
-
-			}
-
-			function onWindowResize() {
-
-				camera.aspect = window.innerWidth / window.innerHeight;
-				camera.updateProjectionMatrix();
-
-				renderer.setSize( window.innerWidth, window.innerHeight );
-
-				controls.handleResize();
-
-			}
-			//
-
-			function animate() {
-
-				requestAnimationFrame( animate );
-
-				render();
-				stats.update();
-
-			}
-
-			function render() {
-
-                        	controls.update( clock.getDelta() );
-				renderer.render( scene, camera );
-
-			}
-
-		</script>
-
-	</body>
+            return stats;
+        }
+    }
+    window.onload = init;
+</script>
+</body>
 </html>
