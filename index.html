@@ -4,16 +4,15 @@
 
 <head>
     <title>Example 09.07 - first person camera </title>		
-    <script src="js/three.min.js"></script>
-    <script src="js/loaders/OBJLoader.js"></script>
-    <script type="text/javascript" src="https://raw.githubusercontent.com/josdirksen/learning-threejs/blob/master/libs/MTLLoader.js"></script>
-    <script type="text/javascript" src="https://raw.githubusercontent.com/josdirksen/learning-threejs/blob/master/libs/OBJMTLLoader.js"></script>
-    <script src="js/controls/FirstPersonControls.js"></script>
-
-
-    <script type="text/javascript" src="https://raw.githubusercontent.com/josdirksen/learning-threejs/blob/master/libs/stats.js"></script>
-    <script type="text/javascript" src="https://raw.githubusercontent.com/josdirksen/learning-threejs/blob/master/libs/dat.gui.js"></script>
-    <script type="text/javascript" src="https://raw.githubusercontent.com/josdirksen/learning-threejs/blob/master/libs/chroma.js"></script>
+    <script src="learn/three.js"></script>
+    <script src="learn/OBJLoader.js"></script>
+    <script src="learn/MTLLoader.js"></script>
+    <script src="learn/OBJMTLLoader.js"></script>
+    <script src="learn/FirstPersonControls.js"></script>
+    <script src="learn/jquery-1.9.0.js"></script>
+    <script src="learn/stats.js"></script>
+    <script src="learn/dat.gui.js"></script>
+    <script src="learn/chroma.js"></script>
 
     <style>
         body {
@@ -109,9 +108,9 @@
         };
 
 
-        var texture = THREE.ImageUtils.loadTexture('https://raw.githubusercontent.com/josdirksen/learning-threejs/blob/master/assets/textures/Metro01.JPG');
+        var texture = THREE.ImageUtils.loadTexture('learn/metro01.JPG');
         //texture.wrapS = texture.wrapT = THREE.MirroredRepeatWrapping;
-        loader.load('https://raw.githubusercontent.com/josdirksen/learning-threejs/blob/master/assets/models/city.obj', 'https://raw.githubusercontent.com/josdirksen/learning-threejs/blob/master/assets/models/city.mtl', load);
+        loader.load('learn/city.obj', 'learn/city.mtl', load);
         //texture.repeat.set( 1 , 1);
 
 
