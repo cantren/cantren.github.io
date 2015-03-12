@@ -64,14 +64,14 @@
 
         // position and point the camera to the center of the scene
         camera.position.x = 100;
-        camera.position.y = 10;
+        camera.position.y = 100;
         camera.position.z = 100;
         camera.lookAt(new THREE.Vector3(0, 0, 0));
 
 
         var camControls = new THREE.FirstPersonControls(camera);
         camControls.lookSpeed = 0.2;
-        camControls.movementSpeed = 3;
+        camControls.movementSpeed = 1;
         camControls.noFly = true;
         camControls.lookVertical = true;
         camControls.constrainVertical = true;
