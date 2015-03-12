@@ -44,8 +44,7 @@
 
     // once everything is loaded, we run our Three.js stuff.
     $(function () {
-
-
+     
         var clock = new THREE.Clock();
 
         var stats = initStats();
@@ -101,8 +100,6 @@
         // setup the control gui
         var controls = new function () {
             // we need the first child, since it's a multimaterial
-
-
         }
 
         var gui = new dat.GUI();
@@ -111,49 +108,14 @@
         var loader = new THREE.OBJMTLLoader();
         loader.addEventListener('load', function (event) {
 
-            var scale = chroma.scale(['red', 'green', 'blue']);
             var object = event.content;
-            setRandomColors(object, scale);
-
-
             mesh = object;
             scene.add(mesh);
         });
 
-
-        //var texture = THREE.ImageUtils.loadTexture('../learn/metro01.JPG');
-        texture.wrapS = texture.wrapT = THREE.MirroredRepeatWrapping;
         loader.load('../obj/male02/male02.obj', '../obj/male02/male02_dds.mtl', {side: THREE.DoubleSide});
-        texture.repeat.set( 1 , 1);
-
-
-        function setCamControls() {
-
-        }
 
         render();
-
-        function setRandomColors(object, scale) {
-            var children = object.children;
-
-
-            if (children && children.length > 0) {
-                children.forEach(function (e) {
-                    setRandomColors(e, scale)
-                });
-            } else {
-                // no children assume contains a mesh
-                if (object instanceof THREE.Mesh) {
-
-                    object.material.color = new THREE.Color(scale(Math.random()).hex());
-                    if (object.material.name.indexOf("building") == 0) {
-                        object.material.emissive = new THREE.Color(0x444444);
-                        object.material.transparent = true;
-                        object.material.opacity = 0.8;
-                    }
-                }
-            }
-        }
 
 
         function render() {
