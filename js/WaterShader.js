@@ -108,7 +108,7 @@ THREE.Water = function ( renderer, camera, scene, options ) {
 	this.name = 'water_' + this.id;
 	
 	function isPowerOfTwo ( value ) {		
--		return ( value & ( value - 1 ) ) === 0;		
+-		return ( value & ( value - 1 ) ) === 0 && value !== 0;;		
 -	};
 
 	function optionalParameter ( value, defaultValue ) {
