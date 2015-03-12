@@ -119,7 +119,7 @@
         waterNormals = new THREE.ImageUtils.loadTexture( 'textures/waternormals.jpg' );
 				waterNormals.wrapS = waterNormals.wrapT = THREE.RepeatWrapping; 
 
-				water = new THREE.Water( renderer, camera, scene, {
+				water = new THREE.Water( webGLRenderer, camera, scene, {
 					textureWidth: 512, 
 					textureHeight: 512,
 					waterNormals: waterNormals,
