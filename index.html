@@ -62,7 +62,7 @@
         // param: 4,
         // filterparam: 1
         //}
-        var materials;
+//        var materials;
         //var waterNormals;
         //water reflection stuff
 
@@ -115,16 +115,16 @@
         
         
         
-        var map = THREE.ImageUtils.loadTexture( 'textures/UV_Grid_Sm.jpg' );
-				map.wrapS = map.wrapT = THREE.RepeatWrapping;
-				map.anisotropy = 16;
+        //var map = THREE.ImageUtils.loadTexture( 'textures/UV_Grid_Sm.jpg' );
+	//			map.wrapS = map.wrapT = THREE.RepeatWrapping;
+	//			map.anisotropy = 16;
 
-	materials = [new THREE.MeshLambertMaterial( { ambient: 0xbbbbbb, map: map, side: THREE.DoubleSide } ), new THREE.MeshBasicMaterial( { color: 0xffffff, wireframe: true, transparent: true, opacity: 0.1, side: THREE.DoubleSide } )];
+	//materials = [new THREE.MeshLambertMaterial( { ambient: 0xbbbbbb, map: map, side: THREE.DoubleSide } ), new THREE.MeshBasicMaterial( { color: 0xffffff, wireframe: true, transparent: true, opacity: 0.1, side: THREE.DoubleSide } )];
 				
-        var geo = new THREE.ParametricGeometry( THREE.ParametricGeometries.plane( 200, 200 ), 10, 20 );
-	object = THREE.SceneUtils.createMultiMaterialObject( geo, materials );
-	object.position.set( 0, 0, 0 );
-	scene.add( object );
+        //var geo = new THREE.ParametricGeometry( THREE.ParametricGeometries.plane( 200, 200 ), 10, 20 );
+	//object = THREE.SceneUtils.createMultiMaterialObject( geo, materials );
+	//object.position.set( 0, 0, 0 );
+	//scene.add( object );
         
         
         //more water stuff
