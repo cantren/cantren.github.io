@@ -62,6 +62,7 @@
         // param: 4,
         // filterparam: 1
         //}
+        var materials;
         //var waterNormals;
         //water reflection stuff
 
@@ -111,6 +112,20 @@
         var light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
         light.position.set( - 1, 1, - 1 );
         scene.add( light );
+        
+        
+        
+        var map = THREE.ImageUtils.loadTexture( 'textures/UV_Grid_Sm.jpg' );
+				map.wrapS = map.wrapT = THREE.RepeatWrapping;
+				map.anisotropy = 16;
+
+	materials = [new THREE.MeshLambertMaterial( { ambient: 0xbbbbbb, map: map, side: THREE.DoubleSide } ), new THREE.MeshBasicMaterial( { color: 0xffffff, wireframe: true, transparent: true, opacity: 0.1, side: THREE.DoubleSide } )];
+				
+        var geo = new THREE.ParametricGeometry( THREE.ParametricGeometries.plane( 200, 200 ), 10, 20 );
+	object = THREE.SceneUtils.createMultiMaterialObject( geo, materials );
+	object.position.set( 0, 0, 0 );
+	scene.add( object );
+        
         
         //more water stuff
         //waterNormals = new THREE.ImageUtils.loadTexture( 'textures/waternormals.jpg' );
