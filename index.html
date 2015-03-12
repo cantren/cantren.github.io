@@ -1,40 +1,49 @@
+
 <!DOCTYPE html>
-
 <html>
-
-<head>
-    <title>Example 09.07 - first person camera </title>		
-    <script src="learn/three.js"></script>
-    <script src="learn/OBJLoader.js"></script>
-    <script src="learn/MTLLoader.js"></script>
-    <script src="learn/OBJMTLLoader.js"></script>
-    <script src="learn/FirstPersonControls.js"></script>
-    <script src="learn/jquery-1.9.0.js"></script>
-    <script src="learn/stats.js"></script>
-    <script src="learn/dat.gui.js"></script>
-    <script src="learn/chroma.js"></script>
-
-    <style>
+ <head> 
+  <title>Example 09.07 - first person camera </title> 
+  <script type="text/javascript" src="../learn/three.js"></script> 
+  <script type="text/javascript" src="../learn/OBJLoader.js"></script> 
+  <script type="text/javascript" src="../learn/MTLLoader.js"></script> 
+  <script type="text/javascript" src="../learn/OBJMTLLoader.js"></script> 
+  <script type="text/javascript" src="../learn/jquery-1.9.0.js"></script> 
+  <script type="text/javascript" src="../learn/stats.js"></script> 
+  <script type="text/javascript" src="../learn/dat.gui.js"></script> 
+  <script type="text/javascript" src="../learn/chroma.js"></script> 
+  <script type="text/javascript" src="../learn/FirstPersonControls.js"></script> 
+  <style>
         body {
             /* set margin to 0 and overflow to hidden, to go fullscreen */
             margin: 0;
             overflow: hidden;
         }
-    </style>
-</head>
-<body>
+    </style> 
+  <script type="text/javascript">
 
-<div id="Stats-output">
-</div>
-<!-- Div which will hold the Output -->
-<div id="WebGL-output">
-</div>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-19067049-1']);
+  _gaq.push(['_trackPageview']);
 
-<!-- Javascript code that runs our Three.js examples -->
-<script type="text/javascript">
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+ </head> 
+ <body> 
+  <div id="Stats-output"> 
+  </div> 
+  <!-- Div which will hold the Output --> 
+  <div id="WebGL-output"> 
+  </div> 
+  <!-- Javascript code that runs our Three.js examples --> 
+  <script type="text/javascript">
 
     // once everything is loaded, we run our Three.js stuff.
-    function init() {
+    $(function () {
 
 
         var clock = new THREE.Clock();
@@ -83,7 +92,7 @@
         scene.add(spotLight);
 
         // add the output of the renderer to the html element
-        document.getElementById("WebGL-output").appendChild(webGLRenderer.domElement);
+        $("#WebGL-output").append(webGLRenderer.domElement);
 
         // call the render function
         var step = 0;
@@ -94,23 +103,27 @@
             // we need the first child, since it's a multimaterial
 
 
-        };
+        }
 
         var gui = new dat.GUI();
         var mesh;
 
         var loader = new THREE.OBJMTLLoader();
-        var load = function (object) {
+        loader.addEventListener('load', function (event) {
+
             var scale = chroma.scale(['red', 'green', 'blue']);
+            var object = event.content;
             setRandomColors(object, scale);
+
+
             mesh = object;
             scene.add(mesh);
-        };
+        });
 
 
-        var texture = THREE.ImageUtils.loadTexture('learn/metro01.JPG');
+        var texture = THREE.ImageUtils.loadTexture('../learn/Metro01.JPG');
         //texture.wrapS = texture.wrapT = THREE.MirroredRepeatWrapping;
-        loader.load('learn/city.obj', 'learn/city.mtl', load);
+        loader.load('../learn/city.obj', '../learn/city.mtl', {side: THREE.DoubleSide});
         //texture.repeat.set( 1 , 1);
 
 
@@ -169,12 +182,13 @@
             stats.domElement.style.left = '0px';
             stats.domElement.style.top = '0px';
 
-            document.getElementById("Stats-output").appendChild(stats.domElement);
+            $("#Stats-output").append(stats.domElement);
 
             return stats;
         }
-    }
-    window.onload = init;
-</script>
-</body>
+    });
+
+
+</script>  
+ </body>
 </html>
