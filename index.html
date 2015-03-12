@@ -90,6 +90,10 @@
         spotLight.position.set(100, 140, 130);
         spotLight.intensity = 2;
         scene.add(spotLight);
+        
+        var light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
+        light.position.set( - 1, 1, - 1 );
+        scene.add( light );
 
         // add the output of the renderer to the html element
         $("#WebGL-output").append(webGLRenderer.domElement);
