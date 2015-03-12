@@ -52,14 +52,6 @@
 
         // create a scene, that will hold all our elements such as objects, cameras and lights.
         var scene = new THREE.Scene();
-        
-        //try adding more light
-        var ambient = new THREE.AmbientLight( 0x444444 );
-        scene.add( ambient );
-        var directionalLight = new THREE.DirectionalLight( 0xffeedd );
-        directionalLight.position.set( 0, 0, 1 ).normalize();
-        scene.add( directionalLight );
-        ///done trying to add more light
 
         // create a camera, which defines where we're looking at.
         var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -129,10 +121,10 @@
         });
 
 
-        var texture = THREE.ImageUtils.loadTexture('../learn/metro01.JPG');
-        //texture.wrapS = texture.wrapT = THREE.MirroredRepeatWrapping;
+        //var texture = THREE.ImageUtils.loadTexture('../learn/metro01.JPG');
+        texture.wrapS = texture.wrapT = THREE.MirroredRepeatWrapping;
         loader.load('../obj/male02/male02.obj', '../obj/male02/male02_dds.mtl', {side: THREE.DoubleSide});
-        //texture.repeat.set( 1 , 1);
+        texture.repeat.set( 1 , 1);
 
 
         function setCamControls() {
