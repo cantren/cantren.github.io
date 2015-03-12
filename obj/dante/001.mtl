@@ -1,0 +1,107 @@
+# Blender MTL File: 'dante2.blend'
+# Material Count: 9
+
+newmtl material_0.001
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd t_dante_vest_d.tga
+map_Disp t_dante_vest_n.tga
+map_Ks t_dante_vest_s.tga
+
+newmtl material_1.001
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd t_dante_jacket_d.tga
+map_Disp t_dante_jacket_n.tga
+map_Tr t_dante_jacket_m.tga
+
+newmtl material_2.001
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd t_dante_lowerBody_d.tga
+map_Disp t_dante_lowerBody_n.tga
+map_Ks t_dante_lowerBody_s.tga
+
+newmtl material_3.001
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd t_dante_naked_upperbody_d.tga
+map_Disp t_dante_naked_upperbody_n.tga
+map_Tr t_dante_naked_upperbody_m.tga
+
+newmtl material_4.001
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd t_dante_head_d.tga
+map_Disp t_dante_head_n.tga
+map_Tr t_dante_head_m.tga
+
+newmtl material_5.001
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd t_dante_caruncles_d.tga
+
+newmtl material_6.001
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd t_dante_head_d.tga
+map_Disp t_dante_head_n.tga
+map_Tr t_dante_head_m.tga
+
+newmtl material_7.001
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd t_dante_hair_black_dm.tga
+map_Disp t_dante_hair_n.tga
+map_Ks t_dante_hair_s.tga
+
+newmtl material_8.001
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd t_dante_eye_d.tga
+map_Disp t_eye_n.tga
