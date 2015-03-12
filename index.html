@@ -71,13 +71,13 @@
 
 
         var camControls = new THREE.FirstPersonControls(camera);
-        camControls.lookSpeed = 0.2; //Pitch Thrust to drag ratio
-        camControls.movementSpeed = 1; // FWD BKWD Thrust to drag ratio 
+        camControls.lookSpeed = 0.05; //Pitch Thrust to drag ratio
+        camControls.movementSpeed = 0.25; // FWD BKWD Thrust to drag ratio 
         camControls.noFly = true; //IDK
         camControls.lookVertical = true; //IDK
         camControls.constrainVertical = true; //IDK
         camControls.verticalMin = 1.0; //basement floor level
-        camControls.verticalMax = 200.0; //sky ceiling level
+        camControls.verticalMax = 100.0; //sky ceiling level
         camControls.lon = 80; // initial pitch 
         camControls.lat = 270;//initial pan
 
