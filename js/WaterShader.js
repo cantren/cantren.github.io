@@ -174,7 +174,7 @@ THREE.Water = function ( renderer, camera, scene, options ) {
 	
 	this.material.uniforms.eye.value = this.eye;
 	
-	if ( !THREE.Math.isPowerOfTwo(width) || !THREE.Math.isPowerOfTwo(height) )
+	if ( !((width & ( width - 1 ) ) === 0 && width !== 0) || !((width & ( width - 1 ) ) === 0 && width !== 0) )
 	{
 		this.texture.generateMipmaps = false;
 		this.tempTexture.generateMipmaps = false;
