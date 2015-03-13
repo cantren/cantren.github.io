@@ -119,17 +119,33 @@
 					sunColor: 0xffffff,
 					waterColor: 0x000000,//0x001e0f,//0xe7e7ec,//0x001e0f,
 					distortionScale: 50.0,
-				} );
+				}
+				water2 = new THREE.Water( renderer, camera, scene, {
+					textureWidth: 512, 
+					textureHeight: 512,
+					waterNormals: waterNormals,
+					alpha: 	1.0,
+					sunDirection: light.position.clone().normalize(),
+					sunColor: 0xffffff,
+					waterColor: 0x001e0f,
+					distortionScale: 50.0,
+				});
 
 
 				mirrorMesh = new THREE.Mesh(
 					new THREE.PlaneBufferGeometry( parameters.width * 500, parameters.height * 500 ),
 					water.material
+					
+				mirrorMesh2 = new THREE.Mesh(
+					new THREE.PlaneBufferGeometry( parameters.width * 500, parameters.height * 500 ),
+					water2.material
 				);
 
 				mirrorMesh.add( water );
 				mirrorMesh.rotation.x = - Math.PI * 1.5;
+				mirrorMesh2.rotation.x = - Math.PI * 0.5;
 				scene.add( mirrorMesh );
+				scene.add( mirrorMesh2 );
 
 
 				// load skybox
