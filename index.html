@@ -3,7 +3,7 @@
 <html>
  <head> 
   <title>SimBox - Robosub Simulator SWIM TOWARDS THE GATE</title> 
-  <script type="text/javascript" src="../learn/three.js"></script>
+  <script type="text/javascript" src="../js/three.min.js"></script>
   <script type="text/javascript" src="../learn/OBJLoader.js"></script> 
   <script type="text/javascript" src="../learn/MTLLoader.js"></script> 
   <script type="text/javascript" src="../learn/OBJMTLLoader.js"></script> 
@@ -226,8 +226,8 @@
         var gui = new dat.GUI();
         var mesh;
 
-        var loader = new THREE.OBJMTLLoader();
-        loader.addEventListener('load', function (event) {
+        //var loader = new THREE.OBJMTLLoader();
+        //loader.addEventListener('load', function (event) {
 
             var object = event.content;
             mesh = object;
@@ -237,8 +237,8 @@
 //        loader.load('../obj/male02/male02.obj', '../obj/male02/male02_dds.mtl', {side: THREE.DoubleSide});
 //        loader.load('../obj/dante/001.obj', '../obj/dante/001.mtl', {side: THREE.DoubleSide});
 //        loader.load('../obj/gate/Gate.obj', '../obj/gate/Gate.mtl', {side: THREE.DoubleSide});
-        loader.load('../obj/transdec OBJ/transdec test.obj', '../obj/transdec OBJ/transdec test.mtl', {side: THREE.DoubleSide});
-        loader.load('../obj/robosub obstacles/obstacles.obj', '../obj/robosub obstacles/obstacles.mtl', {side: THREE.DoubleSide});
+        //loader.load('../obj/transdec OBJ/transdec test.obj', '../obj/transdec OBJ/transdec test.mtl', {side: THREE.DoubleSide});
+        //loader.load('../obj/robosub obstacles/obstacles.obj', '../obj/robosub obstacles/obstacles.mtl', {side: THREE.DoubleSide});
         render();
 
 
