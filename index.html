@@ -85,9 +85,10 @@
 				
 				
 				camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-				camera.position.x = 0;//pool line of symetry is x axis
-        			camera.position.y = -10;//water depth
-				camera.position.z = 0;//how close to the wall are you
+				//camera.position.x = 0;//pool line of symetry is x axis
+        			//camera.position.y = -10;//water depth
+				//camera.position.z = 0;//how close to the wall are you
+				camera.position.set( 2000, 750, 2000 );
         			camera.lookAt(new THREE.Vector3(0, 0, 0));
         			
         			camControls = new THREE.FirstPersonControls( camera );
@@ -98,8 +99,8 @@
         			camControls.constrainVertical = true; //IDK
         			camControls.verticalMin = 1.0; //basement floor level
         			camControls.verticalMax = 175.0; //sky ceiling level
-        			camControls.lon = 0; // initial pitch 
-        			camControls.lat = 0;//initial pan
+        			camControls.lon = 90; // initial pitch 
+        			camControls.lat = 90;//initial pan
 
 
 				var light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
