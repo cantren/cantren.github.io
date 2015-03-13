@@ -211,8 +211,9 @@
 
 			function render() {
 				
-				var delta = clock.getDelta();
-				camControls.update(delta);
+				
+				var time = performance.now() * 0.001;
+				camControls.update(time);
 
 				var time = performance.now() * 0.001;
 
