@@ -84,9 +84,12 @@
         webGLRenderer.shadowMapEnabled = true;
 
         // position and point the camera to the center of the scene
+        //camera.position.x = 0;//pool line of symetry is x axis
+        //camera.position.y = 12;//water depth
+        //camera.position.z = -28;//how close to the wall are you
         camera.position.x = 0;//pool line of symetry is x axis
-        camera.position.y = 12;//water depth
-        camera.position.z = -28;//how close to the wall are you
+        camera.position.y = 0;//water depth
+        camera.position.z = 0;//how close to the wall are you
         camera.lookAt(new THREE.Vector3(0, 0, 0));
 
 
