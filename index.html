@@ -127,7 +127,7 @@
 					alpha: 	1.0,
 					sunDirection: light.position.clone().normalize(),
 					sunColor: 0xffffff,
-					waterColor: 0x001e0f,
+					waterColor: 0x94c5cc,//0x001e0f,
 					distortionScale: 50.0,
 				} );
 
@@ -146,7 +146,7 @@
 
 				var cubeMap = new THREE.CubeTexture( [] );
 				cubeMap.format = THREE.RGBFormat;
-				cubeMap.flipY = false;
+				cubeMap.flipY = true;
 
 				var loader = new THREE.ImageLoader();
 				loader.load( '../textures/skyboxsun25degtest.png', function ( image ) {
@@ -184,7 +184,7 @@
 					vertexShader: cubeShader.vertexShader,
 					uniforms: cubeShader.uniforms,
 					depthWrite: false,
-					side: THREE.BackSide
+					side: THREE.DoubleSide
 				});
 
 				var skyBox = new THREE.Mesh(
