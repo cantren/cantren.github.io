@@ -34,7 +34,7 @@
 
 		<script src="../js/three.min.js"></script>
 
-		<script src="../learn/FirstPersonControls.js"></script>
+		<script src="../js/FirstPersonControls.js"></script>
 		<script src="../js/Mirror.js"></script>
 		<script src="../js/WaterShader.js"></script>
 
@@ -80,7 +80,8 @@
 				container.appendChild( renderer.domElement );
 
 				scene = new THREE.Scene();
-
+				
+				
 				camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
 				camera.position.x = 0;//pool line of symetry is x axis
         			camera.position.y = 12;//water depth
@@ -212,7 +213,7 @@
 
 			function render() {
 				
-				camControls.update();
+				controls.update( clock.getDelta() );
 
 				var time = performance.now() * 0.001;
 
