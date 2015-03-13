@@ -89,17 +89,17 @@
         			//camera.position.y = -10;//water depth
 				//camera.position.z = 0;//how close to the wall are you
 				camera.position.set( 2000, 750, 2000 );
-        			camera.lookAt(new THREE.Vector3(0, 0, 0));
+        			//camera.lookAt(new THREE.Vector3(0, 0, 0));
         			
         			camControls = new THREE.FirstPersonControls( camera );
         			camControls.lookSpeed = 0.25; //Pitch Thrust to drag ratio
         			camControls.movementSpeed = 50.0; // FWD BKWD Thrust to drag ratio 
-        			camControls.noFly = true; //IDK
+        			//camControls.noFly = true; //IDK
         			camControls.lookVertical = true; //IDK
         			camControls.constrainVertical = true; //IDK
-        			camControls.verticalMin = 1.0; //basement floor level
-        			camControls.verticalMax = 175.0; //sky ceiling level
-        			camControls.lon = 180; // initial pitch 
+        			camControls.verticalMin = 0.0; //basement floor level
+        			camControls.verticalMax = 1750000.0; //sky ceiling level
+        			camControls.lon = 270; // initial pitch 
         			camControls.lat = 0;//initial pan
 
 
