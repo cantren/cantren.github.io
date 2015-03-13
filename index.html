@@ -86,6 +86,8 @@
 
 				scene = new THREE.Scene();
 				
+				//add water colored fog
+				scene.fog = new THREE.FogExp2( 0x008080, 0.1875 );
 				
 				camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.5, 3000000);
 				camera.position.x = 0;//pool line of symetry is x axis
@@ -117,11 +119,11 @@
 				var loader = new THREE.OBJMTLLoader();
 	//loader.load( 'obj/male02/male02.obj', 'obj/male02/male02_dds.mtl', function ( object ) {
 	loader.load('../obj/transdec OBJ/transdec test.obj', '../obj/transdec OBJ/transdec test.mtl', function ( object ) {
-					object.position.y = -14;
+					object.position.y = -12;
 					scene.add( object );
 					});
         loader.load('../obj/robosub obstacles/obstacles.obj', '../obj/robosub obstacles/obstacles.mtl', function ( object ) {
-					object.position.y = -14;
+					object.position.y = -12;
 					scene.add( object );
 					});
 
