@@ -108,22 +108,22 @@
         			//camControls.lat = 0;//initial pan
 
 
-				var light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
+				var light = new THREE.HemisphereLight( 0x008080, 0x080820, 1 );
 				light.position.set( - 1, 1, - 1 );
 				scene.add( light );
 				
-				var light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
-				light.position.set( - 1, -1, - 1 );
-				scene.add( light );
+				///var light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
+				//light.position.set( - 1, -1, - 1 );
+				//scene.add( light );
 
 				var loader = new THREE.OBJMTLLoader();
 	//loader.load( 'obj/male02/male02.obj', 'obj/male02/male02_dds.mtl', function ( object ) {
 	loader.load('../obj/transdec OBJ/transdec test.obj', '../obj/transdec OBJ/transdec test.mtl', function ( object ) {
-					object.position.y = -12.5;
+					object.position.y = -12.75;
 					scene.add( object );
 					});
         loader.load('../obj/robosub obstacles/obstacles.obj', '../obj/robosub obstacles/obstacles.mtl', function ( object ) {
-					object.position.y = -12.5;
+					object.position.y = -12.75;
 					scene.add( object );
 					});
 
