@@ -86,7 +86,7 @@
         			camera.position.y = 12;//water depth
 				camera.position.z = -28;//how close to the wall are you
         			camera.lookAt(new THREE.Vector3(0, 0, 0));
-        			var camControls = new THREE.FirstPersonControls(camera);
+        			var camControls = new THREE.FirstPersonControls( camera );
         			camControls.lookSpeed = 0.05; //Pitch Thrust to drag ratio
         			camControls.movementSpeed = 0.25; // FWD BKWD Thrust to drag ratio 
         			camControls.noFly = true; //IDK
@@ -211,9 +211,7 @@
 
 			function render() {
 				
-				
-				var time = performance.now() * 0.001;
-				camControls.update(time);
+				camControls.update();
 
 				var time = performance.now() * 0.001;
 
