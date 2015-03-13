@@ -119,7 +119,6 @@
 					sunColor: 0xffffff,
 					waterColor: 0x000000,//0x001e0f,//0xe7e7ec,//0x001e0f,
 					distortionScale: 50.0,
-					side: THREE.DoubleSide,
 				});
 
 
@@ -183,7 +182,7 @@
 					vertexShader: cubeShader.vertexShader,
 					uniforms: cubeShader.uniforms,
 					depthWrite: false,
-					side: THREE.DoubleSide
+					side: THREE.BackSide
 				});
 
 				var skyBox = new THREE.Mesh(
