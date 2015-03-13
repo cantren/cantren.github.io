@@ -41,6 +41,10 @@
 		<script src="../js/Detector.js"></script>
 		<script src="../js/stats.min.js"></script>
 
+		<script src="js/loaders/DDSLoader.js"></script>
+		<script src="js/loaders/MTLLoader.js"></script>
+		<script src="js/loaders/OBJMTLLoader.js"></script>
+  
 		<script>
 
 			if ( ! Detector.webgl ) {
@@ -110,6 +114,19 @@
 				var light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
 				light.position.set( - 1, -1, - 1 );
 				scene.add( light );
+				
+				THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
+
+				var loader = new THREE.OBJMTLLoader();
+	//loader.load( 'obj/male02/male02.obj', 'obj/male02/male02_dds.mtl', function ( object ) {
+	loader.load('../obj/transdec OBJ/transdec test.obj', '../obj/transdec OBJ/transdec test.mtl', function ( object ) {
+					object.position.y = - 80;
+					scene.add( object );
+					});
+        loader.load('../obj/robosub obstacles/obstacles.obj', '../obj/robosub obstacles/obstacles.mtl', function ( object ) {
+					object.position.y = - 80;
+					scene.add( object );
+					});
 
 				waterNormals = new THREE.ImageUtils.loadTexture( 'textures/waternormals.jpg' );
 				waterNormals.wrapS = waterNormals.wrapT = THREE.RepeatWrapping; 
@@ -121,7 +138,7 @@
 					alpha: 	1.0,
 					sunDirection: light.position.clone().normalize(),
 					sunColor: 0xffffff,
-					waterColor: 0x000000,//0x001e0f,//0xe7e7ec,//0x001e0f,
+					waterColor: 0xe7e7ec,0x000000,//0x001e0f,//0xe7e7ec,//0x001e0f,
 					distortionScale: 50.0,
 				});
 
