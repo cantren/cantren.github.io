@@ -113,8 +113,6 @@
 				var light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
 				light.position.set( - 1, -1, - 1 );
 				scene.add( light );
-				
-				THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
 
 				var loader = new THREE.OBJMTLLoader();
 	//loader.load( 'obj/male02/male02.obj', 'obj/male02/male02_dds.mtl', function ( object ) {
