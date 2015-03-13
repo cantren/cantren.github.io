@@ -51,10 +51,9 @@
 			}
 
 			var container, stats;
-			var scene, renderer;
+			var camera, camControls, scene, renderer;
 			var sphere;
-			var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-
+			
 			var parameters = {
 				width: 2000,
 				height: 2000,
@@ -82,11 +81,13 @@
 
 				scene = new THREE.Scene();
 
+				camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
 				camera.position.x = 0;//pool line of symetry is x axis
         			camera.position.y = 12;//water depth
 				camera.position.z = -28;//how close to the wall are you
         			camera.lookAt(new THREE.Vector3(0, 0, 0));
-        			var camControls = new THREE.FirstPersonControls( camera );
+        			
+        			camControls = new THREE.FirstPersonControls( camera );
         			camControls.lookSpeed = 0.05; //Pitch Thrust to drag ratio
         			camControls.movementSpeed = 0.25; // FWD BKWD Thrust to drag ratio 
         			camControls.noFly = true; //IDK
