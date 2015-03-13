@@ -149,7 +149,7 @@
 				cubeMap.flipY = false;
 
 				var loader = new THREE.ImageLoader();
-				loader.load( 'textures/skyboxsun25degtest.png', function ( image ) {
+				loader.load( '../textures/skyboxsun25degtest.png', function ( image ) {
 
 					var getSide = function ( x, y ) {
 
@@ -193,24 +193,6 @@
 				);
 				
 				scene.add( skyBox );
-
-
-				var geometry = new THREE.IcosahedronGeometry( 400, 4 );
-
-				for ( var i = 0, j = geometry.faces.length; i < j; i ++ ) {
-
-					geometry.faces[ i ].color.setHex( Math.random() * 0xffffff );
-
-				}
-
-				var material = new THREE.MeshPhongMaterial( {
-					vertexColors: THREE.FaceColors,
-					shininess: 100,
-					envMap: cubeMap
-				} );
-				
-				sphere = new THREE.Mesh( geometry, material );
-				scene.add( sphere );
 
 			}
 
