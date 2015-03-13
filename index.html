@@ -120,30 +120,7 @@
         
         
         //more water stuff
-        //waterNormals = new THREE.ImageUtils.loadTexture( 'textures/waternormals.jpg' );
-	//			waterNormals.wrapS = waterNormals.wrapT = THREE.RepeatWrapping; 
 
-//				water = new THREE.Water( webGLRenderer, camera, scene, {
-//					textureWidth: 512, 
-//					textureHeight: 512,
-//					waterNormals: waterNormals,
-//					alpha: 	1.0,
-//					sunDirection: light.position.clone().normalize(),
-//					sunColor: 0xffffff,
-//					waterColor: 0x001e0f,
-//					distortionScale: 50.0,
-//				} );
-//
-//
-//				mirrorMesh = new THREE.Mesh(
-//					new THREE.PlaneBufferGeometry( parameters.width * 500, parameters.height * 500 ),
-//					water.material
-//				);
-//
-//				mirrorMesh.add( water );
-//				mirrorMesh.rotation.x = - Math.PI * 0.5;
-//				mirrorMesh.position.z = 200;
-//				scene.add( mirrorMesh );
 
 
 				// load skybox
@@ -151,23 +128,23 @@
 				var cubeMap = new THREE.CubeTexture( [] );
 				cubeMap.format = THREE.RGBFormat;
 				cubeMap.flipY = false;
-//
+				
 				var loader = new THREE.ImageLoader();
 				loader.load( 'textures/skyboxsun25degtest.png', function ( image ) {
-//
+
 					var getSide = function ( x, y ) {
-//
+
 						var size = 1024;
-//
+
 						var canvas = document.createElement( 'canvas' );
 						canvas.width = size;
 						canvas.height = size;
-//
+
 						var context = canvas.getContext( '2d' );
 						context.drawImage( image, - x * size, - y * size );
-//
+
 						return canvas;
-//
+
 					};
 
 					cubeMap.images[ 0 ] = getSide( 2, 1 ); // px
