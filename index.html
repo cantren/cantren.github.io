@@ -1,126 +1,124 @@
 
 <!DOCTYPE html>
-<html>
- <head> 
-  <title>SimBox - Robosub Simulator SWIM TOWARDS THE GATE</title> 
-  <script type="text/javascript" src="../js/three.min.js"></script>
-  <script type="text/javascript" src="../learn/OBJLoader.js"></script> 
-  <script type="text/javascript" src="../learn/MTLLoader.js"></script> 
-  <script type="text/javascript" src="../learn/OBJMTLLoader.js"></script> 
-  <script type="text/javascript" src="../learn/jquery-1.9.0.js"></script> 
-  <script type="text/javascript" src="../learn/stats.js"></script> 
-  <script type="text/javascript" src="../learn/dat.gui.js"></script> 
-  <script type="text/javascript" src="../learn/chroma.js"></script> 
-  <script type="text/javascript" src="../learn/FirstPersonControls.js"></script>
-  
-  <script src="js/ParametricGeometries.js"></script>
-  
-  		
-  <style>
-        body {
-            /* set margin to 0 and overflow to hidden, to go fullscreen */
-            margin: 0;
-            overflow: hidden;
-        }
-    </style> 
-  <script type="text/javascript">
+<html lang="en">
+	<head>
+		<title>three.js webgl - geometry - terrain</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			body {
+				color: #000;
+				font-family:Monospace;
+				font-size:13px;
+				margin: 0px;
+				overflow: hidden;
+			}
 
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-19067049-1']);
-  _gaq.push(['_trackPageview']);
+			#info {
+				position: absolute;
+				top: 0px; width: 100%;
+				text-align:center;
+				padding: 5px;
+			}
 
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
+			a {
 
-</script>
- </head> 
- <body> 
-  <div id="Stats-output"> 
-  </div> 
-  <!-- Div which will hold the Output --> 
-  <div id="WebGL-output"> 
-  </div> 
-  <!-- Javascript code that runs our Three.js examples --> 
-  <script type="text/javascript">
+				color: #a06851;
+			}
 
-    // once everything is loaded, we run our Three.js stuff.
-    $(function () {
-     
-        var clock = new THREE.Clock();
-        var stats = initStats();
-        
-        
-        
-        //water reflection stuff
-        //var parameters = {
-        // width: 2000,
-        // height: 2000,
-        // widthSegments: 250,
-        // heightSegments: 250,
-        // depth: 1500,
-        // param: 4,
-        // filterparam: 1
-        //}
-        var materials;
-        //var waterNormals;
-        //water reflection stuff
+		</style>
+	</head>
+	<body>
 
-        // create a scene, that will hold all our elements such as objects, cameras and lights.
-        var scene = new THREE.Scene();
-        //add water colored fog
-        //scene.fog = new THREE.FogExp2( 0x008080, 0.1875 );
+		<div id="info"><a href="http://threejs.org" target="_blank">three.js</a> - webgl ocean demo</div>
 
-        // create a camera, which defines where we're looking at.
-        var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+		<script src="../js/three.min.js"></script>
+
+		<script src="../js/OrbitControls.js"></script>
+		<script src="../js/Mirror.js"></script>
+		<script src="../js/WaterShader.js"></script>
+
+		<script src="../js/Detector.js"></script>
+		<script src="../js/stats.min.js"></script>
+
+		<script>
+
+			if ( ! Detector.webgl ) {
+
+				Detector.addGetWebGLMessage();
+				document.getElementById( 'container' ).innerHTML = "";
+
+			}
+
+			var container, stats;
+			var camera, scene, renderer;
+			var sphere;
+
+			var parameters = {
+				width: 2000,
+				height: 2000,
+				widthSegments: 250,
+				heightSegments: 250,
+				depth: 1500,
+				param: 4,
+				filterparam: 1
+			}
+			
+			var waterNormals;
+
+			init();
+			animate();
+
+			function init() {
+
+				container = document.createElement( 'div' );
+				document.body.appendChild( container );
+
+				renderer = new THREE.WebGLRenderer();
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				container.appendChild( renderer.domElement );
+
+				scene = new THREE.Scene();
+
+				camera = new THREE.PerspectiveCamera( 55, window.innerWidth / window.innerHeight, 0.5, 3000000 );
+				camera.position.set( 2000, 750, 2000 );
+
+				controls = new THREE.OrbitControls( camera, renderer.domElement );
+				controls.userPan = false;
+				controls.userPanSpeed = 0.0;
+				controls.maxDistance = 5000.0;
+				controls.maxPolarAngle = Math.PI * 0.495;
+				controls.center.set( 0, 500, 0 );
+
+				var light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
+				light.position.set( - 1, 1, - 1 );
+				scene.add( light );
+
+				
+				waterNormals = new THREE.ImageUtils.loadTexture( 'textures/waternormals.jpg' );
+				waterNormals.wrapS = waterNormals.wrapT = THREE.RepeatWrapping; 
+
+				water = new THREE.Water( renderer, camera, scene, {
+					textureWidth: 512, 
+					textureHeight: 512,
+					waterNormals: waterNormals,
+					alpha: 	1.0,
+					sunDirection: light.position.clone().normalize(),
+					sunColor: 0xffffff,
+					waterColor: 0x001e0f,
+					distortionScale: 50.0,
+				} );
 
 
-        // create a render and set the size
-        var webGLRenderer = new THREE.WebGLRenderer();
-        webGLRenderer.setClearColor(new THREE.Color(0x000, 1.0));
-        webGLRenderer.setSize(window.innerWidth, window.innerHeight);
-        webGLRenderer.shadowMapEnabled = true;
+				mirrorMesh = new THREE.Mesh(
+					new THREE.PlaneBufferGeometry( parameters.width * 500, parameters.height * 500 ),
+					water.material
+				);
 
-        // position and point the camera to the center of the scene
-        //camera.position.x = 0;//pool line of symetry is x axis
-        //camera.position.y = 12;//water depth
-        //camera.position.z = -28;//how close to the wall are you
-        camera.position.x = 100;//pool line of symetry is x axis
-        camera.position.y = -100;//water depth
-        camera.position.z = 100;//how close to the wall are you
-        camera.lookAt(new THREE.Vector3(0, 0, 0));
-
-
-        var camControls = new THREE.FirstPersonControls(camera);
-        camControls.lookSpeed = 0.125; //Pitch Thrust to drag ratio
-        camControls.movementSpeed = 2.5; // FWD BKWD Thrust to drag ratio 
-        camControls.noFly = true; //IDK
-        camControls.lookVertical = true; //IDK
-        camControls.constrainVertical = true; //IDK
-        camControls.verticalMin = 1.0; //basement floor level
-        camControls.verticalMax = 175.0; //sky ceiling level
-        camControls.lon = 80; // initial pitch 
-        camControls.lat = 270;//initial pan
-
-
-        var ambientLight = new THREE.AmbientLight(0x383838);
-        scene.add(ambientLight);
-
-        // add spotlight for the shadows
-        var spotLight = new THREE.SpotLight(0xffffff);
-        spotLight.position.set(100, 140, 130);
-        spotLight.intensity = 2;
-        scene.add(spotLight);
-        
-        var light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
-        light.position.set( - 1, 1, - 1 );
-        scene.add( light );
-        
-        
-        //more water stuff
-
+				mirrorMesh.add( water );
+				mirrorMesh.rotation.x = - Math.PI * 0.5;
+				scene.add( mirrorMesh );
 
 
 				// load skybox
@@ -128,7 +126,7 @@
 				var cubeMap = new THREE.CubeTexture( [] );
 				cubeMap.format = THREE.RGBFormat;
 				cubeMap.flipY = false;
-				
+
 				var loader = new THREE.ImageLoader();
 				loader.load( 'textures/skyboxsun25degtest.png', function ( image ) {
 
@@ -174,76 +172,51 @@
 				);
 				
 				scene.add( skyBox );
-        //more water stuff
-        
-        
-
-        // add the output of the renderer to the html element
-        $("#WebGL-output").append(webGLRenderer.domElement);
-
-        // call the render function
-        var step = 0;
 
 
-        // setup the control gui
-        var controls = new function () {
-            // we need the first child, since it's a multimaterial
-        }
+				var geometry = new THREE.IcosahedronGeometry( 400, 4 );
 
-        var gui = new dat.GUI();
-        var mesh;
+				for ( var i = 0, j = geometry.faces.length; i < j; i ++ ) {
 
-        //var loader = new THREE.OBJMTLLoader();
-        //loader.addEventListener('load', function (event) {
+					geometry.faces[ i ].color.setHex( Math.random() * 0xffffff );
 
-        //    var object = event.content;
-        //    mesh = object;
-        //    scene.add(mesh);
-        //});
+				}
 
-//        loader.load('../obj/male02/male02.obj', '../obj/male02/male02_dds.mtl', {side: THREE.DoubleSide});
-//        loader.load('../obj/dante/001.obj', '../obj/dante/001.mtl', {side: THREE.DoubleSide});
-//        loader.load('../obj/gate/Gate.obj', '../obj/gate/Gate.mtl', {side: THREE.DoubleSide});
-        //loader.load('../obj/transdec OBJ/transdec test.obj', '../obj/transdec OBJ/transdec test.mtl', {side: THREE.DoubleSide});
-        //loader.load('../obj/robosub obstacles/obstacles.obj', '../obj/robosub obstacles/obstacles.mtl', {side: THREE.DoubleSide});
-        render();
+				var material = new THREE.MeshPhongMaterial( {
+					vertexColors: THREE.FaceColors,
+					shininess: 100,
+					envMap: cubeMap
+				} );
+				
+				sphere = new THREE.Mesh( geometry, material );
+				scene.add( sphere );
 
+			}
 
-        function render() {
-            stats.update();
-            var delta = clock.getDelta();
+			//
 
-            if (mesh) {
-                //   mesh.rotation.y+=0.006;
-            }
-            //water.material.uniforms.time.value += 1.0 / 60.0;
-            //water.render();
+			function animate() {
 
+				requestAnimationFrame( animate );
+				render();
 
-            camControls.update(delta);
-            webGLRenderer.clear();
-            // render using requestAnimationFrame
-            requestAnimationFrame(render);
-            webGLRenderer.render(scene, camera)
-        }
+			}
 
-        function initStats() {
+			function render() {
 
-            var stats = new Stats();
-            stats.setMode(0); // 0: fps, 1: ms
+				var time = performance.now() * 0.001;
 
-            // Align top-left
-            stats.domElement.style.position = 'absolute';
-            stats.domElement.style.left = '0px';
-            stats.domElement.style.top = '0px';
+				sphere.position.y = Math.sin( time ) * 500 + 250;
+				sphere.rotation.x = time * 0.5;
+				sphere.rotation.z = time * 0.51;
 
-            $("#Stats-output").append(stats.domElement);
+				water.material.uniforms.time.value += 1.0 / 60.0;
+				controls.update();
+				water.render();
+				renderer.render( scene, camera );
 
-            return stats;
-        }
-    });
+			}
 
-
-</script>  
- </body>
+		</script>
+	</body>
 </html>
