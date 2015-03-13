@@ -95,29 +95,18 @@
         			camControls.lookSpeed = 0.25; //Pitch Thrust to drag ratio
         			camControls.movementSpeed = 50.0; // FWD BKWD Thrust to drag ratio 
         			//camControls.noFly = true; //IDK
-        			camControls.lookVertical = true; //IDK
-        			camControls.constrainVertical = true; //IDK
+        			//camControls.lookVertical = true; //IDK
+        			//camControls.constrainVertical = true; //IDK
         			camControls.verticalMin = 0.0; //basement floor level
         			camControls.verticalMax = 1750000.0; //sky ceiling level
-        			camControls.lon = 270; // initial pitch 
-        			camControls.lat = 0;//initial pan
+        			//camControls.lon = 270; // initial pitch 
+        			//camControls.lat = 0;//initial pan
 
 
 				var light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
-				light.position.set( - 1, -1, - 1 );
+				light.position.set( - 1, 1, - 1 );
 				scene.add( light );
 
-				var ambientLight = new THREE.AmbientLight(0x383838);
-        			scene.add(ambientLight);
-        			// add spotlight for the shadows
-        			var spotLight = new THREE.SpotLight(0xffffff);
-				spotLight.position.set(100, 140, 130);
-        			spotLight.intensity = 2;
-        			scene.add(spotLight);
-        
-
-
-				
 				waterNormals = new THREE.ImageUtils.loadTexture( 'textures/waternormals.jpg' );
 				waterNormals.wrapS = waterNormals.wrapT = THREE.RepeatWrapping; 
 
@@ -128,7 +117,7 @@
 					alpha: 	1.0,
 					sunDirection: light.position.clone().normalize(),
 					sunColor: 0xffffff,
-					waterColor: 0x94c5cc,//0x001e0f,
+					waterColor: 0xe7e7ec,//0x001e0f,
 					distortionScale: 50.0,
 				} );
 
@@ -189,7 +178,7 @@
 				});
 
 				var skyBox = new THREE.Mesh(
-					new THREE.BoxGeometry( 1000000, 1000000, 1000000 ),
+					new THREE.BoxGeometry( 10000, 10000, 10000 ),
 					skyBoxMaterial
 				);
 				
