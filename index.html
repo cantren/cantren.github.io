@@ -280,8 +280,8 @@
 				camControls.update( clock.getDelta() ); //update First Person Camera
 				camera2.position.copy( camera.position );
 				camera2.rotation.copy( camera.rotation );
-				camera2.rotation.x = Math.PI/2;
-				camera2.rotation.y = Math.PI/2;
+				camera2.rotation.y = Math.PI;
+				camera2.rotation.z = Math.PI;
 				var time = performance.now() * 0.001; //Measure time for water
 				water.material.uniforms.time.value += 1.0 / 60.0; //speed of water motion(wind chop)
 
