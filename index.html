@@ -139,6 +139,13 @@
         			camControls.verticalMin = -100.0; //basement floor level
         			camControls.verticalMax = 50.0; //sky ceiling level
         			
+        			camControls = new THREE.FirstPersonControls( camera2 );
+        			camControls.lookSpeed = 0.05; //Pitch Thrust to drag ratio
+        			camControls.movementSpeed = 0.25; // FWD BKWD Thrust to drag ratio 
+        			camControls.verticalMin = -100.0; //basement floor level
+        			camControls.verticalMax = 50.0; //sky ceiling level
+        			
+        			
 				//Add scene lighting
 				var light = new THREE.HemisphereLight( 0xffffbb, 0x008080, 1 );//I tried changing the light color here to see what would happen
 				light.position.set( - 1, 1, - 1 ); //my hemisphere flipped upside down
@@ -281,7 +288,7 @@
 				camera2.position.copy( camera.position );
 				camera2.rotation.copy( camera.rotation );
 				//camera2.rotation.y = Math.PI;
-				camera2.rotation.z = Math.PI/2;
+				//camera2.rotation.z = Math.PI/2;
 				var time = performance.now() * 0.001; //Measure time for water
 				water.material.uniforms.time.value += 1.0 / 60.0; //speed of water motion(wind chop)
 
