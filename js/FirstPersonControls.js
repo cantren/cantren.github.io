@@ -37,7 +37,7 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 	this.mouseX = 0;
 	this.mouseY = 0;
 
-	this.lat = Math.PI/2;
+	this.lat = 0;
 	this.lon = 0;
 	this.phi = 0;
 	this.theta = 0;
@@ -234,10 +234,10 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 		if( this.lookVertical ) this.lat -= this.mouseY * actualLookSpeed * verticalLookRatio;
 		if( this.heaveVertical ) this.object.translateZ( - ( actualMoveSpeed + this.autoSpeedFactor ) * verticalLookRatio )
 
-		if( !this.heaveVertical ) this.lat = Math.max( - 85, Math.min( 85, this.lat ) );
-		if( !this.heaveVertical ) this.phi = THREE.Math.degToRad( 90 - this.lat );
+		this.lat = Math.max( - 85, Math.min( 85, this.lat ) );
+		this.phi = THREE.Math.degToRad( 90 - this.lat );
 
-		if( this.heaveVertical ) this.theta = THREE.Math.degToRad( this.lon );
+		this.theta = THREE.Math.degToRad( this.lon );
 
 		if ( this.constrainVertical ) {
 
@@ -249,8 +249,7 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 			position = this.object.position;
 
 		targetPosition.x = position.x + 100 * Math.sin( this.phi ) * Math.cos( this.theta );
-		if( !this.heaveVertical )targetPosition.y = position.y + 100 * Math.cos( this.phi );
-		if( this.heaveVertical )targetPosition.y = targetPosition.y;
+		//targetPosition.y = position.y + 100 * Math.cos( this.phi );
 		targetPosition.z = position.z + 100 * Math.sin( this.phi ) * Math.sin( this.theta );
 		this.object.lookAt( targetPosition );
 
