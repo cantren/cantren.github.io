@@ -54,7 +54,7 @@
 			}
 
 			var container, stats;//cargo cult code comment out this line please(may be desired in future)
-			var camera, camControls, scene, renderer;//these are actually usefull
+			var camera, camera2, camControls, scene, scene2, renderer;//these are actually usefull
 			var sphere;//cargo cult code delete this line please
 			
 			var clock = new THREE.Clock();//I spent a long time debugging because I forgot to initialize this
@@ -85,15 +85,23 @@
 				container.appendChild( renderer.domElement );
 
 				scene = new THREE.Scene();
+				scene2 = new THREE.Scene();
 				
 				//add water colored fog
 				//scene.fog = new THREE.FogExp2( 0x008080, 0.1875 );
 				scene.fog = new THREE.FogExp2( 0x008080, 0.1375 );
 				
 				camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.5, 3000000);
+				
 				camera.position.x = 0;//pool line of symetry is x axis
         			camera.position.y = -2;//water depth
 			        camera.position.z = -28;//how close to the wall are you
+			        
+			        camera2 = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.5, 3000000);
+			        
+			        camera2.position.x = 0;//pool line of symetry is x axis
+        			camera2.position.y = -2;//water depth
+			        camera2.position.z = -28;//how close to the wall are you
 				//camera.position.set( 0, -2, -28 );
         			
         			camControls = new THREE.FirstPersonControls( camera );
