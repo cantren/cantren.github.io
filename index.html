@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>three.js webgl - geometry - terrain</title>
+		<title>SimBox - Robosub Simulator SWIM TOWARDS THE GATE</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<style>
@@ -87,7 +87,8 @@
 				scene = new THREE.Scene();
 				
 				//add water colored fog
-				scene.fog = new THREE.FogExp2( 0x008080, 0.1875 );
+				//scene.fog = new THREE.FogExp2( 0x008080, 0.1875 );
+				scene.fog = new THREE.FogExp2( 0x008080, 0.1375 );
 				
 				camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.5, 3000000);
 				camera.position.x = 0;//pool line of symetry is x axis
@@ -108,13 +109,13 @@
         			//camControls.lat = 0;//initial pan
 
 
-				var light = new THREE.HemisphereLight( 0x008080, 0x080820, 1 );
-				light.position.set( - 1, 1, - 1 );
-				scene.add( light );
-				
-				///var light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
-				//light.position.set( - 1, -1, - 1 );
+				//var light = new THREE.HemisphereLight( 0x008080, 0x080820, 1 );
+				//light.position.set( - 1, 1, - 1 );
 				//scene.add( light );
+				
+				var light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
+				light.position.set( - 1, -1, - 1 );
+				scene.add( light );
 
 				var loader = new THREE.OBJMTLLoader();
 	//loader.load( 'obj/male02/male02.obj', 'obj/male02/male02_dds.mtl', function ( object ) {
