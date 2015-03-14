@@ -53,11 +53,11 @@
 
 			}
 
-			var container, stats;
-			var camera, camControls, scene, renderer;
-			var sphere;
+			var container, stats;//cargo cult code comment out this line please(may be desired in future)
+			var camera, camControls, scene, renderer;//these are actually usefull
+			var sphere;//cargo cult code delete this line please
 			
-			var clock = new THREE.Clock();
+			var clock = new THREE.Clock();//I spent a long time debugging because I forgot to initialize this
 			
 			var parameters = {
 				width: 2000,
@@ -94,25 +94,20 @@
 				camera.position.x = 0;//pool line of symetry is x axis
         			camera.position.y = -2;//water depth
 			        camera.position.z = -28;//how close to the wall are you
-				//camera.position.set( 0, -100, 0 ); 
-        			//camera.lookAt(new THREE.Vector3(0, 0, 0));
+				//camera.position.set( 0, -2, -28 );
         			
         			camControls = new THREE.FirstPersonControls( camera );
         			camControls.lookSpeed = 0.05; //Pitch Thrust to drag ratio
         			camControls.movementSpeed = 0.25; // FWD BKWD Thrust to drag ratio 
-        			//camControls.noFly = true; //IDK
-        			//camControls.lookVertical = true; //IDK
-        			//camControls.constrainVertical = true; //IDK
         			camControls.verticalMin = -100.0; //basement floor level
         			camControls.verticalMax = 50.0; //sky ceiling level
-        			//camControls.lon = 270; // initial pitch 
-        			//camControls.lat = 0;//initial pan
-
-
-				//var light = new THREE.HemisphereLight( 0x008080, 0x080820, 1 );
-				//light.position.set( - 1, 1, - 1 );
-				//scene.add( light );
+        			
+				//Add scene lighting
+				var ulight = new THREE.HemisphereLight( 0x008080, 0x080820, 1 );//I tried changing the light color here to see what would happen
+				ulight.position.set( - 1, -1, - 1 ); //my hemisphere flipped upside down
+				scene.add( ulight );//I changed the name to distinguish a negative y value from "sunlight"
 				
+				//
 				var ambientLight = new THREE.AmbientLight(0x383838);
         			scene.add(ambientLight);
         			// add spotlight for the shadows
@@ -121,36 +116,37 @@
         			spotLight.intensity = 2;
         			scene.add(spotLight);
 				
-				var light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
-				light.position.set( - 1, -1, - 1 );
-				scene.add( light );
-
-				var loader = new THREE.OBJMTLLoader();
-	//loader.load( 'obj/male02/male02.obj', 'obj/male02/male02_dds.mtl', function ( object ) {
-	loader.load('../obj/transdec OBJ/transdec test.obj', '../obj/transdec OBJ/transdec test.mtl', function ( object ) {
-					object.position.y = -12.975;
-					scene.add( object );
+				var sunlight = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
+				sunlight.position.set( - 1, 1, - 1 );//I multiply the y value by -1 to play with the lighting. No big change.
+				scene.add( sunlight );//I changed the name to distinguish a positive y value from "ulight"
+				
+				//load and insert the obj meshes and mtl textures
+				//the "secret sauce" is in these .obj and .mtl files.
+				var loader = new THREE.OBJMTLLoader(); //this object does the work
+				loader.load('../obj/transdec OBJ/transdec test.obj', '../obj/transdec OBJ/transdec test.mtl', function ( object ) {
+					object.position.y = -12.975;//experimentally generated via trial and error
+					scene.add( object );//to make a Robosub you would likely need to change it's name from "object"
 					});
-        loader.load('../obj/robosub obstacles/obstacles.obj', '../obj/robosub obstacles/obstacles.mtl', function ( object ) {
-					object.position.y = -12.975;
-					scene.add( object );
+        			loader.load('../obj/robosub obstacles/obstacles.obj', '../obj/robosub obstacles/obstacles.mtl', function ( object ) {
+					object.position.y = -12.975;//experimentally generated via trial and error
+					scene.add( object );//to make a Robosub you would likely need to change it's name from "object"
 					});
 
-				waterNormals = new THREE.ImageUtils.loadTexture( 'textures/waternormals.jpg' );
-				waterNormals.wrapS = waterNormals.wrapT = THREE.RepeatWrapping; 
-
-				water = new THREE.Water( renderer, camera, scene, {
-					textureWidth: 512, 
-					textureHeight: 512,
-					waterNormals: waterNormals,
-					alpha: 	1.0,
-					sunDirection: light.position.clone().normalize(),
-					sunColor: 0xffffff,
-					waterColor: 0xe7e7ec,//,0x000000,//0x001e0f,//0xe7e7ec,//0x001e0f,
-					distortionScale: 50.0,
+				waterNormals = new THREE.ImageUtils.loadTexture( 'textures/waternormals.jpg' ); //potential for easy modification/obstacle reflections
+				waterNormals.wrapS = waterNormals.wrapT = THREE.RepeatWrapping; //recycle that .jpg like a TV re-run
+				//initialize/declare water shader and provide parameters
+				water = new THREE.Water( renderer, camera, scene, { //three.js has a specific thing for water, this is it
+					textureWidth: 512, //size of waves I think, maybe the waternormals.jpg stretch?
+					textureHeight: 512, //size of waves I think, maybe the waternormals.jpg stretch?
+					waterNormals: waterNormals, //provides the .jpg Texture
+					alpha: 	1.0, //how transparent is the water?
+					sunDirection: light.position.clone().normalize(), // I think this makes the reflection normal to the texture
+					sunColor: 0xffffff, //Light has to hit the water, what color is it?
+					waterColor: 0xe7e7ec,//,0x000000,//0x001e0f,//0xe7e7ec,//0x001e0f,//water color for different effects
+					distortionScale: 50.0, //also related to size of waves?
 				});
 
-
+				//initialize/declare new planes for holding the "water" texture mapping
 				mirrorMesh = new THREE.Mesh(
 					new THREE.PlaneBufferGeometry( parameters.width * 500, parameters.height * 500 ),
 					water.material
@@ -160,20 +156,17 @@
 					water.material
 				);
 
-				mirrorMesh.add( water );
-				mirrorMesh2.add( water );
-				mirrorMesh.rotation.x = - Math.PI * 1.5;
-				mirrorMesh2.rotation.x = - Math.PI * 0.5;
-				scene.add( mirrorMesh );
-				scene.add( mirrorMesh2);
-				
+				mirrorMesh.add( water ); //add water shader to otherwise boring underwater PlaneBufferGeometry
+				mirrorMesh2.add( water ); //add water shader to otherwise boring PlaneBufferGeometry
+				mirrorMesh.rotation.x = - Math.PI * 1.5; //rotate undwater water surface to point down
+				mirrorMesh2.rotation.x = - Math.PI * 0.5; //rotate water surface to point up
+				scene.add( mirrorMesh ); //add underwater water surface
+				scene.add( mirrorMesh2); //add water surface 
 
-
-				// load skybox
-
-				var cubeMap = new THREE.CubeTexture( [] );
-				cubeMap.format = THREE.RGBFormat;
-				cubeMap.flipY = false;
+				// load skybox &/or (start example code copypasta: http://threejs.org/examples/#webgl_shaders_ocean)
+				var cubeMap = new THREE.CubeTexture( [] );//initialize/declare the texture object to be mapped to the skybox mesh var skyBox = new THREE.Mesh
+				cubeMap.format = THREE.RGBFormat;//don't know or care
+				cubeMap.flipY = false;//if you make this true the walls of the box go below the horizon
 
 				var loader = new THREE.ImageLoader();
 				loader.load( '../textures/skyboxsun25degtest.png', function ( image ) {
@@ -202,10 +195,10 @@
 					cubeMap.needsUpdate = true;
 
 				} );
-
+				//Initialize/declare the shader for the skybox
 				var cubeShader = THREE.ShaderLib['cube'];
 				cubeShader.uniforms['tCube'].value = cubeMap;
-
+				//Create skybox material 
 				var skyBoxMaterial = new THREE.ShaderMaterial( {
 					fragmentShader: cubeShader.fragmentShader,
 					vertexShader: cubeShader.vertexShader,
@@ -213,17 +206,18 @@
 					depthWrite: false,
 					side: THREE.BackSide
 				});
-
+				//Create Mesh to map skybox material on to
 				var skyBox = new THREE.Mesh(
 					new THREE.BoxGeometry( 10000, 10000, 10000 ),
 					skyBoxMaterial
 				);
-				var skyBox2 = new THREE.Mesh(
-					new THREE.BoxGeometry( 10000, -10000, 10000 ),
-					skyBoxMaterial
-				);
-				scene.add( skyBox );
-				scene.add( skyBox2 );
+
+				//var skyBox2 = new THREE.Mesh(
+				//	new THREE.BoxGeometry( 10000, -10000, 10000 ),
+				//	skyBoxMaterial
+				//);
+				scene.add( skyBox ); //create Point Loma Sky
+				//scene.add( skyBox2 );
 
 
 			}
@@ -232,23 +226,19 @@
 
 			function animate() {
 
-				requestAnimationFrame( animate );
-				render();
+				requestAnimationFrame( animate ); //animate the frame
+				render(); //render the frame
 
 			}
 
 			function render() {
 				
-				camControls.update( clock.getDelta() );
+				camControls.update( clock.getDelta() ); //update First Person Camera
+				var time = performance.now() * 0.001; //Measure time for water
+				water.material.uniforms.time.value += 1.0 / 60.0; //speed of water motion(wind chop)
 
-				var time = performance.now() * 0.001;
-
-				
-
-				water.material.uniforms.time.value += 1.0 / 60.0;
-				
-				water.render();
-				renderer.render( scene, camera );
+				water.render(); //render water surface
+				renderer.render( scene, camera ); //render everything else
 
 			}
 
