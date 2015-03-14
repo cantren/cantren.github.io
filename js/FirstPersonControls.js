@@ -7,7 +7,7 @@
 THREE.FirstPersonControls = function ( object, domElement ) {
 
 	this.object = object;
-	this.target = new THREE.Vector3( 0, 90, 0 );
+	this.target = new THREE.Vector3( 0, 0, 0 );
 
 	this.domElement = ( domElement !== undefined ) ? domElement : document;
 
@@ -37,7 +37,7 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 	this.mouseX = 0;
 	this.mouseY = 0;
 
-	this.lat = 0;
+	this.lat = 90;
 	this.lon = 0;
 	this.phi = 0;
 	this.theta = 0;
