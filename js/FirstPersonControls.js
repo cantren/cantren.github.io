@@ -7,7 +7,7 @@
 THREE.FirstPersonControls = function ( object, domElement ) {
 
 	this.object = object;
-	this.target = new THREE.Vector3( 0, 0, 0 );
+	this.target = new THREE.Vector3( 0, 90, 0 );
 
 	this.domElement = ( domElement !== undefined ) ? domElement : document;
 
