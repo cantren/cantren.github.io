@@ -117,6 +117,7 @@
 				//add water colored fog
 				//scene.fog = new THREE.FogExp2( 0x008080, 0.1875 );
 				scene.fog = new THREE.FogExp2( 0x008080, 0.1375 );
+				scene2.fog = new THREE.FogExp2( 0x008080, 0.1875 );
 				
 				camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.5, 3000000);
 				
@@ -142,15 +143,18 @@
 				var light = new THREE.HemisphereLight( 0xffffbb, 0x008080, 1 );//I tried changing the light color here to see what would happen
 				light.position.set( - 1, 1, - 1 ); //my hemisphere flipped upside down
 				scene.add( light );//I changed the name to distinguish a negative y value from "sunlight"
+				scene2.add( light );//I changed the name to distinguish a negative y value from "sunlight"
 				
 				//
 				var ambientLight = new THREE.AmbientLight(0x383838);
         			scene.add(ambientLight);
+				scene2.add(ambientLight);
         			// add spotlight for the shadows
         			var spotLight = new THREE.SpotLight(0xffffff);
         			spotLight.position.set(100, 140, 130);
         			spotLight.intensity = 2;
         			scene.add(spotLight);
+				scene2.add(spotLight);
 				
 				//load and insert the obj meshes and mtl textures
 				//the "secret sauce" is in these .obj and .mtl files.
@@ -158,10 +162,12 @@
 				loader.load('../obj/transdec OBJ/transdec test.obj', '../obj/transdec OBJ/transdec test.mtl', function ( object ) {
 					object.position.y = -12.975;//experimentally generated via trial and error
 					scene.add( object );//to make a Robosub you would likely need to change it's name from "object"
+					scene2.add( object );//to make a Robosub you would likely need to change it's name from "object"
 					});
         			loader.load('../obj/robosub obstacles/obstacles.obj', '../obj/robosub obstacles/obstacles.mtl', function ( object ) {
 					object.position.y = -12.975;//experimentally generated via trial and error
 					scene.add( object );//to make a Robosub you would likely need to change it's name from "object"
+					scene2.add( object );//to make a Robosub you would likely need to change it's name from "object"
 					});
 
 				waterNormals = new THREE.ImageUtils.loadTexture( 'textures/waternormals.jpg' ); //potential for easy modification/obstacle reflections
