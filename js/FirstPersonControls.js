@@ -16,7 +16,8 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 	this.movementSpeed = 1.0;
 	this.lookSpeed = 0.005;
 
-	this.lookVertical = true;
+	//this.lookVertical = true;
+	this.lookVertical = false;
 	this.autoForward = false;
 
 	this.activeLook = true;
@@ -27,6 +28,7 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 	this.heightMax = 1.0;
 
 	this.constrainVertical = false;
+	this.heaveVertical = true;
 	this.verticalMin = 0;
 	this.verticalMax = Math.PI;
 
@@ -230,11 +232,12 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 
 		this.lon += this.mouseX * actualLookSpeed;
 		if( this.lookVertical ) this.lat -= this.mouseY * actualLookSpeed * verticalLookRatio;
+		if( this.heaveVertical ) this.object.translateZ( - ( actualMoveSpeed + this.autoSpeedFactor ) * verticalLookRatio )
 
-		this.lat = Math.max( - 85, Math.min( 85, this.lat ) );
-		this.phi = THREE.Math.degToRad( 90 - this.lat );
+		if( !this.heaveVertical ) this.lat = Math.max( - 85, Math.min( 85, this.lat ) );
+		if( !this.heaveVertical ) this.phi = THREE.Math.degToRad( 90 - this.lat );
 
-		this.theta = THREE.Math.degToRad( this.lon );
+		if( !this.heaveVertical ) this.theta = THREE.Math.degToRad( this.lon );
 
 		if ( this.constrainVertical ) {
 
@@ -246,9 +249,9 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 			position = this.object.position;
 
 		targetPosition.x = position.x + 100 * Math.sin( this.phi ) * Math.cos( this.theta );
-		targetPosition.y = position.y + 100 * Math.cos( this.phi );
+		if( !this.heaveVertical )targetPosition.y = position.y + 100 * Math.cos( this.phi );
+		if( this.heaveVertical )targetPosition.y = targetPosition.y;
 		targetPosition.z = position.z + 100 * Math.sin( this.phi ) * Math.sin( this.theta );
-
 		this.object.lookAt( targetPosition );
 
 	};
