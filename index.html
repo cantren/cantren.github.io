@@ -68,7 +68,7 @@
 			}
 
 			var container, container2, stats;//cargo cult code comment out this line please(may be desired in future)
-			var camera, camera2, camControls, scene, scene2, renderer, renderer2;//these are actually usefull
+			var camera, camera2, camControls, camControls2, scene, scene2, renderer, renderer2;//these are actually usefull
 			var sphere;//cargo cult code delete this line please
 			var CANVAS_WIDTH = 200,
 			    CANVAS_HEIGHT = 200,
@@ -139,11 +139,11 @@
         			camControls.verticalMin = -100.0; //basement floor level
         			camControls.verticalMax = 50.0; //sky ceiling level
         			
-        			camControls = new THREE.FirstPersonControls( camera2 );
-        			camControls.lookSpeed = 0.05; //Pitch Thrust to drag ratio
-        			camControls.movementSpeed = 0.25; // FWD BKWD Thrust to drag ratio 
-        			camControls.verticalMin = -100.0; //basement floor level
-        			camControls.verticalMax = 50.0; //sky ceiling level
+        			camControls2 = new THREE.FirstPersonControls( camera2 );
+        			camControls2.lookSpeed = 0.05; //Pitch Thrust to drag ratio
+        			camControls2.movementSpeed = 0.25; // FWD BKWD Thrust to drag ratio 
+        			camControls2.verticalMin = -100.0; //basement floor level
+        			camControls2.verticalMax = 50.0; //sky ceiling level
         			
         			
 				//Add scene lighting
@@ -285,6 +285,7 @@
 			function render() {
 				
 				camControls.update( clock.getDelta() ); //update First Person Camera
+				camControls2.update( clock.getDelta() ); //update First Person Camera
 				camera2.position.copy( camera.position );
 				camera2.rotation.copy( camera.rotation );
 				//camera2.rotation.y = Math.PI;
