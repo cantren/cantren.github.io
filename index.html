@@ -20,6 +20,19 @@
 				text-align:center;
 				padding: 5px;
 			}
+			
+			#inset  {
+				width: 200px;
+				height: 200px;
+				background-color: #fff; /* or transparent; will show through only if renderer alpha: true */
+				border: 1px solid black; /* or none; */
+				margin: 20px;
+				padding: 0px;
+				position: absolute;
+				left: 0px;
+				bottom: 0px;
+    				z-index: 100;
+			}
 
 			a {
 
@@ -53,9 +66,13 @@
 
 			}
 
-			var container, stats;//cargo cult code comment out this line please(may be desired in future)
-			var camera, camera2, camControls, scene, scene2, renderer;//these are actually usefull
+			var container, container2, stats;//cargo cult code comment out this line please(may be desired in future)
+			var camera, camera2, camControls, scene, scene2, renderer, renderer2;//these are actually usefull
 			var sphere;//cargo cult code delete this line please
+			var CANVAS_WIDTH = 200,
+			    CANVAS_HEIGHT = 200,
+			    CAM_DISTANCE = 300;
+			
 			
 			var clock = new THREE.Clock();//I spent a long time debugging because I forgot to initialize this
 			
@@ -78,11 +95,20 @@
 
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
-
+				
 				renderer = new THREE.WebGLRenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				container.appendChild( renderer.domElement );
+
+
+				container2 = document.getElementById('inset');
+				// renderer
+				renderer2 = new THREE.WebGLRenderer();
+				renderer2.setClearColor( 0xf0f0f0, 1 );
+				renderer2.setSize( CANVAS_WIDTH, CANVAS_HEIGHT );
+				container2.appendChild( renderer2.domElement );
+
 
 				scene = new THREE.Scene();
 				scene2 = new THREE.Scene();
@@ -98,6 +124,7 @@
 			        camera.position.z = -28;//how close to the wall are you
 			        
 			        camera2 = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.5, 3000000);
+			        camera2.up = camera.up; // important!
 			        
 			        camera2.position.x = 0;//pool line of symetry is x axis
         			camera2.position.y = -2;//water depth
@@ -238,11 +265,14 @@
 			function render() {
 				
 				camControls.update( clock.getDelta() ); //update First Person Camera
+				camera2.position.copy( camera.position );
+				camera2.rotation.x = MATH.PI/2;
 				var time = performance.now() * 0.001; //Measure time for water
 				water.material.uniforms.time.value += 1.0 / 60.0; //speed of water motion(wind chop)
 
 				water.render(); //render water surface
 				renderer.render( scene, camera ); //render everything else
+				renderer2.render( scene2, camera2 );
 
 			}
 
