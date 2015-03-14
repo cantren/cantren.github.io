@@ -37,7 +37,7 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 	this.mouseX = 0;
 	this.mouseY = 0;
 
-	this.lat = 90;
+	this.lat = Math.PI/2;
 	this.lon = 0;
 	this.phi = 0;
 	this.theta = 0;
