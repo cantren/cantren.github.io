@@ -232,7 +232,7 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 
 		this.lon += this.mouseX * actualLookSpeed;
 		if( this.lookVertical ) this.lat -= this.mouseY * actualLookSpeed * verticalLookRatio;
-		if( this.heaveVertical ) this.object.translateZ( - ( actualMoveSpeed + this.autoSpeedFactor ) * verticalLookRatio )
+		if( this.heaveVertical ) this.object.translateY( - ( actualMoveSpeed + this.autoSpeedFactor ) * verticalLookRatio );
 
 		this.lat = Math.max( - 85, Math.min( 85, this.lat ) );
 		this.phi = THREE.Math.degToRad( 90 - this.lat );
