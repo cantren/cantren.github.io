@@ -113,6 +113,14 @@
 				//light.position.set( - 1, 1, - 1 );
 				//scene.add( light );
 				
+				var ambientLight = new THREE.AmbientLight(0x383838);
+        			scene.add(ambientLight);
+        			// add spotlight for the shadows
+        			var spotLight = new THREE.SpotLight(0xffffff);
+        			spotLight.position.set(100, 140, 130);
+        			spotLight.intensity = 2;
+        			scene.add(spotLight);
+				
 				var light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
 				light.position.set( - 1, -1, - 1 );
 				scene.add( light );
