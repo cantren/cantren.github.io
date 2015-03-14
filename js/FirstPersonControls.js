@@ -237,7 +237,7 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 		if( !this.heaveVertical ) this.lat = Math.max( - 85, Math.min( 85, this.lat ) );
 		if( !this.heaveVertical ) this.phi = THREE.Math.degToRad( 90 - this.lat );
 
-		if( !this.heaveVertical ) this.theta = THREE.Math.degToRad( this.lon );
+		if( this.heaveVertical ) this.theta = THREE.Math.degToRad( this.lon );
 
 		if ( this.constrainVertical ) {
 
