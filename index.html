@@ -103,9 +103,9 @@
         			camControls.verticalMax = 50.0; //sky ceiling level
         			
 				//Add scene lighting
-				var ulight = new THREE.HemisphereLight( 0x008080, 0x080820, 1 );//I tried changing the light color here to see what would happen
-				ulight.position.set( - 1, -1, - 1 ); //my hemisphere flipped upside down
-				scene.add( ulight );//I changed the name to distinguish a negative y value from "sunlight"
+				var light = new THREE.HemisphereLight( 0xffffbb, 0x008080, 1 );//I tried changing the light color here to see what would happen
+				light.position.set( - 1, 1, - 1 ); //my hemisphere flipped upside down
+				scene.add( light );//I changed the name to distinguish a negative y value from "sunlight"
 				
 				//
 				var ambientLight = new THREE.AmbientLight(0x383838);
@@ -115,10 +115,6 @@
         			spotLight.position.set(100, 140, 130);
         			spotLight.intensity = 2;
         			scene.add(spotLight);
-				
-				var sunlight = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
-				sunlight.position.set( - 1, 1, - 1 );//I multiply the y value by -1 to play with the lighting. No big change.
-				scene.add( sunlight );//I changed the name to distinguish a positive y value from "ulight"
 				
 				//load and insert the obj meshes and mtl textures
 				//the "secret sauce" is in these .obj and .mtl files.
@@ -140,7 +136,7 @@
 					textureHeight: 512, //size of waves I think, maybe the waternormals.jpg stretch?
 					waterNormals: waterNormals, //provides the .jpg Texture
 					alpha: 	1.0, //how transparent is the water?
-					sunDirection: ulight.position.clone().normalize(), // I think this makes the reflection normal to the texture
+					sunDirection: light.position.clone().normalize(), // I think this makes the reflection normal to the texture
 					sunColor: 0xffffff, //Light has to hit the water, what color is it?
 					waterColor: 0xe7e7ec,//,0x000000,//0x001e0f,//0xe7e7ec,//0x001e0f,//water color for different effects
 					distortionScale: 50.0, //also related to size of waves?
