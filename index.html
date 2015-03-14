@@ -299,8 +299,9 @@
 				camControls2.update( clock.getDelta() ); //update First Person Camera
 				camera2.position.copy( camera.position );
 				camera2.rotation.copy( camera.rotation );
+				camera2.up = new THREE.Vector3(0,0,1);
 				//camera2.rotation.y = Math.PI;
-				camera2.makeRotationZ(Math.PI/2);
+				//camera2.makeRotationZ(Math.PI/2);
 				var time = performance.now() * 0.001; //Measure time for water
 				water.material.uniforms.time.value += 1.0 / 60.0; //speed of water motion(wind chop)
 
