@@ -299,10 +299,10 @@
 				camControls2.update( clock.getDelta() ); //update First Person Camera
 				camera2.position.copy( camera.position );
 				camera2.rotation.copy( camera.rotation );
-				camera2.up = new THREE.Vector3(-1,0,-1);
+				camera2.up = new THREE.Vector3(-1,-1,-1);
 				//camera2.rotateX(Math.PI/2);
 				//camera2.rotateY(Math.PI/2);
-				//camera2.rotateZ((Math.PI/2));
+				camera2.rotateZ((Math.PI/2));
 				//camera2.up = new THREE.Vector3(0,-1,0);
 				//camera2.lookAt(new THREE.Vector3(-1, -1, -1));
 				//camera2.rotation.y = Math.PI;
