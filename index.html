@@ -229,7 +229,7 @@
 				// load skybox &/or (start example code copypasta: http://threejs.org/examples/#webgl_shaders_ocean)
 				var cubeMap = new THREE.CubeTexture( [] );//initialize/declare the texture object to be mapped to the skybox mesh var skyBox = new THREE.Mesh
 				cubeMap.format = THREE.RGBFormat;//don't know or care
-				cubeMap.flipY = false;//if you make this true the walls of the box go below the horizon
+				cubeMap.flipY = true;//if you make this true the walls of the box go below the horizon
 
 				//var cubeMap2 = new THREE.CubeTexture( [] );//initialize/declare the texture object to be mapped to the skybox mesh var skyBox = new THREE.Mesh
 				//cubeMap2.format = THREE.RGBFormat;//don't know or care
