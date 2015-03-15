@@ -202,11 +202,11 @@
 					textureHeight: 512, //size of waves I think, maybe the waternormals.jpg stretch?
 					waterNormals: waterNormals, //provides the .jpg Texture
 					alpha: 	1.0, //how transparent is the water?
-					sunDirection: new THREE.Vector3( 0.70707, 0.70707, 0 ), 
+					sunDirection: new THREE.Vector3( 0.70707, -0.70707, 0 ), 
 					//sunDirection: light.position.clone().normalize(), // I think this makes the reflection normal to the texture
 					sunColor: 0xffffff, //Light has to hit the water, what color is it?
 					waterColor: 0xe7e7ec,//,0x000000,//0x001e0f,//0xe7e7ec,//0x001e0f,//water color for different effects
-					distortionScale: 5.00, //also related to size of waves?
+					distortionScale: 50.0, //also related to size of waves?
 				});
 
 				//initialize/declare new planes for holding the "water" texture mapping
