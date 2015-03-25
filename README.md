@@ -41,7 +41,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 #Copyright Notes:
-*Code primarily reflects the authors of the three.js examples under the MIT License 
+* Code primarily reflects the authors of the three.js examples under the MIT License 
 "http://threejs.org/examples/webgl_shaders_ocean.html"
 and
 "http://threejs.org/examples/webgl_loader_obj_mtl.html"
