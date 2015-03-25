@@ -1,6 +1,6 @@
 # cantren.github.io
 
-SimBox - Robosub is a derived work which incorpoates code from multiple authors.
+SimBox - Robosub is a derived work which incorporates code from multiple authors.
 
 Original Author(s):
 
