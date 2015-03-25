@@ -46,9 +46,10 @@ THE SOFTWARE.
 and
 "http://threejs.org/examples/webgl_loader_obj_mtl.html"
 
-Note:
-The most heavily borrowed code that isn't from three.js examples is actually from the (previously unattributed user, now identified as "WestLangley") work of an unnamed jsfiddle author who is assumed to be the same stackoverflow user who answered a question about a downward facing camera here: http://stackoverflow.com/a/16227714
+* Please Note:
+The most heavily borrowed code(that isn't from three.js examples) is actually from the work of an unnamed jsFiddle.net author(previously unattributed user, possibly identified as "WestLangley") who is assumed to be the same stackoverflow user who answered a question about a downward facing camera here: http://stackoverflow.com/a/16227714
 
 #Housecleaning
-(Re: josdirksen attribtuion) Almost none of josdirksen's code remains: consider forking the repository, then rolling that fork back to a previous commit such that it accurately reflects the attribution, then sanitizing the remainder of borrowed code. Credit to josdirksen will then be preserved in the README.md.
+* (Re: josdirksen attribtuion) 
+Almost none of josdirksen's code remains: consider forking the repository, then rolling that fork back to a previous commit such that it accurately reflects the attribution, then sanitizing the remainder of borrowed code. Credit to josdirksen will then be preserved in the README.md.
 
