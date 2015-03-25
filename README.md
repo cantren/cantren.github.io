@@ -3,7 +3,9 @@
 SimBox - Robosub is a derived work which incorpoates code from multiple authors.
 
 Original Author(s):
+
 @author WestLangley / http://stackoverflow.com/users/1461008/westlangley/
+
 @author Jos Dirksen / http://www.github.com/josdirksen/learning-threejs/
 
 #Copyright Notices:
