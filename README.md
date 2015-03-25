@@ -2,14 +2,6 @@
 
 SimBox - Robosubis a derived work which incorpoates code from multiple authors.
 
-TODO: Re: josdirksen attribtuion: Almost none of josdirksen's code remains: consider forking the repository, then rolling that fork back to a previous commit such that it accurately reflects the attribution, then sanitizing the remainder of borrowed code.
-
-Note1: Code actually reflects primarily the authors of the three.js examples under the MIT License "http://threejs.org/examples/webgl_shaders_ocean.html"
-and
-"http://threejs.org/examples/webgl_loader_obj_mtl.html"
-
-Note2: the most heavily borrowed code that isn't from a three.js examples is actually from the (previously unattributed user now identified as "WestLangley") work of an unnamed jsfiddle author who is assumed to be the same stackoverflow user who answered a question on stackoverflow about a downward facing camera here: http://stackoverflow.com/a/16227714
-
 Original Author(s):
 /**
  * @author Jos Dirksen / http://www.smartjava.org/
@@ -31,7 +23,16 @@ Original Author(s):
  * http://jsfiddle.net/aqnL1mx9/ is distributed under the terms of the jsFiddle.net Terms of Service
  * http://doc.jsfiddle.net/meta/credits.html#license
  */
- 
+
+TODO: Re: josdirksen attribtuion: Almost none of josdirksen's code remains: consider forking the repository, then rolling that fork back to a previous commit such that it accurately reflects the attribution, then sanitizing the remainder of borrowed code.
+
+Note1: Code actually reflects primarily the authors of the three.js examples under the MIT License 
+"http://threejs.org/examples/webgl_shaders_ocean.html"
+and
+"http://threejs.org/examples/webgl_loader_obj_mtl.html"
+
+Note2: the most heavily borrowed code that isn't from three.js examples is actually from the (previously unattributed user, now identified as "WestLangley") work of an unnamed jsfiddle author who is assumed to be the same stackoverflow user who answered a question about a downward facing camera here: http://stackoverflow.com/a/16227714
+
 The MIT License
 
 Copyright © 2010-2015 three.js authors
