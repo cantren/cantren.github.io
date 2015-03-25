@@ -381,6 +381,9 @@
 
 				water.render(); //render water surface
 				renderer.render( scene, camera ); //render everything else
+				//AutoPilot Specific Code:
+				renderer2.render( scene2, camera2 );//comment out this line if on autopilot
+				
 				//uncomment these lines if code is running on autopilot
 				/*sendToServer();//smartjava.org
 			        //requestAnimationFrame( render );//smartjava.org
