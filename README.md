@@ -18,15 +18,6 @@ github.com/josdirksen/learning-threejs/ is distributed under the terms of the Gi
 http://jsfiddle.net/aqnL1mx9/ is distributed under the terms of the jsFiddle.net Terms of Service
 http://doc.jsfiddle.net/meta/credits.html#license
 
-TODO: Re: josdirksen attribtuion: Almost none of josdirksen's code remains: consider forking the repository, then rolling that fork back to a previous commit such that it accurately reflects the attribution, then sanitizing the remainder of borrowed code. Credit to josdirksen will then be preserved in the README.md.
-
-Note1: Code actually reflects primarily the authors of the three.js examples under the MIT License 
-"http://threejs.org/examples/webgl_shaders_ocean.html"
-and
-"http://threejs.org/examples/webgl_loader_obj_mtl.html"
-
-Note2: the most heavily borrowed code that isn't from three.js examples is actually from the (previously unattributed user, now identified as "WestLangley") work of an unnamed jsfiddle author who is assumed to be the same stackoverflow user who answered a question about a downward facing camera here: http://stackoverflow.com/a/16227714
-
 The MIT License
 
 Copyright © 2010-2015 three.js authors
@@ -48,3 +39,13 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+
+#Housecleaning
+Note0: (Re: josdirksen attribtuion) Almost none of josdirksen's code remains: consider forking the repository, then rolling that fork back to a previous commit such that it accurately reflects the attribution, then sanitizing the remainder of borrowed code. Credit to josdirksen will then be preserved in the README.md.
+
+Note1: Code actually reflects primarily the authors of the three.js examples under the MIT License 
+"http://threejs.org/examples/webgl_shaders_ocean.html"
+and
+"http://threejs.org/examples/webgl_loader_obj_mtl.html"
+
+Note2: the most heavily borrowed code that isn't from three.js examples is actually from the (previously unattributed user, now identified as "WestLangley") work of an unnamed jsfiddle author who is assumed to be the same stackoverflow user who answered a question about a downward facing camera here: http://stackoverflow.com/a/16227714
