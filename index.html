@@ -363,9 +363,27 @@
 
 				water.render(); //render water surface
 				renderer.render( scene, camera ); //render everything else
+				sendToServer();//smartjava.org
+			        requestAnimationFrame( render );//smartjava.org
 				renderer2.render( scene2, camera2 );
-
+				sendToServer();//smartjava.org
+			        requestAnimationFrame( render );//smartjava.org
 			}
+			function sendToServer() {//this whole thing = smartjava.org
+        		var asString = renderer.domElement.toDataURL();
+        		 if (isOpen) {
+        		 	frame++;
+        		 	ws.send(str2ab(frame+asString));
+        			}
+    			}
+    			function str2ab(str) {//this whole thing = smartjava.org
+        			var buf = new ArrayBuffer(str.length);
+        			var bufView = new Uint8Array(buf);
+        			for (var i=0, strLen=str.length; i<strLen; i++) {
+            				bufView[i] = str.charCodeAt(i);
+        				}
+        			return buf;
+    			}
 
 		</script>
 	</body>
