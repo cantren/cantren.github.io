@@ -2,6 +2,15 @@
 
 SimBox - Robosubis a derived work which incorpoates code from multiple authors.
 
+#TODO: Re: josdirksen attribtuion: Almost none of josdirksen's code remains: consider forking the repository, then continued:rolling that fork back to a previous commit such that it accurately reflects the attribution, then continued:sanitizing the remainder of borrowed code.
+
+#Note1: Code actually reflects primarily the authors of the three.js examples under the MIT License "http://threejs.org/examples/webgl_shaders_ocean.html"
+AND
+"http://threejs.org/examples/webgl_loader_obj_mtl.html"
+
+#Note2: the most heavily borrowed code that isn't from a three.js examples is actually from 
+#continued: the (previously unattributed user now identified as "WestLangley") work of an unnamed jsfiddle author who #continued: is assumed to be the same stackoverflow user who answered a question on stackoverflow about a downward #continued: facing camera here: http://stackoverflow.com/a/16227714
+
 Original Author(s):
 /**
  * @author Jos Dirksen / http://www.smartjava.org/
@@ -16,6 +25,12 @@ Original Author(s):
  * "SimBox - Robosub Simulator" incorporates code from "josdirksen/learning-threejs/", Copyright 2015 Jos Dirksen
  * github.com/josdirksen/learning-threejs/ is distributed under the terms of the GitHub Terms of Service
 
+ * @author WestLangley / http://stackoverflow.com/users/1461008/westlangley/
+ * "SimBox" is derived from "http://stackoverflow.com/a/16227714", Copyright 2014 WestLangley
+ * github.com/josdirksen/learning-threejs/ is distributed under the terms of the GitHub Terms of Service
+ * "SimBox - Robosub Simulator" incorporates code from "http://jsfiddle.net/aqnL1mx9/", Copyright 2014 WestLangley
+ * http://jsfiddle.net/aqnL1mx9/ is distributed under the terms of the jsFiddle.net Terms of Service
+ * http://doc.jsfiddle.net/meta/credits.html#license
  */
  
 The MIT License
