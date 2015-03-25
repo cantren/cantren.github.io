@@ -3,9 +3,9 @@
 ############################
 #Disclaimer: Misconfiguration of a server can cause really bad stuff to happen. These installation notes are provided "As Is". No warranty expressed or implied. 
 #By following these steps you agree to hold the author harmless from any claim, action, or proceeding and agree to indemnify and hold harmless the author against expenses, fees, and damages that may be incurred in any such claims, action, or proceeding.
-1)Get an email account and valid visa that belongs to you
+1)Get an email account and valid CC#/Debit Card# that belongs to you
 2)Create an Amazon AWS "Free Usage Tier" account http://aws.amazon.com/free/faqs/
-WARNING:You can "accidentally" a substantial amount of money if you leave an instance running, don't take security seriously, or otherwise exceed the usage permitted under the "Free Usage Tier" terms. 
+WARNING:You can "accidentally" a substantial amount of money(and/or liability) if you leave an instance running, don't take security seriously, or otherwise exceed the usage permitted under the "Free Usage Tier" terms. 
 3)Create an instance
 Note:
 This documentation assumes the following instance type:
