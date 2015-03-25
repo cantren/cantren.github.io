@@ -1,0 +1,62 @@
+############################
+#Infrastructure Acquisition#
+############################
+#Disclaimer: Misconfiguration of a server can cause really bad stuff to happen. These installation notes are provided "As Is". No warranty expressed or implied. 
+#By following these steps you agree to hold the author harmless from any claim, action, or proceeding and agree to indemnify and hold harmless the author against expenses, fees, and damages that may be incurred in any such claims, action, or proceeding.
+1)Get an email account and valid visa that belongs to you
+2)Create an Amazon AWS "Free Usage Tier" account http://aws.amazon.com/free/faqs/
+WARNING:You can "accidentally" a substantial amount of money if you leave an instance running, don't take security seriously, or otherwise exceed the usage permitted under the "Free Usage Tier" terms. 
+3)Create an instance
+Note:
+This documentation assumes the following instance type:
+64 bit Ubuntu Server 14.04 LTS(PV), SSD Volume Type - ami-23ebb513
+
+###############
+#vertx install#
+###############
+$ sudo apt-get update
+$ sudo apt-get install nano libopencv-dev default-jdk
+$ cd ~/
+$ wget https://bintray.com/artifact/download/vertx/downloads/vert.x-2.1.5.tar.gz 
+$ tar -zxf vert.x-2.1.5.tar.gz
+ 
+#Finding $JAVA_HOME:
+$ echo $(readlink -f /usr/bin/javac | sed "s:bin/javac::")                           
+ 
+#expected result: YMMV
+##/usr/lib/jvm/java-7-openjdk-amd64/
+##OR
+##/usr/lib/jvm/java-7-openjdl-armhf/
+ 
+#Setting path variables:
+##$ cd ~/
+##$ sudo nano .bashrc
+ 
+#add these three lines to the bottom of file: (substitute alternate vert.x version number/unexpected result from the Step "Finding $JAVA_HOME" as appropriate)
+##export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64/
+##export PATH=$PATH:/usr/lib/jvm/java-7-openjdk-amd64/bin
+##export PATH=$PATH:/home/ubuntu/vert.x-2.1.5/bin
+#Hit "Ctrl+x"
+#Hit "y"
+#Hit "Enter"
+
+$ source ~/.bashrc
+$ echo $JAVA_HOME
+expected result: YMMV
+/usr/lib/jvm/java-7-openjdk-amd64/ 
+
+$ echo $PATH
+expected result: YMMV
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/./usr/lib/jvm/java-7-openjdk-amd64/bin:/usr/lib/jvm/java-7-openjdk-amd64/bin:/home/ubuntu/vert.x-2.1.5/bin:/usr/lib/jvm/java-7-openjdk-amd64/bin:/home/ubuntu/vert.x-2.1.5/bin
+
+$ java -version
+expected result: YMMV
+java version "1.7.0_75"                                                         
+OpenJDK Runtime Environment (IcedTea 2.5.4) (7u75-2.5.4-1~trusty1)
+OpenJDK 64-Bit Server VM (build 24.75-b04, mixed mode)
+
+$ vertx version
+expected result: YMMV
+2.1.5 (built 2014-11-13 15:15:56)
+
+#Note: if you wish to host SimBox on the same server as the vertx + OpenCV Backend: please refer to ./localhost setup.txt for instructions on configuring apache2 server

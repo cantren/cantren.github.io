@@ -1,0 +1,44 @@
+###############################
+#Running SimBox Server Locally#
+###############################
+#Disclaimer: Misconfiguration of a server can cause really bad stuff to happen. These installation notes are provided "As Is". No warranty expressed or implied. 
+#By following these steps you agree to hold the author harmless from any claim, action, or proceeding and agree to indemnify and hold harmless the author against expenses, fees, and damages that may be incurred in any such claims, action, or proceeding.
+$ sudo apt-get install git
+$ sudo apt-get install lynx (optional)
+
+#LAMP STACK INSTALL# (reference: http://howtoubuntu.org/how-to-install-lamp-on-ubuntu)
+
+#[apache install]
+$ sudo apt-get install apache2
+
+#[test apache install]: 
+$ ifconfig eth0 | grep inet | awk '{ print $2 }'
+#expected result: YMMV
+#ip.ip.ip.ip
+$ lynx http://ip.ip.ip.ip
+#OR
+#point your webbrowser to http://localhost/
+
+#[MySQL install] (probably won't be optional)
+$ sudo apt-get install mysql-server
+#just keep hitting enter until it stop asking for a password
+#OR
+#choose a strong password if you're worried about hackers
+
+#[PHP install] (probably optional) 
+$ sudo apt-get install php5 libapache2-mod-php5
+$ sudo /etc/init.d/apache2 restart
+
+#[SimBox download and install]
+$ cd /var/www/html/
+$ git clone https://github.com/cantren/cantren.github.io.git
+$ cd /etc/apache2/sites-enabled/
+$ sudo nano 000-default.conf 
+#change line "DocumentRoot /var/www/html" by appending "cantren.github.io" so that it reads:"DocumentRoot /var/www/html/cantren.github.io"
+#hit "Ctrl+x"
+#hit "y"
+#hit "enter"
+$ sudo /etc/init.d/apache2 restart
+
+#[test SimBox install]
+#point your webbrowser to http://localhost/
