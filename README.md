@@ -2,14 +2,13 @@
 
 SimBox - Robosubis a derived work which incorpoates code from multiple authors.
 
-TODO: Re: josdirksen attribtuion: Almost none of josdirksen's code remains: consider forking the repository, then continued:rolling that fork back to a previous commit such that it accurately reflects the attribution, then continued:sanitizing the remainder of borrowed code.
+TODO: Re: josdirksen attribtuion: Almost none of josdirksen's code remains: consider forking the repository, then rolling that fork back to a previous commit such that it accurately reflects the attribution, then sanitizing the remainder of borrowed code.
 
 Note1: Code actually reflects primarily the authors of the three.js examples under the MIT License "http://threejs.org/examples/webgl_shaders_ocean.html"
 AND
 "http://threejs.org/examples/webgl_loader_obj_mtl.html"
 
-Note2: the most heavily borrowed code that isn't from a three.js examples is actually from 
-#continued: the (previously unattributed user now identified as "WestLangley") work of an unnamed jsfiddle author who #continued: is assumed to be the same stackoverflow user who answered a question on stackoverflow about a downward #continued: facing camera here: http://stackoverflow.com/a/16227714
+Note2: the most heavily borrowed code that isn't from a three.js examples is actually from the (previously unattributed user now identified as "WestLangley") work of an unnamed jsfiddle author who is assumed to be the same stackoverflow user who answered a question on stackoverflow about a downward facing camera here: http://stackoverflow.com/a/16227714
 
 Original Author(s):
 /**
