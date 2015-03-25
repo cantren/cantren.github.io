@@ -11,11 +11,14 @@ Original Author(s):
 #Copyright Notices:
 "SimBox" is derived from "github.com/josdirksen/learning-threejs/", Copyright 2015 Jos Dirksen
 github.com/josdirksen/learning-threejs/ is distributed under the terms of the GitHub Terms of Service
-"SimBox" incorporates code from "josdirksen/learning-threejs/", Copyright 2015 Jos Dirksen
+
+"SimBox" incorporates code from "github.com/josdirksen/learning-threejs/", Copyright 2015 Jos Dirksen
 github.com/josdirksen/learning-threejs/ is distributed under the terms of the GitHub Terms of Service
  
 "SimBox" is derived from "http://stackoverflow.com/a/16227714", Copyright 2014 WestLangley
-github.com/josdirksen/learning-threejs/ is distributed under the terms of the GitHub Terms of Service
+Stack Exchange Subscriber Content is distributed under the terms of the Stack Exchange Terms of Service
+http://stackexchange.com/legal/terms-of-service
+
 "SimBox" incorporates code from "http://jsfiddle.net/aqnL1mx9/", Copyright 2014 WestLangley
 http://jsfiddle.net/aqnL1mx9/ is distributed under the terms of the jsFiddle.net Terms of Service
 http://doc.jsfiddle.net/meta/credits.html#license
