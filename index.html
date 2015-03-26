@@ -109,7 +109,8 @@
 			var waterNormals;
 
 			init();
-			setInterval(animate(), 2000);//uncomment out this line if on autopilot
+			animate();
+			//setInterval(animate(), 2000);//uncomment out this line if on autopilot
 
 			function init() {
 
@@ -359,8 +360,8 @@
 			function animate() {
 
 				requestAnimationFrame( animate ); //animate the frame
-				render(); //render the frame
-				//setInterval(render(), 2000);//uncomment out this line if on autopilot
+				//render(); //render the frame
+				setInterval(render(), 2000);//uncomment out this line if on autopilot
 
 			}
 
