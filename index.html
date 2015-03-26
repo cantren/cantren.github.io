@@ -357,13 +357,15 @@
 
 			//
 
+			//var fps = 15;
 			function animate() {
-
-				requestAnimationFrame( animate ); //animate the frame
-				//setInterval(requestAnimationFrame( animate ), 2000); //animate the frame
-				render(); //render the frame
-				//setInterval(render(), 2000);//uncomment out this line if on autopilot
-
+				setTimeout(function() {
+				        requestAnimationFrame( animate ); //animate the frame
+					//setInterval(requestAnimationFrame( animate ), 2000); //animate the frame
+					render(); //render the frame
+					//setInterval(render(), 2000);//uncomment out this line if on autopilot
+				}, 1000 / 1);
+    
 			}
 
 			function render() {
@@ -383,14 +385,15 @@
 				var time = performance.now() * 0.001; //Measure time for water
 				water.material.uniforms.time.value += 1.0 / 60.0; //speed of water motion(wind chop)
 
-				setInterval(water.render(), 2000); //animate the frame
-				//water.render(); //render water surface
+				//setInterval(water.render(), 2000); //animate the frame
+				water.render(); //render water surface
 				//AutoPilot Specific Code:
-				//renderer.render( scene, camera ); //render everything else
-				//comment out this line if on autopilot
-				//renderer2.render( scene2, camera2 );//comment out this line if on autopilot
-				setInterval(renderer.render( scene, camera ), 2000);//uncomment out this line if on autopilot
-				setInterval(renderer2.render( scene2, camera2 ), 2000);//uncomment out this line if on autopilot
+				renderer.render( scene, camera ); //render everything else
+				//^comment out this line if on autopilot
+				renderer2.render( scene2, camera2 );
+				//^comment out this line if on autopilot
+				//setInterval(renderer.render( scene, camera ), 2000);//uncomment out this line if on autopilot
+				//setInterval(renderer2.render( scene2, camera2 ), 2000);//uncomment out this line if on autopilot
 				
 				
 				//uncomment these lines if code is running on autopilot
