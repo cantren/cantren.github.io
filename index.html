@@ -381,9 +381,13 @@
 				water.material.uniforms.time.value += 1.0 / 60.0; //speed of water motion(wind chop)
 
 				water.render(); //render water surface
-				renderer.render( scene, camera ); //render everything else
 				//AutoPilot Specific Code:
+				renderer.render( scene, camera ); //render everything else
+				//comment out this line if on autopilot
 				renderer2.render( scene2, camera2 );//comment out this line if on autopilot
+				//setInterval(renderer.render( scene, camera ), 2000);//uncomment out this line if on autopilot
+				//setInterval(renderer2.render( scene2, camera2 ), 2000);//uncomment out this line if on autopilot
+				
 				
 				//uncomment these lines if code is running on autopilot
 				/*sendToServer();//smartjava.org
