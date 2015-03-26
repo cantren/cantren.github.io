@@ -57,7 +57,6 @@
 
 		<script src="js/MTLLoader.js"></script>
 		<script src="js/OBJMTLLoader.js"></script>
-		<script type="text/javascript" src="THREEx.screenshot.js"></script>
 		
   
 		<script>
@@ -384,7 +383,6 @@
 				water.render(); //render water surface
 				renderer.render( scene, camera ); //render everything else
 				//AutoPilot Specific Code:
-				THREEx.Screenshot.bindKey(renderer);
 				renderer2.render( scene2, camera2 );//comment out this line if on autopilot
 				
 				//uncomment these lines if code is running on autopilot
