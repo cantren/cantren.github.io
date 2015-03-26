@@ -383,7 +383,8 @@
 				var time = performance.now() * 0.001; //Measure time for water
 				water.material.uniforms.time.value += 1.0 / 60.0; //speed of water motion(wind chop)
 
-				water.render(); //render water surface
+				setInterval(water.render(), 2000); //animate the frame
+				//water.render(); //render water surface
 				//AutoPilot Specific Code:
 				//renderer.render( scene, camera ); //render everything else
 				//comment out this line if on autopilot
