@@ -359,9 +359,10 @@
 
 			function animate() {
 
-				requestAnimationFrame( animate ); //animate the frame
-				//render(); //render the frame
-				setInterval(render(), 2000);//uncomment out this line if on autopilot
+				//requestAnimationFrame( animate ); //animate the frame
+				setInterval(requestAnimationFrame( animate ), 2000); //animate the frame
+				render(); //render the frame
+				//setInterval(render(), 2000);//uncomment out this line if on autopilot
 
 			}
 
