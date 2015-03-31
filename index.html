@@ -48,6 +48,8 @@
 		<div id="inset">
 		<script src="../js/three.min.js"></script>
 
+		<script src="//www.parsecdn.com/js/parse-1.4.0.min.js"></script>
+
 		<script src="../js/FirstPersonControls.js"></script>
 		<script src="../js/Mirror.js"></script>
 		<script src="../js/WaterShader.js"></script>
@@ -76,7 +78,8 @@
 			
 			
 			var clock = new THREE.Clock();//I spent a long time debugging because I forgot to initialize this
-			
+
+
 			var parameters = {
 				width: 2000,
 				height: 2000,
@@ -93,7 +96,7 @@
 			animate();
 
 			function init() {
-
+				Parse.initialize("XNFeUNewfOJKV28c79GGpgd1HUDRwUXtks50Wmbo", "LxyWNtqBha3M27fyn0Ck2301JFVk0YxznznZGLju");
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
 				
@@ -341,6 +344,11 @@
 
 				requestAnimationFrame( animate ); //animate the frame
 				render(); //render the frame
+				var TestObject = Parse.Object.extend("TestObject");
+				var testObject = new TestObject();
+				testObject.save({foo: "bar"}).then(function(object) {
+  						alert("yay! it worked");
+					});
 
 			}
 
