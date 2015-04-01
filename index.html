@@ -340,17 +340,18 @@
 
 			}
 
-
+			//source:http://www.smartjava.org/ltjs/chapter-09/02-selecting-objects.html
 			var controls = new function () {
-			            this.rotationSpeed = 0.02;
+			            this.fogDensity = 0.1875;
         			    this.bouncingSpeed = 0.03;
         			    this.scalingSpeed = 0.03;
         			}
 
         		var gui = new dat.GUI();
-        		gui.add(controls, 'rotationSpeed', 0, 0.5);
-        		gui.add(controls, 'bouncingSpeed', 0, 0.5);
-        		gui.add(controls, 'scalingSpeed', 0, 0.5);
+        		gui.add(controls, 'fogDensity', 0, 0.25);
+        		gui.add(controls, 'bouncingSpeed', 0, 0.25);
+        		gui.add(controls, 'scalingSpeed', 0, 0.25);
+        		//source:http://www.smartjava.org/ltjs/chapter-09/02-selecting-objects.html
         			
 
 
@@ -383,10 +384,15 @@
 				//camera2.lookAt(new THREE.Vector3(-1, -1, -1));
 				//camera2.rotation.y = Math.PI;
 				camera2.rotateZ(Math.PI/2);
+				
 				var time = performance.now() * 0.001; //Measure time for water
 				water.material.uniforms.time.value += 1.0 / 60.0; //speed of water motion(wind chop)
 
 				water.render(); //render water surface
+				
+				scene.fog.density = controls.fogDensity * 0.75;
+				scene2.fog.density = controls.fogDensity;
+				
 				renderer.render( scene, camera ); //render everything else
 				renderer2.render( scene2, camera2 );
 
