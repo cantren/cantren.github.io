@@ -56,6 +56,8 @@
 
 		<script src="../js/Detector.js"></script>
 		<script src="../js/stats.min.js"></script>
+		
+		<script src="../js/dat.gui.js"></script> 
 
 		<script src="js/MTLLoader.js"></script>
 		<script src="js/OBJMTLLoader.js"></script>
@@ -337,6 +339,21 @@
 
 
 			}
+
+
+			var controls = new function () {
+			            this.rotationSpeed = 0.02;
+        			    this.bouncingSpeed = 0.03;
+        			    this.scalingSpeed = 0.03;
+        			}
+
+        		var gui = new dat.GUI();
+        		gui.add(controls, 'rotationSpeed', 0, 0.5);
+        		gui.add(controls, 'bouncingSpeed', 0, 0.5);
+        		gui.add(controls, 'scalingSpeed', 0, 0.5);
+        			
+
+
 
 			//
 
