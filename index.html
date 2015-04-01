@@ -348,9 +348,9 @@
         			}
 
         		var gui = new dat.GUI();
-        		gui.add(controls, 'fogDensity', 0, 0.25);
-        		gui.add(controls, 'bouncingSpeed', 0, 0.25);
-        		gui.add(controls, 'scalingSpeed', 0, 0.25);
+        		gui.add(controls, 'fogDensity', 0, 0.5);
+        		gui.add(controls, 'bouncingSpeed', 0, 0.5);
+        		gui.add(controls, 'scalingSpeed', 0, 0.5);
         		//source:http://www.smartjava.org/ltjs/chapter-09/02-selecting-objects.html
         			
 
@@ -390,7 +390,7 @@
 
 				water.render(); //render water surface
 				
-				scene.fog.density = controls.fogDensity * 0.75;
+				scene.fog.density = controls.fogDensity;
 				scene2.fog.density = controls.fogDensity;
 				
 				renderer.render( scene, camera ); //render everything else
