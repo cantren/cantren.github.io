@@ -33,6 +33,18 @@
 				bottom: 0px;
     				z-index: 100;
 			}
+			#inset2  {
+				width: 200px;
+				height: 200px;
+				background-color: #fff; /* or transparent; will show through only if renderer alpha: true */
+				border: 1px solid black; /* or none; */
+				margin: 20px;
+				padding: 0px;
+				position: absolute;
+				left: 800px;
+				bottom: 0px;
+    				z-index: 100;
+			}
 
 			a {
 
@@ -46,6 +58,7 @@
 		<div id="info"><a href="https://github.com/cantren/cantren.github.io/" target="_blank">Code</a></a> - Please "fork" as this page changes often.</div>
 		<div id="container">
 		<div id="inset">
+		<div id="inset2">
 		<script src="../js/three.min.js"></script>
 
 		<script src="//www.parsecdn.com/js/parse-1.4.0.min.js"></script>
@@ -343,14 +356,15 @@
 			//source:http://www.smartjava.org/ltjs/chapter-09/02-selecting-objects.html
 			var controls = new function () {
 			            this.fogDensity = 0.1875;
-        			    this.bouncingSpeed = 0.03;
-        			    this.scalingSpeed = 0.03;
+        			    this.lookSpeed = 0.03;
+        			    this.movementSpeed = 0.03;
         			}
 
         		var gui = new dat.GUI();
-        		gui.add(controls, 'fogDensity', 0, 0.5);
-        		gui.add(controls, 'bouncingSpeed', 0, 0.5);
-        		gui.add(controls, 'scalingSpeed', 0, 0.5);
+        		gui.add(init, 'fogDensity', 0, 0.25);
+        		gui.add(controls, 'fogDensity', 0, 0.25);
+        		gui.add(controls, 'lookSpeed', 0, 0.5);
+        		gui.add(controls, 'movementSpeed', 0, 0.5);
         		//source:http://www.smartjava.org/ltjs/chapter-09/02-selecting-objects.html
         			
 
