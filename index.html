@@ -33,18 +33,34 @@
 				bottom: 0px;
     				z-index: 100;
 			}
+
+                        #inset3  {
+                                width: 728px;
+                                height: 728px;
+				background-color: transparent;
+                                border: 1px solid black; /* or none; */
+                                margin: 20px;
+                                padding: 0px;
+                                position: fixed;
+                                right: 298px;
+                                bottom: 0px;
+                                z-index: 200;
+                        }
+
+
 			#inset2  {
 				width: 200px;
 				height: 200px;
 				background-color: transparent; /* or transparent; will show through only if renderer alpha: true */
 				border: 1px solid black; /* or none; */
-				margin: 0px;
+				margin: 20px;
 				padding: 0px;
-				position: absolute;
+				position: fixed;
 				left: 1120px;
 				bottom: 0px;
     				z-index: 100;
 			}
+
 
 			a {
 
@@ -58,7 +74,6 @@
 		<div id="info"><a href="https://github.com/cantren/cantren.github.io/" target="_blank">Code</a></a> - Please "fork" as this page changes often.</div>
 		<div id="container">
 		<div id="inset">
-		<div id="inset2">
 		<script src="../js/three.min.js"></script>
 
 		<script src="//www.parsecdn.com/js/parse-1.4.0.min.js"></script>
@@ -73,24 +88,16 @@
 		<script src="../js/josdirksen/dat.gui.js"></script> 
 
 		<script src="js/MTLLoader.js"></script>
-		<script src="js/OBJMTLLoader.js"></script>
-		<script src="http://jwpsrv.com/library/CfrlPNiJEeScyQ4AfQhyIQ.js"></script>
-  			<div id='inset2'></div>
-		<script type='text/javascript'>
-    			jwplayer('inset2').setup({
-        			file: 'http://localhost:8090/live.flv',
-        			image: 'https://avatars0.githubusercontent.com/u/5356929?v=3&s=200',
-        			title: 'Robot View',
-        			width: '100%',
-        			aspectratio: '1:1',
-        			controls: 'false',
-        			mute: 'true',
-        			autostart: 'true'
-    			});
-		</script>
+		<script type="text/javascript" src="js/OBJMTLLoader.js"></script>
 
-  
-  
+
+  		<div id='inset2'>
+		<object width="200" height="200"><param name="movie" value="http://127.0.0.1:8090/simbox.swf">
+		<embed src="http://127.0.0.1:8090/simbox.swf" width="200" height="200">
+		</embed></object></div>
+
+		<div id="inset3">
+
 		<script>
 
 			if ( ! Detector.webgl ) {
@@ -257,8 +264,8 @@
 				mirrorMesh2.add( water ); //add water shader to otherwise boring PlaneBufferGeometry
 				mirrorMesh.rotation.x = - Math.PI * 1.5; //rotate undwater water surface to point down
 				mirrorMesh2.rotation.x = - Math.PI * 0.5; //rotate water surface to point up
-				scene.add( mirrorMesh ); //add underwater water surface
-				scene.add( mirrorMesh2); //add water surface 
+				//scene.add( mirrorMesh ); //add underwater water surface
+				//scene.add( mirrorMesh2); //add water surface 
 
 				// load skybox &/or (start example code copypasta: http://threejs.org/examples/#webgl_shaders_ocean)
 				var cubeMap = new THREE.CubeTexture( [] );//initialize/declare the texture object to be mapped to the skybox mesh var skyBox = new THREE.Mesh
