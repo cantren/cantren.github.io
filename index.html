@@ -264,8 +264,8 @@
 				mirrorMesh2.add( water ); //add water shader to otherwise boring PlaneBufferGeometry
 				mirrorMesh.rotation.x = - Math.PI * 1.5; //rotate undwater water surface to point down
 				mirrorMesh2.rotation.x = - Math.PI * 0.5; //rotate water surface to point up
-				//scene.add( mirrorMesh ); //add underwater water surface
-				//scene.add( mirrorMesh2); //add water surface 
+				scene.add( mirrorMesh ); //add underwater water surface
+				scene.add( mirrorMesh2); //add water surface 
 
 				// load skybox &/or (start example code copypasta: http://threejs.org/examples/#webgl_shaders_ocean)
 				var cubeMap = new THREE.CubeTexture( [] );//initialize/declare the texture object to be mapped to the skybox mesh var skyBox = new THREE.Mesh
