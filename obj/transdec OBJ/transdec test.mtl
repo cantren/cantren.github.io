@@ -27,8 +27,8 @@ Ks 0.000000 0.000000 0.000000
 Ni 1.300000
 d 1.000000
 illum 2
-map_Kd C:\Users\Scrypt\Desktop\transdec OBJ\polished walnut.jpg
-map_Bump C:\\polished walnut bump.jpg
+map_Kd polished walnut.jpg
+map_Bump polished walnut bump.jpg
 
 newmtl 12
 Ns 98.039216
@@ -38,8 +38,8 @@ Ks 0.000000 0.000000 0.000000
 Ni 1.300000
 d 1.000000
 illum 2
-map_Kd C:\Users\Scrypt\Desktop\transdec OBJ\sponge.jpg
-map_Bump C:\\Users\\Scrypt\\Desktop\\transdec OBJ\\sponge bump.jpg
+map_Kd sponge.jpg
+map_Bump sponge bump.jpg
 
 newmtl 2
 Ns 596.078431
@@ -67,8 +67,8 @@ Ks 0.000000 0.000000 0.000000
 Ni 1.300000
 d 1.000000
 illum 2
-map_Kd C:\Users\Scrypt\Desktop\transdec OBJ\transdec dirt.png
-map_Bump C:\\transdec dirt bump.png
+map_Kd transdec dirt.png
+map_Bump transdec dirt bump.png
 
 newmtl 5
 Ns 686.274510
@@ -87,8 +87,8 @@ Ks 0.000000 0.000000 0.000000
 Ni 1.300000
 d 1.000000
 illum 2
-map_Kd C:\Users\Scrypt\Desktop\transdec OBJ\texture gimp.png
-map_Bump C:\\texture gimp bump.png
+map_Kd texture gimp.png
+map_Bump texture gimp bump.png
 
 newmtl 7
 Ns 98.039216
@@ -98,8 +98,8 @@ Ks 0.000000 0.000000 0.000000
 Ni 1.300000
 d 1.000000
 illum 2
-map_Kd C:\Users\Scrypt\Desktop\transdec OBJ\flat sides resynth tileable better colors.png
-map_Bump C:\\flat sides resynth tileable better colors bump.png
+map_Kd flat sides resynth tileable better colors.png
+map_Bump flat sides resynth tileable better colors bump.png
 
 newmtl 8
 Ns 98.039216
@@ -109,8 +109,8 @@ Ks 0.000000 0.000000 0.000000
 Ni 1.300000
 d 1.000000
 illum 2
-map_Kd C:\Users\Scrypt\Desktop\transdec OBJ\flat bottom resynth tileable better colors.png
-map_Bump C:\\flat bottom resynth tileable better colors bump.png
+map_Kd flat bottom resynth tileable better colors.png
+map_Bump flat bottom resynth tileable better colors bump.png
 
 newmtl 9
 Ns 686.274510
