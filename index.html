@@ -157,9 +157,12 @@
 				
 				//add water colored fog
 				//scene.fog = new THREE.FogExp2( 0x008080, 0.1875 );
-				scene.fog = new THREE.FogExp2( 0x008080, 0.1375 );
-				scene2.fog = new THREE.FogExp2( 0x008080, 0.1875 );
 				
+				//comment for debugging
+				//uncomment please
+				//scene.fog = new THREE.FogExp2( 0x008080, 0.1375 );
+				//scene2.fog = new THREE.FogExp2( 0x008080, 0.1875 );
+				//uncomment please
 				camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.5, 3000000);
 				
 				camera.position.x = 0;//pool line of symetry is x axis
@@ -175,14 +178,33 @@
 				//camera.position.set( 0, -2, -28 );
         			
         			camControls = new THREE.FirstPersonControls( camera );
-        			camControls.lookSpeed = 0.05; //Pitch Thrust to drag ratio
-        			camControls.movementSpeed = 0.25; // FWD BKWD Thrust to drag ratio 
+        			
+        			//normal mode = uncomment
+        			//camControls.lookSpeed = 0.05; //Pitch Thrust to drag ratio
+        			//camControls.movementSpeed = 0.25; // FWD BKWD Thrust to drag ratio
+        			//normal mode = uncomment
+        			//debug mode = uncomment
+        			camControls.lookSpeed = 0.75; //Pitch Thrust to drag ratio
+        			camControls.movementSpeed = 0.75; // FWD BKWD Thrust to drag ratio
+        			//debug mode = uncomment
+        			
         			camControls.verticalMin = -50.0; //basement floor level
         			camControls.verticalMax = 10.0; //sky ceiling level
         			
         			camControls2 = new THREE.FirstPersonControls( camera2 );
-        			camControls2.lookSpeed = 0.05; //Pitch Thrust to drag ratio
-        			camControls2.movementSpeed = 0.25; // FWD BKWD Thrust to drag ratio 
+        			
+        			
+        			
+        			//normal mode = uncomment
+        			//camControls2.lookSpeed = 0.05; //Pitch Thrust to drag ratio
+        			//camControl2s.movementSpeed = 0.25; // FWD BKWD Thrust to drag ratio
+        			//normal mode = uncomment
+        			//debug mode = uncomment
+        			camControls2.lookSpeed = 0.75; //Pitch Thrust to drag ratio
+        			camControls2.movementSpeed = 0.75; // FWD BKWD Thrust to drag ratio
+        			//debug mode = uncomment
+
+        			
         			camControls2.verticalMin = -50.0; //basement floor level
         			camControls2.verticalMax = 10.0; //sky ceiling level
         			
@@ -264,8 +286,11 @@
 				mirrorMesh2.add( water ); //add water shader to otherwise boring PlaneBufferGeometry
 				mirrorMesh.rotation.x = - Math.PI * 1.5; //rotate undwater water surface to point down
 				mirrorMesh2.rotation.x = - Math.PI * 0.5; //rotate water surface to point up
-				scene.add( mirrorMesh ); //add underwater water surface
-				scene.add( mirrorMesh2); //add water surface 
+				
+				//uncomment please
+				//scene.add( mirrorMesh ); //add underwater water surface
+				//scene.add( mirrorMesh2); //add water surface 
+				//uncomment please
 
 				// load skybox &/or (start example code copypasta: http://threejs.org/examples/#webgl_shaders_ocean)
 				var cubeMap = new THREE.CubeTexture( [] );//initialize/declare the texture object to be mapped to the skybox mesh var skyBox = new THREE.Mesh
