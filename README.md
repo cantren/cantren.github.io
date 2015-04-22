@@ -56,4 +56,5 @@ The most heavily borrowed code(that isn't from three.js examples) is actually fr
 
 #Housecleaning
 * Almost none of josdirksen's code remains: consider forking the repository, then rolling that fork back to a previous commit such that it accurately reflects the attribution, then sanitizing the remainder of borrowed code. Credit to josdirksen will then be preserved in the README.md.
+* UPDATE: more josdirksen code has been added(sort of) at cantren.github.io/Install Instructions/server setup.txt http://www.smartjava.org/content/capture-canvas-and-webgl-output-video-using-websockets
 

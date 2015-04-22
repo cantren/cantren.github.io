@@ -3,9 +3,9 @@
 ############################
 #Disclaimer: Misconfiguration of a server can cause really bad stuff to happen. These installation notes are provided "As Is". No warranty expressed or implied. 
 #By following these steps you agree to hold the author harmless from any claim, action, or proceeding and agree to indemnify and hold harmless the author against expenses, fees, and damages that may be incurred in any such claims, action, or proceeding.
-1)Get an email account and valid visa that belongs to you
+1)Get an email account and valid CC#/Debit Card# that belongs to you
 2)Create an Amazon AWS "Free Usage Tier" account http://aws.amazon.com/free/faqs/
-WARNING:You can "accidentally" a substantial amount of money if you leave an instance running, don't take security seriously, or otherwise exceed the usage permitted under the "Free Usage Tier" terms. 
+WARNING:You can "accidentally" a substantial amount of money(and/or liability) if you leave an instance running, don't take security seriously, or otherwise exceed the usage permitted under the "Free Usage Tier" terms. 
 3)Create an instance
 Note:
 This documentation assumes the following instance type:
@@ -60,3 +60,37 @@ expected result: YMMV
 2.1.5 (built 2014-11-13 15:15:56)
 
 #Note: if you wish to host SimBox on the same server as the vertx + OpenCV Backend: please refer to ./localhost setup.txt for instructions on configuring apache2 server
+
+$ cd ~/
+$ sudo nano server2.java
+paste the following text:
+[start text]
+package home.[username goes here];
+import org.vertx.java.core.Handler;
+import org.vertx.java.core.http.HttpServerRequest;
+import org.vertx.java.core.http.HttpServer;
+import org.vertx.java.core.http.ServerWebSocket;
+import org.vertx.java.core.buffer.Buffer;
+import org.vertx.java.platform.Verticle;
+import sun.misc.BASE64Decoder;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+
+ 
+public class server2 extends Verticle {
+  public void start() {
+[replace this line]
+  }
+}
+[end text]
+Replace "[username goes here]" with your username
+Replace "[replace this line]" with the server code from this link: http://www.smartjava.org/content/capture-canvas-and-webgl-output-video-using-websockets
+Hit "Ctrl+x"
+Hit "y"
+Hit "enter"
+$ vertx run server2.java
+
+  
+ 
