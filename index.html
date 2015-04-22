@@ -216,7 +216,7 @@
 
 				var light2 = new THREE.HemisphereLight( 0xffffbb, 0x008080, 1 );//I tried changing the light color here to see what would happen
 				light2.position.set( - 1, 1, - 1 ); //my hemisphere flipped upside down
-				scene2.add( light2 );//I changed the name to distinguish a negative y value from "sunlight"
+				//scene2.add( light2 );//I changed the name to distinguish a negative y value from "sunlight"
 				
 				//More scene lighting
 				var ambientLight = new THREE.AmbientLight(0x383838);
@@ -229,12 +229,12 @@
         			var spotLight = new THREE.SpotLight(0xffffff);
         			spotLight.position.set(100, 140, 130);
         			spotLight.intensity = 1;
-        			scene.add(spotLight);
+        			//scene.add(spotLight);
         			
         			var spotLight2 = new THREE.SpotLight(0xffffff);
         			spotLight2.position.set(100, 140, 130);
         			spotLight2.intensity = 1;
-        			scene2.add(spotLight2);
+        			//scene2.add(spotLight2);
 
 
 				//load and insert the obj meshes and mtl textures
