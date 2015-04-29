@@ -1,0 +1,122 @@
+# Blender MTL File: 'Transdec 2.blend'
+# Material Count: 12
+
+newmtl 1
+Ns 596.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+
+newmtl 10
+Ns 684.313725
+Ka 0.000000 0.000000 0.000000
+Kd 0.721569 0.737255 0.737255
+Ks 0.901961 0.921569 0.921569
+Ni 1.000000
+d 1.000000
+illum 2
+
+newmtl 11
+Ns 98.039216
+Ka 0.000000 0.000000 0.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.000000 0.000000 0.000000
+Ni 1.300000
+d 1.000000
+illum 2
+map_Kd polished walnut.jpg
+map_Bump polished walnut bump.jpg
+
+newmtl 12
+Ns 98.039216
+Ka 0.000000 0.000000 0.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.000000 0.000000 0.000000
+Ni 1.300000
+d 1.000000
+illum 2
+map_Kd sponge.jpg
+map_Bump sponge bump.jpg
+
+newmtl 2
+Ns 596.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.633726 0.655686 0.746667
+Ks 0.396078 0.409804 0.466667
+Ni 1.000000
+d 1.000000
+illum 2
+
+newmtl 3
+Ns 686.274510
+Ka 0.000000 0.000000 0.000000
+Kd 0.000000 0.602353 0.602353
+Ks 0.000000 0.752941 0.752941
+Ni 1.000000
+d 1.000000
+illum 2
+
+newmtl 4
+Ns 98.039216
+Ka 0.000000 0.000000 0.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.000000 0.000000 0.000000
+Ni 1.300000
+d 1.000000
+illum 2
+map_Kd transdec dirt.png
+map_Bump transdec dirt bump.png
+
+newmtl 5
+Ns 686.274510
+Ka 0.000000 0.000000 0.000000
+Kd 0.800000 0.790588 0.734118
+Ks 1.000000 0.988235 0.917647
+Ni 1.000000
+d 1.000000
+illum 2
+
+newmtl 6
+Ns 98.039216
+Ka 0.000000 0.000000 0.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.000000 0.000000 0.000000
+Ni 1.300000
+d 1.000000
+illum 2
+map_Kd texture gimp.png
+map_Bump texture gimp bump.png
+
+newmtl 7
+Ns 98.039216
+Ka 0.000000 0.000000 0.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.000000 0.000000 0.000000
+Ni 1.300000
+d 1.000000
+illum 2
+map_Kd flat sides resynth tileable better colors.png
+map_Bump flat sides resynth tileable better colors bump.png
+
+newmtl 8
+Ns 98.039216
+Ka 0.000000 0.000000 0.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.000000 0.000000 0.000000
+Ni 1.300000
+d 1.000000
+illum 2
+map_Kd flat bottom resynth tileable better colors.png
+map_Bump flat bottom resynth tileable better colors bump.png
+
+newmtl 9
+Ns 686.274510
+Ka 0.000000 0.000000 0.000000
+Kd 0.000000 0.401569 0.401569
+Ks 0.000000 0.501961 0.501961
+Ni 1.000000
+d 1.000000
+illum 2
