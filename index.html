@@ -173,8 +173,8 @@
 				//camera.position.set( 0, -2, -28 );
         			
         			camControls = new THREE.FirstPersonControls( camera );
-        			camControls.lookSpeed = 0.05; //Pitch Thrust to drag ratio
-        			camControls.movementSpeed = 0.25; // FWD BKWD Thrust to drag ratio 
+        			camControls.lookSpeed = 0.1; //Pitch Thrust to drag ratio
+        			camControls.movementSpeed = 1.0; // FWD BKWD Thrust to drag ratio 
         			camControls.verticalMin = -50.0; //basement floor level
         			camControls.verticalMax = 10.0; //sky ceiling level
         			
@@ -262,8 +262,8 @@
 				mirrorMesh2.add( water ); //add water shader to otherwise boring PlaneBufferGeometry
 				mirrorMesh.rotation.x = - Math.PI * 1.5; //rotate undwater water surface to point down
 				mirrorMesh2.rotation.x = - Math.PI * 0.5; //rotate water surface to point up
-				scene.add( mirrorMesh ); //add underwater water surface
-				scene.add( mirrorMesh2); //add water surface 
+				//scene.add( mirrorMesh ); //add underwater water surface
+				//scene.add( mirrorMesh2); //add water surface 
 
 				// load skybox &/or (start example code copypasta: http://threejs.org/examples/#webgl_shaders_ocean)
 				var cubeMap = new THREE.CubeTexture( [] );//initialize/declare the texture object to be mapped to the skybox mesh var skyBox = new THREE.Mesh
