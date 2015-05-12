@@ -9,7 +9,7 @@ Ks 0.000000 0.000000 0.000000
 Ni 1.300000
 d 1.000000
 illum 2
-map_Kd C:\Users\Scrypt\Desktop\Robosub Obstacles OBJ\sponge.jpg
+map_Kd sponge.jpg
 
 newmtl 10.001
 Ns 684.313725
@@ -253,4 +253,4 @@ Ks 0.000000 0.000000 0.000000
 Ni 1.300000
 d 1.000000
 illum 2
-map_Kd C:\Users\Scrypt\Desktop\Robosub Obstacles OBJ\leather.jpg
+map_Kd leather.jpg
