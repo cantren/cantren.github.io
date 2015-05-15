@@ -155,8 +155,11 @@
 				
 				//add water colored fog
 				//scene.fog = new THREE.FogExp2( 0x008080, 0.1875 );
-				scene.fog = new THREE.FogExp2( 0x008080, 0.1375 );
-				scene2.fog = new THREE.FogExp2( 0x008080, 0.1875 );
+				
+				//scene.fog = new THREE.FogExp2( 0x008080, 0.1375 );
+				//scene2.fog = new THREE.FogExp2( 0x008080, 0.1875 );
+				scene.fog = new THREE.FogExp2( 0x008080, 0.05 );
+				scene2.fog = new THREE.FogExp2( 0x008080, 0.05 );
 				
 				camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.5, 3000000);
 				
