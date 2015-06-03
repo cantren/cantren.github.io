@@ -701,7 +701,7 @@ dat.controllers.NumberController = (function (Controller, common) {
     if (common.isUndefined(this.__step)) {
 
       if (this.initialValue == 0) {
-        this.__impliedStep = 1; // What are we, psychics?
+        this.__impliedStep = 0.1; // What are we, psychics?
       } else {
         // Hey Doug, check this out.
         this.__impliedStep = Math.pow(10, Math.floor(Math.log(this.initialValue)/Math.LN10))/10;
