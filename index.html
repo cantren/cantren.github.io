@@ -389,6 +389,9 @@
         			    this.yPosition = -2;
         			    this.zPosition = -28;
         			}
+        		this.getXPos = function() {
+				return controls['xPosition'];
+			};
 
         		var gui = new dat.GUI();
         		//gui.add(init, 'fogDensity', 0, 0.25);
@@ -400,7 +403,7 @@
         		gui.add(controls, 'zPosition', -50, 50);
         		//source:http://www.smartjava.org/ltjs/chapter-09/02-selecting-objects.html
         			
-
+			
 
 
 			//
@@ -408,6 +411,7 @@
 			function animate() {
 
 				requestAnimationFrame( animate ); //animate the frame
+				camera2.position.x = gui.getXPos();
 				render(); //render the frame
 				
 
