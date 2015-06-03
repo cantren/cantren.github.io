@@ -105,7 +105,8 @@
 			
 			
 			var clock = new THREE.Clock();//I spent a long time debugging because I forgot to initialize this
-
+			var keyboard = new KeyboardState();
+			
 
 			var parameters = {
 				width: 2000,
@@ -414,7 +415,7 @@
   			rotSpeed.onChange(function(value) 
   			{   camControls2.lookSpeed = value; camControls.lookSpeed = value;   });
 			movSpeed.onChange(function(value) 
-			{   camControls2.movementSpeed = value; camControls.movementSpeed = value;   });
+			{   camControls2.movementSpeed = value; camControls.movementSpeed = value; var oldSpeed = camControls2.movementSpeed;  });
 			
 			
 
@@ -430,7 +431,7 @@
 			}
 
 			function render() {
-				
+				keyboard.update();
 				camControls.update( clock.getDelta() ); //update First Person Camera
 				camControls2.update( clock.getDelta() ); //update First Person Camera
 				camera2.position.copy( camera.position );
@@ -454,6 +455,13 @@
 				//scene.fog.density = controls.fogDensity;
 				//scene2.fog.density = controls.fogDensity;
 				
+				while ( keyboard.pressed("shift") )
+					camControls2.movementSpeed = oldSpeed += 1.0;
+
+				while ( keyboard.pressed("E") )
+					camera2.rotateZ(Math.PI/2);
+		
+
 				renderer.render( scene, camera ); //render everything else
 				renderer2.render( scene2, camera2 );
 
