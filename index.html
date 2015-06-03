@@ -397,9 +397,9 @@
         		//gui.add(controls, 'zPosition', -50, 50);
         		//source:http://www.smartjava.org/ltjs/chapter-09/02-selecting-objects.html
         		var folder3 = gui.addFolder('position');
-  			var posX = folder3.add( camera2.position, 'x' ).min(-50.00).max(50.00).step(0.1).listen();
-  			var posY = folder3.add( camera2.position, 'y' ).min(-50.00).max(50.00).step(0.1).listen();
-  			var posZ = folder3.add( camera2.position, 'z' ).min(-50.00).max(50.00).step(0.1).listen();
+  			var posX = folder3.add( camera2.position, 'x' ).min(-50.00).max(50.00).step(0.01).listen();
+  			var posY = folder3.add( camera2.position, 'y' ).min(-50.00).max(50.00).step(0.01).listen();
+  			var posZ = folder3.add( camera2.position, 'z' ).min(-50.00).max(50.00).step(0.01).listen();
   		
   			posX.onChange(function(value) 
   			{   camera2.position.x = value; camera.position.x = value;   });
