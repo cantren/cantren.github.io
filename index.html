@@ -292,7 +292,7 @@
 
 				var cubeMap2 = new THREE.CubeTexture( [] );//initialize/declare the texture object to be mapped to the skybox mesh var skyBox = new THREE.Mesh
 				cubeMap2.format = THREE.RGBFormat;//don't know or care
-				cubeMap2.flipY = true;//if you make this true the walls of the box go below the horizon
+				cubeMap2.flipY = false;//if you make this true the walls of the box go below the horizon
 
 				var loader = new THREE.ImageLoader();
 				loader.load( '../textures/skyboxsun25degtest.png', function ( image ) {
