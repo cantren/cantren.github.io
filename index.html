@@ -290,9 +290,9 @@
 				cubeMap.format = THREE.RGBFormat;//don't know or care
 				cubeMap.flipY = false;//if you make this true the walls of the box go below the horizon
 
-				//var cubeMap2 = new THREE.CubeTexture( [] );//initialize/declare the texture object to be mapped to the skybox mesh var skyBox = new THREE.Mesh
-				//cubeMap2.format = THREE.RGBFormat;//don't know or care
-				//cubeMap2.flipY = true;//if you make this true the walls of the box go below the horizon
+				var cubeMap2 = new THREE.CubeTexture( [] );//initialize/declare the texture object to be mapped to the skybox mesh var skyBox = new THREE.Mesh
+				cubeMap2.format = THREE.RGBFormat;//don't know or care
+				cubeMap2.flipY = true;//if you make this true the walls of the box go below the horizon
 
 				var loader = new THREE.ImageLoader();
 				loader.load( '../textures/skyboxsun25degtest.png', function ( image ) {
@@ -322,40 +322,40 @@
 
 				} );
 				
-				//var loader2 = new THREE.ImageLoader();
-				//loader2.load( '../textures/skyboxsun25degtest.png', function ( image2 ) {
+				var loader2 = new THREE.ImageLoader();
+				loader2.load( '../textures/skyboxsun25degtest.png', function ( image2 ) {
 
 
-				//	var getSide = function ( x, y ) {
+					var getSide = function ( x, y ) {
 
-//						var size = 1024;
+						var size = 1024;
 
-//						var canvas2 = document.createElement( 'canvas2' );
-//						canvas2.width = size;
-//						canvas2.height = size;
+						var canvas2 = document.createElement( 'canvas2' );
+						canvas2.width = size;
+						canvas2.height = size;
 
-//						var context2 = canvas2.getContext( '2d' );
-//						context2.drawImage( image2, - x * size, - y * size );
+						var context2 = canvas2.getContext( '2d' );
+						context2.drawImage( image2, - x * size, - y * size );
 
-//						return canvas2;
+						return canvas2;
 
-//					};
+					};
 
-//					cubeMap2.images[ 0 ] = getSide( 2, 1 ); // px
-//					cubeMap2.images[ 1 ] = getSide( 0, 1 ); // nx
-//					cubeMap2.images[ 2 ] = getSide( 1, 0 ); // py
-//					cubeMap2.images[ 3 ] = getSide( 1, 2 ); // ny
-//					cubeMap2.images[ 4 ] = getSide( 1, 1 ); // pz
-//					cubeMap2.images[ 5 ] = getSide( 3, 1 ); // nz
-//					cubeMap2.needsUpdate = true;
+					cubeMap2.images[ 0 ] = getSide( 2, 1 ); // px
+					cubeMap2.images[ 1 ] = getSide( 0, 1 ); // nx
+					cubeMap2.images[ 2 ] = getSide( 1, 0 ); // py
+					cubeMap2.images[ 3 ] = getSide( 1, 2 ); // ny
+					cubeMap2.images[ 4 ] = getSide( 1, 1 ); // pz
+					cubeMap2.images[ 5 ] = getSide( 3, 1 ); // nz
+					cubeMap2.needsUpdate = true;
 
-//				} );
+				} );
 				//Initialize/declare the shader for the skybox
 				var cubeShader = THREE.ShaderLib['cube'];
 				cubeShader.uniforms['tCube'].value = cubeMap;
 				
-//				var cubeShader2 = THREE.ShaderLib['cube'];
-//				cubeShader2.uniforms['tCube'].value = cubeMap2;
+				var cubeShader2 = THREE.ShaderLib['cube'];
+				cubeShader2.uniforms['tCube'].value = cubeMap2;
 				
 				//Create skybox material 
 				var skyBoxMaterial = new THREE.ShaderMaterial( {
@@ -365,13 +365,13 @@
 					depthWrite: false,
 					side: THREE.BackSide
 				});
-//				var skyBoxMaterial2 = new THREE.ShaderMaterial( {
-//					fragmentShader: cubeShader2.fragmentShader,
-//					vertexShader: cubeShader2.vertexShader,
-//					uniforms: cubeShader2.uniforms,
-//					depthWrite: false,
-//					side: THREE.BackSide
-//				});
+				var skyBoxMaterial2 = new THREE.ShaderMaterial( {
+					fragmentShader: cubeShader2.fragmentShader,
+					vertexShader: cubeShader2.vertexShader,
+					uniforms: cubeShader2.uniforms,
+					depthWrite: false,
+					side: THREE.BackSide
+				});
 
 				//Create Mesh to map skybox material on to
 				var skyBox = new THREE.Mesh(
@@ -380,7 +380,7 @@
 				);
 				var skyBox2 = new THREE.Mesh(
 					new THREE.BoxGeometry( 10000, 10000, 10000 ),
-					skyBoxMaterial
+					skyBoxMaterial2
 				);
 				scene.add( skyBox ); //create Point Loma Sky
 				scene2.add( skyBox2 ); //create Point Loma Sky
