@@ -388,10 +388,11 @@
         			    this.xPosition = 0;
         			    this.yPosition = -2;
         			    this.zPosition = -28;
+        			    this.getXPos = function() {
+					return controls['xPosition'];
+					};
         			}
-        		this.getXPos = function() {
-				return controls['xPosition'];
-			};
+        		
 
         		var gui = new dat.GUI();
         		//gui.add(init, 'fogDensity', 0, 0.25);
