@@ -464,6 +464,7 @@
 				}
 
 				renderer.render( scene, camera ); //render everything else
+				scene2.applyMatrix(new THREE.Matrix4().makeScale(-1, 1, 1));
 				renderer2.render( scene2, camera2 );
 
 			}
