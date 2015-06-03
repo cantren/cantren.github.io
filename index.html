@@ -385,6 +385,9 @@
 			            this.fogDensity = 0.1875;
         			    this.lookSpeed = 0.03;
         			    this.movementSpeed = 0.03;
+        			    this.xPosition = 0;
+        			    this.yPosition = -2;
+        			    this.zPosition = -28;
         			}
 
         		var gui = new dat.GUI();
@@ -392,6 +395,9 @@
         		gui.add(controls, 'fogDensity', 0, 0.25);
         		gui.add(controls, 'lookSpeed', 0, 0.5);
         		gui.add(controls, 'movementSpeed', 0, 0.5);
+        		gui.add(controls, 'xPosition', -50, 50);
+        		gui.add(controls, 'yPosition', -50, 50);
+        		gui.add(controls, 'zPosition', -50, 50);
         		//source:http://www.smartjava.org/ltjs/chapter-09/02-selecting-objects.html
         			
 
