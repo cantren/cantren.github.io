@@ -779,8 +779,8 @@ dat.controllers.NumberController = (function (Controller, common) {
          * @returns {dat.controllers.NumberController} this
          */
         step: function(v) {
-          this.__step = v;
-          this.__impliedStep = 2;
+          this.__step = '2';
+          this.__impliedStep = '2';
           this.__precision = numDecimals(v);
           return this;
         }
