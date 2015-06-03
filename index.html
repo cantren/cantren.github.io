@@ -441,7 +441,7 @@
   			rotSpeed.onChange(function(value) 
   			{   camControls2.lookSpeed = value; camControls.lookSpeed = value;   });
 			movSpeed.onChange(function(value) 
-			{   camControls2.movementSpeed = value; camControls.movementSpeed = value; var oldSpeed = camControls2.movementSpeed;  });
+			{   camControls2.movementSpeed = value; camControls.movementSpeed = value;  });
 			
 			
 
@@ -482,10 +482,10 @@
 				//scene2.fog.density = controls.fogDensity;
 				
 				if ( keyboard.pressed("shift") )
-					camControls2.movementSpeed = oldSpeed += 1.0;
+					camControls2.movementSpeed = camControls2.movementSpeed += 1.0;
 
 				if ( keyboard.pressed("E") ) {
-					camera2.rotateY(Math.PI/-.75);
+					camera2.rotateY(Math.PI/-1);
 					//camera2.rotate
 					camera2.rotateZ((Math.PI)/-1);
 				}
