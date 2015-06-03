@@ -406,7 +406,7 @@
         			    this.xPosition = 0.0;
         			    this.yPosition = -2.0;
         			    this.zPosition = -28.0;
-        			    this.waterchop = 60.0;
+        			    //this.waterchop = 60.0;
         			}
         		
 
@@ -429,8 +429,8 @@
   			var posX = folder3.add( camera2.position, 'x' ).min(-50.00).max(50.00).step(0.01).listen();
   			var posY = folder3.add( camera2.position, 'y' ).min(-50.00).max(50.00).step(0.01).listen();
   			var posZ = folder3.add( camera2.position, 'z' ).min(-50.00).max(50.00).step(0.01).listen();
-  			var folder4 = gui.addFolder('wavespeed');
-  			var folder5 = gui.addFolder('wavesize');
+  			//var folder4 = gui.addFolder('wavespeed');
+  			//var folder5 = gui.addFolder('wavesize');
   			//folder5.add( water, 'textureWidth' ).min(0.00).max(512.00).step(0.1).listen();
   			//folder5.add( water, 'textureHeight' ).min(0.00).max(512.00).step(0.1).listen();
   		
@@ -479,9 +479,10 @@
 				camera2.rotateZ(Math.PI/2);
 				
 				var time = performance.now() * 0.001; //Measure time for water
-				var waterchop = 60.0;
+				//var waterchop = 60.0;
 				//gui.folder4.add( render, 'waterchop' ).min(0.00).max(100.00).step(0.01);
-				water.material.uniforms.time.value += 1.0 / waterchop; //speed of water motion(wind chop)
+				//water.material.uniforms.time.value += 1.0 / waterchop; //speed of water motion(wind chop)
+				water.material.uniforms.time.value += 1.0 / 60.0; //speed of water motion(wind chop)
 				water.render(); //render water surface
 				
 				//scene.fog.density = controls.fogDensity;
