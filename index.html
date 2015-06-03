@@ -459,9 +459,9 @@
 					camControls2.movementSpeed = oldSpeed += 1.0;
 
 				if ( keyboard.pressed("E") ) {
-					camera2.rotateX(Math.PI/-2);
-					camera2.rotateZ((Math.PI/-2));
-					camera2.rotateZ(Math.PI/2);
+					camera2.rotateY(Math.PI);
+					//camera2.rotateZ((Math.PI/-2));
+					//camera2.rotateZ(Math.PI/2);
 				}
 
 				renderer.render( scene, camera ); //render everything else
