@@ -388,9 +388,6 @@
         			    this.xPosition = 0;
         			    this.yPosition = -2;
         			    this.zPosition = -28;
-        			    this.getXPos = function() {
-					return controls['xPosition'];
-					};
         			}
         		
 
@@ -412,7 +409,7 @@
 			function animate() {
 
 				requestAnimationFrame( animate ); //animate the frame
-				camera2.position.x = gui.getXPos();
+				gui.controls.xPosition = camera2.position.x;
 				render(); //render the frame
 				
 
