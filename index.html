@@ -460,8 +460,7 @@
 
 				if ( keyboard.pressed("E") ) {
 					camera2.rotateY(Math.PI);
-					camera2.rotateZ((Math.PI));
-					camera2.rotateX(Math.PI);
+					camera2.rotateZ((Math.PI/-1));
 				}
 
 				renderer.render( scene, camera ); //render everything else
