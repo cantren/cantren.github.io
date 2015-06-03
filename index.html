@@ -396,7 +396,7 @@
         		gui.add(controls, 'fogDensity', 0, 0.25);
         		gui.add(controls, 'lookSpeed', 0, 0.5);
         		gui.add(controls, 'movementSpeed', 0, 0.5);
-        		gui.add(camera2.position, 'x', -50, 50).listen();
+        		//gui.add(camera2.position, 'x', -50, 50).listen();
         		//gui.add(controls, 'xPosition', -50, 50);
         		//gui.add(controls, 'yPosition', -50, 50);
         		//gui.add(controls, 'zPosition', -50, 50);
@@ -456,7 +456,7 @@
 
 			}
 			function updategui() {
-			controls.xPosition = camera2.position.x;
+			gui.xPosition = camera2.position.x;
 			}
 
 		</script>
