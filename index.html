@@ -401,19 +401,17 @@
         		//gui.add(controls, 'yPosition', -50, 50);
         		//gui.add(controls, 'zPosition', -50, 50);
         		//source:http://www.smartjava.org/ltjs/chapter-09/02-selecting-objects.html
-        		//var folder2 = gui.addFolder('position');
-  			//var posX = folder2.add( controls, 'xPosition' ).min(-50).max(50).step(.1).listen();
-  			//var posY = folder2.add( controls, 'yPosition' ).min(-50).max(50).step(.1).listen();
-  			//var posZ = folder2.add( controls, 'zPosition' ).min(-50).max(50).step(.1).listen();
-  			gui.add(camera2.position, 'x', -50,50).step(.1);
-    			gui.add(camera2.position, 'y', -50,50).step(.1);
-    			gui.add(camera2.position, 'z', -50,50).step(.1);
-  			//posX.onChange(function(value) 
-  			//{   camera2.position.x = value; camera.position.x = value;   });
-  			//posY.onChange(function(value) 
-  			//{   camera2.position.y = value; camera.position.y = value;   });
-			//posZ.onChange(function(value) 
-			//{   camera2.position.z = value; camera.position.z   });
+        		var folder2 = gui.addFolder('position');
+  			var posX = folder2.add( controls, 'xPosition' ).min(-50).max(50).step(.1).listen();
+  			var posY = folder2.add( controls, 'yPosition' ).min(-50).max(50).step(.1).listen();
+  			var posZ = folder2.add( controls, 'zPosition' ).min(-50).max(50).step(.1).listen();
+  		
+  			posX.onChange(function(value) 
+  			{   camera2.position.x = value; camera.position.x = value;   });
+  			posY.onChange(function(value) 
+  			{   camera2.position.y = value; camera.position.y = value;   });
+			posZ.onChange(function(value) 
+			{   camera2.position.z = value; camera.position.z   });
 			
 
 
