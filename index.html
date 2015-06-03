@@ -402,7 +402,7 @@
         		//gui.add(controls, 'zPosition', -50, 50);
         		//source:http://www.smartjava.org/ltjs/chapter-09/02-selecting-objects.html
         		var folder2 = gui.addFolder('position');
-  			var posX = folder2.add( controls, 'xPosition' ).min(-50).max(50).step(.1).listen();
+  			var posX = folder2.add( camera2.position, 'x' ).min(-50).max(50).step(.1).listen();
   			var posY = folder2.add( controls, 'yPosition' ).min(-50).max(50).step(.1).listen();
   			var posZ = folder2.add( controls, 'zPosition' ).min(-50).max(50).step(.1).listen();
   		
@@ -435,7 +435,6 @@
 				camera2.up = new THREE.Vector3(-1,-1,-1);
 				camera2.rotateX(Math.PI/-2);
 				camera2.rotateZ((Math.PI/-2));
-				updateDisplay();
 				//controls['zPosition'] = camera2.position.z;
 				
 				//camera2.rotateY(Math.PI/-1);
@@ -455,14 +454,6 @@
 				renderer.render( scene, camera ); //render everything else
 				renderer2.render( scene2, camera2 );
 
-			}
-			function updateDisplay(gui) {
-			   for (var i in gui.controllers) {
-			        gui.controllers[i].updateDisplay();
-			    }
-		           for (var f in gui.folders) {
-			        updateDisplay(gui.folders[f]);
-			    }
 			}
 
 		</script>
