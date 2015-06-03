@@ -277,12 +277,12 @@
 				mirrorMesh3.position.y = -0.85;//water height experimentally generated via trial and error
 				mirrorMesh4.position.y = -0.9;//water height experimentally generated via trial and error
 				
-				//scene.add( mirrorMesh ); //add underwater water surface
-				//scene.add( mirrorMesh2); //add water surface
+				scene.add( mirrorMesh ); //add underwater water surface
+				scene.add( mirrorMesh2); //add water surface
 				scene.add( mirrorMesh3 ); //add underwater water surface
 				scene.add( mirrorMesh4); //add water surface
-				scene2.add( mirrorMesh ); //add underwater water surface
-				scene2.add( mirrorMesh2); //add water surface 
+				//scene2.add( mirrorMesh ); //add underwater water surface
+				//scene2.add( mirrorMesh2); //add water surface 
 
 				// load skybox &/or (start example code copypasta: http://threejs.org/examples/#webgl_shaders_ocean)
 				var cubeMap = new THREE.CubeTexture( [] );//initialize/declare the texture object to be mapped to the skybox mesh var skyBox = new THREE.Mesh
@@ -430,7 +430,6 @@
   			var posY = folder3.add( camera2.position, 'y' ).min(-50.00).max(50.00).step(0.01).listen();
   			var posZ = folder3.add( camera2.position, 'z' ).min(-50.00).max(50.00).step(0.01).listen();
   			var folder4 = gui.addFolder('wavespeed');
-  			folder4.add( controls, 'waterchop' ).min(0.00).max(100.00).step(0.01);
   			var folder5 = gui.addFolder('wavesize');
   			folder5.add( water, 'textureWidth' ).min(0.00).max(512.00).step(0.1).listen();
   			folder5.add( water, 'textureHeight' ).min(0.00).max(512.00).step(0.1).listen();
@@ -480,8 +479,9 @@
 				camera2.rotateZ(Math.PI/2);
 				
 				var time = performance.now() * 0.001; //Measure time for water
-				water.material.uniforms.time.value += 1.0 / 60.0; //speed of water motion(wind chop)
-
+				var waterchop = 60.0;
+				gui.folder4.add( render, 'waterchop' ).min(0.00).max(100.00).step(0.01);
+				water.material.uniforms.time.value += 1.0 / waterchop; //speed of water motion(wind chop)
 				water.render(); //render water surface
 				
 				//scene.fog.density = controls.fogDensity;
