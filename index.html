@@ -326,7 +326,7 @@
 				loader2.load( '../textures/skyboxsun25degtest.png', function ( image2 ) {
 
 
-					var getSide = function ( x, y ) {
+					var getSide2 = function ( x, y ) {
 
 						var size = 1024;
 
@@ -341,12 +341,12 @@
 
 					};
 
-					cubeMap2.images[ 0 ] = getSide( 2, 1 ); // px
-					cubeMap2.images[ 1 ] = getSide( 0, 1 ); // nx
-					cubeMap2.images[ 2 ] = getSide( 1, 0 ); // py
-					cubeMap2.images[ 3 ] = getSide( 1, 2 ); // ny
-					cubeMap2.images[ 4 ] = getSide( 1, 1 ); // pz
-					cubeMap2.images[ 5 ] = getSide( 3, 1 ); // nz
+					cubeMap2.images[ 0 ] = getSide2( 2, 1 ); // px
+					cubeMap2.images[ 1 ] = getSide2( 0, 1 ); // nx
+					cubeMap2.images[ 2 ] = getSide2( 1, 0 ); // py
+					cubeMap2.images[ 3 ] = getSide2( 1, 2 ); // ny
+					cubeMap2.images[ 4 ] = getSide2( 1, 1 ); // pz
+					cubeMap2.images[ 5 ] = getSide2( 3, 1 ); // nz
 					cubeMap2.needsUpdate = true;
 
 				} );
