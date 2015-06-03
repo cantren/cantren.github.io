@@ -455,10 +455,10 @@
 				//scene.fog.density = controls.fogDensity;
 				//scene2.fog.density = controls.fogDensity;
 				
-				while ( keyboard.pressed("shift") )
+				if ( keyboard.pressed("shift") )
 					camControls2.movementSpeed = oldSpeed += 1.0;
 
-				while ( keyboard.pressed("E") )
+				if ( keyboard.pressed("E") )
 					camera2.rotateZ(Math.PI/2);
 		
 
