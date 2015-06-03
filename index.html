@@ -164,16 +164,16 @@
 				
 				camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.5, 3000000);
 				
-				camera.position.x = 0;//pool line of symetry is x axis
-        			camera.position.y = -2;//water depth
-			        camera.position.z = -28;//how close to the wall are you
+				camera.position.x = 0.0;//pool line of symetry is x axis
+        			camera.position.y = -2.0;//water depth
+			        camera.position.z = -28.0;//how close to the wall are you
 			        
 			        camera2 = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.5, 3000000);
 			        camera2.up = camera.up; // important!
 			        
-			        camera2.position.x = 0;//pool line of symetry is x axis
-        			camera2.position.y = -2;//water depth
-			        camera2.position.z = -28;//how close to the wall are you
+			        camera2.position.x = 0.0;//pool line of symetry is x axis
+        			camera2.position.y = -2.0;//water depth
+			        camera2.position.z = -28.0;//how close to the wall are you
 				//camera.position.set( 0, -2, -28 );
         			
         			camControls = new THREE.FirstPersonControls( camera );
@@ -402,9 +402,9 @@
         		//gui.add(controls, 'zPosition', -50, 50);
         		//source:http://www.smartjava.org/ltjs/chapter-09/02-selecting-objects.html
         		var folder2 = gui.addFolder('position');
-  			var posX = folder2.add( camera2.position, 'x' ).min(-50).max(50).step(.1).listen();
-  			var posY = folder2.add( camera2.position, 'y' ).min(-50).max(50).step(.1).listen();
-  			var posZ = folder2.add( camera2.position, 'z' ).min(-50).max(50).step(.1).listen();
+  			var posX = folder2.add( camera2.position, 'x' ).min(-50).max(50).step(.01).listen();
+  			var posY = folder2.add( camera2.position, 'y' ).min(-50).max(50).step(.01).listen();
+  			var posZ = folder2.add( camera2.position, 'z' ).min(-50).max(50).step(.01).listen();
   		
   			posX.onChange(function(value) 
   			{   camera2.position.x = value; camera.position.x = value;   });
