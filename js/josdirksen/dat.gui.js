@@ -780,8 +780,8 @@ dat.controllers.NumberController = (function (Controller, common) {
          */
         step: function(v) {
           this.__step = v;
-          this.__impliedStep = v;
-          this.__precision = numDecimals(v);
+          this.__impliedStep = .01;
+          this.__precision = .01;
           return this;
         }
 
