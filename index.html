@@ -432,9 +432,7 @@
   			var posZ = folder3.add( camera2.position, 'z' ).min(-50.00).max(50.00).step(0.01).listen();
   			
   			var folder4 = gui.addFolder('rotation');
-  			var rotX = folder4.add( camera2.rotation, 'x' ).step(0.01).listen();
-  			var rotY = folder4.add( camera2.rotation, 'y' ).step(0.01).listen();
-  			var rotZ = folder4.add( camera2.rotation, 'z' ).step(0.01).listen();
+  			var rotZ = folder4.add( camera.rotation, 'z' ).min(-5.00).max(5.00).step(0.01).listen();
   			//var folder4 = gui.addFolder('wavespeed');
   			//var folder5 = gui.addFolder('wavesize');
   			//folder5.add( water, 'textureWidth' ).min(0.00).max(512.00).step(0.1).listen();
@@ -446,12 +444,8 @@
   			{   camera2.position.y = value; camera.position.y = value;   });
 			posZ.onChange(function(value) 
 			{   camera2.position.z = value; camera.position.z = value;   });
-			rotX.onChange(function(value) 
-  			{   camera2.rotation.x = value; camera.rotation.x = value;   });
-  			rotY.onChange(function(value) 
-  			{   camera2.rotation.y = value; camera.rotation.y = value;   });
 			rotZ.onChange(function(value) 
-			{   camera2.rotation.z = value; camera.rotation.z = value;   });
+			{   camera.rotation.z = value; camera.rotation.z = value;   });
 			//source:http://nuevil.com/index3.html
 			//source: http://hotblocks.nl/tests/three/dat.gui.html
 			fogDensity.onChange(function(value) 
