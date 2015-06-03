@@ -261,7 +261,9 @@
 				mirrorMesh.position.y = -0.85;//water height experimentally generated via trial and error
 				mirrorMesh2.position.y = -0.9;//water height experimentally generated via trial and error
 				scene.add( mirrorMesh ); //add underwater water surface
-				scene.add( mirrorMesh2); //add water surface 
+				scene.add( mirrorMesh2); //add water surface
+				scene2.add( mirrorMesh ); //add underwater water surface
+				scene2.add( mirrorMesh2); //add water surface 
 
 				// load skybox &/or (start example code copypasta: http://threejs.org/examples/#webgl_shaders_ocean)
 				var cubeMap = new THREE.CubeTexture( [] );//initialize/declare the texture object to be mapped to the skybox mesh var skyBox = new THREE.Mesh
