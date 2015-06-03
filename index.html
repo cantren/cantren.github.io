@@ -413,6 +413,7 @@
 			posZ.onChange(function(value) 
 			{   camera2.position.z = value; camera.position.z = value;   });
 			
+			
 
 
 			//
@@ -434,7 +435,7 @@
 				camera2.up = new THREE.Vector3(-1,-1,-1);
 				camera2.rotateX(Math.PI/-2);
 				camera2.rotateZ((Math.PI/-2));
-				updategui();
+				updateDisplay();
 				//controls['zPosition'] = camera2.position.z;
 				
 				//camera2.rotateY(Math.PI/-1);
@@ -455,8 +456,13 @@
 				renderer2.render( scene2, camera2 );
 
 			}
-			function updategui() {
-			gui.xPosition = camera2.position.x;
+			function updateDisplay(gui) {
+			   for (var i in gui.__controllers) {
+			        gui.__controllers[i].updateDisplay();
+			    }
+		           for (var f in gui.__folders) {
+			        updateDisplay(gui.__folders[f]);
+			    }
 			}
 
 		</script>
