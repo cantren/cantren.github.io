@@ -252,7 +252,7 @@
 					new THREE.PlaneBufferGeometry( parameters.width * 500, parameters.height * 500 ),
 					water.material
 				);
-				
+				/*
 				mirrorMesh3 = new THREE.Mesh(
 					new THREE.PlaneBufferGeometry( parameters.width * 500, parameters.height * 500 ),
 					water.material
@@ -261,26 +261,27 @@
 					new THREE.PlaneBufferGeometry( parameters.width * 500, parameters.height * 500 ),
 					water.material
 				);
+				*/
 
 				
 				mirrorMesh.add( water ); //add water shader to otherwise boring underwater PlaneBufferGeometry
 				mirrorMesh2.add( water ); //add water shader to otherwise boring PlaneBufferGeometry
-				mirrorMesh3.add( water ); //add water shader to otherwise boring underwater PlaneBufferGeometry
-				mirrorMesh4.add( water ); //add water shader to otherwise boring PlaneBufferGeometry
+				//mirrorMesh3.add( water ); //add water shader to otherwise boring underwater PlaneBufferGeometry
+				//mirrorMesh4.add( water ); //add water shader to otherwise boring PlaneBufferGeometry
 				mirrorMesh.rotation.x = - Math.PI * 1.5; //rotate undwater water surface to point down
 				mirrorMesh2.rotation.x = - Math.PI * 0.5; //rotate water surface to point up
 				mirrorMesh.position.y = -0.85;//water height experimentally generated via trial and error
 				mirrorMesh2.position.y = -0.9;//water height experimentally generated via trial and error
 				
-				mirrorMesh3.rotation.x = - Math.PI * 1.5; //rotate undwater water surface to point down
-				mirrorMesh4.rotation.x = - Math.PI * 0.5; //rotate water surface to point up
-				mirrorMesh3.position.y = -0.85;//water height experimentally generated via trial and error
-				mirrorMesh4.position.y = -0.9;//water height experimentally generated via trial and error
+				//mirrorMesh3.rotation.x = - Math.PI * 1.5; //rotate undwater water surface to point down
+				//mirrorMesh4.rotation.x = - Math.PI * 0.5; //rotate water surface to point up
+				//mirrorMesh3.position.y = -0.85;//water height experimentally generated via trial and error
+				//mirrorMesh4.position.y = -0.9;//water height experimentally generated via trial and error
 				
 				scene.add( mirrorMesh ); //add underwater water surface
 				scene.add( mirrorMesh2); //add water surface
-				scene.add( mirrorMesh3 ); //add underwater water surface
-				scene.add( mirrorMesh4); //add water surface
+				//scene.add( mirrorMesh3 ); //add underwater water surface
+				//scene.add( mirrorMesh4); //add water surface
 				//scene2.add( mirrorMesh ); //add underwater water surface
 				//scene2.add( mirrorMesh2); //add water surface 
 
