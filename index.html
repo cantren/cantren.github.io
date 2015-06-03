@@ -457,11 +457,11 @@
 
 			}
 			function updateDisplay(gui) {
-			   for (var i in gui.__controllers) {
-			        gui.__controllers[i].updateDisplay();
+			   for (var i in gui.controllers) {
+			        gui.controllers[i].updateDisplay();
 			    }
-		           for (var f in gui.__folders) {
-			        updateDisplay(gui.__folders[f]);
+		           for (var f in gui.folders) {
+			        updateDisplay(gui.folders[f]);
 			    }
 			}
 
