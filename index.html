@@ -175,13 +175,13 @@
 			        camera2.position.z = -28.0;//how close to the wall are you
 				//camera.position.set( 0, -2, -28 );
         			
-        			camControls = new THREE.FirstPersonControls( camera );
+        			camControls = new THREE.FirstPersonControls( camera renderer.domElement );
         			camControls.lookSpeed = 0.05; //Pitch Thrust to drag ratio
         			camControls.movementSpeed = 0.25; // FWD BKWD Thrust to drag ratio 
         			camControls.verticalMin = -50.0; //basement floor level
         			camControls.verticalMax = 10.0; //sky ceiling level
         			
-        			camControls2 = new THREE.FirstPersonControls( camera2, renderer.domElement );
+        			camControls2 = new THREE.FirstPersonControls( camera2, renderer2.domElement );
         			camControls2.lookSpeed = 0.05; //Pitch Thrust to drag ratio
         			camControls2.movementSpeed = 0.25; // FWD BKWD Thrust to drag ratio 
         			camControls2.verticalMin = -50.0; //basement floor level
