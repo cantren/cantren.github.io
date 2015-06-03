@@ -704,7 +704,8 @@ dat.controllers.NumberController = (function (Controller, common) {
         this.__impliedStep = 0.01; // What are we, psychics?
       } else {
         // Hey Doug, check this out.
-        this.__impliedStep = Math.pow(10, Math.floor(Math.log(this.initialValue)/Math.LN10))/10;
+        //this.__impliedStep = Math.pow(10, Math.floor(Math.log(this.initialValue)/Math.LN10))/10;
+        this..__impliedStep = 0.01;
       }
 
     } else {
@@ -780,8 +781,8 @@ dat.controllers.NumberController = (function (Controller, common) {
          */
         step: function(v) {
           this.__step = v;
-          this.__impliedStep = .01;
-          this.__precision = .01;
+          this.__impliedStep = 0.01;
+          this.__precision = 0.01;
           return this;
         }
 
