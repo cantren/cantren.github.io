@@ -1,3 +1,5 @@
+Title: How to setup SimBox as a Simulator
+
 Step 1: Compile FFMPEG (with x11grab)
 
 Instructions here: https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu
@@ -32,8 +34,8 @@ Step 2: Create/Edit /etc/ffserver.conf
 
 Step 3: Copy and paste contents of ffserver.conf from the "cantren.github.io/Install Instructions" to your terminal.
 
+File location: /etc/ffserver.conf:
 [contents]
-    # file location: /etc/ffserver.conf
 
     Port 8090
     BindAddress 0.0.0.0
@@ -101,6 +103,7 @@ Step 3: Copy and paste contents of ffserver.conf from the "cantren.github.io/Ins
         Format status
         ACL allow localhost
     </Stream>
+[/Output]
 
 
 Step 4: [Ctrl]+[x] keys
