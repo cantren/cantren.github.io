@@ -101,7 +101,7 @@ File location: /etc/ffserver.conf:
         Format status
         ACL allow localhost
     </Stream>
-[/Output]
+[/contents]
 
 
 Step 4: [Ctrl]+[x] keys
