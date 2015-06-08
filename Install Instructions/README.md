@@ -1,8 +1,6 @@
-Title: How to setup SimBox as a Simulator
+# How to setup SimBox as a Simulator
 
-Step 1: Compile FFMPEG (with x11grab)
-
-Instructions here: https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu
+Step 1: Compile FFMPEG (with x11grab)(Alternate instructions can be found here: https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu
 
     $ sudo apt-get remove ffmpeg x264 libx264-dev
     $ sudo apt-get update
