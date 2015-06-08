@@ -32,6 +32,77 @@ Step 2: Create/Edit /etc/ffserver.conf
 
 Step 3: Copy and paste contents of ffserver.conf from the "cantren.github.io/Install Instructions" to your terminal.
 
+[contents]
+    # file location: /etc/ffserver.conf
+
+    Port 8090
+    BindAddress 0.0.0.0
+    MaxHTTPConnections 30
+    MaxClients 20
+    MaxBandwidth 2000
+    CustomLog - 
+
+
+    <Feed feed1.ffm>
+        File /tmp/feed1.ffm
+        FileMaxSize 1G 
+        ACL allow 127.0.0.1
+    </Feed>
+    <Feed feed2.ffm>
+        File /tmp/feed2.ffm
+        FileMaxSize 1G
+        ACL allow 127.0.0.1
+    </Feed>
+    <Feed feed3.ffm>
+        File /tmp/feed3.ffm
+        FileMaxSize 1G
+        ACL allow 127.0.0.1
+        ACL allow 192.168.1.4
+    </Feed>
+    <Stream simboxBig.swf>
+        Feed feed3.ffm
+        Format swf
+        VideoFrameRate 10
+        VideoBitRate 256
+        VideoQMin 2
+        VideoQMax 8
+        VideoSize 728x728
+        NoAudio
+    </Stream>
+    <Stream simbox.swf>
+    Feed feed2.ffm
+        Format swf
+        VideoFrameRate 10
+        VideoBitRate 256
+        VideoQMin 2
+        VideoQMax 8
+        VideoSize 200x200
+        NoAudio
+    </Stream>
+    <Stream live.flv>
+        Format flv
+        Feed feed1.ffm
+        VideoCodec libx264
+        VideoFrameRate 10
+        VideoSize 728x728
+        VideoBitRate 256
+        VideoBufferSize 0
+        VideoGopSize 2
+        AVOptionVideo tune zerolatency
+        AVOptionVideo crf 23
+        AVOptionVideo me_range 4
+        AVOptionVideo qdiff 1
+        AVOptionVideo qmin 2
+        AVOptionVideo qmax 8
+        AVOptionVideo flags +global_header
+        NoAudio
+    </Stream>
+    <Stream stat.html>
+        Format status
+        ACL allow localhost
+    </Stream>
+
+
 Step 4: [Ctrl]+[x] keys
 
 Step 5: [y] key
