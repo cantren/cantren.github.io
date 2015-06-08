@@ -58,3 +58,68 @@ The most heavily borrowed code(that isn't from three.js examples) is actually fr
 * Almost none of josdirksen's code remains: consider forking the repository, then rolling that fork back to a previous commit such that it accurately reflects the attribution, then sanitizing the remainder of borrowed code. Credit to josdirksen will then be preserved in the README.md.
 * UPDATE: more josdirksen code has been added(sort of) at cantren.github.io/Install Instructions/server setup.txt http://www.smartjava.org/content/capture-canvas-and-webgl-output-video-using-websockets
 
+
+
+
+
+
+# What is SimBox?
+
+“SimBox” is a cross-platform simulation environment developed by Nicholas Cantrell that runs in any WebGL capable web 
+browser(such as Chrome.exe). It was developed in order to allow new students to rapidly gain a high level of proficiency with 
+autonomous vehicle software development without the high barriers to entry created by making a mechanically and electrically 
+integrated robot submarine a prerequisite to testing software.
+
+# Live Demo:
+http://cantren.github.io
+
+#How it works:
+The control scheme should be familiar to anyone that has played PC-based First-Person-Shooter genre games, with the slight 
+modification that vertical mouse position controls Submarine depth instead of camera “pitch”.
+
+
+ASDW controls should be intuitive to many new students. The horizontal mouse cursor position on the screen controls “yaw”, 
+and the keyboard input are used to control the vehicles translation through the water.
+
+
+The bottom left hand corner shows a “bottom facing camera” which is used to identify and orient the submarine relative to the 
+orange “path markers” which are placed along the competition mission path every year by the organizers of the AUVSI Robosub 
+Competition.
+
+
+The bottom right hand corner shows a “preview window” square white box. This is used to preview the computer vision filter 
+perspective while the software is running. For more information, please see “Integration/Interface”.
+
+
+# Integration/Interface:
+The API for “SimBox” is based on Human Interface Device input, as well as an FFMPEG video software program called “ffserver” 
+which allows for the client(computer connected to cantren.github.io) to run a local server on their PC for the SimBox 
+“Preview Window” to display.
+
+
+The video that is broadcast from this local server(http://127.0.0.1:8090/simbox.swf) ultimately must be generated on-the-fly 
+using screen capture software(FFMPEG + X11Grab)[Linux] OR (FFMPEG + Screen Capture Recorder)[Windows] which is used to record 
+a live screencast to ffserver feed #1. 
+
+OpenCV’s “VideoCapture” class uses this “feed #1” as its input stream, does the necessary processing on it, and then outputs 
+the post-filtering feed to the ffserver “feed #2”(IE. http://127.0.0.1:8090/simbox.swf).
+
+
+When in “autopilot mode”, the OpenCV server will take control of the mouse and keyboard. A demonstration of this can be found 
+at the following url:
+
+https://github.com/cantren/Vunit[Linux Version]
+
+[TODO: make Windows version][Windows Version]
+
+# Feature Request(s)
+At this time, a universal interface using a Teensy 3.0 to emulate HID input has not been considered a priority use of limited 
+resources, however people interested in developing this functionality are encouraged to do so.
+
+# Further Reading:
+https://trac.ffmpeg.org/wiki/Capture/Desktop [CLI syntax overview]
+https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu [X11Grab]
+http://sourceforge.net/projects/screencapturer/files/ [Screen Capture Recorder]
+
+# FFMPEG Setup
+[TODO: write FFMPEG installation/quickstart guide for Windows & Linux]
