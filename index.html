@@ -412,7 +412,7 @@
         			    this.randomPosHead = false;
         			    this.getlost = function(){
         			    	camera2.position.x = (Math.floor((Math.random() * 90) + 1));camera.position.x = Math.floor((Math.random() * 90) + 1); camera2.position.x -=45; camera.position.x -=45;
-        			    	camera2.position.y = (Math.floor((Math.random() * 90) + 1));camera.position.y = Math.floor((Math.random() * 90) + 1); camera2.position.y -=45; camera.position.y -=45;
+        			    	camera2.position.y = ((Math.floor((Math.random() * 55) + 1))/10);camera.position.y = ((Math.floor((Math.random() * 55) + 1))/10); camera2.position.y -=11; camera.position.y -=11;
         			    	camera2.position.z = (Math.floor((Math.random() * 90) + 1));camera.position.z = Math.floor((Math.random() * 90) + 1); camera2.position.z -=45; camera.position.y -=45;
                			    	camera2.rotation.z = ((Math.floor((Math.random() * (Math.PI*200)) + .1))/100);camera.rotation.z = ((Math.floor((Math.random() * (Math.PI*200)) + .1))/100); camera2.rotation.z -= Math.PI; camera.rotation.y -= Math.PI ;
         			    };
