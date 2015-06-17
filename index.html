@@ -410,7 +410,12 @@
         			    this.yPosition = -2.0;
         			    this.zPosition = -28.0;
         			    this.randomPosHead = false;
-        			    this.getlost = function(){camera2.position.x = (Math.floor((Math.random() * 90) + 1));camera.position.x = Math.floor((Math.random() * 90) + 1); camera2.position.x -=45; camera.position.x -=45; };
+        			    this.getlost = function(){
+        			    	camera2.position.x = (Math.floor((Math.random() * 90) + 1));camera.position.x = Math.floor((Math.random() * 90) + 1); camera2.position.x -=45; camera.position.x -=45;
+        			    	camera2.position.y = (Math.floor((Math.random() * 90) + 1));camera.position.y = Math.floor((Math.random() * 90) + 1); camera2.position.y -=45; camera.position.y -=45;
+        			    	camera2.position.z = (Math.floor((Math.random() * 90) + 1));camera.position.z = Math.floor((Math.random() * 90) + 1); camera2.position.z -=45; camera.position.y -=45;
+               			    	camera2.rotation.z = (Math.floor((Math.random() * (Math.PI*2)) + .01));camera.rotation.z = Math.floor((Math.random() * (Math.PI*2)) + .01); camera2.rotation.z -= Math.PI; camera.rotation.y -= Math.PI ;
+        			    };
         			    //this.waterchop = 60.0;
         			}
         		
