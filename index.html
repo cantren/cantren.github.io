@@ -409,9 +409,8 @@
         			    this.xPosition = 0.0;
         			    this.yPosition = -2.0;
         			    this.zPosition = -28.0;
-        			    this.randomPosition = false;
-        			    this.randomHeading = false;
         			    this.randomPosHead = false;
+        			    this.getlost = function(){};
         			    //this.waterchop = 60.0;
         			}
         		
@@ -442,7 +441,7 @@
   			//var rHead = folder4.add( controls.randomHeading );
   			
   			var folder5 = gui.addFolder('confusion');
-  			var rPosHead = folder4.add( controls.randomPosHeading );
+  			var rPosHead = folder4.add(controls, 'getlost');
   			
   			//var folder4 = gui.addFolder('wavespeed');
   			//var folder5 = gui.addFolder('wavesize');
