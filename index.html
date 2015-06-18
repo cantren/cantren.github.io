@@ -508,7 +508,7 @@
   			//var rHead = folder4.add( controls.randomHeading );
   			
   			var folder5 = gui.addFolder('lighting');
-  			var spotIntensity = folder5.add( scene2.spotLight2, 'intensity' ).min(0.00).max(5.00).step(0.01).listen();
+  			var spotIntensity = folder5.add( scene2.spotLight2, 'intensity' ).min(0.0).max(5.0).step(0.1);
 
   			var folder6 = gui.addFolder('confusion');
   			var rVis = gui.add(controls, 'randomVis');
