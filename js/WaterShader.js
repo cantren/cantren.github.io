@@ -159,7 +159,8 @@ THREE.Water = function ( renderer, camera, scene, options ) {
 		fragmentShader: mirrorShader.fragmentShader, 
 		vertexShader: mirrorShader.vertexShader, 
 		uniforms: mirrorUniforms,
-		transparent: true
+		transparent: true,
+		fog: true
 	} );
 
 	this.material.uniforms.mirrorSampler.value = this.texture;
