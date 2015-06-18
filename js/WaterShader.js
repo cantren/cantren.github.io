@@ -22,7 +22,7 @@ THREE.ShaderLib['water'] = {
 				"fogColor":		{ type: "c", value: new THREE.Color( 0x008080 ) },
 				"fogNear":     { type: "f", value: new THREE.Color( 0x008080 ) },
 				"fogFar":      { type: "f", value: new THREE.Color( 0x008080 ) },
-				"fogDensity":  { type: "f",    value: 0.75 }
+				"fogDensity":  { type: "f",    value: 0.1875 }
 	},
 
 	vertexShader: [
