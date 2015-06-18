@@ -473,7 +473,12 @@
                			    	camera.rotation.z -= Math.PI;
                			    	//camera.rotation.y -= Math.PI ;
         			    };
-        			    //this.waterchop = 60.0;
+        			    this.randomVis = function(){
+        			    	scene.fog.density = (Math.random() * .75);
+        			    	scene2.fog.density = (Math.random() * .75);
+        			    	scene.spotLight.intensity = (Math.random() * 5.0);
+        			    	scene2.spotLight2.intensity = (Math.random() * 5.0);
+        			    };
         			}
         		
 
@@ -503,6 +508,9 @@
   			//var rHead = folder4.add( controls.randomHeading );
   			
   			var folder5 = gui.addFolder('confusion');
+  			var spotIntensity = folder5.add( scene2.spotLight2, 'intensity' ).min(0.00).max(5.00).step(0.01).listen();
+  			var rPosHead = gui.add(controls, 'changeVis');
+
   			var rPosHead = gui.add(controls, 'getLostBoth');
   			var rPosHeadComp = gui.add(controls, 'getLostComp');
   			var rPosHeadPract = gui.add(controls, 'getLostPract');
@@ -530,6 +538,9 @@
 			{   camControls2.movementSpeed = value; camControls.movementSpeed = value;  });
 			movSpeed.onChange(function(value) 
 			{   camControls2.movementSpeed = value; camControls.movementSpeed = value;  });
+			spotIntensity.onChange(function(value) 
+  			{   scene2.spotLight2.intensity = value; scene2.spotLight2.intensity = value;   });
+
 			
 			
 
