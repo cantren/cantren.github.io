@@ -78,7 +78,15 @@ THREE.ShaderLib['water'] = {
 		'	diffuseColor += max( dot( sunDirection, surfaceNormal ), 0.0 ) * sunColor * diffuse;',
 		'}',
 		
-		THREE.ShaderChunk[ "fog_pars_fragment" ],
+		'#ifdef USE_FOG',
+		'	uniform vec3 fogColor;',
+		'	#ifdef FOG_EXP2',
+		'		uniform float fogDensity;',
+		'	#else',
+		'		uniform float fogNear;',
+		'		uniform float fogFar;',
+		'	#endif',
+		'#endif',
 		
 		'void main()',
 		'{',
@@ -103,8 +111,20 @@ THREE.ShaderLib['water'] = {
 		'	vec3 scatter = max( 0.0, dot( surfaceNormal, eyeDirection ) ) * waterColor;',
 		'	vec3 albedo = mix( sunColor * diffuseLight * 0.3 + scatter, ( vec3( 0.1 ) + reflectionSample * 0.9 + reflectionSample * specularLight ), reflectance );',
 		'	gl_FragColor = vec4( albedo, alpha );',
-		THREE.ShaderChunk[ "fog_fragment" ],
-		
+		'	#ifdef USE_FOG',
+		'		#ifdef USE_LOGDEPTHBUF_EXT',
+		'			float depth = gl_FragDepthEXT / gl_FragCoord.w;',
+		'		#else',
+		'			float depth = gl_FragCoord.z / gl_FragCoord.w;',
+		'		#endif',
+		'		#ifdef FOG_EXP2',
+		'			float fogFactor = exp2( - square( fogDensity ) * square( depth ) * LOG2 );',
+		'			fogFactor = whiteCompliment( fogFactor );',
+		'		#else',
+		'			float fogFactor = smoothstep( fogNear, fogFar, depth );',
+		'		#endif',
+		'		outgoingLight = mix( outgoingLight, fogColor, fogFactor );',
+		'	#endif',
 		'}'
 	].join('\n')
 
