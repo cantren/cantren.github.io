@@ -78,6 +78,8 @@ THREE.ShaderLib['water'] = {
 		'	diffuseColor += max( dot( sunDirection, surfaceNormal ), 0.0 ) * sunColor * diffuse;',
 		'}',
 		
+		THREE.ShaderChunk[ "fog_pars_fragment" ],
+		
 		'void main()',
 		'{',
 		'	vec4 noise = getNoise( worldPosition.xz );',
@@ -101,6 +103,8 @@ THREE.ShaderLib['water'] = {
 		'	vec3 scatter = max( 0.0, dot( surfaceNormal, eyeDirection ) ) * waterColor;',
 		'	vec3 albedo = mix( sunColor * diffuseLight * 0.3 + scatter, ( vec3( 0.1 ) + reflectionSample * 0.9 + reflectionSample * specularLight ), reflectance );',
 		'	gl_FragColor = vec4( albedo, alpha );',
+		THREE.ShaderChunk[ "fog_fragment" ],
+		
 		'}'
 	].join('\n')
 
