@@ -19,9 +19,10 @@ THREE.ShaderLib['water'] = {
 				"sunDirection":		{ type: "v3", value: new THREE.Vector3( 0.70707, 0.70707, 0 ) },
 				"eye":				{ type: "v3", value: new THREE.Vector3( 0, 0, 0 ) },
 				"waterColor":		{ type: "c", value: new THREE.Color( 0x555555 ) },
-				"fogColor":		{ type: "c", value: scene.fog.color },
-				"fogNear":     { type: "f", value: scene.fog.near },
-				"fogFar":      { type: "f", value: scene.fog.far }
+				"fogColor":		{ type: "c", value: new THREE.Color( 0x008080 ) },
+				"fogNear":     { type: "f", value: new THREE.Color( 0x008080 ) },
+				"fogFar":      { type: "f", value: new THREE.Color( 0x008080 ) },
+				"fogDensity":  { type: "f",    value: 0.08 }
 	},
 
 	vertexShader: [
