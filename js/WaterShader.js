@@ -118,12 +118,13 @@ THREE.ShaderLib['water'] = {
 		'			float depth = gl_FragCoord.z / gl_FragCoord.w;',
 		'		#endif',
 		'		#ifdef FOG_EXP2',
-		'			float fogFactor = exp2( - square( fogDensity ) * square( depth ) * LOG2 );',
-		'			fogFactor = whiteCompliment( fogFactor );',
+		'		const float LOG2 = 1.442695;',
+		'			float fogFactor = exp2( - fogDensity * fogDensity * depth * depth * LOG2 );',
+		'			fogFactor = 1.0 - clamp( fogFactor, 0.0, 1.0 );',
 		'		#else',
 		'			float fogFactor = smoothstep( fogNear, fogFar, depth );',
 		'		#endif',
-		'		outgoingLight = mix( outgoingLight, fogColor, fogFactor );',
+		'		gl_FragColor = mix( gl_FragColor, vec4( fogColor, gl_FragColor.w ), fogFactor );',
 		'	#endif',
 		'}'
 	].join('\n')
