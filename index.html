@@ -507,10 +507,11 @@
   			var rotZ = folder4.add( camera.rotation, 'z' ).min(-5.00).max(5.00).step(0.01).listen();
   			//var rHead = folder4.add( controls.randomHeading );
   			
-  			var folder5 = gui.addFolder('confusion');
+  			var folder5 = gui.addFolder('lighting');
   			var spotIntensity = folder5.add( scene2.spotLight2, 'intensity' ).min(0.00).max(5.00).step(0.01).listen();
-  			var rPosHead = gui.add(controls, 'changeVis');
 
+  			var folder6 = gui.addFolder('confusion');
+  			var rVis = gui.add(controls, 'changeVis');
   			var rPosHead = gui.add(controls, 'getLostBoth');
   			var rPosHeadComp = gui.add(controls, 'getLostComp');
   			var rPosHeadPract = gui.add(controls, 'getLostPract');
@@ -539,7 +540,7 @@
 			movSpeed.onChange(function(value) 
 			{   camControls2.movementSpeed = value; camControls.movementSpeed = value;  });
 			spotIntensity.onChange(function(value) 
-  			{   scene2.spotLight2.intensity = value; scene2.spotLight2.intensity = value;   });
+  			{   scene2.spotLight2.intensity = value; scene.spotLight.intensity = value;   });
 
 			
 			
