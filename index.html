@@ -469,7 +469,7 @@ The most heavily "borrowed" code(that isn't from three.js examples) is actually 
 						scene2.fog.density = 0; 
 						scene.fog.density = 0;
 					}
-				if (camera2.position.y < -0.80 && aboveWater == true) {
+				if (camera2.position.y < -0.80 && aboveWater) {
 					scene2.fog.density = guivalues.fogLastValue; 
 					scene.fog.density = guivalues.fogLastValue;
 					aboveWater = false;
