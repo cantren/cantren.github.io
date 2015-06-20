@@ -437,12 +437,13 @@ var parameters = {
 				if ( keyboard.pressed("K") ) {guivalues.getLostComp();}
 				if ( keyboard.pressed("L") ) {guivalues.getLostPract();}
 				if ( camera2.position.y >= -0.80) { //cheap hack to bypass the fog entangling impact of using a single .obj/.mtl file above and below water
-					while(camera2.position.y >= -0.80){
+					//while(camera2.position.y >= -0.80){
 						//guivalues.fogLastValue = scene2.fog.density;
 						//guivalues.aboveWater = true;
 						scene2.fog.density = 0; 
 						scene.fog.density = 0;
-						}
+						break;
+						//}
 					}
 				/*	
 				if (camera2.position.y < -0.80){	// && guivalues.aboveWater) { //more cheap hack
