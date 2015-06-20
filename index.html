@@ -468,29 +468,17 @@ The most heavily "borrowed" code(that isn't from three.js examples) is actually 
 						guivalues.aboveWater = true;
 						scene2.fog.density = 0; 
 						scene.fog.density = 0;
+						}
 					}
 				if (camera2.position.y < -0.80 && aboveWater) {
 					scene2.fog.density = guivalues.fogLastValue; 
 					scene.fog.density = guivalues.fogLastValue;
 					aboveWater = false;
 					}
+				
 				renderer.render( scene, camera ); //render everything else
 				renderer2.render( scene2, camera2 );
 			}
-/*
-#inset3  {
-                                width: 728px;
-                                height: 728px;
-				background-color: transparent;
-                                border: 1px solid black;
-                                margin: 20px;
-                                padding: 0px;
-                                position: fixed;
-                                right: 298px;
-                                bottom: 0px;
-                                z-index: 200;
-                        }
-*/
 		</script>
 	</body>
 </html>
