@@ -5,10 +5,13 @@ Step 1: Download and install LIVE555 RTSP Server
 
     $ http://www.live555.com/mediaServer/
 
-Step 2: ???
+Step 2: Install ffmpeg for windows
 
-Step 3: ffmpeg -f dshow -i video="screen-capture-recorder" C:\Users\[your username]\Desktop\output.mp4
+Step 3: Install "screen-capture-recorder" http://sourceforge.net/projects/screencapturer/files/Setup%20Screen%20Capturer%20Recorder%20v0.12.8.exe/download
 
+Step 4: ffmpeg -f dshow -i video="screen-capture-recorder" C:\Users\[your username]\Desktop\output.mp4
+
+TODO: Improve the above command to use a windows RTSP server
 
 Linux Instructions
 
