@@ -7,6 +7,8 @@ Step 1: Download and install LIVE555 RTSP Server
 
 Step 2: ???
 
+Step 3: ffmpeg -f dshow -i video="screen-capture-recorder" C:\Users\[your username]\Desktop\output.mp4
+
 
 Linux Instructions
 
