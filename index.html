@@ -446,10 +446,10 @@ var parameters = {
 						scene.fog.density = 0;
 						}
 					}
-				if (camera2.position.y < -0.80 && aboveWater) { //more cheap hack
+				if (camera2.position.y < -0.80 && guivalues.aboveWater) { //more cheap hack
 					scene2.fog.density = guivalues.fogLastValue; 
 					scene.fog.density = guivalues.fogLastValue;
-					aboveWater = false;
+					guivalues.aboveWater = false;
 					}
 				renderer.render( scene, camera ); //render everything else
 				renderer2.render( scene2, camera2 ); //render everything else
