@@ -499,6 +499,7 @@ The most heavily "borrowed" code(that isn't from three.js examples) is actually 
 				if ( keyboard.pressed("J") ) {controls.getLostBoth();}
 				if ( keyboard.pressed("K") ) {controls.getLostComp();}
 				if ( keyboard.pressed("L") ) {controls.getLostPract();}
+				if ( camera2.position.y >= 0) { scene2.fog.density = 0; scene.fog.density = 0;}
 
 				renderer.render( scene, camera ); //render everything else
 				renderer2.render( scene2, camera2 );
