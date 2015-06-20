@@ -64,8 +64,7 @@
 		<div id="container">
 		<div id="inset">
 		<script src="../js/three.min.js"></script>
-
-
+		
 		<script src="../js/FirstPersonControls.js"></script>
 		<script src="../js/KeyboardState.js"></script>
 		<script src="../js/Mirror.js"></script>
@@ -85,10 +84,37 @@
 		<embed src="http://127.0.0.1:8090/simbox.swf" width="200" height="200">
 		</embed></object></div>
 
-		
-
 		<script>
+/*
+The MIT License
 
+Copyright © 2010-2015 three.js authors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+#Copyright Notes:
+* Code primarily reflects the authors of the three.js examples under the MIT License 
+"http://threejs.org/examples/webgl_shaders_ocean.html" and "http://threejs.org/examples/webgl_loader_obj_mtl.html"
+
+* Please Note:
+The most heavily "borrowed" code(that isn't from three.js examples) is actually from the work of a jsFiddle.net author(previously unattributed user, later identified as "WestLangley") who is assumed to be the same stackoverflow user who answered a question about a downward facing camera here: http://stackoverflow.com/a/16227714
+*/
 			if ( ! Detector.webgl ) {
 
 				Detector.addGetWebGLMessage();
@@ -268,49 +294,31 @@
 				
 				mirrorMesh.add( water ); //add water shader to otherwise boring underwater PlaneBufferGeometry
 				mirrorMesh2.add( water ); //add water shader to otherwise boring PlaneBufferGeometry
-				//mirrorMesh3.add( water ); //add water shader to otherwise boring underwater PlaneBufferGeometry
-				//mirrorMesh4.add( water ); //add water shader to otherwise boring PlaneBufferGeometry
 				mirrorMesh.rotation.x = - Math.PI * 1.5; //rotate undwater water surface to point down
 				mirrorMesh2.rotation.x = - Math.PI * 0.5; //rotate water surface to point up
 				mirrorMesh.position.y = -0.85;//water height experimentally generated via trial and error
 				mirrorMesh2.position.y = -0.9;//water height experimentally generated via trial and error
 				
-				//mirrorMesh3.rotation.x = - Math.PI * 1.5; //rotate undwater water surface to point down
-				//mirrorMesh4.rotation.x = - Math.PI * 0.5; //rotate water surface to point up
-				//mirrorMesh3.position.y = -0.85;//water height experimentally generated via trial and error
-				//mirrorMesh4.position.y = -0.9;//water height experimentally generated via trial and error
-				
 				scene.add( mirrorMesh ); //add underwater water surface
 				scene.add( mirrorMesh2); //add water surface
-				//scene.add( mirrorMesh3 ); //add underwater water surface
-				//scene.add( mirrorMesh4); //add water surface
-				//scene2.add( mirrorMesh ); //add underwater water surface
-				//scene2.add( mirrorMesh2); //add water surface 
-
+				
 				// load skybox &/or (start example code copypasta: http://threejs.org/examples/#webgl_shaders_ocean)
 				var cubeMap = new THREE.CubeTexture( [] );//initialize/declare the texture object to be mapped to the skybox mesh var skyBox = new THREE.Mesh
-				cubeMap.format = THREE.RGBFormat;//don't know or care
+				cubeMap.format = THREE.RGBFormat;//don't know what this does, appears to be a type declaration?
 				cubeMap.flipY = false;//if you make this true the walls of the box go below the horizon
 
 				
 				var loader = new THREE.ImageLoader();
 				loader.load( '../textures/skyboxsun25degtest.png', function ( image ) {
-
 					var getSide = function ( x, y ) {
-
 						var size = 1024;
-
 						var canvas = document.createElement( 'canvas' );
 						canvas.width = size;
 						canvas.height = size;
-
 						var context = canvas.getContext( '2d' );
 						context.drawImage( image, - x * size, - y * size );
-
 						return canvas;
-
 					};
-
 					cubeMap.images[ 0 ] = getSide( 2, 1 ); // px
 					cubeMap.images[ 1 ] = getSide( 0, 1 ); // nx
 					cubeMap.images[ 2 ] = getSide( 1, 0 ); // py
@@ -318,99 +326,31 @@
 					cubeMap.images[ 4 ] = getSide( 1, 1 ); // pz
 					cubeMap.images[ 5 ] = getSide( 3, 1 ); // nz
 					cubeMap.needsUpdate = true;
-
 				} );
-				//var cubeMap2 = new THREE.CubeTexture( [] );//initialize/declare the texture object to be mapped to the skybox mesh var skyBox = new THREE.Mesh
-				//cubeMap2.format = THREE.RGBFormat;//don't know or care
-				//cubeMap2.flipY = false;//if you make this true the walls of the box go below the horizon
 
-				//var loader2 = new THREE.ImageLoader();
-				//loader2.load( '../textures/skyboxsun25degtest.png', function ( image2 ) {
-
-
-				//	var getSide2 = function ( x, y ) {
-
-				//		var size = 1024;
-
-				//		var canvas2 = document.createElement( 'canvas2' );
-				//		canvas2.width = size;
-				//		canvas2.height = size;
-
-				//		var context2 = canvas2.getContext( '2d' );
-				//		context2.drawImage( image2, - x * size, - y * size );
-
-				//		return canvas2;
-
-				//	};
-
-				//	cubeMap2.images[ 0 ] = getSide2( 2, 1 ); // px
-				//	cubeMap2.images[ 1 ] = getSide2( 0, 1 ); // nx
-				//	cubeMap2.images[ 2 ] = getSide2( 1, 0 ); // py
-				//	cubeMap2.images[ 3 ] = getSide2( 1, 2 ); // ny
-				//	cubeMap2.images[ 4 ] = getSide2( 1, 1 ); // pz
-				//	cubeMap2.images[ 5 ] = getSide2( 3, 1 ); // nz
-				//	cubeMap2.needsUpdate = true;
-
-				//} );
-				//Initialize/declare the shader for the skybox
 				var cubeShader = THREE.ShaderLib['cube'];
 				cubeShader.uniforms['tCube'].value = cubeMap;
-				
-				//var cubeShader2 = THREE.ShaderLib['cube'];
-				//cubeShader2.uniforms['tCube'].value = cubeMap2;
-				
+
 				//Create skybox material 
 				var skyBoxMaterial = new THREE.ShaderMaterial( {
 					fragmentShader: cubeShader.fragmentShader,
 					vertexShader: cubeShader.vertexShader,
 					uniforms: cubeShader.uniforms,
 					depthWrite: false,
-					//fog: true,
+					//fog: true, //To Do: make a derived shade which has been modified for "fog"
 					side: THREE.BackSide
 				});
-				//var skyBoxMaterial2 = new THREE.ShaderMaterial( {
-				//	fragmentShader: cubeShader2.fragmentShader,
-				//	vertexShader: cubeShader2.vertexShader,
-				//	uniforms: cubeShader2.uniforms,
-				//	depthWrite: false,
-				//	side: THREE.BackSide
-				//});
-
+				
 				//Create Mesh to map skybox material on to
 				var skyBox = new THREE.Mesh(
 					new THREE.BoxGeometry( 10000, 10000, 10000 ),
 					skyBoxMaterial
 				);
-				//var skyBox2 = new THREE.Mesh(
-				//	new THREE.BoxGeometry( 10000, 10000, 10000 ),
-				//	skyBoxMaterial2
-				//);
 				scene.add( skyBox ); //create Point Loma Sky
-				//scene2.add( skyBox2 ); //create Point Loma Sky
-
-//				var skyBox2 = new THREE.Mesh(
-//					new THREE.BoxGeometry( 10000, 10000, 10000 ),
-//					skyBoxMaterial2
-//				);
-
-				//var skyBox2 = new THREE.Mesh(
-				//	new THREE.BoxGeometry( 10000, -10000, 10000 ),
-				//	skyBoxMaterial
-				//);
-//				scene.add( skyBox2 );
-
-
 			}
 
 			//source:http://www.smartjava.org/ltjs/chapter-09/02-selecting-objects.html
 			var controls = new function () {
-			            this.fogDensity = 0.1875;
-        			    this.lookSpeed = 0.03;
-        			    this.movementSpeed = 0.03;
-        			    this.xPosition = 0.0;
-        			    this.yPosition = -2.0;
-        			    this.zPosition = -28.0;
-        			    this.randomPosHead = false;
         			    this.getLostBoth = function(){
         			    	camera.position.x = (Math.random() * 90.0);
         			    	//camera.position.x = Math.floor((Math.random() * 90) + 1);
@@ -484,44 +424,26 @@
         		
 
         		var gui = new dat.GUI({resizable : false});
-        		//gui.add(init, 'fogDensity', 0, 0.25);
-        		//gui.add(controls, 'fogDensity', 0, 0.25);
         		var folder1 = gui.addFolder('fog');
         		var fogDensity = folder1.add(scene2.fog, 'density').min(0.00).max(0.75).step(0.01).listen();
         		var folder2 = gui.addFolder('behavior');
         		var rotSpeed = folder2.add(camControls2, 'lookSpeed').min(0.0).max(0.5).step(0.01).listen();
         		var movSpeed = folder2.add(camControls2, 'movementSpeed').min(0.0).max(5.0).step(0.01).listen();
-        		//gui.add(controls, 'lookSpeed', 0, 0.5);
-        		//gui.add(controls, 'movementSpeed', 0, 0.5);
-        		//gui.add(camera2.position, 'x', -50, 50).listen();
-        		//gui.add(controls, 'xPosition', -50, 50);
-        		//gui.add(controls, 'yPosition', -50, 50);
-        		//gui.add(controls, 'zPosition', -50, 50);
+        	
         		//source:http://www.smartjava.org/ltjs/chapter-09/02-selecting-objects.html
         		var folder3 = gui.addFolder('position');
   			var posX = folder3.add( camera2.position, 'x' ).min(-50.00).max(50.00).step(0.01).listen();
   			var posY = folder3.add( camera2.position, 'y' ).min(-50.00).max(50.00).step(0.01).listen();
   			var posZ = folder3.add( camera2.position, 'z' ).min(-50.00).max(50.00).step(0.01).listen();
-  			//var rPos = folder3.add( controls.randomPosition );
-  			
   			var folder4 = gui.addFolder('rotation');
   			var rotZ = folder4.add( camera.rotation, 'z' ).min(-5.00).max(5.00).step(0.01).listen();
-  			//var rHead = folder4.add( controls.randomHeading );
-  			
   			var folder5 = gui.addFolder('lighting');
-  			//var spotIntensity = folder1.add( scene2.spotLight2, 'intensity' ).min(0.0).max(5.0).step(0.1);
-
   			var folder6 = gui.addFolder('confusion');
   			var rVis = gui.add(controls, 'randomVis');
   			var rPosHead = gui.add(controls, 'getLostBoth');
   			var rPosHeadComp = gui.add(controls, 'getLostComp');
   			var rPosHeadPract = gui.add(controls, 'getLostPract');
   			
-  			//var folder4 = gui.addFolder('wavespeed');
-  			//var folder5 = gui.addFolder('wavesize');
-  			//folder5.add( water, 'textureWidth' ).min(0.00).max(512.00).step(0.1).listen();
-  			//folder5.add( water, 'textureHeight' ).min(0.00).max(512.00).step(0.1).listen();
-  		
   			posX.onChange(function(value) 
   			{   camera2.position.x = value; camera.position.x = value;   });
   			posY.onChange(function(value) 
@@ -531,6 +453,7 @@
 			rotZ.onChange(function(value) 
 			{   camera.rotation.z = value; camera.rotation.z = value;   });
 			//source:http://nuevil.com/index3.html
+
 			//source: http://hotblocks.nl/tests/three/dat.gui.html
 			fogDensity.onChange(function(value) 
   			{   scene2.fog.density = value; scene.fog.density = value;   });
@@ -543,18 +466,10 @@
 			spotIntensity.onChange(function(value) 
   			{   scene2.spotLight2.intensity = value; scene.spotLight.intensity = value;   });
 
-			
-			
-
-
-			//
-
 			function animate() {
 
 				requestAnimationFrame( animate ); //animate the frame
 				render(); //render the frame
-				
-
 			}
 
 			function render() {
@@ -566,29 +481,16 @@
 				camera2.up = new THREE.Vector3(-1,-1,-1);
 				camera2.rotateX(Math.PI/-2);
 				camera2.rotateZ((Math.PI/-2));
-				//controls['zPosition'] = camera2.position.z;
-				
-				//camera2.rotateY(Math.PI/-1);
-				//camera2.up = new THREE.Vector3(0,-1,0);
-				//camera2.lookAt(new THREE.Vector3(-1, -1, -1));
-				//camera2.rotation.y = Math.PI;
 				camera2.rotateZ(Math.PI/2);
 				
 				var time = performance.now() * 0.001; //Measure time for water
-				//var waterchop = 60.0;
-				//gui.folder4.add( render, 'waterchop' ).min(0.00).max(100.00).step(0.01);
-				//water.material.uniforms.time.value += 1.0 / waterchop; //speed of water motion(wind chop)
 				water.material.uniforms.time.value += 1.0 / 60.0; //speed of water motion(wind chop)
 				water.render(); //render water surface
-				
-				//scene.fog.density = controls.fogDensity;
-				//scene2.fog.density = controls.fogDensity;
-				
+
 				if ( keyboard.pressed("shift") )
 					camControls2.movementSpeed = camControls2.movementSpeed += 0.5;
 				if ( keyboard.pressed("ctrl") )
 					camControls2.movementSpeed = camControls2.movementSpeed -= 0.5;
-
 				if ( keyboard.pressed("E") ) {
 					camera2.rotateY(Math.PI/-1);
 					//camera2.rotate
@@ -599,9 +501,7 @@
 				if ( keyboard.pressed("L") ) {controls.getLostPract();}
 
 				renderer.render( scene, camera ); //render everything else
-				//scene2.applyMatrix(new THREE.Matrix4().makeScale(-1, 1, 1));
 				renderer2.render( scene2, camera2 );
-
 			}
 /*
 #inset3  {
