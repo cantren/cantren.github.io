@@ -439,15 +439,15 @@ var parameters = {
 				if ( camera2.position.y >= -0.80) { //cheap hack to bypass the fog entangling impact of using a single .obj/.mtl file above and below water
 					while(camera2.position.y >= -0.80){
 						guivalues.fogLastValue = scene2.fog.density;
-						guivalues.aboveWater = true;
+						//guivalues.aboveWater = true;
 						scene2.fog.density = 0; 
 						scene.fog.density = 0;
 						}
 					}
-				if (camera2.position.y < -0.80 && guivalues.aboveWater) { //more cheap hack
+				if (camera2.position.y < -0.80){	// && guivalues.aboveWater) { //more cheap hack
 					scene2.fog.density = guivalues.fogLastValue; 
 					scene.fog.density = guivalues.fogLastValue;
-					guivalues.aboveWater = false;
+					//guivalues.aboveWater = false;
 					}
 				renderer.render( scene, camera ); //render everything else
 				renderer2.render( scene2, camera2 ); //render everything else
