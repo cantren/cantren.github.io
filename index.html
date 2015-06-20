@@ -350,69 +350,34 @@ The most heavily "borrowed" code(that isn't from three.js examples) is actually 
 			}
 
 			//source:http://www.smartjava.org/ltjs/chapter-09/02-selecting-objects.html
-			var controls = new function () {
+			var guivalues = new function () {
+				    this.fogLastValue = 0;
+				    this.aboveWater = false;
         			    this.getLostBoth = function(){
         			    	camera.position.x = (Math.random() * 90.0);
-        			    	//camera.position.x = Math.floor((Math.random() * 90) + 1);
         			    	camera.position.x -=45.0;
-        			    	//camera.position.x -=45;
-        			    	
         			    	camera.position.y = (Math.random() * -5.5);
-        			    	//camera.position.y = (Math.random() * 5.5);
-        			    	//camera.position.y +=50.50; 
-        			    	//camera.position.y +=50.50;
-        			    	
         			    	camera.position.z = (Math.random() * 60.0);
-        			    	//camera.position.z = Math.floor((Math.random() * 28) + 1);
         			    	camera.position.z -= 30.0;
-        			    	//camera.position.y -=56;
-               			    	
                			    	camera.rotation.z = (Math.random() * (Math.PI*2.0));
-               			    	//camera.rotation.z = ((Math.floor((Math.random() * (Math.PI*200)) + .1))/100);
                			    	camera.rotation.z -= Math.PI;
-               			    	//camera.rotation.y -= Math.PI ;
         			    };
         			    this.getLostComp = function(){
-        			    	camera.position.x = (Math.random() * 45.0);
-        			    	//camera.position.x = Math.floor((Math.random() * 90) + 1);
-        			    	//camera.position.x -=45.0;
-        			    	//camera.position.x -=45;
-        			    	
+        			    	camera.position.x = (Math.random() * -45.0);
         			    	camera.position.y = (Math.random() * -5.5);
-        			    	//camera.position.y = (Math.random() * 5.5);
-        			    	//camera.position.y +=50.50; 
-        			    	//camera.position.y +=50.50;
-        			    	
         			    	camera.position.z = (Math.random() * 60.0);
-        			    	//camera.position.z = Math.floor((Math.random() * 28) + 1);
         			    	camera.position.z -= 30.0;
-        			    	//camera.position.y -=56;
-               			    	
                			    	camera.rotation.z = (Math.random() * (Math.PI*2.0));
-               			    	//camera.rotation.z = ((Math.floor((Math.random() * (Math.PI*200)) + .1))/100);
                			    	camera.rotation.z -= Math.PI;
-               			    	//camera.rotation.y -= Math.PI ;
         			    };
         			    this.getLostPract = function(){
-        			    	camera.position.x = (Math.random() * -45.0);
-        			    	//camera.position.x = Math.floor((Math.random() * 90) + 1);
-        			    	//camera.position.x -=45.0;
-        			    	//camera.position.x -=45;
-        			    	
+        			    	camera.position.x = (Math.random() * 45.0);
         			    	camera.position.y = (Math.random() * -5.5);
-        			    	//camera.position.y = (Math.random() * 5.5);
-        			    	//camera.position.y +=50.50; 
-        			    	//camera.position.y +=50.50;
-        			    	
         			    	camera.position.z = (Math.random() * 60.0);
-        			    	//camera.position.z = Math.floor((Math.random() * 28) + 1);
         			    	camera.position.z -= 30.0;
-        			    	//camera.position.y -=56;
-               			    	
+
                			    	camera.rotation.z = (Math.random() * (Math.PI*2.0));
-               			    	//camera.rotation.z = ((Math.floor((Math.random() * (Math.PI*200)) + .1))/100);
                			    	camera.rotation.z -= Math.PI;
-               			    	//camera.rotation.y -= Math.PI ;
         			    };
         			    this.randomVis = function(){
         			    	scene.fog.density = (Math.random() * .75);
@@ -421,8 +386,6 @@ The most heavily "borrowed" code(that isn't from three.js examples) is actually 
         			    	scene2.spotLight2.intensity = (Math.random() * 5.0);
         			    };
         			}
-        		
-
         		var gui = new dat.GUI({resizable : false});
         		var folder1 = gui.addFolder('fog');
         		var fogDensity = folder1.add(scene2.fog, 'density').min(0.00).max(0.75).step(0.01).listen();
@@ -439,10 +402,10 @@ The most heavily "borrowed" code(that isn't from three.js examples) is actually 
   			var rotZ = folder4.add( camera.rotation, 'z' ).min(-5.00).max(5.00).step(0.01).listen();
   			var folder5 = gui.addFolder('lighting');
   			var folder6 = gui.addFolder('confusion');
-  			var rVis = gui.add(controls, 'randomVis');
-  			var rPosHead = gui.add(controls, 'getLostBoth');
-  			var rPosHeadComp = gui.add(controls, 'getLostComp');
-  			var rPosHeadPract = gui.add(controls, 'getLostPract');
+  			var rVis = gui.add(guivalues, 'randomVis');
+  			var rPosHead = gui.add(guivalues, 'getLostBoth');
+  			var rPosHeadComp = gui.add(guivalues, 'getLostComp');
+  			var rPosHeadPract = gui.add(guivalues, 'getLostPract');
   			
   			posX.onChange(function(value) 
   			{   camera2.position.x = value; camera.position.x = value;   });
@@ -496,10 +459,21 @@ The most heavily "borrowed" code(that isn't from three.js examples) is actually 
 					//camera2.rotate
 					camera2.rotateZ((Math.PI)/-1);
 				}
-				if ( keyboard.pressed("J") ) {controls.getLostBoth();}
-				if ( keyboard.pressed("K") ) {controls.getLostComp();}
-				if ( keyboard.pressed("L") ) {controls.getLostPract();}
-				if ( camera2.position.y >= -0.80) { scene2.fog.density = 0; scene.fog.density = 0;}
+				if ( keyboard.pressed("J") ) {guivalues.getLostBoth();}
+				if ( keyboard.pressed("K") ) {guivalues.getLostComp();}
+				if ( keyboard.pressed("L") ) {guivalues.getLostPract();}
+				if ( camera2.position.y >= -0.80) {
+					while(camera2.position.y >= -0.80){
+						guivalues.fogLastValue = scene2.fog.density;
+						guivalues.aboveWater = true;
+						scene2.fog.density = 0; 
+						scene.fog.density = 0;
+					}
+				if (camera2.position.y < -0.80 && aboveWater = true) {
+					aboveWater = false;
+					scene2.fog.density = guivalues.fogLastValue; 
+					scene.fog.density = guivalues.fogLastValue;
+					}
 
 				renderer.render( scene, camera ); //render everything else
 				renderer2.render( scene2, camera2 );
