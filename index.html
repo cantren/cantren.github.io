@@ -425,20 +425,22 @@ var parameters = {
 				water.material.uniforms.time.value += 1.0 / 60.0; //speed of water motion(wind chop)
 				water.render(); //render water surface
 
-				if ( keyboard.pressed("shift") )//almost positive this is original code
+				if ( keyboard.pressed("shift") ){//almost positive this is original code
 					camControls2.movementSpeed = 0.5;//note: it also doesn't work properly
 					camControls2.lookSpeed = 0.1;//note: it also doesn't work properly
-				if ( keyboard.pressed("ctrl") )//almost positive this is original code
+					}
+				if ( keyboard.pressed("ctrl") ){//almost positive this is original code
 					camControls2.movementSpeed = 0.25;//note: it also doesn't work properly
 					camControls2.lookSpeed = 0.05;//note: it also doesn't work properly
-				if ( keyboard.pressed("E") ) {//pretty sure this is original code
+					}
+				if ( keyboard.pressed("E") ){//almost positive this is original code
 					camera2.rotateY(Math.PI/-1);//original code
 					camera2.rotateZ((Math.PI)/-1);//original code
-				}//this line is probably safe :P
+					}//this line is probably safe :P
 				if ( keyboard.pressed("J") ) {guivalues.getLostBoth();}
 				if ( keyboard.pressed("K") ) {guivalues.getLostComp();}
 				if ( keyboard.pressed("L") ) {guivalues.getLostPract();}
-				if ( keyboard.pressed("V") ) {guivalues.getLostComp();}
+				if ( keyboard.pressed("V") ) {guivalues.randomVis();}
 				if ( camera2.position.y >= -0.80) { //cheap hack to bypass the fog entangling impact of using a single .obj/.mtl file above and below water
 					//while(camera2.position.y >= -0.80){
 						//guivalues.fogLastValue = scene2.fog.density;
