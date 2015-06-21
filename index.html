@@ -440,14 +440,12 @@ var parameters = {
 				if ( keyboard.pressed("L") ) {guivalues.getLostPract();}
 				if ( keyboard.pressed("V") ) {guivalues.randomVis();}
 				if ( camera2.position.y > -0.80) { //cheap hack to bypass the fog entangling impact of using a single .obj/.mtl file above and below water
-						scene2.fog.density = 0; 
-						scene.fog.density = 0;
+						scene2.fog.density = 0.0; 
+						scene.fog.density = 0.0;
 					}
-				if ( camera2.position.y = -0.80) { //cheap hack to bypass the fog entangling impact of using a single .obj/.mtl file above and below water
+				if ( camera2.position.y == -0.80) { //cheap hack to bypass the fog entangling impact of using a single .obj/.mtl file above and below water
 						scene2.fog.density = 0.1875; 
 						scene.fog.density = 0.1875;
-						//break;
-						//}
 					}
 				/*	
 				if (camera2.position.y < -0.80){	// && guivalues.aboveWater) { //more cheap hack
