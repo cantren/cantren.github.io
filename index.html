@@ -427,14 +427,14 @@ var parameters = {
 				if ( keyboard.pressed("shift") ){//almost positive this is original code
 					camControls2.movementSpeed = 1.0;//note: it also doesn't work properly
 					camControls2.lookSpeed = 0.2;//note: it also doesn't work properly
-					rotSpeed.onChange( function(value){   camControls2.lookSpeed = value; camControls.lookSpeed = value;   });
-					movSpeed.onChange( function(value){   camControls2.movementSpeed = value; camControls.movementSpeed = value;  });
+					camControls.movementSpeed = 1.0;//note: it also doesn't work properly
+					camControls.lookSpeed = 0.2;//note: it also doesn't work properly
 					}
 				if ( keyboard.pressed("ctrl") ){//almost positive this is original code
 					camControls2.movementSpeed = 0.25;//note: it also doesn't work properly
 					camControls2.lookSpeed = 0.05;//note: it also doesn't work properly
-					rotSpeed.onChange( function(value){   camControls2.lookSpeed = value; camControls.lookSpeed = value;   });
-					movSpeed.onChange( function(value){   camControls2.movementSpeed = value; camControls.movementSpeed = value;  });
+					camControls.movementSpeed = 0.25;//note: it also doesn't work properly
+					camControls.lookSpeed = 0.05;//note: it also doesn't work properly
 					}
 				if ( keyboard.pressed("E") ){//almost positive this is original code
 					camera2.rotateY(Math.PI/-1);//original code
