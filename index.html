@@ -268,7 +268,7 @@ var parameters = {
 				mirrorMesh2.add( water ); //add water shader to otherwise boring PlaneBufferGeometry
 				mirrorMesh.rotation.x = - Math.PI * 1.5; //rotate undwater water surface to point down
 				mirrorMesh2.rotation.x = - Math.PI * 0.5; //rotate water surface to point up
-				mirrorMesh.position.y = -0.875;//water height experimentally generated via trial and error
+				mirrorMesh.position.y = -0.9;//water height experimentally generated via trial and error
 				mirrorMesh2.position.y = -0.9;//water height experimentally generated via trial and error
 				
 				scene.add( mirrorMesh ); //add underwater water surface
@@ -443,7 +443,7 @@ var parameters = {
 						scene2.fog.density = 0.0; 
 						scene.fog.density = 0.0;
 					}
-				if ( camera2.position.y < -0.80 && camera2.position.y > -0.78) { //cheap hack to bypass the fog entangling impact of using a single .obj/.mtl file above and below water
+				if ( camera2.position.y < -0.81 && camera2.position.y > -0.9) { //cheap hack to bypass the fog entangling impact of using a single .obj/.mtl file above and below water
 						scene2.fog.density = 0.1875; 
 						scene.fog.density = 0.1875;
 					}
