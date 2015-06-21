@@ -398,7 +398,6 @@ var parameters = {
 			fogDensity.onChange( function(value){   scene2.fog.density = value; scene.fog.density = value;   });
   			rotSpeed.onChange( function(value){   camControls2.lookSpeed = value; camControls.lookSpeed = value;   });
 			movSpeed.onChange( function(value){   camControls2.movementSpeed = value; camControls.movementSpeed = value;  });
-			movSpeed.onChange( function(value){   camControls2.movementSpeed = value; camControls.movementSpeed = value;  });
 			spotIntensity.onChange( function(value){   scene2.spotLight2.intensity = value; scene.spotLight.intensity = value;   });
 			//source: This code no longer appears to contain anything that belongs to Rudie Dirkx http://hotblocks.nl/tests/three/dat.gui.html 
 
@@ -428,10 +427,14 @@ var parameters = {
 				if ( keyboard.pressed("shift") ){//almost positive this is original code
 					camControls2.movementSpeed = 0.5;//note: it also doesn't work properly
 					camControls2.lookSpeed = 0.1;//note: it also doesn't work properly
+					//rotSpeed.onChange( function(value){   camControls2.lookSpeed = value; camControls.lookSpeed = value;   });
+					//movSpeed.onChange( function(value){   camControls2.movementSpeed = value; camControls.movementSpeed = value;  });
 					}
 				if ( keyboard.pressed("ctrl") ){//almost positive this is original code
 					camControls2.movementSpeed = 0.25;//note: it also doesn't work properly
 					camControls2.lookSpeed = 0.05;//note: it also doesn't work properly
+					//rotSpeed.onChange( function(value){   camControls2.lookSpeed = value; camControls.lookSpeed = value;   });
+					//movSpeed.onChange( function(value){   camControls2.movementSpeed = value; camControls.movementSpeed = value;  });
 					}
 				if ( keyboard.pressed("E") ){//almost positive this is original code
 					camera2.rotateY(Math.PI/-1);//original code
