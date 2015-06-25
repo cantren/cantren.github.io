@@ -206,7 +206,43 @@ var parameters = {
         			var ambientLight2 = new THREE.AmbientLight(0x383838);
 				scene2.add(ambientLight2);
 				
+				
+				//Add the three spotlights representing the sun(intensity will be modified as a function of depth)
+				var spotLightRED = new THREE.SpotLight(0xffffff);
+        			spotLightRED.position.set(100, 140, 130);
+        			spotLightRED.intensity = 2;
+        			scene.add(spotLightRED);
+        			
+        			var spotLightRED2 = new THREE.SpotLight(0xffffff);
+        			spotLightRED2.position.set(100, 140, 130);
+        			spotLightRED2.intensity = 2;
+        			scene2.add(spotLightRED2);
+        			
+        			var spotLightBLUE = new THREE.SpotLight(0xffffff);
+        			spotLightBLUE.position.set(100, 140, 130);
+        			spotLightBLUE.intensity = 2;
+        			scene.add(spotLightBLUE);
+        			
+        			var spotLightBLUE2 = new THREE.SpotLight(0xffffff);
+        			spotLightBLUE2.position.set(100, 140, 130);
+        			spotLightBLUE2.intensity = 2;
+        			scene2.add(spotLightBLUE2);
+        			
+        			var spotLightGREEN = new THREE.SpotLight(0xffffff);
+        			spotLightGREEN.position.set(100, 140, 130);
+        			spotLightGREEN.intensity = 2;
+        			scene.add(spotLightGREEN);
+        			
+        			var spotLightGREEN2 = new THREE.SpotLight(0xffffff);
+        			spotLightGREEN2.position.set(100, 140, 130);
+        			spotLightGREEN2.intensity = 2;
+        			scene2.add(spotLightGREEN2);
+        			//Add the three spotlights representing the sun(intensity will be modified as a function of depth)
+
+
+				
         			// add spotlight for the shadows
+        			/*
         			var spotLight = new THREE.SpotLight(0xffffff);
         			spotLight.position.set(100, 140, 130);
         			spotLight.intensity = 2;
@@ -216,6 +252,7 @@ var parameters = {
         			spotLight2.position.set(100, 140, 130);
         			spotLight2.intensity = 2;
         			scene2.add(spotLight2);
+        			*/
 
 
 				//load and insert the obj meshes and mtl textures
