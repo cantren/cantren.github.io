@@ -391,7 +391,7 @@ var parameters = {
        				    	camera.rotation.z -= Math.PI;
 				    };
 				    this.lightDepthFix = function(){
-					var intensity = 1;
+					var intensity = .75;
 					var depthcm = (camera2.position.y + (0.9)) * (-100.0);
 					var adjIntensityRED = (intensity * (Math.exp(-.006 * depthcm)));
 					var adjIntensityGREEN = (intensity * (Math.exp(-.00032 * depthcm)));
