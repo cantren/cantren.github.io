@@ -393,8 +393,8 @@ var parameters = {
         			    this.randomVis = function(){
         			    	//scene.fog.density = (Math.random() * .75);
         			    	//scene2.fog.density = (Math.random() * .75);
-        			    	spotLightRED.intensity = (Math.random() * 2.0);
-					spotLightRED2.intensity = (Math.random() * 2.0);
+        			    	spotLightRED.intensity = .2;
+					spotLightRED2.intensity = .2;
         			    	//scene.spotLight.intensity = (Math.random() * 5.0);
         			    	//scene2.spotLight2.intensity = (Math.random() * 5.0);
         			    };
@@ -406,6 +406,7 @@ var parameters = {
         		var gui = new dat.GUI({resizable : false});
         		var folder1 = gui.addFolder('fog');
         		var fogDensity = folder1.add(scene2.fog, 'density').min(0.00).max(0.75).step(0.01).listen();
+        		var lightIntensity = folder1.add(spotLightRED, 'intensity').min(0.00).max(2.0).step(0.01).listen();
         		var folder2 = gui.addFolder('behavior');
         		var rotSpeed = folder2.add(camControls2, 'lookSpeed').min(0.0).max(0.5).step(0.01).listen();
         		var movSpeed = folder2.add(camControls2, 'movementSpeed').min(0.0).max(5.0).step(0.01).listen();
@@ -432,7 +433,7 @@ var parameters = {
 			fogDensity.onChange( function(value){   scene2.fog.density = value; scene.fog.density = value;   });
   			rotSpeed.onChange( function(value){   camControls2.lookSpeed = value; camControls.lookSpeed = value;   });
 			movSpeed.onChange( function(value){   camControls2.movementSpeed = value; camControls.movementSpeed = value;  });
-			spotIntensity.onChange( function(value){   scene2.spotLight2.intensity = value; scene.spotLight.intensity = value;   });
+			lightIntensity.onChange( function(value){   spotLightRED2.intensity = value; spotLightRED.intensity = value;   });
 			//source: This code no longer appears to contain anything that belongs to Rudie Dirkx http://hotblocks.nl/tests/three/dat.gui.html 
 
 			//source: MIT License OR "This code no longer appears to contain anything that belongs to josdirksen?"
