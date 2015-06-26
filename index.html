@@ -221,22 +221,22 @@ var parameters = {
         			spotLightBLUE = new THREE.SpotLight(0x00a9ff);
         			spotLightBLUE.position.set(100, 140, 130);
         			spotLightBLUE.intensity = .2;
-        			//scene.add(spotLightBLUE);
+        			scene.add(spotLightBLUE);
         			
         			spotLightBLUE2 = new THREE.SpotLight(0x00a9ff);
         			spotLightBLUE2.position.set(100, 140, 130);
         			spotLightBLUE2.intensity = .2;
-        			//scene2.add(spotLightBLUE2);
+        			scene2.add(spotLightBLUE2);
         			
         			spotLightGREEN = new THREE.SpotLight(0x5eff00);
         			spotLightGREEN.position.set(100, 140, 130);
         			spotLightGREEN.intensity = .2;
-        			//scene.add(spotLightGREEN);
+        			scene.add(spotLightGREEN);
         			
         			spotLightGREEN2 = new THREE.SpotLight(0x5eff00);
         			spotLightGREEN2.position.set(100, 140, 130);
         			spotLightGREEN2.intensity = .2;
-        			//scene2.add(spotLightGREEN2);
+        			scene2.add(spotLightGREEN2);
         			//Add the three spotlights representing the sun(intensity will be modified as a function of depth)
 
 
@@ -394,15 +394,15 @@ var parameters = {
         			    	var intensity = 0.66667;
         			    	//var depth = (camera2.position.y) * (-1.0) +(.9);
         			    	//var depthcm = depth * 100.0;
-        			    	var depthcm = (camera2.position.y + (0.9)) * (-100.0);
-        			    	var adjIntensityRED = intensity * (Math.exp(-.006 * depthcm));
-        			    	var adjIntensityGREEN = intensity * (Math.exp(-.00032 * depthcm));
-        			    	var adjIntensityBLUE = intensity * (Math.exp(-.0.000247 * depthcm));
-        			    	spotLightRED.intensity = adjIntensityRED;
+					var depthcm = (camera2.position.y + (0.9)) * (-100.0);
+					var adjIntensityRED = intensity * (Math.exp(-.006 * depthcm));
+					var adjIntensityGREEN = intensity * (Math.exp(-.00032 * depthcm));
+					var adjIntensityBLUE = intensity * (Math.exp(-.0.000247 * depthcm));
+					spotLightRED.intensity = adjIntensityRED;
 					spotLightRED2.intensity = adjIntensityRED;
 					spotLightGREEN.intensity = adjIntensityGREEN;
 					spotLightGREEN2.intensity = adjIntensityGREEN;
-        			    	spotLightBLUE.intensity = adjIntensityBLUE;
+					spotLightBLUE.intensity = adjIntensityBLUE;
 					spotLightBLUE2.intensity = adjIntensityBLUE;
         			    	//scene.spotLight.intensity = (Math.random() * 5.0);
         			    	//scene2.spotLight2.intensity = (Math.random() * 5.0);
@@ -419,13 +419,18 @@ var parameters = {
         			    	//scene2.spotLight2.intensity = (Math.random() * 5.0);
         			    };
         			    this.randomVis = function(){
-        			    	scene.fog.density = (Math.random() * .75);
-        			    	scene2.fog.density = (Math.random() * .75);
+					scene.fog.density = (Math.random() * .75);
+					scene2.fog.density = (Math.random() * .75);
         			    	
-        			    	var rintensity = (Math.random() * 2.0);
+					var rintensity = (Math.random() * 0.6667);
         				
-        			    	spotLightRED.intensity = rintensity;
+					spotLightRED.intensity = rintensity;
 					spotLightRED2.intensity = rintensity;
+					spotLightGREEN.intensity = rintensity;
+					spotLightGREEN2.intensity = rintensity;
+					spotLightBLUE.intensity = rintensity;
+					spotLightBLUE2.intensity = rintensity;
+
         			    };
         			}
         		//source: This code no longer appears to contain anything that belongs to http://www.smartjava.org/ltjs/chapter-09/02-selecting-objects.html
