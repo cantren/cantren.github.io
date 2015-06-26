@@ -164,7 +164,7 @@ var parameters = {
 				camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.5, 3000000);
 				
 				camera.position.x = 0.0;//pool line of symetry is x axis
-        			camera.position.y = -2.0;//water depth
+				camera.position.y = -2.0;//water depth
 			        camera.position.z = -28.0;//how close to the wall are you
 			        camera.rotation.z = 3.06;
 			        
@@ -172,24 +172,24 @@ var parameters = {
 			        camera2.up = camera.up; // important!
 			        
 			        camera2.position.x = 0.0;//pool line of symetry is x axis
-        			camera2.position.y = -2.0;//water depth
+				camera2.position.y = -2.0;//water depth
 			        camera2.position.z = -28.0;//how close to the wall are you
 			        camera.rotation.z = 3.06;
 				//camera.position.set( 0, -2, -28 );
-        			
-        			camControls = new THREE.FirstPersonControls( camera, renderer.domElement );
-        			camControls.lookSpeed = 0.05; //Pitch Thrust to drag ratio
-        			camControls.movementSpeed = 0.25; // FWD BKWD Thrust to drag ratio 
-        			camControls.verticalMin = -50.0; //basement floor level
-        			camControls.verticalMax = 10.0; //sky ceiling level
-        			
-        			camControls2 = new THREE.FirstPersonControls( camera2, renderer2.domElement );
-        			camControls2.lookSpeed = 0.05; //Pitch Thrust to drag ratio
-        			camControls2.movementSpeed = 0.25; // FWD BKWD Thrust to drag ratio 
-        			camControls2.verticalMin = -50.0; //basement floor level
-        			camControls2.verticalMax = 10.0; //sky ceiling level
-        			
-        			
+				
+				camControls = new THREE.FirstPersonControls( camera, renderer.domElement );
+				camControls.lookSpeed = 0.05; //Pitch Thrust to drag ratio
+				camControls.movementSpeed = 0.25; // FWD BKWD Thrust to drag ratio 
+				camControls.verticalMin = -50.0; //basement floor level
+				camControls.verticalMax = 10.0; //sky ceiling level
+				
+				camControls2 = new THREE.FirstPersonControls( camera2, renderer2.domElement );
+				camControls2.lookSpeed = 0.05; //Pitch Thrust to drag ratio
+				camControls2.movementSpeed = 0.25; // FWD BKWD Thrust to drag ratio 
+				camControls2.verticalMin = -50.0; //basement floor level
+				camControls2.verticalMax = 10.0; //sky ceiling level
+				
+				
 				//Add scene lighting
 				var light = new THREE.HemisphereLight( 0xffffbb, 0x008080, 1 );//I tried changing the light color here to see what would happen
 				light.position.set( - 1, 1, - 1 ); //my hemisphere flipped upside down
@@ -201,58 +201,58 @@ var parameters = {
 				
 				//More scene lighting
 				var ambientLight = new THREE.AmbientLight(0x383838);
-        			//scene.add(ambientLight);
-        			
-        			var ambientLight2 = new THREE.AmbientLight(0x383838);
+				//scene.add(ambientLight);
+				
+				var ambientLight2 = new THREE.AmbientLight(0x383838);
 				//scene2.add(ambientLight2);
 				
 				
 				//Add the three spotlights representing the sun(intensity will be modified as a function of depth)
 				spotLightRED = new THREE.SpotLight(0xff0000);
-        			spotLightRED.position.set(100, 140, 130);
-        			spotLightRED.intensity = 2;
-        			scene.add(spotLightRED);
-        			
-        			spotLightRED2 = new THREE.SpotLight(0xff0000);
-        			spotLightRED2.position.set(100, 140, 130);
-        			spotLightRED2.intensity = 2;
-        			scene2.add(spotLightRED2);
-        			
-        			spotLightBLUE = new THREE.SpotLight(0x00a9ff);
-        			spotLightBLUE.position.set(100, 140, 130);
-        			spotLightBLUE.intensity = .2;
-        			scene.add(spotLightBLUE);
-        			
-        			spotLightBLUE2 = new THREE.SpotLight(0x00a9ff);
-        			spotLightBLUE2.position.set(100, 140, 130);
-        			spotLightBLUE2.intensity = .2;
-        			scene2.add(spotLightBLUE2);
-        			
-        			spotLightGREEN = new THREE.SpotLight(0x5eff00);
-        			spotLightGREEN.position.set(100, 140, 130);
-        			spotLightGREEN.intensity = .2;
-        			scene.add(spotLightGREEN);
-        			
-        			spotLightGREEN2 = new THREE.SpotLight(0x5eff00);
-        			spotLightGREEN2.position.set(100, 140, 130);
-        			spotLightGREEN2.intensity = .2;
-        			scene2.add(spotLightGREEN2);
-        			//Add the three spotlights representing the sun(intensity will be modified as a function of depth)
+				spotLightRED.position.set(100, 140, 130);
+				spotLightRED.intensity = 2;
+				scene.add(spotLightRED);
+				
+				spotLightRED2 = new THREE.SpotLight(0xff0000);
+				spotLightRED2.position.set(100, 140, 130);
+				spotLightRED2.intensity = 2;
+				scene2.add(spotLightRED2);
+				
+				spotLightBLUE = new THREE.SpotLight(0x00a9ff);
+				spotLightBLUE.position.set(100, 140, 130);
+				spotLightBLUE.intensity = .2;
+				scene.add(spotLightBLUE);
+				
+				spotLightBLUE2 = new THREE.SpotLight(0x00a9ff);
+				spotLightBLUE2.position.set(100, 140, 130);
+				spotLightBLUE2.intensity = .2;
+				scene2.add(spotLightBLUE2);
+				
+				spotLightGREEN = new THREE.SpotLight(0x5eff00);
+				spotLightGREEN.position.set(100, 140, 130);
+				spotLightGREEN.intensity = .2;
+				scene.add(spotLightGREEN);
+				
+				spotLightGREEN2 = new THREE.SpotLight(0x5eff00);
+				spotLightGREEN2.position.set(100, 140, 130);
+				spotLightGREEN2.intensity = .2;
+				scene2.add(spotLightGREEN2);
+				//Add the three spotlights representing the sun(intensity will be modified as a function of depth)
 
 
 				
-        			// add spotlight for the shadows
-        			/*
-        			var spotLight = new THREE.SpotLight(0xffffff);
-        			spotLight.position.set(100, 140, 130);
-        			spotLight.intensity = 2;
-        			scene.add(spotLight);
-        			
-        			var spotLight2 = new THREE.SpotLight(0xffffff);
-        			spotLight2.position.set(100, 140, 130);
-        			spotLight2.intensity = 2;
-        			scene2.add(spotLight2);
-        			*/
+				// add spotlight for the shadows
+				/*
+				var spotLight = new THREE.SpotLight(0xffffff);
+				spotLight.position.set(100, 140, 130);
+				spotLight.intensity = 2;
+				scene.add(spotLight);
+				
+				var spotLight2 = new THREE.SpotLight(0xffffff);
+				spotLight2.position.set(100, 140, 130);
+				spotLight2.intensity = 2;
+				scene2.add(spotLight2);
+				*/
 
 
 				//load and insert the obj meshes and mtl textures
@@ -262,7 +262,7 @@ var parameters = {
 					object.position.y = -12.975;//experimentally generated via trial and error
 					scene.add( object );//to make a Robosub you would likely need to change it's name from "object"
 					});
-        			loader.load('../obj/robosub obstacles/obstacles.obj', '../obj/robosub obstacles/obstacles.mtl', function ( object ) {
+				loader.load('../obj/robosub obstacles/obstacles.obj', '../obj/robosub obstacles/obstacles.mtl', function ( object ) {
 					object.position.y = -12.975;//experimentally generated via trial and error
 					scene.add( object );//to make a Robosub you would likely need to change it's name from "object"
 					});
@@ -270,7 +270,7 @@ var parameters = {
 					object.position.y = -12.975;//experimentally generated via trial and error
 					scene2.add( object );//to make a Robosub you would likely need to change it's name from "object"
 					});
-        			loader.load('../obj/robosub obstacles/obstacles.obj', '../obj/robosub obstacles/obstacles.mtl', function ( object ) {
+				loader.load('../obj/robosub obstacles/obstacles.obj', '../obj/robosub obstacles/obstacles.mtl', function ( object ) {
 					object.position.y = -12.975;//experimentally generated via trial and error
 					scene2.add( object );//to make a Robosub you would likely need to change it's name from "object"
 					});
@@ -360,37 +360,37 @@ var parameters = {
 			//source: This entire "init()" function is very "boilerplate" from the examples at http://threejs.org/examples/ covered under the MIT License
 			//attribution: Please see the "MIT License" included in this document
 
-        		//source: This code no longer appears to contain anything that belongs to http://www.smartjava.org/ltjs/chapter-09/02-selecting-objects.html
+			//source: This code no longer appears to contain anything that belongs to http://www.smartjava.org/ltjs/chapter-09/02-selecting-objects.html
 			var guivalues = new function () {
 				    this.fogLastValue = 0;
 				    this.aboveWater = false;
-        			    this.getLostBoth = function(){
-        			    	camera.position.x = (Math.random() * 90.0);
-        			    	camera.position.x -=45.0;
-        			    	camera.position.y = (Math.random() * -5.5);
-        			    	camera.position.z = (Math.random() * 60.0);
-        			    	camera.position.z -= 30.0;
-               			    	camera.rotation.z = (Math.random() * (Math.PI*2.0));
-               			    	camera.rotation.z -= Math.PI;
-        			    };
-        			    this.getLostComp = function(){
-        			    	camera.position.x = (Math.random() * -45.0);
-        			    	camera.position.y = (Math.random() * -5.5);
-        			    	camera.position.z = (Math.random() * 60.0);
-        			    	camera.position.z -= 30.0;
-               			    	camera.rotation.z = (Math.random() * (Math.PI*2.0));
-               			    	camera.rotation.z -= Math.PI;
-        			    };
-        			    this.getLostPract = function(){
-        			    	camera.position.x = (Math.random() * 45.0);
-        			    	camera.position.y = (Math.random() * -5.5);
-        			    	camera.position.z = (Math.random() * 60.0);
-        			    	camera.position.z -= 30.0;
+				    this.getLostBoth = function(){
+				    	camera.position.x = (Math.random() * 90.0);
+				    	camera.position.x -=45.0;
+				    	camera.position.y = (Math.random() * -5.5);
+				    	camera.position.z = (Math.random() * 60.0);
+				    	camera.position.z -= 30.0;
+       				    	camera.rotation.z = (Math.random() * (Math.PI*2.0));
+       				    	camera.rotation.z -= Math.PI;
+				    };
+				    this.getLostComp = function(){
+				    	camera.position.x = (Math.random() * -45.0);
+				    	camera.position.y = (Math.random() * -5.5);
+				    	camera.position.z = (Math.random() * 60.0);
+				    	camera.position.z -= 30.0;
+       				    	camera.rotation.z = (Math.random() * (Math.PI*2.0));
+       				    	camera.rotation.z -= Math.PI;
+				    };
+				    this.getLostPract = function(){
+				    	camera.position.x = (Math.random() * 45.0);
+				    	camera.position.y = (Math.random() * -5.5);
+				    	camera.position.z = (Math.random() * 60.0);
+				    	camera.position.z -= 30.0;
 
-               			    	camera.rotation.z = (Math.random() * (Math.PI*2.0));
-               			    	camera.rotation.z -= Math.PI;
-        			    };
-        			    this.lightDepthFix = function(){
+       				    	camera.rotation.z = (Math.random() * (Math.PI*2.0));
+       				    	camera.rotation.z -= Math.PI;
+				    };
+				    this.lightDepthFix = function(){
 					var intensity = 0.66667;
 					var depthcm = (camera2.position.y + (0.9)) * (-100.0);
 					var adjIntensityRED = (intensity * (Math.exp(-.006 * depthcm)));
@@ -402,8 +402,8 @@ var parameters = {
 					//spotLightGREEN2.intensity = adjIntensityGREEN;
 					//spotLightBLUE.intensity = adjIntensityBLUE;
 					//spotLightBLUE2.intensity = adjIntensityBLUE;
-        			    };
-        			    this.normalLight = function(){
+				    };
+				    this.normalLight = function(){
 					var nintensity = 0.66667;
 					spotLightRED.intensity = nintensity;
 					spotLightRED2.intensity = nintensity;
@@ -411,15 +411,15 @@ var parameters = {
 					spotLightGREEN2.intensity = nintensity;
 					spotLightBLUE.intensity = nintensity;
 					spotLightBLUE2.intensity = nintensity;
-        			    	//scene.spotLight.intensity = (Math.random() * 5.0);
-        			    	//scene2.spotLight2.intensity = (Math.random() * 5.0);
-        			    };
-        			    this.randomVis = function(){
+				    	//scene.spotLight.intensity = (Math.random() * 5.0);
+				    	//scene2.spotLight2.intensity = (Math.random() * 5.0);
+				    };
+				    this.randomVis = function(){
 					scene.fog.density = (Math.random() * .75);
 					scene2.fog.density = (Math.random() * .75);
-        			    	
+				    	
 					var rintensity = (Math.random() * 0.6667);
-        				
+					
 					spotLightRED.intensity = rintensity;
 					spotLightRED2.intensity = rintensity;
 					spotLightGREEN.intensity = rintensity;
@@ -427,20 +427,20 @@ var parameters = {
 					spotLightBLUE.intensity = rintensity;
 					spotLightBLUE2.intensity = rintensity;
 
-        			    };
-        			}
-        		//source: This code no longer appears to contain anything that belongs to http://www.smartjava.org/ltjs/chapter-09/02-selecting-objects.html
+				    };
+				}
+			//source: This code no longer appears to contain anything that belongs to http://www.smartjava.org/ltjs/chapter-09/02-selecting-objects.html
 
-        			
-        		//source: This code no longer appears to contain anything that belongs to http://nuevil.com/index3.html
-        		var gui = new dat.GUI({resizable : false});
-        		var folder1 = gui.addFolder('visibility');
-        		var fogDensity = folder1.add(scene2.fog, 'density').min(0.00).max(0.75).step(0.01).listen();
-        		var lightIntensity = folder1.add(spotLightRED, 'intensity').min(0.00).max(2.0).step(0.01).listen();
-        		var folder2 = gui.addFolder('behavior');
-        		var rotSpeed = folder2.add(camControls2, 'lookSpeed').min(0.0).max(0.5).step(0.01).listen();
-        		var movSpeed = folder2.add(camControls2, 'movementSpeed').min(0.0).max(5.0).step(0.01).listen();
-        		var folder3 = gui.addFolder('position');
+				
+			//source: This code no longer appears to contain anything that belongs to http://nuevil.com/index3.html
+			var gui = new dat.GUI({resizable : false});
+			var folder1 = gui.addFolder('visibility');
+			var fogDensity = folder1.add(scene2.fog, 'density').min(0.00).max(0.75).step(0.01).listen();
+			var lightIntensity = folder1.add(spotLightRED, 'intensity').min(0.00).max(2.0).step(0.01).listen();
+			var folder2 = gui.addFolder('behavior');
+			var rotSpeed = folder2.add(camControls2, 'lookSpeed').min(0.0).max(0.5).step(0.01).listen();
+			var movSpeed = folder2.add(camControls2, 'movementSpeed').min(0.0).max(5.0).step(0.01).listen();
+			var folder3 = gui.addFolder('position');
   			var posX = folder3.add( camera2.position, 'x' ).min(-50.00).max(50.00).step(0.01).listen();
   			var posY = folder3.add( camera2.position, 'y' ).min(-50.00).max(50.00).step(0.01).listen();
   			var posZ = folder3.add( camera2.position, 'z' ).min(-50.00).max(50.00).step(0.01).listen();
@@ -518,7 +518,7 @@ var parameters = {
 						scene.fog.density = 0.1875;
 					}
 				if ( camera2.position.y < -0.81 ) {
-						guivalues.lightDepthFix();
+						guivalues.normalLight();
 				}
 				else{
 					guivalues.normalLight();
