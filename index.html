@@ -494,11 +494,12 @@ var parameters = {
 						scene2.fog.density = 0.1875; 
 						scene.fog.density = 0.1875;
 					}
-				renderer.render( scene, camera ); //render everything else
-				renderer2.render( scene2, camera2 ); //render everything else
 				if ( camera2.position.y < 1000.00 ) {
 						guivalues.lightDepthFix();
-					}
+				}
+				renderer.render( scene, camera ); //render everything else
+				renderer2.render( scene2, camera2 ); //render everything else
+			}
 			//source: MIT License OR "This code no longer appears to contain anything that belongs to josdirksen?"
 
 		</script>
