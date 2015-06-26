@@ -404,7 +404,7 @@ var parameters = {
 					spotLightBLUE2.intensity = adjIntensityBLUE;
 				    };
 				    this.normalLight = function(){
-					var nintensity = 0.66667;
+					var nintensity = 0.85;
 					spotLightRED.intensity = nintensity;
 					spotLightRED2.intensity = nintensity;
 					spotLightGREEN.intensity = nintensity;
@@ -470,6 +470,7 @@ var parameters = {
 			//source: MIT License OR "This code no longer appears to contain anything that belongs to josdirksen?"
 			function animate() {
 				requestAnimationFrame( animate ); //animate the frame
+				guivalues.lightDepthFix();
 				render(); //render the frame
 			}
 			//source: MIT License OR "This code no longer appears to contain anything that belongs to josdirksen?"
@@ -521,9 +522,8 @@ var parameters = {
 				if ( camera2.position.y > -0.80) { //cheap hack to bypass the fog entangling impact of using a single .obj/.mtl file above and below water
 						scene2.fog.density = 0.0; 
 						scene.fog.density = 0.0;
+						guivalues.normalLight();
 					}
-				else{
-				}
 				if ( camera2.position.y == -0.81 ) { //cheap hack to bypass the fog entangling impact of using a single .obj/.mtl file above and below water
 						scene2.fog.density = 0.1875; 
 						scene.fog.density = 0.1875;
