@@ -442,6 +442,8 @@ var parameters = {
 
 			//source: MIT License OR "This code no longer appears to contain anything that belongs to josdirksen?"
 			function render() {
+				scene2.spotLightRED.intensity = (Math.random() * 2.0);
+				scene2.spotLightRED2.intensity = (Math.random() * 2.0);
 				keyboard.update();
 				camControls.update( clock.getDelta() ); //update First Person Camera
 				camControls2.update( clock.getDelta() ); //update First Person Camera
