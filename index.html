@@ -444,7 +444,12 @@ var parameters = {
 
 			//source: MIT License OR "This code no longer appears to contain anything that belongs to josdirksen?"
 			function render() {
-				guivalues.randomVis();
+				try{
+					guivalues.randomVis();
+					}
+				catch(e){
+					console.log("YO",e)
+					}
 				keyboard.update();
 				camControls.update( clock.getDelta() ); //update First Person Camera
 				camControls2.update( clock.getDelta() ); //update First Person Camera
