@@ -215,27 +215,27 @@ var parameters = {
 				
 				spotLightRED2 = new THREE.SpotLight(0xff0000);
 				spotLightRED2.position.set(100, 140, -130);
-				spotLightRED2.intensity = 2;
+				spotLightRED2.intensity = .75;
 				scene2.add(spotLightRED2);
 				
 				spotLightBLUE = new THREE.SpotLight(0x00a9ff);
 				spotLightBLUE.position.set(100, 140, -130);
-				spotLightBLUE.intensity = .2;
+				spotLightBLUE.intensity = .75;
 				scene.add(spotLightBLUE);
 				
 				spotLightBLUE2 = new THREE.SpotLight(0x00a9ff);
 				spotLightBLUE2.position.set(100, 140, -130);
-				spotLightBLUE2.intensity = .2;
+				spotLightBLUE2.intensity = .75;
 				scene2.add(spotLightBLUE2);
 				
 				spotLightGREEN = new THREE.SpotLight(0x5eff00);
 				spotLightGREEN.position.set(100, 140, -130);
-				spotLightGREEN.intensity = .2;
+				spotLightGREEN.intensity = .75;
 				scene.add(spotLightGREEN);
 				
 				spotLightGREEN2 = new THREE.SpotLight(0x5eff00);
 				spotLightGREEN2.position.set(100, 140, -130);
-				spotLightGREEN2.intensity = .2;
+				spotLightGREEN2.intensity = .75;
 				scene2.add(spotLightGREEN2);
 				//Add the three spotlights representing the sun(intensity will be modified as a function of depth)
 
@@ -415,8 +415,9 @@ var parameters = {
 				    	//scene2.spotLight2.intensity = (Math.random() * 5.0);
 				    };
 				    this.randomVis = function(){
-					scene.fog.density = (Math.random() * .75);
-					scene2.fog.density = (Math.random() * .75);
+				    	var fdensity = (Math.random() * .75);
+					scene.fog.density = fdensity;
+					scene2.fog.density = fdensity;
 				    	
 					var rintensity = (Math.random() * 0.6667);
 					
@@ -509,6 +510,10 @@ var parameters = {
 				if ( keyboard.pressed("K") ) {guivalues.getLostComp();}
 				if ( keyboard.pressed("L") ) {guivalues.getLostPract();}
 				if ( keyboard.pressed("V") ) {
+					guivalues.lightDepthFix();
+					//guivalues.randomVis();
+				}
+				if ( true ) {
 					guivalues.lightDepthFix();
 					//guivalues.randomVis();
 				}
