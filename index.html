@@ -391,8 +391,13 @@ var parameters = {
                			    	camera.rotation.z -= Math.PI;
         			    };
         			    this.lightDepthFix = function(){
-        			    	spotLightRED.intensity = (camera2.position.y) * (-1.0);
-					spotLightRED2.intensity = (camera2.position.y) * (-1.0);
+        			    	var intensity = 2.0;
+        			    	//var depth = (camera2.position.y) * (-1.0) +(.9);
+        			    	//var depthcm = depth * 100.0;
+        			    	var depthcm = (camera2.position.y + (0.9)) * (-100.0);
+        			    	var adjIntensityRED = intesnity * (Math.exp(-.006 * depthcm));
+        			    	spotLightRED.intensity = adjIntensityRED;
+					spotLightRED2.intensity = adjIntensityRED;
         			    	//scene.spotLight.intensity = (Math.random() * 5.0);
         			    	//scene2.spotLight2.intensity = (Math.random() * 5.0);
         			    };
@@ -400,8 +405,8 @@ var parameters = {
         			    	scene.fog.density = (Math.random() * .75);
         			    	scene2.fog.density = (Math.random() * .75);
         				
-        			    	//spotLightRED.intensity = (Math.random() * 5.0);
-					//spotLightRED2.intensity = (Math.random() * 5.0);
+        			    	spotLightRED.intensity = (Math.random() * 5.0);
+					spotLightRED2.intensity = (Math.random() * 5.0);
 					
 					spotLightRED.intensity = (camera2.position.y) * (-1.0);
 					spotLightRED2.intensity = (camera2.position.y) * (-1.0);
