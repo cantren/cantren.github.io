@@ -391,25 +391,41 @@ var parameters = {
                			    	camera.rotation.z -= Math.PI;
         			    };
         			    this.lightDepthFix = function(){
-        			    	var intensity = 2.0;
+        			    	var intensity = 0.66667;
         			    	//var depth = (camera2.position.y) * (-1.0) +(.9);
         			    	//var depthcm = depth * 100.0;
         			    	var depthcm = (camera2.position.y + (0.9)) * (-100.0);
         			    	var adjIntensityRED = intensity * (Math.exp(-.006 * depthcm));
+        			    	var adjIntensityGREEN = intensity * (Math.exp(-.00032 * depthcm));
+        			    	var adjIntensityBLUE = intensity * (Math.exp(-.0.000247 * depthcm));
         			    	spotLightRED.intensity = adjIntensityRED;
 					spotLightRED2.intensity = adjIntensityRED;
+					spotLightGREEN.intensity = adjIntensityGREEN;
+					spotLightGREEN2.intensity = adjIntensityGREEN;
+        			    	spotLightBLUE.intensity = adjIntensityBLUE;
+					spotLightBLUE2.intensity = adjIntensityBLUE;
+        			    	//scene.spotLight.intensity = (Math.random() * 5.0);
+        			    	//scene2.spotLight2.intensity = (Math.random() * 5.0);
+        			    };
+        			    this.normalLight = function(){
+        			    	var nintensity = 0.66667;
+        			    	spotLightRED.intensity = nintensity;
+					spotLightRED2.intensity = nintensity;
+        			    	spotLightGREEN.intensity = nintensity;
+					spotLightGREEN2.intensity = nintensity;
+        			    	spotLightBLUE.intensity = nintensity;
+					spotLightBLUE2.intensity = nintensity;
         			    	//scene.spotLight.intensity = (Math.random() * 5.0);
         			    	//scene2.spotLight2.intensity = (Math.random() * 5.0);
         			    };
         			    this.randomVis = function(){
         			    	scene.fog.density = (Math.random() * .75);
         			    	scene2.fog.density = (Math.random() * .75);
+        			    	
+        			    	var rintensity = (Math.random() * 2.0);
         				
-        			    	spotLightRED.intensity = (Math.random() * 5.0);
-					spotLightRED2.intensity = (Math.random() * 5.0);
-					
-					spotLightRED.intensity = (camera2.position.y) * (-1.0);
-					spotLightRED2.intensity = (camera2.position.y) * (-1.0);
+        			    	spotLightRED.intensity = rintensity;
+					spotLightRED2.intensity = rintensity;
         			    };
         			}
         		//source: This code no longer appears to contain anything that belongs to http://www.smartjava.org/ltjs/chapter-09/02-selecting-objects.html
@@ -491,7 +507,7 @@ var parameters = {
 				if ( keyboard.pressed("J") ) {guivalues.getLostBoth();}
 				if ( keyboard.pressed("K") ) {guivalues.getLostComp();}
 				if ( keyboard.pressed("L") ) {guivalues.getLostPract();}
-				if ( keyboard.pressed("V") ) {guivalues.lightDepthFix();}
+				if ( keyboard.pressed("V") ) {guivalues.randomVis();}
 				if ( camera2.position.y > -0.80) { //cheap hack to bypass the fog entangling impact of using a single .obj/.mtl file above and below water
 						scene2.fog.density = 0.0; 
 						scene.fog.density = 0.0;
@@ -500,8 +516,11 @@ var parameters = {
 						scene2.fog.density = 0.1875; 
 						scene.fog.density = 0.1875;
 					}
-				if ( camera2.position.y < 1000.00 ) {
-						//guivalues.lightDepthFix();
+				if ( camera2.position.y < -0.81 ) {
+						guivalues.lightDepthFix();
+				}
+				else{
+					guivalues.normalLight();
 				}
 				renderer.render( scene, camera ); //render everything else
 				renderer2.render( scene2, camera2 ); //render everything else
