@@ -218,22 +218,22 @@ var parameters = {
         			spotLightRED2.intensity = 2;
         			scene2.add(spotLightRED2);
         			
-        			var spotLightBLUE = new THREE.SpotLight(0x00a9ff);
+        			spotLightBLUE = new THREE.SpotLight(0x00a9ff);
         			spotLightBLUE.position.set(100, 140, 130);
         			spotLightBLUE.intensity = .2;
         			//scene.add(spotLightBLUE);
         			
-        			var spotLightBLUE2 = new THREE.SpotLight(0x00a9ff);
+        			spotLightBLUE2 = new THREE.SpotLight(0x00a9ff);
         			spotLightBLUE2.position.set(100, 140, 130);
         			spotLightBLUE2.intensity = .2;
         			//scene2.add(spotLightBLUE2);
         			
-        			var spotLightGREEN = new THREE.SpotLight(0x5eff00);
+        			spotLightGREEN = new THREE.SpotLight(0x5eff00);
         			spotLightGREEN.position.set(100, 140, 130);
         			spotLightGREEN.intensity = .2;
         			//scene.add(spotLightGREEN);
         			
-        			var spotLightGREEN2 = new THREE.SpotLight(0x5eff00);
+        			spotLightGREEN2 = new THREE.SpotLight(0x5eff00);
         			spotLightGREEN2.position.set(100, 140, 130);
         			spotLightGREEN2.intensity = .2;
         			//scene2.add(spotLightGREEN2);
@@ -390,10 +390,15 @@ var parameters = {
                			    	camera.rotation.z = (Math.random() * (Math.PI*2.0));
                			    	camera.rotation.z -= Math.PI;
         			    };
+        			    this.lightDepthFix = function(){
+        			    	spotLightRED.intensity = camera2.position.y * -1.0);
+					spotLightRED2.intensity = camera2.position.y * -1.0);
+        			    	//scene.spotLight.intensity = (Math.random() * 5.0);
+        			    	//scene2.spotLight2.intensity = (Math.random() * 5.0);
+        			    };
         			    this.randomVis = function(){
-        			    	//scene.fog.density = (Math.random() * .75);
-        			    	//scene2.fog.density = (Math.random() * .75);
-
+        			    	scene.fog.density = (Math.random() * .75);
+        			    	scene2.fog.density = (Math.random() * .75);
         				
         			    	spotLightRED.intensity = (Math.random() * 5.0);
 					spotLightRED2.intensity = (Math.random() * 5.0);
@@ -447,12 +452,7 @@ var parameters = {
 
 			//source: MIT License OR "This code no longer appears to contain anything that belongs to josdirksen?"
 			function render() {
-				try{
-					//guivalues.randomVis();
-					}
-				catch(e){
-					console.log("YO",e)
-					}
+				guivalues.lightDepthFix();
 				keyboard.update();
 				camControls.update( clock.getDelta() ); //update First Person Camera
 				camControls2.update( clock.getDelta() ); //update First Person Camera
