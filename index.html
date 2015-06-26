@@ -491,7 +491,7 @@ var parameters = {
 				if ( keyboard.pressed("J") ) {guivalues.getLostBoth();}
 				if ( keyboard.pressed("K") ) {guivalues.getLostComp();}
 				if ( keyboard.pressed("L") ) {guivalues.getLostPract();}
-				if ( keyboard.pressed("V") ) {guivalues.randomVis();}
+				if ( keyboard.pressed("V") ) {guivalues.lightDepthFix();}
 				if ( camera2.position.y > -0.80) { //cheap hack to bypass the fog entangling impact of using a single .obj/.mtl file above and below water
 						scene2.fog.density = 0.0; 
 						scene.fog.density = 0.0;
