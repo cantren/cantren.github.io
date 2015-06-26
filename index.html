@@ -400,10 +400,11 @@ var parameters = {
         			    	scene.fog.density = (Math.random() * .75);
         			    	scene2.fog.density = (Math.random() * .75);
         				
-        			    	spotLightRED.intensity = (Math.random() * 5.0);
-					spotLightRED2.intensity = (Math.random() * 5.0);
-        			    	//scene.spotLight.intensity = (Math.random() * 5.0);
-        			    	//scene2.spotLight2.intensity = (Math.random() * 5.0);
+        			    	//spotLightRED.intensity = (Math.random() * 5.0);
+					//spotLightRED2.intensity = (Math.random() * 5.0);
+					
+					spotLightRED.intensity = (camera2.position.y) * (-1.0);
+					spotLightRED2.intensity = (camera2.position.y) * (-1.0);
         			    };
         			}
         		//source: This code no longer appears to contain anything that belongs to http://www.smartjava.org/ltjs/chapter-09/02-selecting-objects.html
