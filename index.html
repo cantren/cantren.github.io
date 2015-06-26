@@ -395,13 +395,13 @@ var parameters = {
 					var depthcm = (camera2.position.y + (0.9)) * (-100.0);
 					var adjIntensityRED = (intensity * (Math.exp(-.006 * depthcm)));
 					var adjIntensityGREEN = (intensity * (Math.exp(-.00032 * depthcm)));
-					//var adjIntensityBLUE = (intensity * (Math.exp(-.0.000247 * depthcm)));
+					var adjIntensityBLUE = (intensity * (Math.exp(-.000247 * depthcm)));
 					spotLightRED.intensity = adjIntensityRED;
 					spotLightRED2.intensity = adjIntensityRED;
 					spotLightGREEN.intensity = adjIntensityGREEN;
 					spotLightGREEN2.intensity = adjIntensityGREEN;
-					//spotLightBLUE.intensity = adjIntensityBLUE;
-					//spotLightBLUE2.intensity = adjIntensityBLUE;
+					spotLightBLUE.intensity = adjIntensityBLUE;
+					spotLightBLUE2.intensity = adjIntensityBLUE;
 				    };
 				    this.normalLight = function(){
 					var nintensity = 0.66667;
@@ -508,7 +508,10 @@ var parameters = {
 				if ( keyboard.pressed("J") ) {guivalues.getLostBoth();}
 				if ( keyboard.pressed("K") ) {guivalues.getLostComp();}
 				if ( keyboard.pressed("L") ) {guivalues.getLostPract();}
-				if ( keyboard.pressed("V") ) {guivalues.randomVis();guivalues.lightDepthFix();}
+				if ( keyboard.pressed("V") ) {
+					guivalues.lightDepthFix();
+					//guivalues.randomVis();
+				}
 				if ( camera2.position.y > -0.80) { //cheap hack to bypass the fog entangling impact of using a single .obj/.mtl file above and below water
 						scene2.fog.density = 0.0; 
 						scene.fog.density = 0.0;
