@@ -193,47 +193,47 @@ var parameters = {
 				//Add scene lighting
 				var light = new THREE.HemisphereLight( 0xffffbb, 0x008080, 1 );//I tried changing the light color here to see what would happen
 				light.position.set( - 1, 1, - 1 ); //my hemisphere flipped upside down
-				scene.add( light );//I changed the name to distinguish a negative y value from "sunlight"
+				//scene.add( light );//I changed the name to distinguish a negative y value from "sunlight"
 
 				var light2 = new THREE.HemisphereLight( 0xffffbb, 0x008080, 1 );//I tried changing the light color here to see what would happen
 				light2.position.set( - 1, 1, - 1 ); //my hemisphere flipped upside down
-				scene2.add( light2 );//I changed the name to distinguish a negative y value from "sunlight"
+				//scene2.add( light2 );//I changed the name to distinguish a negative y value from "sunlight"
 				
 				//More scene lighting
 				var ambientLight = new THREE.AmbientLight(0x383838);
-        			scene.add(ambientLight);
+        			//scene.add(ambientLight);
         			
         			var ambientLight2 = new THREE.AmbientLight(0x383838);
-				scene2.add(ambientLight2);
+				//scene2.add(ambientLight2);
 				
 				
 				//Add the three spotlights representing the sun(intensity will be modified as a function of depth)
-				var spotLightRED = new THREE.SpotLight(0xffffff);
+				var spotLightRED = new THREE.SpotLight(0xff0000);
         			spotLightRED.position.set(100, 140, 130);
         			spotLightRED.intensity = 2;
         			scene.add(spotLightRED);
         			
-        			var spotLightRED2 = new THREE.SpotLight(0xffffff);
+        			var spotLightRED2 = new THREE.SpotLight(0xff0000);
         			spotLightRED2.position.set(100, 140, 130);
         			spotLightRED2.intensity = 2;
         			scene2.add(spotLightRED2);
         			
-        			var spotLightBLUE = new THREE.SpotLight(0xffffff);
+        			var spotLightBLUE = new THREE.SpotLight(0x00a9ff);
         			spotLightBLUE.position.set(100, 140, 130);
         			spotLightBLUE.intensity = 2;
         			scene.add(spotLightBLUE);
         			
-        			var spotLightBLUE2 = new THREE.SpotLight(0xffffff);
+        			var spotLightBLUE2 = new THREE.SpotLight(0x00a9ff);
         			spotLightBLUE2.position.set(100, 140, 130);
         			spotLightBLUE2.intensity = 2;
         			scene2.add(spotLightBLUE2);
         			
-        			var spotLightGREEN = new THREE.SpotLight(0xffffff);
+        			var spotLightGREEN = new THREE.SpotLight(0x5eff00);
         			spotLightGREEN.position.set(100, 140, 130);
         			spotLightGREEN.intensity = 2;
         			scene.add(spotLightGREEN);
         			
-        			var spotLightGREEN2 = new THREE.SpotLight(0xffffff);
+        			var spotLightGREEN2 = new THREE.SpotLight(0x5eff00);
         			spotLightGREEN2.position.set(100, 140, 130);
         			spotLightGREEN2.intensity = 2;
         			scene2.add(spotLightGREEN2);
