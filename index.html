@@ -209,32 +209,32 @@ var parameters = {
 				
 				//Add the three spotlights representing the sun(intensity will be modified as a function of depth)
 				spotLightRED = new THREE.SpotLight(0xff0000);
-				spotLightRED.position.set(100, 140, 130);
+				spotLightRED.position.set(100, 140, -130);
 				spotLightRED.intensity = 2;
 				scene.add(spotLightRED);
 				
 				spotLightRED2 = new THREE.SpotLight(0xff0000);
-				spotLightRED2.position.set(100, 140, 130);
+				spotLightRED2.position.set(100, 140, -130);
 				spotLightRED2.intensity = 2;
 				scene2.add(spotLightRED2);
 				
 				spotLightBLUE = new THREE.SpotLight(0x00a9ff);
-				spotLightBLUE.position.set(100, 140, 130);
+				spotLightBLUE.position.set(100, 140, -130);
 				spotLightBLUE.intensity = .2;
 				scene.add(spotLightBLUE);
 				
 				spotLightBLUE2 = new THREE.SpotLight(0x00a9ff);
-				spotLightBLUE2.position.set(100, 140, 130);
+				spotLightBLUE2.position.set(100, 140, -130);
 				spotLightBLUE2.intensity = .2;
 				scene2.add(spotLightBLUE2);
 				
 				spotLightGREEN = new THREE.SpotLight(0x5eff00);
-				spotLightGREEN.position.set(100, 140, 130);
+				spotLightGREEN.position.set(100, 140, -130);
 				spotLightGREEN.intensity = .2;
 				scene.add(spotLightGREEN);
 				
 				spotLightGREEN2 = new THREE.SpotLight(0x5eff00);
-				spotLightGREEN2.position.set(100, 140, 130);
+				spotLightGREEN2.position.set(100, 140, -130);
 				spotLightGREEN2.intensity = .2;
 				scene2.add(spotLightGREEN2);
 				//Add the three spotlights representing the sun(intensity will be modified as a function of depth)
@@ -391,7 +391,7 @@ var parameters = {
        				    	camera.rotation.z -= Math.PI;
 				    };
 				    this.lightDepthFix = function(){
-					var intensity = 0.66667;
+					var intensity = 1;
 					var depthcm = (camera2.position.y + (0.9)) * (-100.0);
 					var adjIntensityRED = (intensity * (Math.exp(-.006 * depthcm)));
 					var adjIntensityGREEN = (intensity * (Math.exp(-.00032 * depthcm)));
@@ -484,7 +484,7 @@ var parameters = {
 				camera2.rotateX(Math.PI/-2);
 				camera2.rotateZ((Math.PI/-2));
 				camera2.rotateZ(Math.PI/2);
-				
+				guivalues.lightDepthFix();
 				var time = performance.now() * 0.001; //Measure time for water
 				water.material.uniforms.time.value += 1.0 / 60.0; //speed of water motion(wind chop)
 				water.render(); //render water surface
@@ -509,7 +509,6 @@ var parameters = {
 				if ( keyboard.pressed("K") ) {guivalues.getLostComp();}
 				if ( keyboard.pressed("L") ) {guivalues.getLostPract();}
 				if ( keyboard.pressed("V") ) {
-					guivalues.lightDepthFix();
 					//guivalues.randomVis();
 				}
 				if ( camera2.position.y > -0.80) { //cheap hack to bypass the fog entangling impact of using a single .obj/.mtl file above and below water
