@@ -572,7 +572,7 @@ var parameters = {
 				
 				var lightFix = new function(){
 					this.lightDepthFix = function(){
-					intensity = .85;
+					intensity = .95;
 					depthcm = (camera2.position.y + (0.9)) * (-100.0);
 					adjIntensityRED = (intensity * (Math.exp(-.006 * depthcm)));
 					adjIntensityGREEN = (intensity * (Math.exp(-.00032 * depthcm)));
