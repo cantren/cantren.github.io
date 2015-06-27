@@ -551,6 +551,7 @@ var parameters = {
 			function animate() {
 				requestAnimationFrame( animate ); //animate the frame
 				render(); //render the frame
+				init.guivalues.randomVis();
 			}
 			//source: MIT License OR "This code no longer appears to contain anything that belongs to josdirksen?"
 
@@ -596,7 +597,7 @@ var parameters = {
 				}
 				//if ( true ) {
 					//guivalues.lightDepthFix();
-					guivalues.randomVis();
+
 				//}
 				if ( camera2.position.y > -0.80) { //cheap hack to bypass the fog entangling impact of using a single .obj/.mtl file above and below water
 						scene2.fog.density = 0.0; 
