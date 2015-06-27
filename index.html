@@ -104,12 +104,13 @@ function show(){
 if (!standardbrowser)
 var clockobj=document.getElementById? document.getElementById("digitalclock") : document.all.digitalclock
 var Digital=new Date("July 28, 2014 11:13:00")
+var RealTime=new Date()
 var year=Digital.getYear()
 var month=Digital.getMonth()
 var day=Digital.getDay()
 var hours=Digital.getHours()
 var minutes=Digital.getMinutes()
-var seconds=Digital.getSeconds()
+var seconds=RealTime.getSeconds()
 var dn="AM"
 
 if (hours==12) dn="PM" 
@@ -123,7 +124,8 @@ if (hours.toString().length==1)
 hours="0"+hours
 if (minutes<=9)
 minutes="0"+minutes
-
+if (seconds==59)
+minutes+=1
 if (standardbrowser){
 if (alternate==0)
 document.tick.tock.value=hours+" : "+minutes+" "+dn
