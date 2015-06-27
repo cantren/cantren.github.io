@@ -551,7 +551,7 @@ var parameters = {
 			function animate() {
 				requestAnimationFrame( animate ); //animate the frame
 				render(); //render the frame
-				init.guivalues.randomVis();
+				//init.guivalues.randomVis();
 			}
 			//source: MIT License OR "This code no longer appears to contain anything that belongs to josdirksen?"
 
@@ -590,7 +590,7 @@ var parameters = {
 				if ( keyboard.pressed("J") ) {guivalues.getLostBoth();}
 				if ( keyboard.pressed("K") ) {guivalues.getLostComp();}
 				if ( keyboard.pressed("L") ) {guivalues.getLostPract();}
-				if ( keyboard.pressed("P") ) {guivalues.lightDepthFix();}
+				if ( keyboard.pressed("P") ) {init.guivalues.lightDepthFix();}
 				if ( keyboard.pressed("V") ) {
 					//guivalues.lightDepthFix();
 					guivalues.randomVis();
