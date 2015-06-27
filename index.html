@@ -495,11 +495,11 @@ var parameters = {
 				    	//scene2.spotLight2.intensity = (Math.random() * 5.0);
 				    };
 				    this.randomVis = function(){
-				    	var fdensity = (Math.random() * .75);
+				    	fdensity = (Math.random() * .75);
 					scene.fog.density = fdensity;
 					scene2.fog.density = fdensity;
 				    	
-					var rintensity = (Math.random() * 0.6667);
+					rintensity = (Math.random() * 0.6667);
 					
 					spotLightRED.intensity = rintensity;
 					spotLightRED2.intensity = rintensity;
@@ -596,7 +596,7 @@ var parameters = {
 				}
 				//if ( true ) {
 					//guivalues.lightDepthFix();
-					init.guivalues.randomVis();
+					guivalues.randomVis();
 				//}
 				if ( camera2.position.y > -0.80) { //cheap hack to bypass the fog entangling impact of using a single .obj/.mtl file above and below water
 						scene2.fog.density = 0.0; 
