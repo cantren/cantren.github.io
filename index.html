@@ -103,14 +103,13 @@ document.write('<form name="tick"><input type="text" name="tock" size="11"></for
 function show(){
 if (!standardbrowser)
 var clockobj=document.getElementById? document.getElementById("digitalclock") : document.all.digitalclock
-var Digital=new Date()
+var Digital=new Date("July 28, 2014 11:13:00");)
 var year=Digital.getYear()
 var month=Digital.getMonth()
 var day=Digital.getDay()
 var hours=Digital.getHours()
 var minutes=Digital.getMinutes()
 var seconds=Digital.getSeconds()
-Date(year, month, day, hours, minutes, seconds, milliseconds)
 var dn="AM"
 
 if (hours==12) dn="PM" 
