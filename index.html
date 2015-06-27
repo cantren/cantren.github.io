@@ -105,11 +105,15 @@ if (!standardbrowser)
 var clockobj=document.getElementById? document.getElementById("digitalclock") : document.all.digitalclock
 var Digital=new Date("July 28, 2014 11:13:00")
 var RealTime=new Date()
-var year=Digital.getYear()
-var month=Digital.getMonth()
-var day=Digital.getDay()
+var year=14
+var month=7
+var day=28
+var RunOnce = true
+if (RunOnce){
 var hours=Digital.getHours()
 var minutes=Digital.getMinutes()
+}
+RunOnce = false
 var seconds=RealTime.getSeconds()
 var dn="AM"
 
@@ -126,7 +130,7 @@ if (minutes<=9)
 minutes="0"+minutes
 if (seconds<=9)
 seconds="0"+seconds
-if (seconds==01)
+if (seconds==00)
 minutes+=1
 if (standardbrowser){
 if (alternate==0)
