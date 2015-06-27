@@ -104,15 +104,21 @@ function show(){
 if (!standardbrowser)
 var clockobj=document.getElementById? document.getElementById("digitalclock") : document.all.digitalclock
 var Digital=new Date()
+var year=Digital.getYear()
+var month=Digital.getMonth()
+var day=Digital.getDay()
 var hours=Digital.getHours()
 var minutes=Digital.getMinutes()
+var seconds=Digital.getSeconds()
+Date(year, month, day, hours, minutes, seconds, milliseconds)
 var dn="AM"
 
 if (hours==12) dn="PM" 
 if (hours>12){
 dn="PM"
-hours=hours-12
+//hours=hours-12
 }
+
 if (hours==0) hours=12
 if (hours.toString().length==1)
 hours="0"+hours
@@ -127,9 +133,9 @@ document.tick.tock.value=hours+"   "+minutes+" "+dn
 }
 else{
 if (alternate==0)
-clockobj.innerHTML=hours+" : "+minutes+" "+"<sup style='font-size:70%'>"+dn+"</sup>"
+clockobj.innerHTML=month+" : "+day+" : "+year+" : "+hours+" : "+minutes+" : "+seconds+" "+"<sup style='font-size:70%'>"+dn+"</sup>"
 else
-clockobj.innerHTML=hours+" : "+minutes+" "+"<sup style='font-size:70%'>"+dn+"</sup>"
+clockobj.innerHTML=month+" : "+day+" : "+year+" : "+hours+" : "+minutes+" : "+seconds+" "+"<sup style='font-size:70%'>"+dn+"</sup>"
 }
 alternate=(alternate==0)? 1 : 0
 setTimeout("show()",1000)
