@@ -108,12 +108,12 @@ var RealTime=new Date()
 var year=14
 var month=7
 var day=28
-var RunOnce = true
-if (RunOnce){
-var hours=Digital.getHours()
-var minutes=Digital.getMinutes()
-}
-RunOnce = false
+var hours=RealTime.getHours()
+//var hours=Digital.getHours()
+//var hoursReal=RealTime.getHours()
+var minutes=RealTime.getMinutes()
+//var minutes=Digital.getMinutes()
+//var minutesReal=RealTime.getMinutes()
 var seconds=RealTime.getSeconds()
 var dn="AM"
 
@@ -131,7 +131,7 @@ minutes="0"+minutes
 if (seconds<=9)
 seconds="0"+seconds
 if (seconds==00)
-minutes+=1
+minutes+=1;
 if (standardbrowser){
 if (alternate==0)
 document.tick.tock.value=hours+" : "+minutes+" "+dn
