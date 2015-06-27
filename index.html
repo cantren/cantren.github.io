@@ -134,9 +134,9 @@ document.tick.tock.value=hours+"   "+minutes+" "+dn
 }
 else{
 if (alternate==0)
-clockobj.innerHTML=month+" : "+day+" : "+year+" : "+hours+" : "+minutes+" : "+seconds+" "+"<sup style='font-size:70%'>"+dn+"</sup>"
+clockobj.innerHTML=month+" / "+day+" / "+year+"   "+hours+" : "+minutes+" : "+seconds+" "+"<sup style='font-size:70%'>"+dn+"</sup>"
 else
-clockobj.innerHTML=month+" : "+day+" : "+year+" : "+hours+" : "+minutes+" : "+seconds+" "+"<sup style='font-size:70%'>"+dn+"</sup>"
+clockobj.innerHTML=month+" / "+day+" / "+year+"   "+hours+" : "+minutes+" : "+seconds+" "+"<sup style='font-size:70%'>"+dn+"</sup>"
 }
 alternate=(alternate==0)? 1 : 0
 setTimeout("show()",1000)
@@ -144,11 +144,13 @@ setTimeout("show()",1000)
 window.onload=show
 
 //-->
-</script>
-
-<p>This free script provided by<br />
+/*
+<p>This free script provided by<br/>
 <a href="http://javascriptkit.com">JavaScript
 Kit</a></p>
+*/
+</script>
+
 
 		<script>
 /*
