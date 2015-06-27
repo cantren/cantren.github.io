@@ -124,7 +124,9 @@ if (hours.toString().length==1)
 hours="0"+hours
 if (minutes<=9)
 minutes="0"+minutes
-if (seconds==59)
+if (seconds<=9)
+seconds="0"+seconds
+if (seconds==00)
 minutes+=1
 if (standardbrowser){
 if (alternate==0)
