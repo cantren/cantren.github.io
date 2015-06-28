@@ -437,9 +437,9 @@ var parameters = {
 				);
 				scene.add( skyBox ); //create Point Loma Sky
 				
-				var geometry = new THREE.IcosahedronGeometry( 50, 4 );
+				var geometry = new THREE.IcosahedronGeometry( 40, 4 );
 				for ( var i = 0, j = geometry.faces.length; i < j; i ++ ) {
-					geometry.faces[ i ].color.setHex( Math.random() * 0xffffff );
+					geometry.faces[ i ].color.setHex( 0xffff00 );
 				}
 				var material = new THREE.MeshPhongMaterial( {
 					vertexColors: THREE.FaceColors,
