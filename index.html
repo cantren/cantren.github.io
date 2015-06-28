@@ -443,13 +443,13 @@ var parameters = {
 				);
 				scene.add( skyBox ); //create Point Loma Sky
 				
-				var geometry = new THREE.IcosahedronGeometry( 25, 4 );
+				var geometry = new THREE.IcosahedronGeometry( 30, 4 );
 				for ( var i = 0, j = geometry.faces.length; i < j; i ++ ) {
 					geometry.faces[ i ].color.setHex( 0xffff00 );
 				}
 				var material = new THREE.MeshPhongMaterial( {
 					vertexColors: THREE.FaceColors,
-					shininess: 100,
+					shininess: 10,
 					envMap: cubeMap
 				} );
 				sphere = new THREE.Mesh( geometry, material );
