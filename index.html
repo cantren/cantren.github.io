@@ -606,7 +606,7 @@ var parameters = {
 				camera2.rotateZ(Math.PI/2);
 				//if (1==1){guivalues.lightDepthFix();}
 				var time = performance.now() * 0.001; //Measure time for water
-				var timeSolar = performance.now() * 0.0001; //Measure time for water
+				var timeSolar = performance.now() * 0.288; //Measure time for water
 				
 				water.material.uniforms.time.value += 1.0 / 60.0; //speed of water motion(wind chop)
 				water.render(); //render water surface
