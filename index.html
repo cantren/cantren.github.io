@@ -289,7 +289,7 @@ var parameters = {
 				//light up the sun
 				spotLightSUN = new THREE.SpotLight(0xFFFFFF);
 				spotLightSUN.position.set(100, 140, -130);
-				spotLightSUN.intensity = 2;
+				spotLightSUN.intensity = 10;
 				scene.add(spotLightSUN);
 				
 				
@@ -443,7 +443,7 @@ var parameters = {
 				);
 				scene.add( skyBox ); //create Point Loma Sky
 				
-				var geometry = new THREE.IcosahedronGeometry( 40, 4 );
+				var geometry = new THREE.IcosahedronGeometry( 25, 4 );
 				for ( var i = 0, j = geometry.faces.length; i < j; i ++ ) {
 					geometry.faces[ i ].color.setHex( 0xffff00 );
 				}
@@ -465,7 +465,7 @@ var parameters = {
 					envMap: cubeMap
 				} );
 				sphere2 = new THREE.Mesh( geometry2, material2 );
-				scene.add( sphere2 );
+				//scene.add( sphere2 );
 			}
 			//source: This entire "init()" function is very "boilerplate" from the examples at http://threejs.org/examples/ covered under the MIT License
 			//attribution: Please see the "MIT License" included in this document
