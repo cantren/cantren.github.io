@@ -569,6 +569,15 @@ var parameters = {
 				var time = performance.now() * 0.001; //Measure time for water
 				water.material.uniforms.time.value += 1.0 / 60.0; //speed of water motion(wind chop)
 				water.render(); //render water surface
+				var nsin = Math.sin(time);
+				var ncos = Math.cos(time);
+				// set the sun
+				spotLightRED.position.set( 1500*nsin, 2000*nsin, 2000*ncos);
+				spotLightRED2.position.set( 1500*nsin, 2000*nsin, 2000*ncos);
+				spotLightGREEN.position.set( 1500*nsin, 2000*nsin, 2000*ncos);
+				spotLightGREEN2.position.set( 1500*nsin, 2000*nsin, 2000*ncos);
+				spotLightBLUE.position.set( 1500*nsin, 2000*nsin, 2000*ncos);
+				spotLightBLUE2.position.set( 1500*nsin, 2000*nsin, 2000*ncos);
 				
 				var lightFix = new function(){
 					this.lightDepthFix = function(){
