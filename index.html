@@ -273,24 +273,24 @@ var parameters = {
 				//Add scene lighting
 				var light = new THREE.HemisphereLight( 0xffffbb, 0x008080, 1 );//I tried changing the light color here to see what would happen
 				light.position.set( - 1, 1, - 1 ); //my hemisphere flipped upside down
-				//scene.add( light );//I changed the name to distinguish a negative y value from "sunlight"
+				scene.add( light );//I changed the name to distinguish a negative y value from "sunlight"
 
 				var light2 = new THREE.HemisphereLight( 0xffffbb, 0x008080, 1 );//I tried changing the light color here to see what would happen
 				light2.position.set( - 1, 1, - 1 ); //my hemisphere flipped upside down
-				//scene2.add( light2 );//I changed the name to distinguish a negative y value from "sunlight"
+				scene2.add( light2 );//I changed the name to distinguish a negative y value from "sunlight"
 				
 				//More scene lighting
 				var ambientLight = new THREE.AmbientLight(0x383838);
-				//scene.add(ambientLight);
+				scene.add(ambientLight);
 				
 				var ambientLight2 = new THREE.AmbientLight(0x383838);
-				//scene2.add(ambientLight2);
+				scene2.add(ambientLight2);
 				
-				//light up the sun
+				light up the sun
 				spotLightSUN = new THREE.SpotLight(0xFFFFFF);
 				spotLightSUN.position.set(100, 140, -130);
-				spotLightSUN.intensity = 10;
-				scene.add(spotLightSUN);
+				spotLightSUN.intensity = 100;
+				//scene.add(spotLightSUN);
 				
 				
 				//Add the three spotlights representing the sun(intensity will be modified as a function of depth)
