@@ -436,6 +436,18 @@ var parameters = {
 					skyBoxMaterial
 				);
 				scene.add( skyBox ); //create Point Loma Sky
+				
+				var geometry = new THREE.IcosahedronGeometry( 400, 4 );
+				for ( var i = 0, j = geometry.faces.length; i < j; i ++ ) {
+					geometry.faces[ i ].color.setHex( Math.random() * 0xffffff );
+				}
+				var material = new THREE.MeshPhongMaterial( {
+					vertexColors: THREE.FaceColors,
+					shininess: 100,
+					envMap: cubeMap
+				} );
+				sphere = new THREE.Mesh( geometry, material );
+				scene.add( sphere );
 			}
 			//source: This entire "init()" function is very "boilerplate" from the examples at http://threejs.org/examples/ covered under the MIT License
 			//attribution: Please see the "MIT License" included in this document
@@ -569,6 +581,9 @@ var parameters = {
 				var time = performance.now() * 0.001; //Measure time for water
 				water.material.uniforms.time.value += 1.0 / 60.0; //speed of water motion(wind chop)
 				water.render(); //render water surface
+				
+				
+				//source:https://github.com/dirkk0/threejs_daynight/blob/master/index.html
 				var nsin = Math.sin(time);
 				var ncos = Math.cos(time);
 				// set the sun
@@ -578,7 +593,10 @@ var parameters = {
 				spotLightGREEN2.position.set( 1500*nsin, 2000*nsin, 2000*ncos);
 				spotLightBLUE.position.set( 1500*nsin, 2000*nsin, 2000*ncos);
 				spotLightBLUE2.position.set( 1500*nsin, 2000*nsin, 2000*ncos);
-				
+				//source:https://github.com/dirkk0/threejs_daynight/blob/master/index.html
+
+				sphere.position.copy( spotLightRED.position );
+
 				var lightFix = new function(){
 					this.lightDepthFix = function(){
 					intensity = .95;
