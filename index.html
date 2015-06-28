@@ -281,15 +281,15 @@ var parameters = {
 				
 				var directionalLight = new THREE.DirectionalLight( 0xffffff, 1 );
 				directionalLight.position.set( 0, -1, 0 );
-				scene.add( directionalLight );
+				//scene.add( directionalLight );
 				
 				var directionalLight2 = new THREE.DirectionalLight( 0xffffff, 1 );
 				directionalLight2.position.set( 0, 1, 0 );
-				scene.add( directionalLight2 );
+				//scene.add( directionalLight2 );
 				
 				//More scene lighting
-				var ambientLight = new THREE.AmbientLight(0x383838);
-				//scene.add(ambientLight);
+				var ambientLight = new THREE.AmbientLight(0xffffff);
+				scene.add(ambientLight);
 				
 				var ambientLight2 = new THREE.AmbientLight(0x383838);
 				//scene2.add(ambientLight2);
