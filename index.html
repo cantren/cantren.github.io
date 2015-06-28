@@ -453,7 +453,19 @@ var parameters = {
 					envMap: cubeMap
 				} );
 				sphere = new THREE.Mesh( geometry, material );
-				scene.add( sphere );
+//				scene.add( sphere );
+				
+				var geometry2 = new THREE.IcosahedronGeometry( 10, 4 );
+				for ( var i = 0, j = geometry.faces.length; i < j; i ++ ) {
+					geometry.faces[ i ].color.setHex( 0xffff00 );
+				}
+				var material2 = new THREE.MeshPhongMaterial( {
+					vertexColors: THREE.FaceColors,
+					shininess: 100,
+					envMap: cubeMap
+				} );
+				sphere2 = new THREE.Mesh( geometry2, material2 );
+				scene.add( sphere2 );
 			}
 			//source: This entire "init()" function is very "boilerplate" from the examples at http://threejs.org/examples/ covered under the MIT License
 			//attribution: Please see the "MIT License" included in this document
