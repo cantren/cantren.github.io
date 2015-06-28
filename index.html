@@ -437,7 +437,7 @@ var parameters = {
 				);
 				scene.add( skyBox ); //create Point Loma Sky
 				
-				var geometry = new THREE.IcosahedronGeometry( 400, 4 );
+				var geometry = new THREE.IcosahedronGeometry( 50, 4 );
 				for ( var i = 0, j = geometry.faces.length; i < j; i ++ ) {
 					geometry.faces[ i ].color.setHex( Math.random() * 0xffffff );
 				}
@@ -578,7 +578,7 @@ var parameters = {
 				camera2.rotateZ((Math.PI/-2));
 				camera2.rotateZ(Math.PI/2);
 				//if (1==1){guivalues.lightDepthFix();}
-				var time = performance.now() * 0.001; //Measure time for water
+				var time = performance.now() * 0.00001; //Measure time for water
 				water.material.uniforms.time.value += 1.0 / 60.0; //speed of water motion(wind chop)
 				water.render(); //render water surface
 				
