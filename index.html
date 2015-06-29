@@ -399,8 +399,8 @@ var parameters = {
 				mirrorMesh2.add( water ); //add water shader to otherwise boring PlaneBufferGeometry
 				mirrorMesh.rotation.x = - Math.PI * 1.5; //rotate undwater water surface to point down
 				mirrorMesh2.rotation.x = - Math.PI * 0.5; //rotate water surface to point up
-				mirrorMesh.position.y = -1.91;//water height experimentally generated via trial and error
-				mirrorMesh2.position.y = -1.91;//water height experimentally generated via trial and error
+				mirrorMesh.position.y = -.95;//water height experimentally generated via trial and error
+				mirrorMesh2.position.y = -.95;//water height experimentally generated via trial and error
 				
 				scene.add( mirrorMesh ); //add underwater water surface
 				scene.add( mirrorMesh2); //add water surface
@@ -586,7 +586,6 @@ var parameters = {
 			movSpeed.onChange( function(value){   camControls2.movementSpeed = value; camControls.movementSpeed = value;  });
 			lightIntensity.onChange( function(value){   spotLightRED2.intensity = value; spotLightRED.intensity = value;   });
 			timeOfDay.onChange( function(value){   guivalues.timeShift = value; });
-			
 			//source: This code no longer appears to contain anything that belongs to Rudie Dirkx http://hotblocks.nl/tests/three/dat.gui.html 
 
 			//source: MIT License OR "This code no longer appears to contain anything that belongs to josdirksen?"
