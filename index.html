@@ -481,8 +481,8 @@ var parameters = {
 
 			//source: This code no longer appears to contain anything that belongs to http://www.smartjava.org/ltjs/chapter-09/02-selecting-objects.html
 			var guivalues = new function () {
-				    this.fogLastValue = 0;
-				    this.aboveWater = false;
+					
+				    this.timeShift = 0;
 				    this.getLostBoth = function(){
 				    	camera.position.x = (Math.random() * 90.0);
 				    	camera.position.x -=45.0;
@@ -557,6 +557,7 @@ var parameters = {
 			var folder1 = gui.addFolder('visibility');
 			var fogDensity = folder1.add(scene2.fog, 'density').min(0.00).max(0.75).step(0.01).listen();
 			var lightIntensity = folder1.add(spotLightRED, 'intensity').min(0.00).max(2.0).step(0.01).listen();
+			var timeOfDay = folder1.add(guivalues, 'timeShift').min(-6.0).max(6.0).step(0.01).listen();
 			var folder2 = gui.addFolder('behavior');
 			var rotSpeed = folder2.add(camControls2, 'lookSpeed').min(0.0).max(0.5).step(0.01).listen();
 			var movSpeed = folder2.add(camControls2, 'movementSpeed').min(0.0).max(5.0).step(0.01).listen();
@@ -584,6 +585,8 @@ var parameters = {
   			rotSpeed.onChange( function(value){   camControls2.lookSpeed = value; camControls.lookSpeed = value;   });
 			movSpeed.onChange( function(value){   camControls2.movementSpeed = value; camControls.movementSpeed = value;  });
 			lightIntensity.onChange( function(value){   spotLightRED2.intensity = value; spotLightRED.intensity = value;   });
+			timeOfDay.onChange( function(value){   guivalues.timeShift = value; });
+			
 			//source: This code no longer appears to contain anything that belongs to Rudie Dirkx http://hotblocks.nl/tests/three/dat.gui.html 
 
 			//source: MIT License OR "This code no longer appears to contain anything that belongs to josdirksen?"
@@ -606,7 +609,7 @@ var parameters = {
 				camera2.rotateZ(Math.PI/2);
 				//if (1==1){guivalues.lightDepthFix();}
 				var time = performance.now() * 0.001; //Measure time for water
-				var timeSolar = performance.now() * 0.000000003472 + 32470000; //Measure time for water
+				var timeSolar = performance.now() * 0.000000003472 + 32470000 + guivalues.timeShift * 3600000; //Measure time for water
 				
 				water.material.uniforms.time.value += 1.0 / 60.0; //speed of water motion(wind chop)
 				water.render(); //render water surface
