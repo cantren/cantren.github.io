@@ -18,8 +18,8 @@ Ks 0.000000 0.000000 0.000000
 Ni 1.300000
 d 1.000000
 illum 2
-map_Kd C:\Users\Scrypt\Desktop\export3\Robosub Obstacles OBJ\spongeblack.jpg
-map_Bump C:\\Users\\Scrypt\\Desktop\\export3\\Robosub Obstacles OBJ\\sponge bump.jpg
+map_Kd spongeblack.jpg
+map_Bump  sponge bump.jpg
 
 newmtl 11
 Ns 98.039216
@@ -29,7 +29,7 @@ Ks 0.000000 0.000000 0.000000
 Ni 1.300000
 d 1.000000
 illum 2
-map_Kd C:\Users\Scrypt\Desktop\export3\Robosub Obstacles OBJ\water still.jpg
+map_Kd water still.jpg
 map_Bump water still bump.jpg
 
 newmtl 12
@@ -58,8 +58,8 @@ Ks 0.000000 0.000000 0.000000
 Ni 1.300000
 d 1.000000
 illum 2
-map_Kd C:\Users\Scrypt\Desktop\export3\Robosub Obstacles OBJ\leather.jpg
-map_Bump C:\\Users\\Scrypt\\Desktop\\export3\\Robosub Obstacles OBJ\\leather bump.jpg
+map_Kd leather.jpg
+map_Bump leather bump.jpg
 
 newmtl 15
 Ns 684.313725
