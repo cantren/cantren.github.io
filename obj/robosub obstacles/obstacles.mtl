@@ -19,7 +19,7 @@ Ni 1.300000
 d 1.000000
 illum 2
 map_Kd spongeblack.jpg
-map_Bump  sponge bump.jpg
+map_Bump sponge bump.jpg
 
 newmtl 11
 Ns 98.039216
