@@ -273,11 +273,13 @@ var parameters = {
 				//Add scene lighting
 				var light = new THREE.HemisphereLight( 0xffffbb, 0x008080, 1 );//I tried changing the light color here to see what would happen
 				light.position.set( - 1, 1, - 1 ); //my hemisphere flipped upside down
-				//scene.add( light );//I changed the name to distinguish a negative y value from "sunlight"
+				light.intensity = .25;
+				scene.add( light );//I changed the name to distinguish a negative y value from "sunlight"
 
 				var light2 = new THREE.HemisphereLight( 0xffffbb, 0x008080, 1 );//I tried changing the light color here to see what would happen
 				light2.position.set( - 1, 1, - 1 ); //my hemisphere flipped upside down
-				//scene2.add( light2 );//I changed the name to distinguish a negative y value from "sunlight"
+				light2.intensity = .25;
+				scene2.add( light2 );//I changed the name to distinguish a negative y value from "sunlight"
 				/*
 				//var directionalLight = new THREE.DirectionalLight( 0xffffff, 1 );
 				//directionalLight.position.set( 0, -1, 0 );
