@@ -289,10 +289,12 @@ var parameters = {
 				*/
 				//More scene lighting
 				var ambientLight = new THREE.AmbientLight(0xffffff);
-				//scene.add(ambientLight);
+				ambientLight.intensity = .25;
+				scene.add(ambientLight);
 				
-				var ambientLight2 = new THREE.AmbientLight(0x383838);
-				//scene2.add(ambientLight2);
+				var ambientLight2 = new THREE.AmbientLight(0xffffff);
+				ambientLight2.intensity = .25;
+				scene2.add(ambientLight2);
 				
 				//light up the sun
 				//spotLightSUN = new THREE.SpotLight(0xFFFFFF);
@@ -304,7 +306,7 @@ var parameters = {
 				//Add the three spotlights representing the sun(intensity will be modified as a function of depth)
 				spotLightRED = new THREE.SpotLight(0xff0000);
 				spotLightRED.position.set(100, 140, -130);
-				spotLightRED.intensity = 2;
+				spotLightRED.intensity = .75;
 				scene.add(spotLightRED);
 				
 				spotLightRED2 = new THREE.SpotLight(0xff0000);
