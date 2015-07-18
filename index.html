@@ -377,14 +377,14 @@ var parameters = {
 				waterNormals.wrapS = waterNormals.wrapT = THREE.RepeatWrapping; //recycle that .jpg like a TV re-run
 				//initialize/declare water shader and provide parameters
 				water = new THREE.Water( renderer, camera, scene, {
-					textureWidth: 512, 
-					textureHeight: 512,
+					textureWidth: 128, 
+					textureHeight: 128,
 					waterNormals: waterNormals,
 					alpha: 	0.925,
-					sunDirection: light.position.clone().normalize(),
+					sunDirection: SpotLightRED.position.clone().normalize(),
 					sunColor: 0xffffff,
 					waterColor: 0x001e0f,
-					distortionScale: 50.0,
+					distortionScale: 12.5,
 					fog: true,
 				} );
 				/*
