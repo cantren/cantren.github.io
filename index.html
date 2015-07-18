@@ -546,7 +546,13 @@ var parameters = {
 				    	camera.position.y = -2.2;// + ((Math.random() * 1.0) - 0.5);
 				    	camera.position.z = -21.74 + ((Math.random() * 10.0) - 5.0);
 				    	//camera3.position.copy(camera);
-				    	camera.lookAt(-23.14,-2.2,-21.74);
+				    	camera3.position.x =-23.14;
+				    	camera3.position.y = -2.2
+				    	camera3.position.z = -21.74;
+				    	
+				    	
+				    	//camera.lookAt(-23.14,-2.2,-21.74);
+				    	camera.lookAt(camera3);
 				    	//camera.rotation.z = camera3.rotation.z;
 
        				    	//camera.rotation.z = (Math.random() * (Math.PI*2.0));
