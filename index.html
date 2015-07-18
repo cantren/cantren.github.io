@@ -546,7 +546,7 @@ var parameters = {
 				    	camera.position.y = -2.2;// + ((Math.random() * 1.0) - 0.5);
 				    	camera.position.z = -21.74 + ((Math.random() * 10.0) - 5.0);
 				    	camera3.position.copy(camera);
-				    	camera3.lookAt(-23.14,-2.2,-21.74).normalize();
+				    	camera3.lookAt(-23.14,-2.2,-21.74);
 				    	camera.rotation.z = camera3.rotation.z;
 
        				    	//camera.rotation.z = (Math.random() * (Math.PI*2.0));
@@ -557,7 +557,7 @@ var parameters = {
 				    	camera.position.y = -2.15;// + ((Math.random() * 1.0) - 0.5);
 				    	camera.position.z = -20.69 + ((Math.random() * 10.0) - 5.0);
 				    	camera3.position.copy(camera);
-				    	camera3.lookAt(-22.44,-2.15,-20.69).normalize();
+				    	camera3.lookAt(-22.44,-2.15,-20.69);
 				    	camera.rotation.z = camera3.rotation.z;
 
        				    	//camera.rotation.z = (Math.random() * (Math.PI*2.0));
@@ -568,7 +568,7 @@ var parameters = {
 				    	camera.position.y = -2.05;// + ((Math.random() * 1.0) - 0.5);
 				    	camera.position.z = -19.65 + ((Math.random() * 10.0) - 5.0);
 				    	camera3.position.copy(camera);
-				    	camera3.lookAt(-21.8,-2.05,-19.65).normalize();
+				    	camera3.lookAt(-21.8,-2.05,-19.65);
 				    	camera.rotation.z = camera3.rotation.z;
 
        				    	//camera.rotation.z = (Math.random() * (Math.PI*2.0));
@@ -669,6 +669,7 @@ var parameters = {
 				camControls2.update( clock.getDelta() ); //update First Person Camera
 				camera2.position.copy( camera.position );
 				camera2.rotation.copy( camera.rotation );
+				camera2.rotation.z = camera3.rotation.z.clone();
 				camera2.up = new THREE.Vector3(-1,-1,-1);
 				camera2.rotateX(Math.PI/-2);
 				camera2.rotateZ((Math.PI/-2));
