@@ -552,7 +552,7 @@ var parameters = {
 				    	
 				    	
 				    	//camera.lookAt(-23.14,-2.2,-21.74);
-				    	camera.lookAt(camera3);
+				    	//camera.lookAt(camera3);
 				    	//camera.rotation.z = camera3.rotation.z;
 
        				    	//camera.rotation.z = (Math.random() * (Math.PI*2.0));
@@ -563,7 +563,7 @@ var parameters = {
 				    	camera.position.y = -2.15;// + ((Math.random() * 1.0) - 0.5);
 				    	camera.position.z = -20.69 + ((Math.random() * 10.0) - 5.0);
 				    	//camera3.position.copy(camera);
-				    	camera.lookAt(-22.44,-2.15,-20.69);
+				    	//camera.lookAt(-22.44,-2.15,-20.69);
 				    	//camera.rotation.z = camera3.rotation.z;
 
        				    	//camera.rotation.z = (Math.random() * (Math.PI*2.0));
@@ -574,7 +574,7 @@ var parameters = {
 				    	camera.position.y = -2.05;// + ((Math.random() * 1.0) - 0.5);
 				    	camera.position.z = -19.65 + ((Math.random() * 10.0) - 5.0);
 				    	//camera3.position.copy(camera);
-				    	camera.lookAt(-21.8,-2.05,-19.65);
+				    	//camera.lookAt(-21.8,-2.05,-19.65);
 				    	//camera.rotation.z = camera3.rotation.z;
 
        				    	//camera.rotation.z = (Math.random() * (Math.PI*2.0));
@@ -680,6 +680,13 @@ var parameters = {
 				camera2.rotateX(Math.PI/-2);
 				camera2.rotateZ((Math.PI/-2));
 				camera2.rotateZ(Math.PI/2);
+				
+				camera3.position.x =-23.14;
+				camera3.position.y = -2.2
+				camera3.position.z = -21.74;
+				
+				camera.lookAt(camera3);
+				camera2.lookAt(camera3);
 				//if (1==1){guivalues.lightDepthFix();}
 				var time = performance.now() * 0.001; //Measure time for water
 				var timeSolar = performance.now() * 0.000000003472 + 32470000 + 3 * 3600000; //Measure time for sun
