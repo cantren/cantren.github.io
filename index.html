@@ -194,7 +194,7 @@ THE SOFTWARE.
 			//source: MIT License OR "This code no longer appears to contain anything that belongs to josdirksen?"
 
 			var container, container2, stats;//cargo cult code? comment out this line please(may be desired in future)
-			var camera, camera2, camControls, camControls2, scene, scene2, renderer, renderer2;//these are actually usefull
+			var camera, camera2, camera3, camControls, camControls2, camControls3, scene, scene2, renderer, renderer2;//these are actually usefull
 			var CANVAS_WIDTH = 200,
 			    CANVAS_HEIGHT = 200,
 			    CAM_DISTANCE = 300;//This doesn't look like cargo cult code but should be sanity checked at some point
@@ -254,8 +254,16 @@ var parameters = {
 			        camera2.position.x = 0.0;//pool line of symetry is x axis
 				camera2.position.y = -2.0;//water depth
 			        camera2.position.z = -28.0;//how close to the wall are you
-			        camera.rotation.z = 3.06;
+			        camera2.rotation.z = 3.06;
 				//camera.position.set( 0, -2, -28 );
+				
+				camera3 = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.5, 3000000);
+			        camera3.up = camera.up; // important!
+			        
+				camera3.position.x = 0.0;//pool line of symetry is x axis
+				camera3.position.y = -2.0;//water depth
+			        camera3.position.z = -28.0;//how close to the wall are you
+
 				
 				camControls = new THREE.FirstPersonControls( camera, renderer.domElement );
 				camControls.lookSpeed = 0.05; //Pitch Thrust to drag ratio
@@ -268,6 +276,13 @@ var parameters = {
 				camControls2.movementSpeed = 0.25; // FWD BKWD Thrust to drag ratio 
 				camControls2.verticalMin = -50.0; //basement floor level
 				camControls2.verticalMax = 10.0; //sky ceiling level
+				
+				camControls3 = new THREE.FirstPersonControls( camera2, renderer2.domElement );
+				camControls2.lookSpeed = 0.05; //Pitch Thrust to drag ratio
+				camControls2.movementSpeed = 0.25; // FWD BKWD Thrust to drag ratio 
+				camControls2.verticalMin = -50.0; //basement floor level
+				camControls2.verticalMax = 10.0; //sky ceiling level
+				
 				
 				
 				//Add scene lighting
@@ -526,6 +541,41 @@ var parameters = {
        				    	camera.rotation.z = (Math.random() * (Math.PI*2.0));
        				    	camera.rotation.z -= Math.PI;
 				    };
+				    this.lookAtRedBuoy = function(){
+				    	camera.position.x = -23.14 + ((Math.random() * 10.0) - 5.0);
+				    	camera.position.y = -2.2 + ((Math.random() * 1.0) - 0.5);
+				    	camera.position.z = -21.74 + ((Math.random() * 10.0) - 5.0);
+				    	camera3.position.copy(camera);
+				    	camera3.lookAt (-23.14,-2.2,-21.74);
+				    	camera.rotation.z = camera3.rotation.z;
+
+       				    	//camera.rotation.z = (Math.random() * (Math.PI*2.0));
+       				    	//camera.rotation.z -= Math.PI;
+				    };
+				    this.lookAtYellowBuoy = function(){
+				    	camera.position.x = -22.44 + ((Math.random() * 10.0) - 5.0);
+				    	camera.position.y = -2.15 + ((Math.random() * 1.0) - 0.5);
+				    	camera.position.z = -20.69 + ((Math.random() * 10.0) - 5.0);
+				    	camera3.position.copy(camera);
+				    	camera3.lookAt (-22.44,-2.15,-20.69);
+				    	camera.rotation.z = camera3.rotation.z;
+
+       				    	//camera.rotation.z = (Math.random() * (Math.PI*2.0));
+       				    	//camera.rotation.z -= Math.PI;
+				    };
+				    this.lookAtGreenBuoy = function(){
+				    	camera.position.x = -21.8 + ((Math.random() * 10.0) - 5.0);
+				    	camera.position.y = -2.05 + ((Math.random() * 1.0) - 0.5);
+				    	camera.position.z = -19.65 + ((Math.random() * 10.0) - 5.0);
+				    	camera3.position.copy(camera);
+				    	camera3.lookAt (-21.8,-2.05,-19.65);
+				    	camera.rotation.z = camera3.rotation.z;
+
+       				    	//camera.rotation.z = (Math.random() * (Math.PI*2.0));
+       				    	//camera.rotation.z -= Math.PI;
+				    };
+
+
 				    this.lightDepthFix = function(){
 					intensity = .85;
 					depthcm = (camera2.position.y + (0.9)) * (-100.0);
@@ -694,6 +744,12 @@ var parameters = {
 				if ( keyboard.pressed("J") ) {guivalues.getLostBoth();}
 				if ( keyboard.pressed("K") ) {guivalues.getLostComp();}
 				if ( keyboard.pressed("L") ) {guivalues.getLostPract();}
+				
+				if ( keyboard.pressed("R") ) {guivalues.lookAtRedBuoy();}
+				if ( keyboard.pressed("Y") ) {guivalues.lookAtYellowBuoy();}
+				if ( keyboard.pressed("G") ) {guivalues.lookAtGreenBuoy();}
+
+
 				if ( keyboard.pressed("P") ) {lightFix.lightDepthFix();}
 				if ( keyboard.pressed("V") ) {
 					//guivalues.lightDepthFix();
