@@ -376,6 +376,18 @@ var parameters = {
 				waterNormals = new THREE.ImageUtils.loadTexture( 'textures/waternormals.jpg' ); //potential for easy modification/obstacle reflections
 				waterNormals.wrapS = waterNormals.wrapT = THREE.RepeatWrapping; //recycle that .jpg like a TV re-run
 				//initialize/declare water shader and provide parameters
+				water = new THREE.Water( renderer, camera, scene, {
+					textureWidth: 512, 
+					textureHeight: 512,
+					waterNormals: waterNormals,
+					alpha: 	0.925,
+					sunDirection: light.position.clone().normalize(),
+					sunColor: 0xffffff,
+					waterColor: 0x001e0f,
+					distortionScale: 50.0,
+					fog: true,
+				} );
+				/*
 				water = new THREE.Water( renderer, camera, scene, { //three.js has a specific thing for water, this is it
 					textureWidth: 512, //size of waves I think, maybe the waternormals.jpg stretch?
 					textureHeight: 512, //size of waves I think, maybe the waternormals.jpg stretch?
@@ -388,6 +400,7 @@ var parameters = {
 					distortionScale: 50.0, //also related to size of waves?
 					fog: true,
 				});
+				*/
 
 				//initialize/declare new planes for holding the "water" texture mapping
 				mirrorMesh = new THREE.Mesh(
