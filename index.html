@@ -671,8 +671,8 @@ var parameters = {
 			//source: MIT License OR "This code no longer appears to contain anything that belongs to josdirksen?"
 			function render() {
 				keyboard.update();
-				//camControls.update( clock.getDelta() ); //update First Person Camera
-				//camControls2.update( clock.getDelta() ); //update First Person Camera
+				camControls.update( clock.getDelta() ); //update First Person Camera
+				camControls2.update( clock.getDelta() ); //update First Person Camera
 				camera2.position.copy( camera.position );
 				camera2.rotation.copy( camera.rotation );
 				//camera2.rotation.z = camera3.rotation.z;
@@ -681,11 +681,11 @@ var parameters = {
 				camera2.rotateZ((Math.PI/-2));
 				camera2.rotateZ(Math.PI/2);
 				
-				camera3.position.x =-23.14;
-				camera3.position.y = -2.2
-				camera3.position.z = -21.74;
+				//camera3.position.x =-23.14;
+				//camera3.position.y = -2.2
+				//camera3.position.z = -21.74;
 				
-				camera.lookAt(camera3);
+				//camera.lookAt(camera3);
 				//camera2.lookAt(camera3);
 				//if (1==1){guivalues.lightDepthFix();}
 				var time = performance.now() * 0.001; //Measure time for water
