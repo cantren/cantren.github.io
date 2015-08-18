@@ -7,14 +7,21 @@ Step 1: Download and install OBS MultiPlatform
     $ https://github.com/jp9000/obs-studio/releases/download/0.11.4/OBS-MP-0.11.4-Installer.exe (Direct Link)
 
 Step 2: Open cantren.github.io(or local copy) in Chrome
+
 Step 3: Create a new Scene
+
 Step 4: Create a new Source(Type: Window Capture)
+
 Step 5: Select the Chrome window running SimBox
+
 Step 6: Right click on the captured area and choose "Filters" from the drop down menu
+
 Step 7: Select "Crop" Width = 728 and Height = 728 
-    Note: x/y position will be found by subtracting "728" from your screen resolution $width and $height respectively and        dividing the result by two
+    Note: x/y position will be found by subtracting "728" from your screen resolution $width and $height respectively and         dividing the result by two
 Step 8: ???
+
 TODO:How to use FFServer as RTMP server instead of Twitch.tv etc?(firewall problems?)
+
 TODO:What did I gloss over in video settings etc?
 
 Windows Instructions(old)
