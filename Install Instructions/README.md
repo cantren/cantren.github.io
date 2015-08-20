@@ -21,11 +21,42 @@ Step 7: Select "Crop" Width = 728 and Height = 728
 
     Note: x/y position will be found by subtracting "728" from your screen resolution $width and $height respectively and         dividing the result by two
 
-Step 8: ???
+Step 8: OBS Custom Stream Server: 
 
-TODO:How to use FFServer as RTMP server instead of Twitch.tv etc?(firewall problems?)
+    rtmp://[ip address of server]/live
+
+Step 9: Install nginx+rtmp on server by following this guide:         
+
+    https://obsproject.com/forum/resources/how-to-set-up-your-own-private-rtmp-server-using-nginx.50/
+    
+Step 10:
+
+    sudo nano /usr/local/nginx/conf/nginx.conf
+
+Step 11: Paste the following to end of the file:
+
+    rtmp {
+            server {
+                    listen 1935;
+                    chunk_size 4096;
+                    
+                    application live {
+                            live on;
+                            record off;
+                    }
+            }
+    }
+
+Step 11: Press "Ctrl+x"
+Step 12: Press "y"
+Step 13:
+
+    sudo /usr/local/nginx/sbin/nginx
+
+DONE! TODO:How to use FFServer as RTMP server instead of Twitch.tv etc?(firewall problems?)
 
 TODO:What did I gloss over in video settings etc?
+
 
 Windows Instructions(old)
 
