@@ -643,10 +643,10 @@ var parameters = {
 				
 			//source: This code no longer appears to contain anything that belongs to http://nuevil.com/index3.html
 			var gui = new dat.GUI({resizable : false});
-			gui.add(guivalues, 'cameraNear', 0, 50).onChange(function (e) {
+			gui.add(guivalues, 'cameraNear', 0, 25).onChange(function (e) {
         		    camera.near = e;
         		});
-        		gui.add(guivalues, 'cameraFar', 50, 200).onChange(function (e) {
+        		gui.add(guivalues, 'cameraFar', 15, 75).onChange(function (e) {
         			camera.far = e;
         		});
 			var folder1 = gui.addFolder('visibility');
