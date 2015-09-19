@@ -531,6 +531,8 @@ var parameters = {
 			var guivalues = new function () {
 					
 				    this.timeShift = 0;
+				    this.cameraNear = camera.near;
+				    this.cameraFar = camera.far;
 				    this.getLostBoth = function(){
 				    	camera.position.x = (Math.random() * 90.0);
 				    	camera.position.x -=45.0;
@@ -596,8 +598,6 @@ var parameters = {
        				    	//camera.rotation.z = (Math.random() * (Math.PI*2.0));
        				    	//camera.rotation.z -= Math.PI;
 				    };
-
-
 				    this.lightDepthFix = function(){
 					intensity = .85;
 					depthcm = (camera2.position.y + (0.9)) * (-100.0);
@@ -643,8 +643,16 @@ var parameters = {
 				
 			//source: This code no longer appears to contain anything that belongs to http://nuevil.com/index3.html
 			var gui = new dat.GUI({resizable : false});
+			gui.add(guivalues, 'cameraNear', 0, 50).onChange(function (e) {
+        		    camera.near = e;
+        		});
+        		gui.add(guivalues, 'cameraFar', 50, 200).onChange(function (e) {
+        			camera.far = e;
+        		});
 			var folder1 = gui.addFolder('visibility');
 			var fogDensity = folder1.add(scene2.fog, 'density').min(0.00).max(0.75).step(0.01).listen();
+			//var cameraNear = 
+			
 			var lightIntensity = folder1.add(spotLightRED, 'intensity').min(0.00).max(2.0).step(0.01).listen();
 			var timeOfDay = folder1.add(guivalues, 'timeShift').min(-6.0).max(6.0).step(0.01).listen();
 			var folder2 = gui.addFolder('behavior');
