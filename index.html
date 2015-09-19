@@ -383,9 +383,6 @@ var parameters = {
 							child.material.map = new THREE.MeshDepthMaterial({color: 0x2194CE});
 						}
 					} );
-//					for(var i in object.children) {
-//					        object.children[i].material = new THREE.MeshDepthMaterial({color: 0x2194CE});
-//						}
 					scene.add( object );//to make a Robosub you would likely need to change it's name from "object"
 					});
 				loader.load('../obj/robosub obstacles/obstacles.obj', function ( object ) {
@@ -396,25 +393,16 @@ var parameters = {
 							child.material.map = new THREE.MeshDepthMaterial({color: 0x2194CE});
 						}
 					} );
-//					for(var i in object.children) {
-//					        object.children[i].material = new THREE.MeshDepthMaterial({color: 0x2194CE});
-//						}
 					scene.add( object );//to make a Robosub you would likely need to change it's name from "object"
 					});
 				loader.load('../obj/transdec OBJ/transdec test.obj', function ( object ) {
 //				loader.load('../obj/transdec OBJ/transdec test.obj', '../obj/transdec OBJ/transdec test.mtl', function ( object ) {
 					object.position.y = -12.975;//experimentally generated via trial and error
-					for(var i in object.children) {
-					        object.children[i].material = new THREE.MeshDepthMaterial({color: 0x2194CE});
-					} // end apply to Mesh of interest
 					scene2.add( object );//to make a Robosub you would likely need to change it's name from "object"
 					});
 				loader.load('../obj/robosub obstacles/obstacles.obj', function ( object ) {
 //				loader.load('../obj/robosub obstacles/obstacles.obj', '../obj/robosub obstacles/obstacles.mtl', function ( object ) {
 					object.position.y = -12.975;//experimentally generated via trial and error
-					for(var i in object.children) {
-					        object.children[i].material = new THREE.MeshDepthMaterial({color: 0x2194CE});
-					} // end apply to Mesh of interest
 					scene2.add( object );//to make a Robosub you would likely need to change it's name from "object"
 					});
 
