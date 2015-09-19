@@ -80,6 +80,14 @@
 		<script src="js/MTLLoader.js"></script>
 		<script type="text/javascript" src="js/OBJMTLLoader.js"></script>
 		<script type="text/javascript" src="js/OBJLoader.js"></script>
+		
+		
+		<script src="../js/BrightnessContrastShader.js"></script>
+		<script src="../js/ShaderPass.js"></script>
+		<script src="../js/EffectComposer.js"></script>
+		<script src="../js/RenderPass.js"></script>
+
+		
 
 
   		<div id='inset2'>
@@ -197,6 +205,9 @@ THE SOFTWARE.
 
 			var container, container2, stats;//cargo cult code? comment out this line please(may be desired in future)
 			var camera, camera2, camera3, camControls, camControls2, camControls3, scene, scene2, renderer, renderer2;//these are actually usefull
+			var composer;
+			var testParams, testPass;			
+
 			var CANVAS_WIDTH = 200,
 			    CANVAS_HEIGHT = 200,
 			    CAM_DISTANCE = 300;//This doesn't look like cargo cult code but should be sanity checked at some point
@@ -234,7 +245,7 @@ var parameters = {
 				renderer2.setClearColor( 0xf0f0f0, 1 );
 				renderer2.setSize( CANVAS_WIDTH, CANVAS_HEIGHT );
 				container2.appendChild( renderer2.domElement );
-
+	
 
 				scene = new THREE.Scene();
 				scene.overrideMaterial = new THREE.MeshDepthMaterial();
@@ -269,6 +280,15 @@ var parameters = {
 				camera3.position.x = 0.0;//pool line of symetry is x axis
 				camera3.position.y = -2.0;//water depth
 			        camera3.position.z = -28.0;//how close to the wall are you
+			        
+			        //POST PROCESSING
+				//Create Shader Passes
+				renderPass = new THREE.RenderPass( scene, camera );
+				copyPass = new THREE.ShaderPass( THREE.CopyShader );
+				
+				brightnessContrastPass = new THREE.ShaderPass( THREE.BrightnessContrastShader );
+				brightnessContrastPass.uniforms[ "contrast" ].value = 0.8;
+
 
 				
 				camControls = new THREE.FirstPersonControls( camera, renderer.domElement );
@@ -641,10 +661,14 @@ var parameters = {
 				    };
 				}
 			//source: This code no longer appears to contain anything that belongs to http://www.smartjava.org/ltjs/chapter-09/02-selecting-objects.html
-
+				shaderParams = {
+					binaryThreshold:false,
+				}
 				
 			//source: This code no longer appears to contain anything that belongs to http://nuevil.com/index3.html
 			var gui = new dat.GUI({resizable : false});
+			gui.add(shaderParams, 'binaryThreshold').onChange(onToggleShaders);
+
 			gui.add(guivalues, 'cameraNear', 0, 25).onChange(function (e) {
         		    camera.near = e;
         		});
@@ -688,9 +712,23 @@ var parameters = {
 			//source: This code no longer appears to contain anything that belongs to Rudie Dirkx http://hotblocks.nl/tests/three/dat.gui.html 
 
 			//source: MIT License OR "This code no longer appears to contain anything that belongs to josdirksen?"
+			
+			function onToggleShaders() {
+				composer = new THREE.EffectComposer( renderer);
+				//Add Shader Passes to Composer
+				composer.addPass( renderPass );
+				if (shaderParams.binaryThreshold){
+					composer.addPass( brightnessContrastPass );
+				}
+				composer.addPass( copyPass );
+				//set last pass in composer chain to renderToScreen
+				copyPass.renderToScreen = true;
+			}
+			
 			function animate() {
 				requestAnimationFrame( animate ); //animate the frame
 				render(); //render the frame
+				composer.render( 0.1);
 			}
 			//source: MIT License OR "This code no longer appears to contain anything that belongs to josdirksen?"
 
