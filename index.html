@@ -251,6 +251,8 @@ var parameters = {
 				camera.position.y = -2.0;//water depth
 			        camera.position.z = -28.0;//how close to the wall are you
 			        camera.rotation.z = 3.06;
+			        camera.near = 0.5;
+				camera.far = 21.5;
 			        
 			        camera2 = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.5, 3000000);
 			        camera2.up = camera.up; // important!
@@ -646,7 +648,7 @@ var parameters = {
 			gui.add(guivalues, 'cameraNear', 0, 25).onChange(function (e) {
         		    camera.near = e;
         		});
-        		gui.add(guivalues, 'cameraFar', 15, 75).onChange(function (e) {
+        		gui.add(guivalues, 'cameraFar', 10, 25).onChange(function (e) {
         			camera.far = e;
         		});
 			var folder1 = gui.addFolder('visibility');
