@@ -70,6 +70,8 @@
 		<script src="../js/KeyboardState.js"></script>
 		<script src="../js/Mirror.js"></script>
 		<script src="../js/WaterShader.js"></script>
+		<script src="../js/material.js"></script>
+
 
 		<script src="../js/Detector.js"></script>
 		<script src="../js/stats.min.js"></script>
@@ -377,10 +379,9 @@ var parameters = {
 					});
 				loader.load('../obj/robosub obstacles/obstacles.obj', '../obj/robosub obstacles/obstacles.mtl', function ( object ) {
 					object.position.y = -12.975;//experimentally generated via trial and error
-					//for(var i in object.children) {
-					//        object.children[i].material = new THREE.MeshDepthMaterial();
-					//} // end apply to Mesh of interest
-					//}
+					for(var i in object.children) {
+					        object.children[i].material = new THREE.MeshDepthMaterial();
+					} // end apply to Mesh of interest
 					scene.add( object );//to make a Robosub you would likely need to change it's name from "object"
 					});
 				loader.load('../obj/transdec OBJ/transdec test.obj', '../obj/transdec OBJ/transdec test.mtl', function ( object ) {
