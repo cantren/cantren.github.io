@@ -166,7 +166,7 @@ Kit</a></p>
 </script>
 
 
-		<script>
+<script>
 /*
 The MIT License
 
@@ -288,8 +288,6 @@ var parameters = {
 				
 				brightnessContrastPass = new THREE.ShaderPass( THREE.BrightnessContrastShader );
 				brightnessContrastPass.uniforms[ "contrast" ].value = 0.8;
-
-
 				
 				camControls = new THREE.FirstPersonControls( camera, renderer.domElement );
 				camControls.lookSpeed = 0.05; //Pitch Thrust to drag ratio
@@ -728,7 +726,7 @@ var parameters = {
 			function animate() {
 				requestAnimationFrame( animate ); //animate the frame
 				render(); //render the frame
-				composer.render();
+				//composer.render();
 				}
 			//source: MIT License OR "This code no longer appears to contain anything that belongs to josdirksen?"
 
