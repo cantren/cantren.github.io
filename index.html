@@ -728,8 +728,7 @@ var parameters = {
 			function animate() {
 				requestAnimationFrame( animate ); //animate the frame
 				render(); //render the frame
-				composer.render( clock.getDelta() );
-			}
+				}
 			//source: MIT License OR "This code no longer appears to contain anything that belongs to josdirksen?"
 
 			//source: MIT License OR "This code no longer appears to contain anything that belongs to josdirksen?"
@@ -860,6 +859,7 @@ var parameters = {
 				
 				renderer.render( scene, camera ); //render everything else
 				renderer2.render( scene2, camera2 ); //render everything else
+				composer.render( clock.getDelta() );
 			}
 			//source: MIT License OR "This code no longer appears to contain anything that belongs to josdirksen?"
 
