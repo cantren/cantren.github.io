@@ -312,12 +312,12 @@ var parameters = {
 				//Add scene lighting
 				var light = new THREE.HemisphereLight( 0xffffbb, 0x008080, 1 );//I tried changing the light color here to see what would happen
 				light.position.set( - 1, 1, - 1 ); //my hemisphere flipped upside down
-				light.intensity = .125;
+				light.intensity = .25;
 				//scene.add( light );//I changed the name to distinguish a negative y value from "sunlight"
 
 				var light2 = new THREE.HemisphereLight( 0xffffbb, 0x008080, 1 );//I tried changing the light color here to see what would happen
 				light2.position.set( - 1, 1, - 1 ); //my hemisphere flipped upside down
-				light2.intensity = .125;
+				light2.intensity = .25;
 				//scene2.add( light2 );//I changed the name to distinguish a negative y value from "sunlight"
 				/*
 				//var directionalLight = new THREE.DirectionalLight( 0xffffff, 1 );
@@ -330,11 +330,11 @@ var parameters = {
 				*/
 				//More scene lighting
 				var ambientLight = new THREE.AmbientLight(0xffffff);
-				ambientLight.intensity = .25;
+				ambientLight.intensity = .375;
 				//scene.add(ambientLight);
 				
 				var ambientLight2 = new THREE.AmbientLight(0xffffff);
-				ambientLight2.intensity = .25;
+				ambientLight2.intensity = .375;
 				//scene2.add(ambientLight2);
 				
 				//light up the sun
@@ -347,32 +347,32 @@ var parameters = {
 				//Add the three spotlights representing the sun(intensity will be modified as a function of depth)
 				spotLightRED = new THREE.SpotLight(0xff0000);
 				spotLightRED.position.set(100, 140, -130);
-				spotLightRED.intensity = .75;
+				spotLightRED.intensity = .85;
 				scene.add(spotLightRED);
 				
 				spotLightRED2 = new THREE.SpotLight(0xff0000);
 				spotLightRED2.position.set(100, 140, -130);
-				spotLightRED2.intensity = .75;
+				spotLightRED2.intensity = .85;
 				scene2.add(spotLightRED2);
 				
 				spotLightBLUE = new THREE.SpotLight(0x00a9ff);
 				spotLightBLUE.position.set(100, 140, -130);
-				spotLightBLUE.intensity = .75;
+				spotLightBLUE.intensity = .85;
 				scene.add(spotLightBLUE);
 				
 				spotLightBLUE2 = new THREE.SpotLight(0x00a9ff);
 				spotLightBLUE2.position.set(100, 140, -130);
-				spotLightBLUE2.intensity = .75;
+				spotLightBLUE2.intensity = .85;
 				scene2.add(spotLightBLUE2);
 				
 				spotLightGREEN = new THREE.SpotLight(0x5eff00);
 				spotLightGREEN.position.set(100, 140, -130);
-				spotLightGREEN.intensity = .75;
+				spotLightGREEN.intensity = .85;
 				scene.add(spotLightGREEN);
 				
 				spotLightGREEN2 = new THREE.SpotLight(0x5eff00);
 				spotLightGREEN2.position.set(100, 140, -130);
-				spotLightGREEN2.intensity = .75;
+				spotLightGREEN2.intensity = .85;
 				scene2.add(spotLightGREEN2);
 				//Add the three spotlights representing the sun(intensity will be modified as a function of depth)
 
