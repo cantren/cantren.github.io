@@ -447,7 +447,7 @@ var parameters = {
 					textureWidth: 64, 
 					textureHeight: 64,
 					waterNormals: waterNormals2,
-					alpha: 	0.925,
+					alpha: 	1.0,
 					sunDirection: spotLightRED.position.clone().normalize(),
 					sunColor: 0xffffff,
 					waterColor: 0x001e0f,
@@ -493,7 +493,7 @@ var parameters = {
 				
 				mirrorMesh.position.y = -.95;//water height experimentally generated via trial and error
 				mirrorMesh2.position.y = -.95;//water height experimentally generated via trial and error
-				mirrorMesh3.position.y = -5.0;//water height experimentally generated via trial and error
+				mirrorMesh3.position.y = -5.5;//water height experimentally generated via trial and error
 				
 				scene.add( mirrorMesh ); //add underwater water surface
 				scene.add( mirrorMesh2); //add water surface
