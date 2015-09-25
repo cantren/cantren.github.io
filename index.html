@@ -443,14 +443,25 @@ var parameters = {
 					distortionScale: 6.25,
 					fog: true,
 				} );
+				water2 = new THREE.Water( renderer2, camera2, scene2, {
+					textureWidth: 64, 
+					textureHeight: 64,
+					waterNormals: waterNormals,
+					alpha: 	0.925,
+					sunDirection: spotLightRED.position.clone().normalize(),
+					sunColor: 0xffffff,
+					waterColor: 0x001e0f,
+					distortionScale: 6.25,
+					fog: true,
+				} );
 				caustic = new THREE.Water( renderer, camera, scene, {
 					textureWidth: 64, 
 					textureHeight: 64,
 					waterNormals: waterNormals2,
-					alpha: 	1.0,
+					alpha: 	0.5,
 					sunDirection: spotLightRED.position.clone().normalize(),
 					sunColor: 0xffffff,
-					waterColor: 0x001e0f,
+					waterColor: 0x000000,
 					distortionScale: 6.25,
 					fog: true,
 				} );
