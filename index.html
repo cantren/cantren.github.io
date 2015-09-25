@@ -591,21 +591,21 @@ var parameters = {
 				var skyBoxMaterial = new THREE.ShaderMaterial( {
 					fragmentShader: cubeShader.fragmentShader,
 					vertexShader: cubeShader.vertexShader,
-					uniforms: {cubeShader.uniforms,fog: true,}
+					uniforms: {cubeShader.uniforms, fog: true,}
 					depthWrite: false,
 					//fog: true, //To Do: make a derived shade which has been modified for "fog"
 					side: THREE.BackSide
 				});
-				/*
+				
 				//var skyBoxMaterial2 = new THREE.ShaderMaterial( {
 					fragmentShader: cubeShader.fragmentShader,
 					vertexShader: cubeShader.vertexShader,
-					uniforms: {cubeShader.uniforms,fog: true,}
+					uniforms: cubeShader.uniforms,
 					depthWrite: false,
 					//fog: true, //To Do: make a derived shade which has been modified for "fog"
 					side: THREE.BackSide
 				});
-				*/
+				
 				//Create Mesh to map skybox material on to
 				var skyBox = new THREE.Mesh(
 					new THREE.BoxGeometry( 10000, 10000, 10000 ),
@@ -613,7 +613,7 @@ var parameters = {
 				);
 				var skyBox2 = new THREE.Mesh(
 					new THREE.BoxGeometry( 10000, 10000, 10000 ),
-					skyBoxMaterial
+					skyBoxMaterial2
 				);
 				
 				scene.add( skyBox ); //create Point Loma Sky
