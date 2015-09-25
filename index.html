@@ -430,6 +430,9 @@ var parameters = {
 				waterNormals2 = new THREE.ImageUtils.loadTexture( 'textures/waternormals.jpg' ); //potential for easy modification/obstacle reflections
 				waterNormals2.wrapS = waterNormals2.wrapT = THREE.RepeatWrapping; //recycle that .jpg like a TV re-run
 				
+				waterNormals3 = new THREE.ImageUtils.loadTexture( 'textures/waternormals.jpg' ); //potential for easy modification/obstacle reflections
+				waterNormals3.wrapS = waterNormals3.wrapT = THREE.RepeatWrapping; //recycle that .jpg like a TV re-run
+				
 				
 				//initialize/declare water shader and provide parameters
 				water = new THREE.Water( renderer, camera, scene, {
@@ -446,7 +449,7 @@ var parameters = {
 				water2 = new THREE.Water( renderer2, camera2, scene2, {
 					textureWidth: 64, 
 					textureHeight: 64,
-					waterNormals: waterNormals,
+					waterNormals: waterNormals2,
 					alpha: 	0.925,
 					sunDirection: spotLightRED.position.clone().normalize(),
 					sunColor: 0xffffff,
@@ -457,7 +460,7 @@ var parameters = {
 				caustic = new THREE.Water( renderer, camera, scene, {
 					textureWidth: 64, 
 					textureHeight: 64,
-					waterNormals: waterNormals2,
+					waterNormals: waterNormals3,
 					alpha: 	0.5,
 					sunDirection: spotLightRED.position.clone().normalize(),
 					sunColor: 0xffffff,
@@ -465,6 +468,18 @@ var parameters = {
 					distortionScale: 6.25,
 					fog: true,
 				} );
+				caustic2 = new THREE.Water( renderer2, camera2, scene2, {
+					textureWidth: 64, 
+					textureHeight: 64,
+					waterNormals: waterNormals3,
+					alpha: 	0.5,
+					sunDirection: spotLightRED.position.clone().normalize(),
+					sunColor: 0xffffff,
+					waterColor: 0x000000,
+					distortionScale: 6.25,
+					fog: true,
+				} );
+
 				/*
 				water = new THREE.Water( renderer, camera, scene, { //three.js has a specific thing for water, this is it
 					textureWidth: 512, //size of waves I think, maybe the waternormals.jpg stretch?
@@ -489,26 +504,59 @@ var parameters = {
 					new THREE.PlaneBufferGeometry( parameters.width * 500, parameters.height * 500 ),
 					water.material
 				);
+				mirrorMeshB = new THREE.Mesh(
+					new THREE.PlaneBufferGeometry( parameters.width * 500, parameters.height * 500 ),
+					water2.material
+				);
+				mirrorMeshB2 = new THREE.Mesh(
+					new THREE.PlaneBufferGeometry( parameters.width * 500, parameters.height * 500 ),
+					water2.material
+				);
 				mirrorMesh3 = new THREE.Mesh(
 					new THREE.PlaneBufferGeometry( parameters.width * 500, parameters.height * 500 ),
 					caustic.material
 				);
+				mirrorMeshB3 = new THREE.Mesh(
+					new THREE.PlaneBufferGeometry( parameters.width * 500, parameters.height * 500 ),
+					caustic2.material
+				);
+
 			
 				mirrorMesh.add( water ); //add water shader to otherwise boring underwater PlaneBufferGeometry
 				mirrorMesh2.add( water ); //add water shader to otherwise boring PlaneBufferGeometry
 				mirrorMesh3.add( caustic ); //add water shader to otherwise boring PlaneBufferGeometry
 				
+				mirrorMeshB.add( water2 ); //add water shader to otherwise boring underwater PlaneBufferGeometry
+				mirrorMeshB2.add( water2 ); //add water shader to otherwise boring PlaneBufferGeometry
+				mirrorMeshB3.add( caustic2 ); //add water shader to otherwise boring PlaneBufferGeometry
+
+				
 				mirrorMesh.rotation.x = - Math.PI * 1.5; //rotate undwater water surface to point down
 				mirrorMesh2.rotation.x = - Math.PI * 0.5; //rotate water surface to point up
 				mirrorMesh3.rotation.x = - Math.PI * 0.5; //rotate undwater water surface to point down
-				
+
+				mirrorMeshB.rotation.x = - Math.PI * 1.5; //rotate undwater water surface to point down
+				mirrorMeshB2.rotation.x = - Math.PI * 0.5; //rotate water surface to point up
+				mirrorMeshB3.rotation.x = - Math.PI * 0.5; //rotate undwater water surface to point down
+
 				mirrorMesh.position.y = -.95;//water height experimentally generated via trial and error
 				mirrorMesh2.position.y = -.95;//water height experimentally generated via trial and error
 				mirrorMesh3.position.y = -5.95;//water height experimentally generated via trial and error
 				
+				mirrorMeshB.position.y = -.95;//water height experimentally generated via trial and error
+				mirrorMeshB2.position.y = -.95;//water height experimentally generated via trial and error
+				mirrorMeshB3.position.y = -5.95;//water height experimentally generated via trial and error
+
+				
 				scene.add( mirrorMesh ); //add underwater water surface
 				scene.add( mirrorMesh2); //add water surface
 				scene.add( mirrorMesh3); //add water surface
+				
+				scene2.add( mirrorMeshB ); //add underwater water surface
+				scene2.add( mirrorMeshB2); //add water surface
+				scene2.add( mirrorMeshB3); //add water surface
+
+				
 				
 				// load skybox &/or (start example code copypasta: http://threejs.org/examples/#webgl_shaders_ocean)
 				var cubeMap = new THREE.CubeTexture( [] );//initialize/declare the texture object to be mapped to the skybox mesh var skyBox = new THREE.Mesh
@@ -792,6 +840,12 @@ var parameters = {
 				
 				water.material.uniforms.time.value += 1.0 / 60.0; //speed of water motion(wind chop)
 				water.render(); //render water surface
+				water2.material.uniforms.time.value += 1.0 / 60.0; //speed of water motion(wind chop)
+				water2.render(); //render water surface
+				caustic.material.uniforms.time.value += 1.0 / 60.0; //speed of water motion(wind chop)
+				caustic.render(); //render water surface
+				caustic2.material.uniforms.time.value += 1.0 / 60.0; //speed of water motion(wind chop)
+				caustic2.render(); //render water surface
 				
 				
 				//source:https://github.com/dirkk0/threejs_daynight/blob/master/index.html
