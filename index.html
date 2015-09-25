@@ -602,8 +602,15 @@ var parameters = {
 					new THREE.BoxGeometry( 10000, 10000, 10000 ),
 					skyBoxMaterial
 				);
-				scene.add( skyBox ); //create Point Loma Sky
+				var skyBox2 = new THREE.Mesh(
+					new THREE.BoxGeometry( 10000, 10000, 10000 ),
+					skyBoxMaterial
+				);
 				
+				scene.add( skyBox ); //create Point Loma Sky
+				scene2.add( skyBox2 ); //create Point Loma Sky
+
+
 				var geometry = new THREE.IcosahedronGeometry( 30, 4 );
 				for ( var i = 0, j = geometry.faces.length; i < j; i ++ ) {
 					geometry.faces[ i ].color.setHex( 0xffffff );
