@@ -562,7 +562,10 @@ var parameters = {
 				var cubeMap = new THREE.CubeTexture( [] );//initialize/declare the texture object to be mapped to the skybox mesh var skyBox = new THREE.Mesh
 				cubeMap.format = THREE.RGBFormat;//don't know what this does, appears to be a type declaration?
 				cubeMap.flipY = false;//if you make this true the walls of the box go below the horizon
-
+				
+				var cubeMap2 = new THREE.CubeTexture( [] );//initialize/declare the texture object to be mapped to the skybox mesh var skyBox = new THREE.Mesh
+				cubeMap2.format = THREE.RGBFormat;//don't know what this does, appears to be a type declaration?
+				cubeMap2.flipY = false;//if you make this true the walls of the box go below the horizon
 				
 				var loader = new THREE.ImageLoader();
 				loader.load( '../textures/skyboxsun25degtest.png', function ( image ) {
@@ -584,8 +587,32 @@ var parameters = {
 					cubeMap.needsUpdate = true;
 				} );
 
+				var loader2 = new THREE.ImageLoader();
+				loader2.load( '../textures/skyboxsun25degtest.png', function ( image ) {
+					var getSide = function ( x, y ) {
+						var size = 1024;
+						var canvas = document.createElement( 'canvas' );
+						canvas.width = size;
+						canvas.height = size;
+						var context = canvas.getContext( '2d' );
+						context.drawImage( image, - x * size, - y * size );
+						return canvas;
+					};
+					cubeMap2.images[ 0 ] = getSide( 2, 1 ); // px
+					cubeMap2.images[ 1 ] = getSide( 0, 1 ); // nx
+					cubeMap2.images[ 2 ] = getSide( 1, 0 ); // py
+					cubeMap2.images[ 3 ] = getSide( 1, 2 ); // ny
+					cubeMap2.images[ 4 ] = getSide( 1, 1 ); // pz
+					cubeMap2.images[ 5 ] = getSide( 3, 1 ); // nz
+					cubeMap2.needsUpdate = true;
+				} );
+
+
 				var cubeShader = THREE.ShaderLib['cube'];
 				cubeShader.uniforms['tCube'].value = cubeMap;
+				
+				var cubeShader2 = THREE.ShaderLib['cube'];
+				cubeShader2.uniforms['tCube'].value = cubeMap2;
 
 				//Create skybox material 
 				var skyBoxMaterial = new THREE.ShaderMaterial( {
@@ -597,10 +624,10 @@ var parameters = {
 					side: THREE.BackSide
 				});
 				
-				//var skyBoxMaterial2 = new THREE.ShaderMaterial( {
-					fragmentShader: cubeShader.fragmentShader,
-					vertexShader: cubeShader.vertexShader,
-					uniforms: cubeShader.uniforms,
+				var skyBoxMaterial2 = new THREE.ShaderMaterial( {
+					fragmentShader: cubeShader2.fragmentShader,
+					vertexShader: cubeShader2.vertexShader,
+					uniforms: cubeShader2.uniforms,
 					depthWrite: false,
 					//fog: true, //To Do: make a derived shade which has been modified for "fog"
 					side: THREE.BackSide
