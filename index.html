@@ -458,25 +458,25 @@ var parameters = {
 					fog: true,
 				} );
 				caustic = new THREE.Water( renderer, camera, scene, {
-					textureWidth: 128, 
-					textureHeight: 128,
+					textureWidth: 32, 
+					textureHeight: 32,
 					waterNormals: waterNormals3,
-					alpha: 	0.25,
+					alpha: 	0.125,
 					sunDirection: spotLightRED.position.clone().normalize(),
 					sunColor: 0xffffff,
 					waterColor: 0xffffff,
-					distortionScale: 16.25,
+					distortionScale: 6.25,
 					fog: true,
 				} );
 				caustic2 = new THREE.Water( renderer2, camera2, scene2, {
-					textureWidth: 128, 
-					textureHeight: 128,
+					textureWidth: 32, 
+					textureHeight: 32,
 					waterNormals: waterNormals3,
-					alpha: 	0.25,
+					alpha: 	0.125,
 					sunDirection: spotLightRED.position.clone().normalize(),
 					sunColor: 0xffffff,
 					waterColor: 0xffffff,
-					distortionScale: 16.25,
+					distortionScale: 6.25,
 					fog: true,
 				} );
 
@@ -849,9 +849,9 @@ var parameters = {
 				water.render(); //render water surface
 				water2.material.uniforms.time.value += 1.0 / 60.0; //speed of water motion(wind chop)
 				water2.render(); //render water surface
-				caustic.material.uniforms.time.value += 1.0 / 6.0; //speed of water motion(wind chop)
+				caustic.material.uniforms.time.value += 1.0 / 30.0; //speed of water motion(wind chop)
 				caustic.render(); //render water surface
-				caustic2.material.uniforms.time.value += 1.0 / 6.0; //speed of water motion(wind chop)
+				caustic2.material.uniforms.time.value += 1.0 / 30.0; //speed of water motion(wind chop)
 				caustic2.render(); //render water surface
 				
 				
