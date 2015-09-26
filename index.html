@@ -310,39 +310,90 @@ var parameters = {
 				
 				
 				//Add scene lighting
-				var light = new THREE.HemisphereLight( 0xffffbb, 0x008080, 1 );//I tried changing the light color here to see what would happen
-				light.position.set( - 1, 1, - 1 ); //my hemisphere flipped upside down
-				light.intensity = .25;
-				//scene.add( light );//I changed the name to distinguish a negative y value from "sunlight"
+				lightRed = new THREE.HemisphereLight( 0xff0000, 0x008080, 1 );//I tried changing the light color here to see what would happen
+				lightRed.position.set( - 1, 1, - 1 ); //my hemisphere flipped upside down
+				lightRed.intensity = .25;
+				scene.add( lightRed );//I changed the name to distinguish a negative y value from "sunlight"
 
-				var light2 = new THREE.HemisphereLight( 0xffffbb, 0x008080, 1 );//I tried changing the light color here to see what would happen
-				light2.position.set( - 1, 1, - 1 ); //my hemisphere flipped upside down
-				light2.intensity = .25;
-				//scene2.add( light2 );//I changed the name to distinguish a negative y value from "sunlight"
-				/*
-				//var directionalLight = new THREE.DirectionalLight( 0xffffff, 1 );
-				//directionalLight.position.set( 0, -1, 0 );
-				//scene.add( directionalLight );
+				light2Red = new THREE.HemisphereLight( 0xff0000, 0x008080, 1 );//I tried changing the light color here to see what would happen
+				light2Red.position.set( - 1, 1, - 1 ); //my hemisphere flipped upside down
+				light2Red.intensity = .25;
+				scene2.add( light2Red );//I changed the name to distinguish a negative y value from "sunlight"
 				
-				//var directionalLight2 = new THREE.DirectionalLight( 0xffffff, 1 );
-				//directionalLight2.position.set( 0, 1, 0 );
-				//scene.add( directionalLight2 );
-				*/
+				lightGreen = new THREE.HemisphereLight( 0x5eff00, 0x008080, 1 );//I tried changing the light color here to see what would happen
+				lightGreen.position.set( - 1, 1, - 1 ); //my hemisphere flipped upside down
+				lightGreen.intensity = .25;
+				scene.add( lightGreen );//I changed the name to distinguish a negative y value from "sunlight"
+
+				light2Green = new THREE.HemisphereLight( 0x5eff00, 0x008080, 1 );//I tried changing the light color here to see what would happen
+				light2Green.position.set( - 1, 1, - 1 ); //my hemisphere flipped upside down
+				light2Green.intensity = .25;
+				scene2.add( light2Green );//I changed the name to distinguish a negative y value from "sunlight"
+				
+				lightBlue = new THREE.HemisphereLight( 0x00a9ff, 0x008080, 1 );//I tried changing the light color here to see what would happen
+				lightBlue.position.set( - 1, 1, - 1 ); //my hemisphere flipped upside down
+				lightBlue.intensity = .25;
+				scene.add( lightBlue );//I changed the name to distinguish a negative y value from "sunlight"
+
+				light2Blue = new THREE.HemisphereLight( 0x00a9ff, 0x008080, 1 );//I tried changing the light color here to see what would happen
+				light2Blue.position.set( - 1, 1, - 1 ); //my hemisphere flipped upside down
+				light2Blue.intensity = .25;
+				scene2.add( light2Blue );//I changed the name to distinguish a negative y value from "sunlight"
+				
 				//More scene lighting
-				var ambientLight = new THREE.AmbientLight(0xffffff);
-				ambientLight.intensity = .375;
-				//scene.add(ambientLight);
+				//Red
+				ambientLightRed = new THREE.AmbientLight(0xff0000);
+				ambientLightRed.intensity = .375;
+				scene.add(ambientLightRed);
 				
-				var ambientLight2 = new THREE.AmbientLight(0xffffff);
-				ambientLight2.intensity = .375;
-				//scene2.add(ambientLight2);
+				ambientLight2Red = new THREE.AmbientLight(0xff0000);
+				ambientLight2Red.intensity = .375;
+				scene2.add(ambientLight2Red);
+				
+				//Green
+				ambientLightGreen = new THREE.AmbientLight(0x5eff00);
+				ambientLightGreen.intensity = .375;
+				scene.add(ambientLightGreen);
+				
+				ambientLight2Green = new THREE.AmbientLight(0x5eff00);
+				ambientLight2Green.intensity = .375;
+				scene2.add(ambientLight2Green);
+				
+				//Blue
+				ambientLightBlue = new THREE.AmbientLight(0x00a9ff);
+				ambientLightBlue.intensity = .375;
+				scene.add(ambientLightBlue);
+				
+				ambientLight2Blue = new THREE.AmbientLight(0x00a9ff);
+				ambientLight2Blue.intensity = .375;
+				scene2.add(ambientLight2Blue);
+
+				/*
+				//HemisphereLight details
+				lightRed lightRed.intensity = .25;
+				light2Red light2Red.intensity = .25;
+				lightGreen lightGreen.intensity = .25;
+				light2Green light2Green.intensity = .25;
+				lightBlue lightBlue.intensity = .25;
+				light2Blue light2Blue.intensity = .25;
+				//HemisphereLight details
+
+				//ambient light details
+				ambientLightRed ambientLightRed.intensity = .375;
+				ambientLight2Red ambientLight2Red.intensity = .375;
+				ambientLightGreen ambientLightGreen.intensity = .375;
+				ambientLight2Green ambientLight2Green.intensity = .375;
+				ambientLightBlue ambientLightBlue.intensity = .375;
+				ambientLight2Blue ambientLight2Blue.intensity = .375;
+				//ambient light details
+				*/
+
 				
 				//light up the sun
 				//spotLightSUN = new THREE.SpotLight(0xFFFFFF);
 				//spotLightSUN.position.set(100, 140, -130);
 				//spotLightSUN.intensity = 1000;
 				//scene.add(spotLightSUN);
-				
 				
 				//Add the three spotlights representing the sun(intensity will be modified as a function of depth)
 				spotLightRED = new THREE.SpotLight(0xff0000);
@@ -921,18 +972,52 @@ var parameters = {
 				//sphere2.position.copy( spotLightSUN.position );
 
 				var lightFix = new function(){
+					//this function uses a spectra specific implementation of the beer-lambert law to modify lighting intensity as a function of depth
+					//when combined with colored exponential fog, it is a reasonable approximation for the color specific light attenuation observed underwater 
+				
 					this.lightDepthFix = function(){
-					intensity = .95;
-					depthcm = (camera2.position.y + (0.9)) * (-100.0);
-					adjIntensityRED = (intensity * (Math.exp(-.006 * depthcm)));
-					adjIntensityGREEN = (intensity * (Math.exp(-.00032 * depthcm)));
-					adjIntensityBLUE = (intensity * (Math.exp(-.000247 * depthcm)));
-					spotLightRED.intensity = adjIntensityRED;
-					spotLightRED2.intensity = adjIntensityRED;
-					spotLightGREEN.intensity = adjIntensityGREEN;
-					spotLightGREEN2.intensity = adjIntensityGREEN;
-					spotLightBLUE.intensity = adjIntensityBLUE;
-					spotLightBLUE2.intensity = adjIntensityBLUE;
+					intensity1 = .95;
+					intensity2 = .25;
+					intensity3 = .375;
+					
+					depthcm = (camera2.position.y + (0.9)) * (-100.0);//meter to cm conversion
+					adjIntensity1RED = (intensity1 * (Math.exp(-.006 * depthcm))); //red spectra attenuation coefficient
+					adjIntensity1GREEN = (intensity1 * (Math.exp(-.00032 * depthcm))); //green spectra attenuation coefficient
+					adjIntensity1BLUE = (intensity1 * (Math.exp(-.000247 * depthcm))); //blue spectra attenuation coefficient
+					
+					adjIntensity2RED = (intensity2 * (Math.exp(-.006 * depthcm)));
+					adjIntensity2GREEN = (intensity2 * (Math.exp(-.00032 * depthcm)));
+					adjIntensity2BLUE = (intensity2 * (Math.exp(-.000247 * depthcm)));
+					
+					adjIntensity3RED = (intensity3 * (Math.exp(-.006 * depthcm)));
+					adjIntensity3GREEN = (intensity3 * (Math.exp(-.00032 * depthcm)));
+					adjIntensity3BLUE = (intensity3 * (Math.exp(-.000247 * depthcm)));
+
+					
+					//artificial sun light set
+					spotLightRED.intensity = adjIntensity1RED;
+					spotLightRED2.intensity = adjIntensity1RED;
+					spotLightGREEN.intensity = adjIntensity1GREEN;
+					spotLightGREEN2.intensity = adjIntensity1GREEN;
+					spotLightBLUE.intensity = adjIntensity1BLUE;
+					spotLightBLUE2.intensity = adjIntensity1BLUE;
+					
+					//hemisphere light set
+					lightRed.intensity = adjIntensity2RED;
+					light2Red.intensity = adjIntensity2RED;
+					lightGreen.intensity = adjIntensity2GREEN;
+					light2Green.intensity = adjIntensity2GREEN;
+					lightBlue.intensity = adjIntensity2BLUE;
+					light2Blue.intensity = adjIntensity2BLUE;
+
+					//ambient light set
+					ambientLightRed.intensity = adjIntensity3RED;
+					ambientLight2Red.intensity = adjIntensity3RED;
+					ambientLightGreen.intensity = adjIntensity3GREEN;
+					ambientLight2Green.intensity = adjIntensity3GREEN;
+					ambientLightBlue.intensity = adjIntensity3BLUE;
+					ambientLight2Blue.intensity = adjIntensity3BLUE;
+					
 				    };
 				}
 				if ( keyboard.pressed("shift") ){//almost positive this is original code
