@@ -812,12 +812,32 @@ var parameters = {
 				    };
 				    this.normalLight = function(){
 					var nintensity = 0.85;
+					var nintensity1 = .95;
+					var nintensity2 = .25;
+					var nintensity3 = .375;
+					
 					spotLightRED.intensity = nintensity;
 					spotLightRED2.intensity = nintensity;
 					spotLightGREEN.intensity = nintensity;
 					spotLightGREEN2.intensity = nintensity;
 					spotLightBLUE.intensity = nintensity;
 					spotLightBLUE2.intensity = nintensity;
+					
+					lightRed.intensity = nintensity2;
+					light2Red.intensity = nintensity2;
+					lightGreen.intensity = nintensity2;
+					light2Green.intensity = nintensity2;
+					lightBlue.intensity = nintensity2;
+					light2Blue.intensity = nintensity2;
+
+					//ambient light set
+					ambientLightRed.intensity = nintensity3;
+					ambientLight2Red.intensity = nintensity3;
+					ambientLightGreen.intensity = nintensity3;
+					ambientLight2Green.intensity = nintensity3;
+					ambientLightBlue.intensity = nintensity3;
+					ambientLight2Blue.intensity = nintensity3;
+
 				    	//scene.spotLight.intensity = (Math.random() * 5.0);
 				    	//scene2.spotLight2.intensity = (Math.random() * 5.0);
 				    };
@@ -1050,6 +1070,8 @@ var parameters = {
 					//guivalues.lightDepthFix();
 					guivalues.randomVis();
 				}
+				
+
 				lightFix.lightDepthFix();
 				//if ( true ) {
 					//guivalues.lightDepthFix();
@@ -1063,6 +1085,7 @@ var parameters = {
 				if ( camera2.position.y < -0.81 && camera2.position.y > -.9) { //cheap hack to bypass the fog entangling impact of using a single .obj/.mtl file above and below water
 						scene2.fog.density = 0.1875; 
 						scene.fog.density = 0.1875;
+						lightFix.lightDepthFix();
 					}
 					
 				if ( camera2.position.y < -5.5 ) { //cheap hack to bound behavior
