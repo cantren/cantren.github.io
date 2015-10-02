@@ -1097,9 +1097,13 @@ var parameters = {
 						camera2.position.y = -5.5; 
 						camera.position.y = -5.5; 
 					}
-				if ( camera2.position.y > 5.5 ) { //cheap hack to bound behavior
-						camera2.position.y = 5.5; 
-						camera.position.y = 5.5; 
+//				if ( camera2.position.y > 5.5 ) { //normal ceilling
+				if ( camera2.position.y > -0.2 ) { //cheap hack to bound behavior
+						//camera2.position.y = 5.5; 
+						//camera.position.y = 5.5; 
+
+						camera2.position.y = -0.2; 
+						camera.position.y = -0.2; 
 					}
 
 				
