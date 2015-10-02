@@ -954,7 +954,7 @@ var parameters = {
 				//real time 24 hour day
 				//var timeSolar = performance.now() * 0.000000003472 + 32470000 + 3 * 3600000; //Measure time for sun
 				//rapid time for testing
-				timeSolar = performance.now() * 0.0000003472 * 3600000; //Measure time for sun
+				timeSolar = performance.now() * 0.00000003472 * 36000; //Measure time for sun
 				
 				water.material.uniforms.time.value += 1.0 / 60.0; //speed of water motion(wind chop)
 				water.render(); //render water surface
