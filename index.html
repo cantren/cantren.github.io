@@ -20,8 +20,8 @@
 				padding: 5px;
 			}
 			#inset  {
-				width: 200px;
-				height: 200px;
+				width: 400px;
+				height: 400px;
 				background-color: #fff; /* or transparent; will show through only if renderer alpha: true */
 				border: 1px solid black; /* or none; */
 				margin: 20px;
@@ -32,8 +32,8 @@
     				z-index: 100;
 			}
 			#inset2  {
-				width: 200px;
-				height: 200px;
+				width: 400px;
+				height: 400px;
 				background-color: transparent; /* or transparent; will show through only if renderer alpha: true */
 				border: 1px solid black; /* or none; */
 				margin: 20px;
@@ -91,8 +91,8 @@
 
 
   		<div id='inset2'>
-		<object width="200" height="200"><param name="movie" value="http://127.0.0.1:8090/simbox.swf">
-		<embed src="http://127.0.0.1:8090/simbox.swf" width="200" height="200">
+		<object width="400" height="400"><param name="movie" value="http://127.0.0.1:8090/simbox.swf">
+		<embed src="http://127.0.0.1:8090/simbox.swf" width="400" height="400">
 		</embed></object></div>
 		
 					<span id="digitalclock" class="styling"></span>
@@ -208,8 +208,8 @@ THE SOFTWARE.
 			var composer;
 			var testParams, testPass;			
 
-			var CANVAS_WIDTH = 200,
-			    CANVAS_HEIGHT = 200,
+			var CANVAS_WIDTH = 400,
+			    CANVAS_HEIGHT = 400,
 			    CAM_DISTANCE = 300;//This doesn't look like cargo cult code but should be sanity checked at some point
 			var clock = new THREE.Clock();//I spent a long time debugging because I forgot to initialize this
 			var keyboard = new KeyboardState();//this appears to help with keyboard input... Part of FPS controls/Key bindings?
