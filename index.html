@@ -257,20 +257,34 @@ var parameters = {
 				scene2.fog = new THREE.FogExp2( 0x008080, 0.1875 );
 				
 				camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.5, 3000000);
-				
-				camera.position.x = 0.0;//pool line of symetry is x axis
-				camera.position.y = -2.0;//water depth
-			        camera.position.z = -28.0;//how close to the wall are you
+//buoy closeup location
+				camera.position.x = -16.73;//pool line of symetry is x axis
+				camera.position.y = -2.52;//water depth
+			        camera.position.z = -22.57;//how close to the wall are you
+
+
+//normal starting location
+//				camera.position.x = 0.0;//pool line of symetry is x axis
+//				camera.position.y = -2.0;//water depth
+//			        camera.position.z = -28.0;//how close to the wall are you
+//normal starting location
 			        camera.rotation.z = 3.06;
 			        camera.near = 0.5;
 				camera.far = 21.5;
 			        
 			        camera2 = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.5, 3000000);
 			        camera2.up = camera.up; // important!
-			        
-			        camera2.position.x = 0.0;//pool line of symetry is x axis
-				camera2.position.y = -2.0;//water depth
-			        camera2.position.z = -28.0;//how close to the wall are you
+
+//buoy closeup location
+			        camera2.position.x = -16.73;//pool line of symetry is x axis
+				camera2.position.y = -2.52;//water depth
+			        camera2.position.z = -22.57;//how close to the wall are you
+//buoy closeup location
+
+//normal starting location
+//			        camera2.position.x = 0.0;//pool line of symetry is x axis
+//				camera2.position.y = -2.0;//water depth
+//			        camera2.position.z = -28.0;//how close to the wall are you
 			        camera2.rotation.z = 3.06;
 				//camera.position.set( 0, -2, -28 );
 				
@@ -1098,12 +1112,12 @@ var parameters = {
 						camera.position.y = -5.5; 
 					}
 //				if ( camera2.position.y > 5.5 ) { //normal ceilling
-				if ( camera2.position.y > -0.2 ) { //cheap hack to bound behavior
+				if ( camera2.position.y > -1.04 ) { //cheap hack to bound behavior
 						//camera2.position.y = 5.5; 
 						//camera.position.y = 5.5; 
 
-						camera2.position.y = -0.2; 
-						camera.position.y = -0.2; 
+						camera2.position.y = -1.04; 
+						camera.position.y = -1.04; 
 					}
 
 				
