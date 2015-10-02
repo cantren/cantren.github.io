@@ -967,7 +967,7 @@ var parameters = {
 				
 				
 				//source:https://github.com/dirkk0/threejs_daynight/blob/master/index.html
-				var nsin = Math.sin(timeSolar);
+				var nsin = Math.pow(Math.pow(Math.sin(timeSolar), 2)), .5);
 				var ncos = Math.cos(timeSolar);
 				console.log(timeSolar);
 				// set the sun
