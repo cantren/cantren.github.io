@@ -954,7 +954,7 @@ var parameters = {
 				//real time 24 hour day
 				//var timeSolar = performance.now() * 0.000000003472 + 32470000 + 3 * 3600000; //Measure time for sun
 				//rapid time for testing
-				var timeSolar = performance.now() * 0.003472 + 32470000 + 3 * 3600000; //Measure time for sun
+				var timeSolar = performance.now() * 0.003472 * 3600000; //Measure time for sun
 				
 				water.material.uniforms.time.value += 1.0 / 60.0; //speed of water motion(wind chop)
 				water.render(); //render water surface
@@ -969,6 +969,7 @@ var parameters = {
 				//source:https://github.com/dirkk0/threejs_daynight/blob/master/index.html
 				var nsin = Math.sin(timeSolar);
 				var ncos = Math.cos(timeSolar);
+				console.log(timeSolar);
 				// set the sun
 				spotLightRED.position.set( -2000*ncos, 2000*nsin, 1500*ncos+1000);
 				spotLightRED.lookAt (0,0,0);
