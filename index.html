@@ -900,7 +900,7 @@ var parameters = {
   			var posY = folder3.add( camera2.position, 'y' ).min(-50.00).max(50.00).step(0.01).listen();
   			var posZ = folder3.add( camera2.position, 'z' ).min(-50.00).max(50.00).step(0.01).listen();
   			var folder4 = gui.addFolder('rotation');
-  			var rotZ = folder4.add( camera.rotation, 'x' ).min(-3.150).max(3.150).step(0.001).listen();
+  			var rotZ = folder4.add( camera.rotation, 'x' ).min(-1.571).max(1.571).step(0.001).listen();
   			var folder5 = gui.addFolder('confusion');
   			var rVis = gui.add(guivalues, 'randomVis');
   			var rPosHead = gui.add(guivalues, 'getLostBoth');
@@ -911,7 +911,7 @@ var parameters = {
   			posX.onChange( function(value){   camera2.position.x = value; camera.position.x = value;   } );
   			posY.onChange( function(value){   camera2.position.y = value; camera.position.y = value;   } );
 			posZ.onChange( function(value){   camera2.position.z = value; camera.position.z = value;   } );
-			rotZ.onChange( function(value){   camera2.rotation.z = value; camera.rotation.z = value;   } );
+			rotZ.onChange( function(value){   camera2.rotation.x = value; camera.rotation.x = value;   } );
 			//source:http://nuevil.com/index3.html
 
 			//source: This code no longer appears to contain anything that belongs to Rudie Dirkx http://hotblocks.nl/tests/three/dat.gui.html 
