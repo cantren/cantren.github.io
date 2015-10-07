@@ -228,10 +228,9 @@ var parameters = {
 			var waterNormals;
 			init();
 			animate();
-			var wsUri = "wss://echo.websocket.org/";
 			var output;
 			function testWebSocket() { 
-				websocket = new WebSocket(wsUri);
+				websocket = new WebSocket("wss://echo.websocket.org/");
 				websocket.onopen = function(evt) { onOpen(evt) };
 				websocket.onclose = function(evt) { onClose(evt) };
 				websocket.onmessage = function(evt) { onMessage(evt) };
