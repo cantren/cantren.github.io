@@ -228,9 +228,25 @@ var parameters = {
 			var waterNormals;
 			init();
 			animate();
+			var wsUri = "wss://echo.websocket.org/";
+			var output;
+			function testWebSocket() { 
+				websocket = new WebSocket(wsUri);
+				websocket.onopen = function(evt) { onOpen(evt) };
+				websocket.onclose = function(evt) { onClose(evt) };
+				websocket.onmessage = function(evt) { onMessage(evt) };
+				websocket.onerror = function(evt) { onError(evt) }; 
+			} 
+			function onOpen(evt) {doSend("WebSocket rocks");}
+			function onClose(evt) {}
+			function onMessage(evt) {websocket.close(); }
+			function onError(evt) {}
+			function doSend(message) {websocket.send(message);}
+			
 
 			//source: This entire "init()" function is very "boilerplate" from the examples at http://threejs.org/examples/ covered under the MIT License
 			function init() {
+				testWebSocket();
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
 				
