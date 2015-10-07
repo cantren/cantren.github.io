@@ -236,9 +236,12 @@ var parameters = {
 				websocket.onmessage = function(evt) { onMessage(evt) };
 				websocket.onerror = function(evt) { onError(evt) }; 
 			} 
-			function onOpen(evt) {doSend("WebSocket rocks");}
+			function onOpen(evt) {doSend("WebSocket Test Echo");}
 			function onClose(evt) {}
-			function onMessage(evt) {websocket.close(); console.log("RESPONSE:" + evt.data ); }
+			function onMessage(evt) {
+				console.log("RESPONSE:" + evt.data ); 
+				websocket.close(); 
+			}
 			function onError(evt) {}
 			function doSend(message) {websocket.send(message);}
 			window.addEventListener("load", init, false);
@@ -246,6 +249,7 @@ var parameters = {
 
 			//source: This entire "init()" function is very "boilerplate" from the examples at http://threejs.org/examples/ covered under the MIT License
 			function init() {
+				testWebSocket();
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
 				
@@ -960,7 +964,7 @@ var parameters = {
 
 			//source: MIT License OR "This code no longer appears to contain anything that belongs to josdirksen?"
 			function render() {
-				testWebSocket();
+				pingWebSocket();
 				keyboard.update();
 				camControls.update( clock.getDelta() ); //update First Person Camera
 				camControls2.update( clock.getDelta() ); //update First Person Camera
@@ -1021,6 +1025,8 @@ var parameters = {
 				//source:https://github.com/dirkk0/threejs_daynight/blob/master/index.html
 				//spotLightSUN.position.set( -1900*ncos, 1900*nsin, 1425*ncos+1000);
 				//spotLightSUN.lookAt ( spotLightRED.position );
+				
+				doSend("X" + camera2.position.x + "Y" + camera2.position.y "Z" + camera2.position.z "Yaw: " + camera.rotation.y);
 
 
 				sphere.position.copy( spotLightRED.position );
