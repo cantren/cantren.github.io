@@ -246,7 +246,6 @@ var parameters = {
 
 			//source: This entire "init()" function is very "boilerplate" from the examples at http://threejs.org/examples/ covered under the MIT License
 			function init() {
-				testWebSocket();
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
 				
@@ -961,6 +960,7 @@ var parameters = {
 
 			//source: MIT License OR "This code no longer appears to contain anything that belongs to josdirksen?"
 			function render() {
+				testWebSocket();
 				keyboard.update();
 				camControls.update( clock.getDelta() ); //update First Person Camera
 				camControls2.update( clock.getDelta() ); //update First Person Camera
