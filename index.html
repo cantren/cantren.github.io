@@ -241,6 +241,7 @@ var parameters = {
 			function onMessage(evt) {websocket.close(); }
 			function onError(evt) {}
 			function doSend(message) {websocket.send(message);}
+			window.addEventListener("load", init, false);
 			
 
 			//source: This entire "init()" function is very "boilerplate" from the examples at http://threejs.org/examples/ covered under the MIT License
