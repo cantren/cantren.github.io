@@ -230,8 +230,8 @@ var parameters = {
 			animate();
 			var output;
 			function testWebSocket() { 
-				websocket = new WebSocket("wss://echo.websocket.org/");
-				//websocket = new WebSocket("wss://192.168.0.12:3000");
+				//websocket = new WebSocket("wss://echo.websocket.org/");
+				websocket = new WebSocket("ws://192.168.0.12:7681");
 				websocket.onopen = function(evt) { onOpen(evt) };
 				websocket.onclose = function(evt) { onClose(evt) };
 				websocket.onmessage = function(evt) { onMessage(evt) };
