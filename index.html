@@ -148,9 +148,9 @@ document.tick.tock.value=hours+"   "+minutes+" "+dn
 }
 else{
 if (alternate==0)
-clockobj.innerHTML=month+" / "+day+" / "+year+"   "+hours+" : "+minutes+" : "+seconds+" "+"<sup style='font-size:70%'>"+dn+"</sup>"
+clockobj.innerHTML=month+" / "+day+" / "+year+"   "+hours+" : "+minutes+" : "+seconds+" "+"<sup style='font-size:70%'>"+dn+"</sup>"
 else
-clockobj.innerHTML=month+" / "+day+" / "+year+"   "+hours+" : "+minutes+" : "+seconds+" "+"<sup style='font-size:70%'>"+dn+"</sup>"
+clockobj.innerHTML=month+" / "+day+" / "+year+"   "+hours+" : "+minutes+" : "+seconds+" "+"<sup style='font-size:70%'>"+dn+"</sup>"
 }
 alternate=(alternate==0)? 1 : 0
 setTimeout("show()",1000)
@@ -228,9 +228,29 @@ var parameters = {
 			var waterNormals;
 			init();
 			animate();
+			var output;
+			function testWebSocket() { 
+				//websocket = new WebSocket("wss://echo.websocket.org/");
+				websocket = new WebSocket("ws://192.168.0.12:7681");
+				websocket.onopen = function(evt) { onOpen(evt) };
+				websocket.onclose = function(evt) { onClose(evt) };
+				websocket.onmessage = function(evt) { onMessage(evt) };
+				websocket.onerror = function(evt) { onError(evt) }; 
+			} 
+			function onOpen(evt) {doSend("WebSocket Test Echo");}
+			function onClose(evt) {}
+			function onMessage(evt) {
+				console.log("RESPONSE:" + evt.data ); 
+				//websocket.close(); 
+			}
+			function onError(evt) {}
+			function doSend(message) {websocket.send(message);}
+			window.addEventListener("load", init, false);
+			
 
 			//source: This entire "init()" function is very "boilerplate" from the examples at http://threejs.org/examples/ covered under the MIT License
 			function init() {
+				testWebSocket();
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
 				
@@ -983,7 +1003,7 @@ var parameters = {
 				//source:https://github.com/dirkk0/threejs_daynight/blob/master/index.html
 				var nsin = Math.abs(Math.sin(timeSolar));
 				var ncos = Math.cos(timeSolar);
-				console.log(nsin);
+				//console.log(nsin);
 				// set the sun
 				spotLightRED.position.set( -2000*ncos, 2000*nsin, 1500*ncos+1000);
 				spotLightRED.lookAt (0,0,0);
@@ -1005,6 +1025,8 @@ var parameters = {
 				//source:https://github.com/dirkk0/threejs_daynight/blob/master/index.html
 				//spotLightSUN.position.set( -1900*ncos, 1900*nsin, 1425*ncos+1000);
 				//spotLightSUN.lookAt ( spotLightRED.position );
+				
+				doSend("X: " + camera2.position.x + " Y: " + camera2.position.y + " Z: " + camera2.position.z + " Yaw: " + camera.rotation.y);
 
 
 				sphere.position.copy( spotLightRED.position );
