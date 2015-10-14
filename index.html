@@ -1075,6 +1075,12 @@ var parameters = {
 					camera2.rotateY(Math.PI/-1);//original code
 					camera2.rotateZ((Math.PI)/-1);//original code
 					}//this line is probably safe :P
+				if ( keyboard.pressed("3") ){//almost positive this is original code
+					scene.overrideMaterial = new THREE.MeshDepthMaterial();
+				}
+				if ( keyboard.pressed("C") ){//almost positive this is original code
+					scene.overrideMaterial = null;
+				}
 				if ( keyboard.pressed("J") ) {guivalues.getLostBoth();}
 				if ( keyboard.pressed("K") ) {guivalues.getLostComp();}
 				if ( keyboard.pressed("L") ) {guivalues.getLostPract();}
