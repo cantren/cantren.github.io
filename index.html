@@ -234,7 +234,8 @@ var parameters = {
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
 				
-				renderer = new THREE.WebGLRenderer();
+				//renderer = new THREE.WebGLRenderer();
+				renderer = new THREE.CSS3DStereoRenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				container.appendChild( renderer.domElement );
