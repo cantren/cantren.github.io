@@ -237,10 +237,16 @@ var parameters = {
 				document.body.appendChild( container );
 				
 				//renderer = new THREE.WebGLRenderer();
+				//renderer.setPixelRatio( window.devicePixelRatio );
+				//renderer.setSize( window.innerWidth, window.innerHeight );
+				//container.appendChild( renderer.domElement );
+
+				
+				
 				renderer = new THREE.CSS3DStereoRenderer();
-				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
-				container.appendChild( renderer.domElement );
+				renderer.domElement.style.position = 'absolute';
+				document.getElementById( 'container' ).appendChild( renderer.domElement );
 				
 				container2 = document.getElementById('inset');
 				// renderer
