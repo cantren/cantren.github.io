@@ -254,6 +254,11 @@ var parameters = {
 				renderer2.setClearColor( 0xf0f0f0, 1 );
 				renderer2.setSize( CANVAS_WIDTH, CANVAS_HEIGHT );
 				container2.appendChild( renderer2.domElement );
+
+				effect = new THREE.StereoEffect( renderer2 );
+				effect.eyeSeparation = 10;
+				effect.setSize( window.innerWidth, window.innerHeight );
+
 	
 
 				scene = new THREE.Scene();
@@ -449,10 +454,7 @@ var parameters = {
 				spotLightGREEN2.intensity = .85;
 				scene2.add(spotLightGREEN2);
 				//Add the three spotlights representing the sun(intensity will be modified as a function of depth)
-				effect = new THREE.StereoEffect( renderer );
-				effect.eyeSeparation = 10;
-				effect.setSize( window.innerWidth, window.innerHeight );
-
+				
 				
 				// add spotlight for the shadows
 				/*
