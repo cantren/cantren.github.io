@@ -18,8 +18,7 @@
 				top: 0px; width: 100%;
 				text-align:center;
 				padding: 5px;
-				z-index: 101;
-			
+				
 			}
 			#inset  {
 				width: 300px;
@@ -241,9 +240,11 @@ var parameters = {
 				renderer = new THREE.WebGLRenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
-				effect = new THREE.StereoEffect( renderer );
-				effect.eyeSeparation = 10;
-				effect.setSize( window.innerWidth, window.innerHeight );
+				//uncomment these lines for VR
+				//effect = new THREE.StereoEffect( renderer );
+				//effect.eyeSeparation = 10;
+				//effect.setSize( window.innerWidth, window.innerHeight );
+				//uncomment these lines for VR
 				container.appendChild( renderer.domElement );
 				
 
