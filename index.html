@@ -239,7 +239,9 @@ var parameters = {
 				renderer = new THREE.WebGLRenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
-				
+				effect = new THREE.StereoEffect( renderer );
+				effect.eyeSeparation = 10;
+				effect.setSize( window.innerWidth, window.innerHeight );
 				container.appendChild( renderer.domElement );
 				
 
