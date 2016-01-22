@@ -89,6 +89,7 @@
 		<script src="../js/EffectComposer.js"></script>
 		<script src="../js/RenderPass.js"></script>
 		<script src="../js/CopyShader.js"></script>
+		<script src="http://threejs.org/examples/js/effects/StereoEffect.js"></script>
 		
 
 
@@ -449,7 +450,9 @@ var parameters = {
 				spotLightGREEN2.intensity = .85;
 				scene2.add(spotLightGREEN2);
 				//Add the three spotlights representing the sun(intensity will be modified as a function of depth)
-
+				effect = new THREE.StereoEffect( renderer );
+				effect.eyeSeparation = 10;
+				effect.setSize( window.innerWidth, window.innerHeight );
 
 				
 				// add spotlight for the shadows
