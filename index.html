@@ -72,8 +72,8 @@
 		<li>R/F: Rotate Up/Down
 		<li>Z: Reset position and rotation.
 		</ul>
-		This three.js demo is part of a collection at
-		<a href="http://stemkoski.github.io/Three.js/">http://stemkoski.github.io/Three.js/</a>
+		This page's source code can be found at at
+		<a href="http://github.io/cantren/cantren.github.io/">http://stemkoski.github.io/Three.js/</a>
 		</div>
 		<div id="info"><a href="https://github.com/cantren/cantren.github.io/" target="_blank">Code</a></a> - Please "fork" as this page changes often. - <a href="https://www.linkedin.com/pub/nicholas-cantrell/7b/808/987" target="_blank">LinkedIn</a></div>
 		<div id="container">
@@ -657,7 +657,64 @@ var parameters = {
 				scene2.add( mirrorMeshB3); //add water surface
 
 				
+				///////////////////
+				// CLOUDS VIDEO ///
+				///////////////////
+	
+				// create the video element
+				video = document.createElement( 'video' );
+				// video.id = 'video';
+				// video.type = ' video/ogg; codecs="theora, vorbis" ';
+				video.src = "images/clouds.mp4";
+				video.load(); // must call after setting/changing source
+				video.play();
 				
+				video2 = document.createElement( 'video' );
+				// video.id = 'video';
+				// video.type = ' video/ogg; codecs="theora, vorbis" ';
+				video2.src = "images/clouds.mp4";
+				video2.load(); // must call after setting/changing source
+				video2.play();
+		
+		
+				// alternative method -- 
+				// create DIV in HTML:
+				// <video id="myVideo" autoplay style="display:none">
+				//		<source src="videos/sintel.ogv" type='video/ogg; codecs="theora, vorbis"'>
+				// </video>
+				// and set JS variable:
+				// video = document.getElementById( 'myVideo' );
+	
+				videoImage = document.createElement( 'canvas' );
+				videoImage.width = 640;
+				videoImage.height = 480;
+
+				videoImage2 = document.createElement( 'canvas' );
+				videoImage2.width = 480;
+				videoImage2.height = 480;
+
+				videoImageContext = videoImage.getContext( '2d' );
+				// background color if no video present
+				videoImageContext.fillStyle = '#000000';
+				videoImageContext.fillRect( 0, 0, videoImage.width, videoImage.height );
+
+				videoImageContext2 = videoImage2.getContext( '2d' );
+				// background color if no video present
+				videoImageContext2.fillStyle = '#000000';
+				videoImageContext2.fillRect( 0, 0, videoImage2.width, videoImage2.height );
+
+
+				videoTexture = new THREE.Texture( videoImage );
+				videoTexture.minFilter = THREE.LinearFilter;
+				videoTexture.magFilter = THREE.LinearFilter;
+				
+				videoTexture2 = new THREE.Texture( videoImage2 );
+				videoTexture2.minFilter = THREE.LinearFilter;
+				videoTexture2.magFilter = THREE.LinearFilter;
+	
+				var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide } );
+				var movieMaterial2 = new THREE.MeshBasicMaterial( { map: videoTexture2, overdraw: true, side:THREE.DoubleSide } );
+	
 				// load skybox &/or (start example code copypasta: http://threejs.org/examples/#webgl_shaders_ocean)
 				var cubeMap = new THREE.CubeTexture( [] );//initialize/declare the texture object to be mapped to the skybox mesh var skyBox = new THREE.Mesh
 				cubeMap.format = THREE.RGBFormat;//don't know what this does, appears to be a type declaration?
@@ -709,7 +766,7 @@ var parameters = {
 
 
 				var cubeShader = THREE.ShaderLib['cube'];
-				cubeShader.uniforms['tCube'].value = cubeMap;
+				cubeShader.uniforms['tCube'].value = cubeMap; //movieMaterial
 				
 				var cubeShader2 = THREE.ShaderLib['cube'];
 				cubeShader2.uniforms['tCube'].value = cubeMap2;
@@ -732,16 +789,20 @@ var parameters = {
 					//fog: true, //To Do: make a derived shade which has been modified for "fog"
 					side: THREE.BackSide
 				});
-				
 				//Create Mesh to map skybox material on to
 				var skyBox = new THREE.Mesh(
 					new THREE.BoxGeometry( 10000, 10000, 10000 ),
-					skyBoxMaterial
+					movieMaterial
 				);
+				//	skyBoxMaterial
+				//);
+
 				var skyBox2 = new THREE.Mesh(
 					new THREE.BoxGeometry( 10000, 10000, 10000 ),
-					skyBoxMaterial2
+					movieMaterial2
 				);
+				//	skyBoxMaterial2
+				//);
 				
 				scene.add( skyBox ); //create Point Loma Sky
 				scene2.add( skyBox2 ); //create Point Loma Sky
@@ -991,6 +1052,20 @@ var parameters = {
 				camera2.rotateX(Math.PI/-2);
 				camera2.rotateZ((Math.PI/-2));
 				camera2.rotateZ(Math.PI/2);
+				
+				if ( video.readyState === video.HAVE_ENOUGH_DATA ) 
+				{
+					videoImageContext.drawImage( video, 0, 0 );
+					if ( videoTexture ) 
+					videoTexture.needsUpdate = true;
+				}
+	
+				if ( video2.readyState === video2.HAVE_ENOUGH_DATA ) 
+				{
+					videoImageContext2.drawImage( video2, 0, 0 );
+					if ( videoTexture2 ) 
+						videoTexture2.needsUpdate = true;
+				}
 				
 				//camera3.position.x =-23.14;
 				//camera3.position.y = -2.2
