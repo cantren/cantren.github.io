@@ -57,15 +57,32 @@
 			a {
 				color: #000000;
 			}
+			
 			//What is this?
 		</style>
 	</head>
 	<body>
-
+		<div id="infoButton"></div>
+		<div id="infoBox" title="Demo Information">
+		Movement controls: <br/>
+		<ul>
+		<li>W/S: Translate Forward/Backward
+		<li>A/D: Rotate Left/Right
+		<li>Q/E: Translate Left/Right
+		<li>R/F: Rotate Up/Down
+		<li>Z: Reset position and rotation.
+		</ul>
+		This three.js demo is part of a collection at
+		<a href="http://stemkoski.github.io/Three.js/">http://stemkoski.github.io/Three.js/</a>
+		</div>
 		<div id="info"><a href="https://github.com/cantren/cantren.github.io/" target="_blank">Code</a></a> - Please "fork" as this page changes often. - <a href="https://www.linkedin.com/pub/nicholas-cantrell/7b/808/987" target="_blank">LinkedIn</a></div>
 		<div id="container">
 		<div id="inset">
 		<script src="../js/three.min.js"></script>
+		<script src="js/jquery-1.9.1.js"></script>
+		<script src="js/jquery-ui.js"></script>
+		<link rel=stylesheet href="js/jquery-ui.css" />
+		<link rel=stylesheet href="js/info.css"/>
 		<script src="../js/FirstPersonControls.js"></script>
 		<script src="../js/KeyboardState.js"></script>
 		<script src="../js/Mirror.js"></script>
@@ -90,6 +107,7 @@
 		<script src="../js/RenderPass.js"></script>
 		<script src="../js/CopyShader.js"></script>
 		<script src="../js/StereoEffect.js"></script>
+		<script src="../js/info.js"></script>
 		
 
 
