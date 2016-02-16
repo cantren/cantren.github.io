@@ -665,16 +665,16 @@ var parameters = {
 				video = document.createElement( 'video' );
 				// video.id = 'video';
 				// video.type = ' video/ogg; codecs="theora, vorbis" ';
-				video.src = "images/clouds.mp4";
-				video.loop = true;
+				video.src = "images/clouds.mp4"; //source: https://www.youtube.com/watch?v=Zb3q_zzUSvQ
+				video.loop = true;//alt source: https://www.youtube.com/watch?v=a96UbKNuNQY
 				video.load(); // must call after setting/changing source
 				video.play();
 				
 				video2 = document.createElement( 'video' );
 				// video.id = 'video';
 				// video.type = ' video/ogg; codecs="theora, vorbis" ';
-				video2.src = "images/clouds.mp4";
-				video2.loop = true;
+				video2.src = "images/clouds.mp4"; //source: //https://www.youtube.com/watch?v=Zb3q_zzUSvQ
+				video2.loop = true;//alt source: https://www.youtube.com/watch?v=a96UbKNuNQY
 				video2.load(); // must call after setting/changing source
 				video2.play();
 		
@@ -796,6 +796,7 @@ var parameters = {
 					new THREE.BoxGeometry( 10000, 10000, 10000 ),
 					movieMaterial
 				);
+				skyBox.Rotation.y += Math.PI/6;
 				//	skyBoxMaterial
 				//);
 
@@ -803,6 +804,7 @@ var parameters = {
 					new THREE.BoxGeometry( 10000, 10000, 10000 ),
 					movieMaterial2
 				);
+				skyBox2.Rotation.y += Math.PI/6;
 				//	skyBoxMaterial2
 				//);
 				
