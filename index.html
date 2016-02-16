@@ -796,7 +796,7 @@ var parameters = {
 					new THREE.BoxGeometry( 10000, 10000, 10000 ),
 					movieMaterial
 				);
-				skyBox.Rotation.y += Math.PI/6;
+				skyBox.rotation.y += Math.PI/6;
 				//	skyBoxMaterial
 				//);
 
@@ -804,7 +804,7 @@ var parameters = {
 					new THREE.BoxGeometry( 10000, 10000, 10000 ),
 					movieMaterial2
 				);
-				skyBox2.Rotation.y += Math.PI/6;
+				skyBox2.rotation.y += Math.PI/6;
 				//	skyBoxMaterial2
 				//);
 				
@@ -1061,7 +1061,7 @@ var parameters = {
 				{
 					//video.play();
 					videoImageContext.drawImage( video, 0, 0 );
-					skyBox.Rotation.y += Math.PI/180;
+					skyBox.rotation.y += Math.PI/180;
 					if ( videoTexture ) 
 						videoTexture.needsUpdate = true;
 				}
@@ -1069,7 +1069,7 @@ var parameters = {
 				if ( video2.readyState === video2.HAVE_ENOUGH_DATA ) 
 				{	
 					//video.play();
-					skyBox2.Rotation.y += Math.PI/180;
+					skyBox2.rotation.y += Math.PI/180;
 					videoImageContext2.drawImage( video2, 0, 0 );
 					if ( videoTexture2 ) 
 						videoTexture2.needsUpdate = true;
