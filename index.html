@@ -666,6 +666,7 @@ var parameters = {
 				// video.id = 'video';
 				// video.type = ' video/ogg; codecs="theora, vorbis" ';
 				video.src = "images/clouds.mp4";
+				video.loop = true;
 				video.load(); // must call after setting/changing source
 				video.play();
 				
@@ -673,6 +674,7 @@ var parameters = {
 				// video.id = 'video';
 				// video.type = ' video/ogg; codecs="theora, vorbis" ';
 				video2.src = "images/clouds.mp4";
+				video2.loop = true;
 				video2.load(); // must call after setting/changing source
 				video2.play();
 		
@@ -1055,13 +1057,15 @@ var parameters = {
 				
 				if ( video.readyState === video.HAVE_ENOUGH_DATA ) 
 				{
+					//video.play();
 					videoImageContext.drawImage( video, 0, 0 );
 					if ( videoTexture ) 
-					videoTexture.needsUpdate = true;
+						videoTexture.needsUpdate = true;
 				}
 	
 				if ( video2.readyState === video2.HAVE_ENOUGH_DATA ) 
-				{
+				{	
+					//video.play();
 					videoImageContext2.drawImage( video2, 0, 0 );
 					if ( videoTexture2 ) 
 						videoTexture2.needsUpdate = true;
