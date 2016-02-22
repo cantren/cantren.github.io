@@ -359,9 +359,7 @@ var parameters = {
 			        camera.rotation.z = 3.06;
 			        camera.near = 0.5;
 				camera.far = 21.5;
-				camera.add(movieScreen3);
-				movieScreen3.position.set(0,0,-50);
-			        
+				
 			        camera2 = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.5, 3000000);
 			        camera2.up = camera.up; // important!
 //buoy closeup location
@@ -375,6 +373,10 @@ var parameters = {
 //			        camera2.position.z = -28.0;//how close to the wall are you
 			        camera2.rotation.z = 3.06;
 				//camera.position.set( 0, -2, -28 );
+				
+				camera2.add(movieScreen3);
+				movieScreen3.position.set(0,0,-50);
+			        
 				
 				camera3 = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.5, 3000000);
 			        camera3.up = camera.up; // important!
