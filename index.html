@@ -343,7 +343,7 @@ var parameters = {
 				// 		movie image will be scaled to fit these dimensions.
 				var movieGeometry3 = new THREE.PlaneGeometry( 50, 50, 1, 1 );
 				var movieScreen3 = new THREE.Mesh( movieGeometry3, movieMaterial3 );
-				//movieScreen3.position.set(0,50,0);
+				movieScreen3.position.set(0,0,0);
 				
 				
 				camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.5, 3000000);
@@ -360,7 +360,7 @@ var parameters = {
 			        camera.near = 0.5;
 				camera.far = 21.5;
 				camera.add(movieScreen3);
-				movieScreen3.position.set(0,0,50);
+				movieScreen3.position.set(0,0,-50);
 			        
 			        camera2 = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.5, 3000000);
 			        camera2.up = camera.up; // important!
