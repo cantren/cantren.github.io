@@ -63,7 +63,7 @@
 	</head>
 	<body>
 <video id="monitor" autoplay width="160" height="120" style="visibility: hidden; float:left;"></video>
-<canvas id="videoImage" width="160" height="120" style="visibility: hidden; float:left;"></canvas>
+<canvas id="videoImage3" width="160" height="120" style="visibility: hidden; float:left;"></canvas>
 
 		<div id="infoButton"></div>
 		<div id="infoBox" title="Demo Information">
@@ -328,11 +328,11 @@ var parameters = {
 
 				video3 = document.getElementById( 'monitor' );
 	
-				videoImage3 = document.getElementById( 'videoImage' );
+				videoImage3 = document.getElementById( 'videoImage3' );
 				videoImageContext3 = videoImage3.getContext( '2d' );
 				// background color if no video present
 				videoImageContext3.fillStyle = '#000000';
-				videoImageContext3.fillRect( 0, 0, videoImage.width, videoImage.height );
+				videoImageContext3.fillRect( 0, 0, videoImage3.width, videoImage3.height );
 
 				videoTexture3 = new THREE.Texture( videoImage3 );
 				videoTexture3.minFilter = THREE.LinearFilter;
@@ -1127,7 +1127,7 @@ var parameters = {
 				
 				if ( video3.readyState === video.HAVE_ENOUGH_DATA ) 
 				{
-					videoImageContext3.drawImage( video3, 0, 0, videoImage.width, videoImage.height );
+					videoImageContext3.drawImage( video3, 0, 0, videoImage3.width, videoImage3.height );
 					if ( videoTexture3 ) 
 					videoTexture3.needsUpdate = true;
 				}
