@@ -341,7 +341,7 @@ var parameters = {
 				var movieMaterial3 = new THREE.MeshBasicMaterial( { map: videoTexture3, overdraw: true, side:THREE.DoubleSide } );
 				// the geometry on which the movie will be displayed;
 				// 		movie image will be scaled to fit these dimensions.
-				var movieGeometry3 = new THREE.PlaneGeometry( 10, 10, 1, 1 );
+				var movieGeometry3 = new THREE.PlaneGeometry( 1000, 1000, 1, 1 );
 				var movieScreen3 = new THREE.Mesh( movieGeometry3, movieMaterial3 );
 				movieScreen3.position.set(0,0,0);
 				
@@ -359,6 +359,8 @@ var parameters = {
 			        camera.rotation.z = 3.06;
 			        camera.near = 0.5;
 				camera.far = 21.5;
+				camera.add(movieScreen3);
+				movieScreen3.position.set(-10,0,-10);
 				
 			        camera2 = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.5, 3000000);
 			        camera2.up = camera.up; // important!
@@ -374,8 +376,7 @@ var parameters = {
 			        camera2.rotation.z = 3.06;
 				//camera.position.set( 0, -2, -28 );
 				
-				camera2.add(movieScreen3);
-				movieScreen3.position.set(0,0,-10);
+				
 			        
 				
 				camera3 = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.5, 3000000);
