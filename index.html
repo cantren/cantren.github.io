@@ -62,6 +62,9 @@
 		</style>
 	</head>
 	<body>
+<video id="monitor" autoplay width="160" height="120" style="visibility: hidden; float:left;"></video>
+<canvas id="videoImage" width="160" height="120" style="visibility: hidden; float:left;"></canvas>
+
 		<div id="infoButton"></div>
 		<div id="infoBox" title="Demo Information">
 		Movement controls: <br/>
@@ -78,6 +81,42 @@
 		<div id="info"><a href="https://github.com/cantren/cantren.github.io/" target="_blank">Code</a></a> - Please "fork" as this page changes often. - <a href="https://www.linkedin.com/pub/nicholas-cantrell/7b/808/987" target="_blank">LinkedIn</a></div>
 		<div id="container">
 		<div id="inset">
+		
+		<script>
+		navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+		window.URL = window.URL || window.webkitURL;
+
+		var camvideo = document.getElementById('monitor');
+
+		if (!navigator.getUserMedia) 
+		{
+			document.getElementById('errorMessage').innerHTML = 
+				'Sorry. <code>navigator.getUserMedia()</code> is not available.';
+		} else {
+			navigator.getUserMedia({video: true}, gotStream, noStream);
+		}
+
+		function gotStream(stream) 
+		{
+		if (window.URL) 
+		{   camvideo.src = window.URL.createObjectURL(stream);   } 
+		else // Opera
+		{   camvideo.src = stream;   }
+
+		camvideo.onerror = function(e) 
+		{   stream.stop();   };
+			stream.onended = noStream;
+		}
+
+		function noStream(e) 
+		{
+			var msg = 'No camera available.';
+			if (e.code == 1) 
+			{   msg = 'User denied access to use camera.';   }
+				document.getElementById('errorMessage').textContent = msg;
+		}
+		</script>
+
 		<script src="../js/three.min.js"></script>
 		<script src="js/jquery-1.9.1.js"></script>
 		<script src="js/jquery-ui.js"></script>
@@ -224,6 +263,7 @@ THE SOFTWARE.
 			}
 			//source: MIT License OR "This code no longer appears to contain anything that belongs to josdirksen?"
 
+			var video, videoImage, videoImageContext, videoTexture;
 			var container, container2, stats;//cargo cult code? comment out this line please(may be desired in future)
 			var camera, camera2, camera3, camControls, camControls2, camControls3, scene, scene2, renderer, renderer2;//these are actually usefull
 			var composer;
@@ -265,9 +305,6 @@ var parameters = {
 				//uncomment these lines for VR
 				container.appendChild( renderer.domElement );
 				
-
-				
-				
 				//renderer = new THREE.CSS3DStereoRenderer();
 				//renderer.setSize( window.innerWidth, window.innerHeight );
 				//renderer.domElement.style.position = 'absolute';
@@ -280,9 +317,6 @@ var parameters = {
 				renderer2.setSize( CANVAS_WIDTH, CANVAS_HEIGHT );
 				container2.appendChild( renderer2.domElement );
 
-
-	
-
 				scene = new THREE.Scene();
 				//scene.overrideMaterial = new THREE.MeshDepthMaterial();
 				scene2 = new THREE.Scene();
@@ -291,14 +325,32 @@ var parameters = {
 				//add water colored fog
 				scene.fog = new THREE.FogExp2( 0x008080, 0.1875 );
 				scene2.fog = new THREE.FogExp2( 0x008080, 0.1875 );
+
+				video = document.getElementById( 'monitor' );
+	
+				videoImage = document.getElementById( 'videoImage' );
+				videoImageContext = videoImage.getContext( '2d' );
+				// background color if no video present
+				videoImageContext.fillStyle = '#000000';
+				videoImageContext.fillRect( 0, 0, videoImage.width, videoImage.height );
+
+				videoTexture = new THREE.Texture( videoImage );
+				videoTexture.minFilter = THREE.LinearFilter;
+				videoTexture.magFilter = THREE.LinearFilter;
+	
+				var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide } );
+				// the geometry on which the movie will be displayed;
+				// 		movie image will be scaled to fit these dimensions.
+				var movieGeometry = new THREE.PlaneGeometry( 100, 100, 1, 1 );
+				var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
+				movieScreen.position.set(0,50,0);
+				scene.add(movieScreen);
 				
 				camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.5, 3000000);
 //buoy closeup location
 				camera.position.x = -16.73;//pool line of symetry is x axis
 				camera.position.y = -2.52;//water depth
 			        camera.position.z = -22.57;//how close to the wall are you
-
-
 //normal starting location
 //				camera.position.x = 0.0;//pool line of symetry is x axis
 //				camera.position.y = -2.0;//water depth
@@ -310,13 +362,11 @@ var parameters = {
 			        
 			        camera2 = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.5, 3000000);
 			        camera2.up = camera.up; // important!
-
 //buoy closeup location
 			        camera2.position.x = -16.73;//pool line of symetry is x axis
 				camera2.position.y = -2.52;//water depth
 			        camera2.position.z = -22.57;//how close to the wall are you
 //buoy closeup location
-
 //normal starting location
 //			        camera2.position.x = 0.0;//pool line of symetry is x axis
 //				camera2.position.y = -2.0;//water depth
@@ -356,8 +406,6 @@ var parameters = {
 				camControls2.movementSpeed = 0.25; // FWD BKWD Thrust to drag ratio 
 				camControls2.verticalMin = -50.0; //basement floor level
 				camControls2.verticalMax = 10.0; //sky ceiling level
-				
-				
 				
 				//Add scene lighting
 				lightRed = new THREE.HemisphereLight( 0xff0000, 0x008080, 1 );//I tried changing the light color here to see what would happen
