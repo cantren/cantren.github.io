@@ -263,7 +263,7 @@ THE SOFTWARE.
 			}
 			//source: MIT License OR "This code no longer appears to contain anything that belongs to josdirksen?"
 
-			var video, videoImage, videoImageContext, videoTexture;
+			var video3, videoImage3, videoImageContext3, videoTexture3;
 			var container, container2, stats;//cargo cult code? comment out this line please(may be desired in future)
 			var camera, camera2, camera3, camControls, camControls2, camControls3, scene, scene2, renderer, renderer2;//these are actually usefull
 			var composer;
@@ -326,25 +326,25 @@ var parameters = {
 				scene.fog = new THREE.FogExp2( 0x008080, 0.1875 );
 				scene2.fog = new THREE.FogExp2( 0x008080, 0.1875 );
 
-				video = document.getElementById( 'monitor' );
+				video3 = document.getElementById( 'monitor' );
 	
-				videoImage = document.getElementById( 'videoImage' );
-				videoImageContext = videoImage.getContext( '2d' );
+				videoImage3 = document.getElementById( 'videoImage' );
+				videoImageContext3 = videoImage3.getContext( '2d' );
 				// background color if no video present
-				videoImageContext.fillStyle = '#000000';
-				videoImageContext.fillRect( 0, 0, videoImage.width, videoImage.height );
+				videoImageContext3.fillStyle = '#000000';
+				videoImageContext3.fillRect( 0, 0, videoImage.width, videoImage.height );
 
-				videoTexture = new THREE.Texture( videoImage );
-				videoTexture.minFilter = THREE.LinearFilter;
-				videoTexture.magFilter = THREE.LinearFilter;
+				videoTexture3 = new THREE.Texture( videoImage3 );
+				videoTexture3.minFilter = THREE.LinearFilter;
+				videoTexture3.magFilter = THREE.LinearFilter;
 	
-				var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide } );
+				var movieMaterial3 = new THREE.MeshBasicMaterial( { map: videoTexture3, overdraw: true, side:THREE.DoubleSide } );
 				// the geometry on which the movie will be displayed;
 				// 		movie image will be scaled to fit these dimensions.
-				var movieGeometry = new THREE.PlaneGeometry( 100, 100, 1, 1 );
-				var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
-				movieScreen.position.set(0,50,0);
-				scene.add(movieScreen);
+				var movieGeometry3 = new THREE.PlaneGeometry( 10, 10, 1, 1 );
+				var movieScreen3 = new THREE.Mesh( movieGeometry3, movieMaterial3 );
+				//movieScreen3.position.set(0,50,0);
+				
 				
 				camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.5, 3000000);
 //buoy closeup location
@@ -359,6 +359,8 @@ var parameters = {
 			        camera.rotation.z = 3.06;
 			        camera.near = 0.5;
 				camera.far = 21.5;
+				camera.add(movieScreen3);
+				movieScreen3.position.set(0,0,-100);
 			        
 			        camera2 = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.5, 3000000);
 			        camera2.up = camera.up; // important!
@@ -1122,6 +1124,15 @@ var parameters = {
 					if ( videoTexture2 ) 
 						videoTexture2.needsUpdate = true;
 				}
+				
+				if ( video3.readyState === video.HAVE_ENOUGH_DATA ) 
+				{
+					videoImageContext3.drawImage( video3, 0, 0, videoImage.width, videoImage.height );
+					if ( videoTexture3 ) 
+					videoTexture3.needsUpdate = true;
+				}
+
+				
 				
 				//camera3.position.x =-23.14;
 				//camera3.position.y = -2.2
