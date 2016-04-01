@@ -1187,6 +1187,21 @@ var parameters = {
 					buoy3Points = true;
 					console.log("Buoy3 Points!");
 				}
+				if ( (camera2.position.x < -29.09 && camera2.position.x > -29.39 && camera2.position.y < -1.3 && camera2.position.y > -2.12 && camera2.position.z < -13.63 && camera2.position.z > -13.70) || (camera2.position.x < -29.44 && camera2.position.x > -29.75 && camera2.position.y < -1.3 && camera2.position.y > -2.12 && camera2.position.z < -13.76 && camera2.position.z > -13.83)) {
+					maneuverPoints = true;
+					console.log("Maneuver Points!");
+				}
+				if ( camera2.position.x < -32.66 && camera2.position.x > -33.26 && camera2.position.y < -1.0 && camera2.position.y > -1.1 && camera2.position.z > 11.75 && camera2.position.z < 12.35 ) {
+					octagon1Points = true;
+					console.log("Octagon1 Points!");
+				}
+				if ( camera2.position.x < -20.78 && camera2.position.x > -21.38 && camera2.position.y < -1.0 && camera2.position.y > -1.1 && camera2.position.z > 17.68 && camera2.position.z < 18.28 ) {
+					octagon2Points = true;
+					console.log("Octagon2 Points!");
+				}
+
+
+
 
 
 				///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1238,7 +1253,7 @@ var parameters = {
 						totalPoints += 400;
 					}
 					if ( maneuverPoints ) {
-						totalPoints += 1000;
+						totalPoints += 600;
 					}
 				}
 				console.log("Total Points: " + totalPoints);
