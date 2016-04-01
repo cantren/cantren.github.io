@@ -1144,6 +1144,11 @@ var parameters = {
 					//guivalues.lightDepthFix();
 					guivalues.randomVis();
 				}
+				if ( camera2.position.x < -15.57 && camera2.position.x > -15.97 && camera2.position.z < -21.93 && camera2.position.z > -22.33) {
+					pathmarker1Points = true;
+					console.log("Pathmarker1 Points!");
+				}
+
 				var totalPoints = 0;
 				validationgatePoints = true;
 				if ( validationgatePoints ) {
