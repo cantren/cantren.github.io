@@ -245,6 +245,21 @@ var parameters = {
 			}
 //I'll admit: I can't remember what this does or where it came from			
 			var waterNormals;
+			pathmarker1Points = false;
+			pathmarker2Points = false;
+			pathmarker3Points = false;
+			pathmarker4Points = false;
+			pathmarker5Points = false;
+			pathmarker6Points = false;
+			pathmarker7Points = false;
+			octagon1Points = false;
+			octagon2Points = false;
+			buoy1Points = false;
+			buoy2Points = false;
+			buoy3Points = false;
+			validationgatePoints = false;
+			maneuverPoints = false;
+			
 			init();
 			animate();
 
@@ -1129,8 +1144,51 @@ var parameters = {
 					//guivalues.lightDepthFix();
 					guivalues.randomVis();
 				}
-				
+				var totalPoints = 0;
+				if ( validationgatePoints ) {
+					totalPoints += 250;
+					if ( pathmarker1Points ) {
+						totalPoints += 200;
+					}
+					if ( pathmarker2Points ) {
+						totalPoints += 200;
+					}
+					if ( pathmarker3Points ) {
+						totalPoints += 200;
+					}
+					if ( pathmarker4Points ) {
+						totalPoints += 200;
+					}
+					if ( pathmarker5Points ) {
+						totalPoints += 200;
+					}
+					if ( pathmarker6Points ) {
+						totalPoints += 200;
+					}
+					if ( pathmarker7Points ) {
+						totalPoints += 200;
+					}
+					if ( octagon1Points ) {
+						totalPoints += 500;
+					}
+					if ( octagon2Points ) {
+						totalPoints += 2500;
+					}
+					if ( buoy1Points ) {
+						totalPoints += 500;
+					}
+					if ( buoy2Points ) {
+						totalPoints += 500;
+					}
+					if ( buoy3Points ) {
+						totalPoints += 500;
+					}
+					if ( maneuverPoints ) {
+						totalPoints += 1000;
+					}
 
+				}
+				console.log("Total Points: " + totalPoints);
 				lightFix.lightDepthFix();
 				//if ( true ) {
 					//guivalues.lightDepthFix();
