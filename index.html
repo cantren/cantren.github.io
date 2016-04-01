@@ -1144,11 +1144,59 @@ var parameters = {
 					//guivalues.lightDepthFix();
 					guivalues.randomVis();
 				}
+				///////////////////////////////////////////////////////////////////////////////////////////////////
+				//This section determines if the camera position is within the "hitbox" to award objective points//
+				///////////////////////////////////////////////////////////////////////////////////////////////////
 				if ( camera2.position.x < -15.57 && camera2.position.x > -15.97 && camera2.position.z < -21.93 && camera2.position.z > -22.33) {
 					pathmarker1Points = true;
 					console.log("Pathmarker1 Points!");
 				}
+				if ( camera2.position.x < -24.56 && camera2.position.x > -24.96 && camera2.position.z < -19.14 && camera2.position.z > -19.54 ) {
+					pathmarker2Points = true;
+					console.log("Pathmarker2 Points!");
+				}
+				if ( camera2.position.x < -24.5 && camera2.position.x > -24.9 && camera2.position.z < -19.21 && camera2.position.z > -19.61 ) {
+					pathmarker3Points = true;
+					console.log("Pathmarker3 Points!");
+				}
+				if ( camera2.position.x < -29.65 && camera2.position.x > -30.05 && camera2.position.z < -11.54 && camera2.position.z > -11.94 ) {
+					pathmarker4Points = true;
+					console.log("Pathmarker4 Points!");
+				}
+				if ( camera2.position.x < -31.09 && camera2.position.x > -31.49 && camera2.position.z < 2.06 && camera2.position.z > 1.66 ) {
+					pathmarker5Points = true;
+					console.log("Pathmarker5 Points!");
+				}
+				if ( camera2.position.x < -29.37 && camera2.position.x > -29.77 && camera2.position.z < 12.64 && camera2.position.z > 12.24 ) {
+					pathmarker6Points = true;
+					console.log("Pathmarker6 Points!");
+				}
+				if ( camera2.position.x < -23.37 && camera2.position.x > -23.77 && camera2.position.z < 15.61 && camera2.position.z > 15.21 ) {
+					pathmarker7Points = true;
+					console.log("Pathmarker7 Points!");
+				}
+				if ( camera2.position.x < -21.59 && camera2.position.x > -21.99 && camera2.position.y < -1.83 && camera2.position.y > -2.23 && camera2.position.z < -19.44 && camera2.position.z > -19.84 ) {
+					buoy1Points = true;
+					console.log("Buoy1 Points!");
+				}
+				if ( camera2.position.x < -22.27 && camera2.position.x > -22.67 && camera2.position.y < -1.92 && camera2.position.y > -2.32 && camera2.position.z < -20.49 && camera2.position.z > -20.89 ) {
+					buoy2Points = true;
+					console.log("Buoy2 Points!");
+				}
+				if ( camera2.position.x < -22.94 && camera2.position.x > -23.34 && camera2.position.y < -2.0 && camera2.position.y > -2.4 && camera2.position.z < -21.51 && camera2.position.z > -21.91 ) {
+					buoy3Points = true;
+					console.log("Buoy3 Points!");
+				}
 
+
+				///////////////////////////////////////////////////////////////////////////////////////////////////
+				//This section determines if the camera position is within the "hitbox" to award objective points//
+				///////////////////////////////////////////////////////////////////////////////////////////////////
+
+				///////////////////////////////////////////////////////////////
+				//This section tallys objective points that have been awarded//
+				///////////////////////////////////////////////////////////////
+												
 				var totalPoints = 0;
 				validationgatePoints = true;
 				if ( validationgatePoints ) {
@@ -1192,9 +1240,13 @@ var parameters = {
 					if ( maneuverPoints ) {
 						totalPoints += 1000;
 					}
-
 				}
 				console.log("Total Points: " + totalPoints);
+
+				///////////////////////////////////////////////////////////////
+				//This section tallys objective points that have been awarded//
+				///////////////////////////////////////////////////////////////
+
 				lightFix.lightDepthFix();
 				//if ( true ) {
 					//guivalues.lightDepthFix();
