@@ -766,7 +766,7 @@ var parameters = {
 				///////////////////
 				// Mirror Sphere //
 				///////////////////
-				var sphereGeom =  new THREE.SphereGeometry( 50, 64, 32 ); // radius, segmentsWidth, segmentsHeight
+				var sphereGeom =  new THREE.SphereGeometry( 5, 64, 32 ); // radius, segmentsWidth, segmentsHeight
 				mirrorSphereCamera = new THREE.CubeCamera( 0.1, 5000, 256 );
 				mirrorSphereCamera.renderTarget.minFilter = THREE.LinearMipMapLinearFilter;
 				scene.add( mirrorSphereCamera );
