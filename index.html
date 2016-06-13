@@ -259,6 +259,7 @@ var parameters = {
 			buoy3Points = false;
 			validationgatePoints = false;
 			maneuverPoints = false;
+			var mirrorSphere, mirrorSphereCamera; // for mirror material
 			
 			init();
 			animate();
@@ -760,6 +761,21 @@ var parameters = {
 				
 				scene.add( skyBox ); //create Point Loma Sky
 				scene2.add( skyBox2 ); //create Point Loma Sky
+
+
+				///////////////////
+				// Mirror Sphere //
+				///////////////////
+				var sphereGeom =  new THREE.SphereGeometry( 50, 64, 32 ); // radius, segmentsWidth, segmentsHeight
+				mirrorSphereCamera = new THREE.CubeCamera( 0.1, 5000, 256 );
+				mirrorSphereCamera.renderTarget.minFilter = THREE.LinearMipMapLinearFilter;
+				scene.add( mirrorSphereCamera );
+				var mirrorSphereMaterial = new THREE.MeshPhongMaterial( { emissive: 0x8888aa, envMap: mirrorSphereCamera.renderTarget } );
+				mirrorSphere = new THREE.Mesh( sphereGeom, mirrorSphereMaterial );
+				mirrorSphere.position.set(-15.77, -2.5, -22.13);
+				mirrorSphereCamera.position = mirrorSphere.position;
+				scene.add(mirrorSphere);
+				
 
 
 				var geometry = new THREE.IcosahedronGeometry( 30, 4 );
