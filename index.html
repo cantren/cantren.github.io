@@ -762,7 +762,7 @@ var parameters = {
 				scene.add( skyBox ); //create Point Loma Sky
 				scene2.add( skyBox2 ); //create Point Loma Sky
 
-
+				//source: https://stemkoski.github.io/Three.js/Many-Cameras.html
 				///////////////////
 				// Mirror Sphere //
 				///////////////////
@@ -1045,6 +1045,10 @@ var parameters = {
 				caustic.render(); //render water surface
 				caustic2.material.uniforms.time.value += 1.0 / 30.0; //speed of water motion(wind chop)
 				caustic2.render(); //render water surface
+				
+				//source: https://stemkoski.github.io/Three.js/Many-Cameras.html
+				mirrorSphereCamera.updateCubeMap( renderer, scene );
+				renderer.render( scene, camera );
 				
 				
 				//source:https://github.com/dirkk0/threejs_daynight/blob/master/index.html
