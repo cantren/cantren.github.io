@@ -289,7 +289,7 @@ var parameters = {
 				
 				container2 = document.getElementById('inset');
 				// renderer
-				renderer2 = new THREE.WebGLRenderer();
+				renderer2 = new THREE.WebGLRenderer({ antialias: false, preserveDrawingBuffer: true });
 				renderer2.setClearColor( 0xf0f0f0, 1 );
 				renderer2.setSize( CANVAS_WIDTH, CANVAS_HEIGHT );
 				container2.appendChild( renderer2.domElement );
