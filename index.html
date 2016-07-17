@@ -1166,6 +1166,14 @@ var parameters = {
 					//guivalues.lightDepthFix();
 					guivalues.randomVis();
 				}
+				if ( keyboard.pressed("I") ) {
+				var imgData1 = renderer2.domElement.toDataURL();
+				console.log("image(base64):" +imgData1);
+				}
+
+				//imgData1 = resizedataURL(renderer2.domElement.toDataURL(), 800, 50);
+
+
 				///////////////////////////////////////////////////////////////////////////////////////////////////
 				//This section determines if the camera position is within the "hitbox" to award objective points//
 				///////////////////////////////////////////////////////////////////////////////////////////////////
