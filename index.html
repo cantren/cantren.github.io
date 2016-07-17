@@ -264,7 +264,7 @@ var parameters = {
 			
 			var layer_defs = [];
 			// input layer of size 1x1x2 (all volumes are 3D)
-			/* soon
+			// soon
 			layer_defs.push({type:'input', out_sx:32, out_sy:32, out_depth:3});
 			layer_defs.push({type:'conv', sx:5, filters:16, stride:1, pad:2, activation:'relu'});
 			layer_defs.push({type:'pool', sx:2, stride:2});
@@ -276,9 +276,9 @@ var parameters = {
 			layer_defs.push({type:'fc', num_neurons: 50, activation:'sigmoid'});
 			//layer_defs.push({type:'fc', num_neurons: 50, activation:'relu'});
 			//layer_defs.push({type:'fc', num_neurons:5, activation:'sigmoid'});
-			*/ //soon
-			layer_defs.push({type:'input', out_sx:1, out_sy:1, out_depth:2});
-			layer_defs.push({type:'fc', num_neurons:5, activation:'sigmoid'});
+			 //soon
+			//layer_defs.push({type:'input', out_sx:1, out_sy:1, out_depth:2});
+			//layer_defs.push({type:'fc', num_neurons:5, activation:'sigmoid'});
 			layer_defs.push({type:'regression', num_neurons:2});
 			 
 			// create a net out of it
@@ -288,9 +288,6 @@ var parameters = {
 			// the network always works on Vol() elements. These are essentially
 			// simple wrappers around lists, but also contain gradients and dimensions
 			// line below will create a 1x1x2 volume and fill it with 0.5 and -1.3
-			x_conv = new convnetjs.Vol([0.5, -1.3]);
-			 
-			probability_volume = net.forward(x_conv);
 			var trainer = new convnetjs.Trainer(net, {learning_rate:0.01, l2_decay:0.001});
 				
 			
@@ -1118,6 +1115,23 @@ var parameters = {
 				var gl = renderer2.getContext();
 				buf = new Uint8Array(32 * 32 * 4);
 				gl.readPixels(0, 0, 32, 32, gl.RGBA, gl.UNSIGNED_BYTE, buf);
+				bufR = buf.slice(0,1);
+				bufG = buf.slice(1,2);
+				bufB = buf.slice(2,3);
+				console.log("bufG[15]: " + bufG[15] + " bufG[33]: " + bufG[33] );
+				/*
+				for(; i < len; i += 4) {
+					data[i]	    = pixels[t];     /// copy RGB data to canvas from custom array
+					data[i + 1] = pixels[t + 1];
+	    				data[i + 2] = pixels[t + 2];
+	    				data[i + 3] = 255;           /// remember this one with createImageBuffer
+				    	t += 3;
+				}
+				*/
+				x_conv = new convnetjs.Vol(bufR,bufG,bufB);
+				probability_volume = net.forward(x_conv);
+			
+				
 				trainer.train(x_conv, [camera.position.x, camera.position.z]);
 				var probability_volume2 = net.forward(x_conv);
 				console.log('probability that x is class 0: ' + probability_volume2.w[1]);
