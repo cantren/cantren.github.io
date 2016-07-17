@@ -1160,9 +1160,13 @@ var parameters = {
 				
 				//range of camera.position.y is approx (-5.6,-0.94)
 				var tmpdepth = ((-1)*(camera.position.y+1.04));
-				console.log("tmpdepth: " + tmpdepth);
+				//console.log("tmpdepth: " + tmpdepth);
 				tmpdepth = (tmpdepth/4.06)
 				console.log("tmpdepth: " + tmpdepth);
+				tmpdepth *= 255;
+				tmpdepth = Math.round(tmpdepth);
+				console.log("tmpdepth: " + tmpdepth);
+				
 
 				x_conv = new convnetjs.Vol(bufR,bufG,bufB);
 				probability_volume = net.forward(x_conv);
