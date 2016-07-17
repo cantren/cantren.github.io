@@ -294,15 +294,16 @@ var parameters = {
 			
 			init();
 			animate();
+			
 
 			//source: This entire "init()" function is very "boilerplate" from the examples at http://threejs.org/examples/ covered under the MIT License
 			function init() {
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
 				
-				renderer = new THREE.WebGLRenderer();
+				renderer = new THREE.WebGLRenderer({ antialias: false, preserveDrawingBuffer: true });
 				renderer.setPixelRatio( window.devicePixelRatio );
-				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.setSize( 32, 32 );
 				//uncomment these lines for VR
 				//effect = new THREE.StereoEffect( renderer );
 				//effect.eyeSeparation = 10;
@@ -1039,6 +1040,11 @@ var parameters = {
 				render(); //render the frame
 				//composer.render();
 				}
+			function sugar() {
+					guivalues.getLostComp();
+					guivalues.randomVis();
+				}
+
 			//source: MIT License OR "This code no longer appears to contain anything that belongs to josdirksen?"
 
 			//source: MIT License OR "This code no longer appears to contain anything that belongs to josdirksen?"
@@ -1113,7 +1119,7 @@ var parameters = {
 				//sphere2.position.copy( spotLightSUN.position );
 				var imgData1 = renderer2.domElement.toDataURL();
 				var gl = renderer2.getContext();
-				/*
+				
 				buf = new Uint8Array(32 * 32 * 4);
 				gl.readPixels(0, 0, 32, 32, gl.RGBA, gl.UNSIGNED_BYTE, buf);
 				
@@ -1126,7 +1132,8 @@ var parameters = {
 					bufG.push(buf[i - 3]);
 					bufB.push(buf[i - 2]);
 				}
-				*/
+				
+				/*
 				buf = new Uint8Array(32 * 32 * 3);
 				gl.readPixels(0, 0, 32, 32, gl.RGB, gl.UNSIGNED_BYTE, buf);
 				var bufR = [];
@@ -1137,6 +1144,7 @@ var parameters = {
 					bufG.push(buf[i - 2]);
 					bufB.push(buf[i - 1]);
 				}
+				*/
 
 				
 				
@@ -1399,7 +1407,7 @@ var parameters = {
 				///////////////////////////////////////////////////////////////
 				//This section tallys objective points that have been awarded//
 				///////////////////////////////////////////////////////////////
-
+				setTimeout(sugar, 10000);
 				lightFix.lightDepthFix();
 				//if ( true ) {
 					//guivalues.lightDepthFix();
