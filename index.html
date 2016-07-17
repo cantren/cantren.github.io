@@ -1120,6 +1120,12 @@ var parameters = {
 				var bufG = [];
 				var bufB = [];
 
+				for(var i = 0; i < buf.length; i += 4) {
+					bufR.push(buf[i - 3]);
+					bufG.push(buf[i - 2]);
+					bufB.push(buf[i - 1]);
+				}
+
  				console.log("bufR:");				
 				console.log(bufR);
 
@@ -1128,11 +1134,6 @@ var parameters = {
 
 				console.log("bufB:");				
 				console.log(bufB);
-				for(var i = 0; i < buf.length; i += 4) {
-					bufR.push(buf[i - 3]);
-					bufG.push(buf[i - 2]);
-					bufB.push(buf[i - 1]);
-				}
 /*
 				//source: http://stackoverflow.com/a/18173431
 				//read row 250 of image in to s[]; 
