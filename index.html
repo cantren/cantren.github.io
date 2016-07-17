@@ -1115,10 +1115,31 @@ var parameters = {
 				var gl = renderer2.getContext();
 				buf = new Uint8Array(32 * 32 * 4);
 				gl.readPixels(0, 0, 32, 32, gl.RGBA, gl.UNSIGNED_BYTE, buf);
-				var bufR = []; var bufG = []; var bufB = [];
+				var bufR = [][]; var bufG = [][]; var bufB = [][];
 				bufR = buf.slice(0,1);
 				bufG = buf.slice(1,2);
 				bufB = buf.slice(2,3);
+/*
+				//source: http://stackoverflow.com/a/18173431
+				//read row 250 of image in to s[]; 
+				for ( var i = 0; i < 800; i++ ){
+					s[i] = buf[i,300,1]/255;
+					//console.log("i = : " + i + "s[i] = " + s[i]);
+				}
+				for ( var i = 0; i < 800; i++ ){
+					s[i+800] = buf[i,300,2]/255;
+					//console.log("i = : " + i + "s[i] = " + s[i]);
+				}
+				for ( var i = 0; i < 800; i++ ){
+					s[i+1600] = buf[i,300,3]/255;
+					//console.log("i = : " + i + "s[i] = " + s[i]);
+				}
+				for ( var i = 0; i < 800; i++ ){
+					s[i+2400] = buf[i,300,4]/255;
+					//console.log("i = : " + i + "s[i] = " + s[i]);
+				}
+				//read row 250 of image in to s[];
+*/
 				console.log("bufG: " + bufG + " bufG[33]: " + bufG[33] );
 				/*
 				for(; i < len; i += 4) {
