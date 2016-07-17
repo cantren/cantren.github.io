@@ -1113,14 +1113,17 @@ var parameters = {
 				//sphere2.position.copy( spotLightSUN.position );
 				var imgData1 = renderer2.domElement.toDataURL();
 				var gl = renderer2.getContext();
-				buf = new Array(32 * 32 * 4);//new Uint8Array(32 * 32 * 4);
+				buf = new Uint8Array(32 * 32 * 4);
 				gl.readPixels(0, 0, 32, 32, gl.RGBA, gl.UNSIGNED_BYTE, buf);
 				
-				var newBuff = [];
+				var newBuf = new Uint8Array(3);
 
-				while(buf.length) newBuff.push(buf.splice(0,4));
-
-				console.log(newBuff);				
+				for(var i = 0; i < buf.length; i += 4) {
+					newBuf[0].push(buf[i - 3]);
+					newBuf[1].push(buf[i - 2]);
+					newBuf[2].push(buf[i - 1]);
+				}
+				console.log(newBuf);				
 				//var bufR = []; var bufG = []; var bufB = [];
 				//bufR = buf.slice(0,1);
 				//bufG = buf.slice(1,2);
@@ -1158,7 +1161,8 @@ var parameters = {
 				    	t += 3;
 				}
 				*/
-				x_conv = new convnetjs.Vol(bufR,bufG,bufB);
+				//x_conv = new convnetjs.Vol(bufR,bufG,bufB);
+				x_conv = new convnetjs.Vol(newBuf[0],newBuf[1],newBuf[2]);
 				probability_volume = net.forward(x_conv);
 			
 				
