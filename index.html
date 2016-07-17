@@ -1117,9 +1117,9 @@ var parameters = {
 				gl.readPixels(0, 0, 32, 32, gl.RGBA, gl.UNSIGNED_BYTE, buf);
 				var bufR = []; var bufG = []; var bufB = [];
 				bufR = buf.slice(0,1);
-				bufG =buf.slice(1,2);
+				bufG = buf.slice(1,2);
 				bufB = buf.slice(2,3);
-				console.log("bufG[15]: " + bufG[15] + " bufG[33]: " + bufG[33] );
+				console.log("bufG: " + bufG + " bufG[33]: " + bufG[33] );
 				/*
 				for(; i < len; i += 4) {
 					data[i]	    = pixels[t];     /// copy RGB data to canvas from custom array
