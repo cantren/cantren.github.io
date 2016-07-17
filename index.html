@@ -1159,7 +1159,8 @@ var parameters = {
 				bufB = bufR.concat(bufBfront);
 				
 				//range of camera.position.y is approx (-5.6,-0.94)
-				var tmpdepth = ((-1)*(camera.position.z+1.04));
+				var tmpdepth = ((-1)*(camera.position.y+1.04));
+				console.log("tmpdepth: " + tmpdepth);
 				tmpdepth = (tmpdepth/4.06)
 				console.log("tmpdepth: " + tmpdepth);
 
