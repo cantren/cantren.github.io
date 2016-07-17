@@ -1120,10 +1120,10 @@ var parameters = {
 				var bufG = [];
 				var bufB = [];
 
-				for(var i = 0; i < buf.length; i += 4) {
-					bufR.push(buf[i - 3]);
-					bufG.push(buf[i - 2]);
-					bufB.push(buf[i - 1]);
+				for(var i = 4; i < buf.length; i += 4) {
+					bufR.push(buf[i - 4]);
+					bufG.push(buf[i - 3]);
+					bufB.push(buf[i - 2]);
 				}
 
  				console.log("bufR:");				
