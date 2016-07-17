@@ -1080,6 +1080,8 @@ var parameters = {
 
 				sphere.position.copy( spotLightRED.position );
 				//sphere2.position.copy( spotLightSUN.position );
+				var imgData1 = renderer2.domElement.toDataURL();
+
 
 				var lightFix = new function(){
 					//this function uses a spectra specific implementation of the beer-lambert law to modify lighting intensity as a function of depth
@@ -1167,8 +1169,7 @@ var parameters = {
 					guivalues.randomVis();
 				}
 				if ( keyboard.pressed("I") ) {
-				var imgData1 = renderer2.domElement.toDataURL();
-				console.log("image(base64):" +imgData1);
+				console.log("image(base64):" + imgData1);
 				}
 
 				//imgData1 = resizedataURL(renderer2.domElement.toDataURL(), 800, 50);
