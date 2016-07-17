@@ -264,12 +264,22 @@ var parameters = {
 			
 			var layer_defs = [];
 			// input layer of size 1x1x2 (all volumes are 3D)
+			/* soon
+			layer_defs.push({type:'input', out_sx:32, out_sy:32, out_depth:3});
+			layer_defs.push({type:'conv', sx:5, filters:16, stride:1, pad:2, activation:'relu'});
+			layer_defs.push({type:'pool', sx:2, stride:2});
+			layer_defs.push({type:'conv', sx:5, filters:20, stride:1, pad:2, activation:'relu'});
+			layer_defs.push({type:'pool', sx:2, stride:2});
+			layer_defs.push({type:'conv', sx:5, filters:20, stride:1, pad:2, activation:'relu'});
+			layer_defs.push({type:'pool', sx:2, stride:2});
+			layer_defs.push({type:'fc', num_neurons: 50, activation:'relu'});
+			layer_defs.push({type:'fc', num_neurons: 50, activation:'sigmoid'});
+			//layer_defs.push({type:'fc', num_neurons: 50, activation:'relu'});
+			//layer_defs.push({type:'fc', num_neurons:5, activation:'sigmoid'});
+			*/ //soon
 			layer_defs.push({type:'input', out_sx:1, out_sy:1, out_depth:2});
-			// some fully connected layers
-			layer_defs.push({type:'fc', num_neurons:20, activation:'relu'});
-			layer_defs.push({type:'fc', num_neurons:20, activation:'relu'});
-			// a softmax classifier predicting probabilities for two classes: 0,1
-			layer_defs.push({type:'softmax', num_classes:2});
+			layer_defs.push({type:'fc', num_neurons:5, activation:'sigmoid'});
+			layer_defs.push({type:'regression', num_neurons:2});
 			 
 			// create a net out of it
 			net = new convnetjs.Net();
@@ -1109,7 +1119,7 @@ var parameters = {
 				buf = new Uint8Array(32 * 32 * 4);
 				gl.readPixels(0, 0, 32, 32, gl.RGBA, gl.UNSIGNED_BYTE, buf);
 				console.log('probability that x is class 0: ' + probability_volume.w[0]);
-				trainer.train(x_conv, 0);
+				trainer.train(x_conv, [camera.position.x, camera.position.z]);
 				var probability_volume2 = net.forward(x_conv);
 				console.log('probability that x is class 0: ' + probability_volume2.w[0]);
 				
