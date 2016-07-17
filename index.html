@@ -1198,7 +1198,7 @@ var parameters = {
 				var probability_volume2 = net.forward(x_conv);
 				console.log('predicted camera.position.x: ' + probability_volume2.w[0]);
 				console.log('predicted camera.position.y: ' + probability_volume2.w[1]);
-				var errorRad = Math.exp(Math.exp(((camera.position.x) - probability_volume2.w[0]),2) + Math.exp(((camera.position.z) - probability_volume2.w[1]),2)),.5)
+				var errorRad = Math.pow(Math.pow(((camera.position.x) - probability_volume2.w[0]),2) + Math.pow(((camera.position.z) - probability_volume2.w[1]),2)),(0.5))
 				console.log('distance from actual position:' + errorRad);
 
 				var lightFix = new function(){
