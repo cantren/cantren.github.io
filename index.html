@@ -1117,9 +1117,18 @@ var parameters = {
 
 				sphere.position.copy( spotLightRED.position );
 				//sphere2.position.copy( spotLightSUN.position );
-				var imgData1 = renderer2.domElement.toDataURL();
 				
+				//Debug lines
+				//var imgData1 = renderer.domElement.toDataURL();
+				//var imgData1 = renderer2.domElement.toDataURL();
+				
+				///////////////////////////////////////////////////////////////////////////////////
+				//take two screencaptures of the renderers and turn them in to a single RGB image//
+				///////////////////////////////////////////////////////////////////////////////////
+				
+				//"front camera" renderer = glFront/renderer
 				var glFront = renderer.getContext();
+				//"bottom camera" renderer = gl/renderer2
 				var gl = renderer2.getContext();
 				
 				buf = new Uint8Array(32 * 32 * 4);
@@ -1134,14 +1143,15 @@ var parameters = {
 					bufG.push(buf[i - 3]);
 					bufB.push(buf[i - 2]);
 				}
-				glFront.readPixels(0, 0, 32, 32, glFront.RGBA, glFront.UNSIGNED_BYTE, buf);
+				buf2 = new Uint8Array(32 * 32 * 4);
+				glFront.readPixels(0, 0, 32, 32, glFront.RGBA, glFront.UNSIGNED_BYTE, buf2);
 				var bufRfront = [];
 				var bufGfront = [];
 				var bufBfront = [];
 				for(var i = 4; i < buf.length; i += 4) {
-					bufRfront.push(buf[i - 4]);
-					bufGfront.push(buf[i - 3]);
-					bufBfront.push(buf[i - 2]);
+					bufRfront.push(buf2[i - 4]);
+					bufGfront.push(buf2[i - 3]);
+					bufBfront.push(buf2[i - 2]);
 				}
 
 				/*
@@ -1157,7 +1167,10 @@ var parameters = {
 				bufR = bufR.concat(bufRfront);
 				bufG = bufR.concat(bufGfront);
 				bufB = bufR.concat(bufBfront);
-				
+				//////////////////////////////////////////////////////////////////////////
+				//////////////////////////////////////////////////////////////////////////
+				// RESCALE camera.position.y FOR USE AS A 0-255 "depth" pixel/////////////
+				//////////////////////////////////////////////////////////////////////////
 				//range of camera.position.y is approx (-5.6,-0.94)
 				var tmpdepth = ((-1)*(camera.position.y+1.04));
 				//console.log("tmpdepth: " + tmpdepth);
@@ -1167,14 +1180,24 @@ var parameters = {
 				tmpdepth = Math.round(tmpdepth);
 				console.log("tmpdepth: " + tmpdepth);
 				
+				//////////////////////////////////////////////////////////////////////////
+				//add the "depthpixel" to the screenshot//////////////////////////////////
+				//////////////////////////////////////////////////////////////////////////
+				bufR = bufR.concat(tmpdepth);
+				bufG = bufR.concat(tmpdepth);
+				bufB = bufR.concat(tmpdepth);
 
+				///////////////////////////////////////////////////////////////////////////////
+				// convert the 65x32 pixel RGB image in to a 3d convnetjs "volume" structure //
+				///////////////////////////////////////////////////////////////////////////////
 				x_conv = new convnetjs.Vol(bufR,bufG,bufB);
 				probability_volume = net.forward(x_conv);
 			
 				
 				trainer.train(x_conv, [camera.position.x, camera.position.z]);
 				var probability_volume2 = net.forward(x_conv);
-				console.log('probability that x is class 0: ' + probability_volume2.w[1]);
+				console.log('predicted camera.position.x: ' + probability_volume2.w[0]);
+				console.log('predicted camera.position.y: ' + probability_volume2.w[1]);
 				
 
 				var lightFix = new function(){
@@ -1386,7 +1409,7 @@ var parameters = {
 				///////////////////////////////////////////////////////////////
 				//This section tallys objective points that have been awarded//
 				///////////////////////////////////////////////////////////////
-				//setTimeout(sugar, 10000);
+				setTimeout(sugar, 10000);
 				lightFix.lightDepthFix();
 				//if ( true ) {
 					//guivalues.lightDepthFix();
