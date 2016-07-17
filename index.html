@@ -1196,10 +1196,10 @@ var parameters = {
 				
 				trainer.train(x_conv, [camera.position.x, camera.position.z]);
 				var probability_volume2 = net.forward(x_conv);
-				console.log('predicted camera.position.x: ' + probability_volume2.w[0]);
-				console.log('predicted camera.position.y: ' + probability_volume2.w[1]);
+				console.log('predicted camera.position.x: ' + probability_volume2.w[0]+",");
+				console.log('predicted camera.position.y: ' + probability_volume2.w[1]+",");
 				var errorRad = Math.pow(Math.pow(((camera.position.x) - probability_volume2.w[0]),2) + Math.pow(((camera.position.z) - probability_volume2.w[1]),2),0.5);
-				console.log('distance from actual position:' + errorRad);
+				console.log('distance from actual position:' + errorRad+",");
 
 				var lightFix = new function(){
 					//this function uses a spectra specific implementation of the beer-lambert law to modify lighting intensity as a function of depth
@@ -1405,7 +1405,8 @@ var parameters = {
 						totalPoints += 600;
 					}
 				}
-				console.log("Total Points: " + totalPoints);
+				//console.log("Total Points: " + totalPoints);
+				console.log("time:" + Math.floor(time)+",");
 
 				///////////////////////////////////////////////////////////////
 				//This section tallys objective points that have been awarded//
