@@ -87,7 +87,6 @@
 		<script src="../js/Mirror.js"></script>
 		<script src="../js/WaterShader.js"></script>
 		<script src="../js/material.js"></script>
-		<script src="../js/convnet-min.js"></script>
 
 
 		<script src="../js/Detector.js"></script>
@@ -228,8 +227,8 @@ THE SOFTWARE.
 			var composer;
 			var testParams, testPass;			
 
-			var CANVAS_WIDTH = 32,
-			    CANVAS_HEIGHT = 32,
+			var CANVAS_WIDTH = 300,
+			    CANVAS_HEIGHT = 300,
 			    CAM_DISTANCE = 300;//This doesn't look like cargo cult code but should be sanity checked at some point
 			var clock = new THREE.Clock();//I spent a long time debugging because I forgot to initialize this
 			var keyboard = new KeyboardState();//this appears to help with keyboard input... Part of FPS controls/Key bindings?
@@ -260,50 +259,18 @@ var parameters = {
 			buoy3Points = false;
 			validationgatePoints = false;
 			maneuverPoints = false;
-			var mirrorSphere, mirrorSphereCamera; // for mirror material
-			
-			var layer_defs = [];
-			// input layer of size 1x1x2 (all volumes are 3D)
-			// soon
-			layer_defs.push({type:'input', out_sx:65, out_sy:32, out_depth:3});
-			layer_defs.push({type:'conv', sx:5, filters:16, stride:1, pad:2, activation:'relu'});
-			layer_defs.push({type:'pool', sx:2, stride:2});
-			layer_defs.push({type:'conv', sx:5, filters:20, stride:1, pad:2, activation:'relu'});
-			layer_defs.push({type:'pool', sx:2, stride:2});
-			layer_defs.push({type:'conv', sx:5, filters:20, stride:1, pad:2, activation:'relu'});
-			layer_defs.push({type:'pool', sx:2, stride:2});
-			layer_defs.push({type:'fc', num_neurons: 50, activation:'relu'});
-			layer_defs.push({type:'fc', num_neurons: 50, activation:'sigmoid'});
-			//layer_defs.push({type:'fc', num_neurons: 50, activation:'relu'});
-			//layer_defs.push({type:'fc', num_neurons:5, activation:'sigmoid'});
-			 //soon
-			//layer_defs.push({type:'input', out_sx:1, out_sy:1, out_depth:2});
-			//layer_defs.push({type:'fc', num_neurons:5, activation:'sigmoid'});
-			layer_defs.push({type:'regression', num_neurons:2});
-			 
-			// create a net out of it
-			net = new convnetjs.Net();
-			net.makeLayers(layer_defs);
-			 
-			// the network always works on Vol() elements. These are essentially
-			// simple wrappers around lists, but also contain gradients and dimensions
-			// line below will create a 1x1x2 volume and fill it with 0.5 and -1.3
-			var trainer = new convnetjs.Trainer(net, {learning_rate:0.01, l2_decay:0.001});
-				
-			
 			
 			init();
 			animate();
-			
 
 			//source: This entire "init()" function is very "boilerplate" from the examples at http://threejs.org/examples/ covered under the MIT License
 			function init() {
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
 				
-				renderer = new THREE.WebGLRenderer({ antialias: false, preserveDrawingBuffer: true });
+				renderer = new THREE.WebGLRenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
-				renderer.setSize( 32, 32 );
+				renderer.setSize( window.innerWidth, window.innerHeight );
 				//uncomment these lines for VR
 				//effect = new THREE.StereoEffect( renderer );
 				//effect.eyeSeparation = 10;
@@ -321,7 +288,7 @@ var parameters = {
 				
 				container2 = document.getElementById('inset');
 				// renderer
-				renderer2 = new THREE.WebGLRenderer({ antialias: false, preserveDrawingBuffer: true });
+				renderer2 = new THREE.WebGLRenderer();
 				renderer2.setClearColor( 0xf0f0f0, 1 );
 				renderer2.setSize( CANVAS_WIDTH, CANVAS_HEIGHT );
 				container2.appendChild( renderer2.domElement );
@@ -339,7 +306,6 @@ var parameters = {
 				scene2.fog = new THREE.FogExp2( 0x008080, 0.1875 );
 				
 				camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.5, 3000000);
-//				camera = new THREE.PerspectiveCamera(170, window.innerWidth / window.innerHeight, 0.5, 3000000);
 //buoy closeup location
 				camera.position.x = -16.73;//pool line of symetry is x axis
 				camera.position.y = -2.52;//water depth
@@ -356,7 +322,6 @@ var parameters = {
 				camera.far = 21.5;
 			        
 			        camera2 = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.5, 3000000);
-//			        camera2 = new THREE.PerspectiveCamera(170, window.innerWidth / window.innerHeight, 0.5, 3000000);
 			        camera2.up = camera.up; // important!
 
 //buoy closeup location
@@ -794,21 +759,6 @@ var parameters = {
 				scene.add( skyBox ); //create Point Loma Sky
 				scene2.add( skyBox2 ); //create Point Loma Sky
 
-				//source: https://stemkoski.github.io/Three.js/Many-Cameras.html
-				///////////////////
-				// Mirror Sphere //
-				///////////////////
-				var sphereGeom =  new THREE.SphereGeometry( .5, 6, 3 ); // radius, segmentsWidth, segmentsHeight
-				mirrorSphereCamera = new THREE.CubeCamera( 0.1, 5000, 256 );
-				mirrorSphereCamera.renderTarget.minFilter = THREE.LinearMipMapLinearFilter;
-				scene.add( mirrorSphereCamera );
-				var mirrorSphereMaterial = new THREE.MeshPhongMaterial( { emissive: 0x8888aa, envMap: mirrorSphereCamera.renderTarget } );
-				mirrorSphere = new THREE.Mesh( sphereGeom, mirrorSphereMaterial );
-				mirrorSphere.position.set(-15.77, -3.5, -22.13);
-				mirrorSphereCamera.position = mirrorSphere.position;
-				//scene.add(mirrorSphere);
-				
-
 
 				var geometry = new THREE.IcosahedronGeometry( 30, 4 );
 				for ( var i = 0, j = geometry.faces.length; i < j; i ++ ) {
@@ -1040,11 +990,6 @@ var parameters = {
 				render(); //render the frame
 				//composer.render();
 				}
-			function sugar() {
-					guivalues.getLostComp();
-					guivalues.randomVis();
-				}
-
 			//source: MIT License OR "This code no longer appears to contain anything that belongs to josdirksen?"
 
 			//source: MIT License OR "This code no longer appears to contain anything that belongs to josdirksen?"
@@ -1083,10 +1028,6 @@ var parameters = {
 				caustic2.material.uniforms.time.value += 1.0 / 30.0; //speed of water motion(wind chop)
 				caustic2.render(); //render water surface
 				
-				//source: https://stemkoski.github.io/Three.js/Many-Cameras.html
-				mirrorSphereCamera.updateCubeMap( renderer, scene );
-				renderer.render( scene, camera );
-				
 				
 				//source:https://github.com/dirkk0/threejs_daynight/blob/master/index.html
 				var nsin = Math.abs(Math.sin(timeSolar));
@@ -1117,89 +1058,6 @@ var parameters = {
 
 				sphere.position.copy( spotLightRED.position );
 				//sphere2.position.copy( spotLightSUN.position );
-				
-				//Debug lines
-				//var imgData1 = renderer.domElement.toDataURL();
-				//var imgData1 = renderer2.domElement.toDataURL();
-				
-				///////////////////////////////////////////////////////////////////////////////////
-				//take two screencaptures of the renderers and turn them in to a single RGB image//
-				///////////////////////////////////////////////////////////////////////////////////
-				
-				//"front camera" renderer = glFront/renderer
-				var glFront = renderer.getContext();
-				//"bottom camera" renderer = gl/renderer2
-				var gl = renderer2.getContext();
-				
-				buf = new Uint8Array(32 * 32 * 4);
-				gl.readPixels(0, 0, 32, 32, gl.RGBA, gl.UNSIGNED_BYTE, buf);
-				
-				var bufR = [];
-				var bufG = [];
-				var bufB = [];
-
-				for(var i = 4; i < buf.length; i += 4) {
-					bufR.push(buf[i - 4]);
-					bufG.push(buf[i - 3]);
-					bufB.push(buf[i - 2]);
-				}
-				buf2 = new Uint8Array(32 * 32 * 4);
-				glFront.readPixels(0, 0, 32, 32, glFront.RGBA, glFront.UNSIGNED_BYTE, buf2);
-				var bufRfront = [];
-				var bufGfront = [];
-				var bufBfront = [];
-				for(var i = 4; i < buf.length; i += 4) {
-					bufRfront.push(buf2[i - 4]);
-					bufGfront.push(buf2[i - 3]);
-					bufBfront.push(buf2[i - 2]);
-				}
-
-				/*
- 				console.log("bufR:");				
-				console.log(bufR);
-
-				console.log("bufG:");				
-				console.log(bufG);
-
-				console.log("bufB:");				
-				console.log(bufB);
-				*/
-				bufR = bufR.concat(bufRfront);
-				bufG = bufR.concat(bufGfront);
-				bufB = bufR.concat(bufBfront);
-				//////////////////////////////////////////////////////////////////////////
-				//////////////////////////////////////////////////////////////////////////
-				// RESCALE camera.position.y FOR USE AS A 0-255 "depth" pixel/////////////
-				//////////////////////////////////////////////////////////////////////////
-				//range of camera.position.y is approx (-5.6,-0.94)
-				var tmpdepth = ((-1)*(camera.position.y+1.04));
-				//console.log("tmpdepth: " + tmpdepth);
-				tmpdepth = (tmpdepth/4.06)
-				//console.log("tmpdepth: " + tmpdepth);
-				tmpdepth *= 255;
-				tmpdepth = Math.round(tmpdepth);
-				//console.log("tmpdepth: " + tmpdepth);
-				
-				//////////////////////////////////////////////////////////////////////////
-				//add the "depthpixel" to the screenshot//////////////////////////////////
-				//////////////////////////////////////////////////////////////////////////
-				bufR = bufR.concat(tmpdepth);
-				bufG = bufR.concat(tmpdepth);
-				bufB = bufR.concat(tmpdepth);
-
-				///////////////////////////////////////////////////////////////////////////////
-				// convert the 65x32 pixel RGB image in to a 3d convnetjs "volume" structure //
-				///////////////////////////////////////////////////////////////////////////////
-				x_conv = new convnetjs.Vol(bufR,bufG,bufB);
-				probability_volume = net.forward(x_conv);
-			
-				
-				trainer.train(x_conv, [camera.position.x, camera.position.z]);
-				var probability_volume2 = net.forward(x_conv);
-				console.log('predicted camera.position.x: ' + probability_volume2.w[0]+",");
-				console.log('predicted camera.position.y: ' + probability_volume2.w[1]+",");
-				var errorRad = Math.pow(Math.pow(((camera.position.x) - probability_volume2.w[0]),2) + Math.pow(((camera.position.z) - probability_volume2.w[1]),2),0.5);
-				console.log('distance from actual position:' + errorRad+",");
 
 				var lightFix = new function(){
 					//this function uses a spectra specific implementation of the beer-lambert law to modify lighting intensity as a function of depth
@@ -1286,13 +1144,6 @@ var parameters = {
 					//guivalues.lightDepthFix();
 					guivalues.randomVis();
 				}
-				if ( keyboard.pressed("I") ) {
-				console.log("image(base64):" + imgData1);
-				}
-
-				//imgData1 = resizedataURL(renderer2.domElement.toDataURL(), 800, 50);
-
-
 				///////////////////////////////////////////////////////////////////////////////////////////////////
 				//This section determines if the camera position is within the "hitbox" to award objective points//
 				///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1405,13 +1256,12 @@ var parameters = {
 						totalPoints += 600;
 					}
 				}
-				//console.log("Total Points: " + totalPoints);
-				console.log("time:" + Math.floor(time)+",");
+				console.log("Total Points: " + totalPoints);
 
 				///////////////////////////////////////////////////////////////
 				//This section tallys objective points that have been awarded//
 				///////////////////////////////////////////////////////////////
-				setTimeout(sugar, 10000);
+
 				lightFix.lightDepthFix();
 				//if ( true ) {
 					//guivalues.lightDepthFix();
@@ -1440,7 +1290,6 @@ var parameters = {
 						camera2.position.y = -1.04; 
 						camera.position.y = -1.04; 
 					}
-					
 
 				
 				renderer.render( scene, camera ); //render everything else
