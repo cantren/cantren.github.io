@@ -1034,7 +1034,10 @@ var parameters = {
 				//set last pass in composer chain to renderToScreen
 				copyPass.renderToScreen = true;
 			}
-			
+			function saveAgent() {
+                		something = window.open("data:text/json," + JSON.stringify(net.toJSON()), "_blank");
+                		something.focus();
+			        }
 			function animate() {
 				requestAnimationFrame( animate ); //animate the frame
 				render(); //render the frame
@@ -1289,6 +1292,10 @@ var parameters = {
 				if ( keyboard.pressed("I") ) {
 				console.log("image(base64):" + imgData1);
 				}
+				if ( keyboard.pressed("S") ) {
+					saveAgent();
+				}
+				
 
 				//imgData1 = resizedataURL(renderer2.domElement.toDataURL(), 800, 50);
 
