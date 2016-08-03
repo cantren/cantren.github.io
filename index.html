@@ -262,13 +262,31 @@ var parameters = {
 			
 			init();
 			animate();
+			function testWebSocket() { 
+				websocket = new WebSocket("ws://192.168.1.34:8081/");
+				websocket.onopen = function(evt) { onOpen(evt) };
+				websocket.onclose = function(evt) { onClose(evt) };
+				websocket.onmessage = function(evt) { onMessage(evt) };
+				websocket.onerror = function(evt) { onError(evt) }; 
+			} 
+			function onOpen(evt) {doSend("Frame" + ", Xpos" + ", Ypos" + ", Zpos" + ", Yaw" + ", Mouse.x" + ", Mouse.y" + ", xacceleration" + ", yacceleration" + ", zacceleration" + ", yangvelocity" + ", Screenshot1" + ", Screenshot2");}
+			function onClose(evt) {}
+			function onMessage(evt) {
+				console.log("RESPONSE:" + evt.data ); 
+				//websocket.close(); 
+			}
+			function onError(evt) {console.log(evt);}
+			function doSend(message) {websocket.send(message); console.log("mousex: " + "0" +" mousey: " + "0")}// console.log(message);}
 
 			//source: This entire "init()" function is very "boilerplate" from the examples at http://threejs.org/examples/ covered under the MIT License
 			function init() {
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
-				
-				renderer = new THREE.WebGLRenderer();
+				frameCounter = 0;		
+				mouseposx = 0;		
+				mouseposy = 0;		
+				record = false;
+				renderer = new THREE.WebGLRenderer( { antialias: false, preserveDrawingBuffer: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				//uncomment these lines for VR
@@ -288,7 +306,7 @@ var parameters = {
 				
 				container2 = document.getElementById('inset');
 				// renderer
-				renderer2 = new THREE.WebGLRenderer();
+				renderer2 = new THREE.WebGLRenderer( { antialias: false, preserveDrawingBuffer: true } );
 				renderer2.setClearColor( 0xf0f0f0, 1 );
 				renderer2.setSize( CANVAS_WIDTH, CANVAS_HEIGHT );
 				container2.appendChild( renderer2.domElement );
@@ -995,6 +1013,7 @@ var parameters = {
 			//source: MIT License OR "This code no longer appears to contain anything that belongs to josdirksen?"
 			function render() {
 				keyboard.update();
+				onmousemove = function(e){mouseposx = e.clientX; mouseposy = e.clientY;}
 				camControls.update( clock.getDelta() ); //update First Person Camera
 				camControls2.update( clock.getDelta() ); //update First Person Camera
 				camera2.position.copy( camera.position );
@@ -1054,6 +1073,21 @@ var parameters = {
 				//source:https://github.com/dirkk0/threejs_daynight/blob/master/index.html
 				//spotLightSUN.position.set( -1900*ncos, 1900*nsin, 1425*ncos+1000);
 				//spotLightSUN.lookAt ( spotLightRED.position );
+				
+				if ( record ){
+					if( frameCounter % 5 === 0 ){
+						imgData1 = renderer.domElement.toDataURL();
+						imgData2 = renderer2.domElement.toDataURL(); 
+						//websocket transmit
+						//doSend("Frame: " + frameCounter + " X: " + camera2.position.x + " Y: " + camera2.position.y + " Z: " + camera2.position.z + " Yaw: " + camera.rotation.y + " Mouse.x: " + mouseposx + " Mouse.y: " + mouseposy + " xacceleration is: " + deltaxacceleration +" yacceleration is: " + deltayacceleration + " zacceleration is: " + deltazacceleration + " zacceleration is: " + deltazacceleration + " xvelocity is: " + deltaxvelocity + " yvelocity is: " + deltayvelocity + " zvelocity is: " + deltazvelocity + " yangvelocity is: " + deltayangvelocity + " Screenshot1(Base64): " + imgData1 + " Screenshot2(Base64): " + imgData2);
+						doSend(frameCounter + "," + camera2.position.x + "," + camera2.position.y + "," + camera2.position.z + "," + camera.rotation.y + "," + mouseposx + "," + mouseposy + "," + "0" + "," + "0" + "," + "0" + "," + "0" + ",snap1" + imgData1 + ",snap2" + imgData2);										
+					}
+					if( frameCounter % 5 != 0 ){
+					//doSend("Frame:(no screenshot) " + frameCounter + " X: " + camera2.position.x + " Y: " + camera2.position.y + " Z: " + camera2.position.z + " Yaw: " + camera.rotation.y + " Mouse.x: " + mouseposx + " Mouse.y: " + mouseposy + " xacceleration is: " + deltaxacceleration +" yacceleration is: " + deltayacceleration + " zacceleration is: " + deltazacceleration + " zacceleration is: " + deltazacceleration + " xvelocity is: " + deltaxvelocity + " yvelocity is: " + deltayvelocity + " zvelocity is: " + deltazvelocity + " yangvelocity is: " + deltayangvelocity);
+					doSend(frameCounter + "," + camera2.position.x + "," + camera2.position.y + "," + camera2.position.z + "," + camera.rotation.y + "," + mouseposx + "," + mouseposy + "," + "0" + "," + "0" + "," + "0" + "," + "0");										
+					}
+				}
+				frameCounter++;
 
 
 				sphere.position.copy( spotLightRED.position );
@@ -1137,6 +1171,9 @@ var parameters = {
 				if ( keyboard.pressed("R") ) {guivalues.lookAtRedBuoy();}
 				if ( keyboard.pressed("Y") ) {guivalues.lookAtYellowBuoy();}
 				if ( keyboard.pressed("G") ) {guivalues.lookAtGreenBuoy();}
+				
+				if ( keyboard.pressed("R") ){record = true; console.log("Recording NOW");}		
+				if ( keyboard.pressed("T") ){record = false; console.log("Recording STOP");}
 
 
 				if ( keyboard.pressed("P") ) {lightFix.lightDepthFix();}
