@@ -756,6 +756,7 @@ var convnetjs = convnetjs || { REVISION: 'ALPHA' };
   global.PoolLayer = PoolLayer;
 
 })(convnetjs);
+//TODO: http://stackoverflow.com/a/38450609 <-good animation on unpooling
 //TODO: https://groups.google.com/d/msg/caffe-users/PtbX9H70fsg/T-o9CpvMDwAJ
 //TODO: http://cs.stanford.edu/people/karpathy/convnetjs/docs.html
 //TODO: http://pastebin.com/uuSGZLRW (See above)
