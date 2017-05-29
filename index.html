@@ -263,20 +263,21 @@ var parameters = {
 			init();
 			animate();
 			function testWebSocket() { 
-				websocket = new WebSocket("ws://192.168.1.34:8081/");
+				#websocket = new WebSocket("ws://192.168.1.34:8081/");
+				websocket = new WebSocket("ws://127.0.0.01:8765/");
 				websocket.onopen = function(evt) { onOpen(evt) };
 				websocket.onclose = function(evt) { onClose(evt) };
 				websocket.onmessage = function(evt) { onMessage(evt) };
 				websocket.onerror = function(evt) { onError(evt) }; 
 			} 
-			function onOpen(evt) {doSend("Frame" + ", Xpos" + ", Ypos" + ", Zpos" + ", Yaw" + ", Mouse.x" + ", Mouse.y" + ", xacceleration" + ", yacceleration" + ", zacceleration" + ", yangvelocity" + ", Screenshot1" + ", Screenshot2");}
+			function onOpen(evt) {console.log("Hello!");}//doSend("Frame" + ", Xpos" + ", Ypos" + ", Zpos" + ", Yaw" + ", Mouse.x" + ", Mouse.y" + ", xacceleration" + ", yacceleration" + ", zacceleration" + ", yangvelocity" + ", Screenshot1" + ", Screenshot2");}
 			function onClose(evt) {}
 			function onMessage(evt) {
 				console.log("RESPONSE:" + evt.data ); 
 				//websocket.close(); 
 			}
 			function onError(evt) {console.log(evt);}
-			function doSend(message) {websocket.send(message); console.log("mousex: " + "0" +" mousey: " + "0")}// console.log(message);}
+			function doSend(message) {websocket.send(message);}// console.log("mousex: " + "0" +" mousey: " + "0")}// console.log(message);}
 
 			//source: This entire "init()" function is very "boilerplate" from the examples at http://threejs.org/examples/ covered under the MIT License
 			function init() {
@@ -1076,7 +1077,7 @@ var parameters = {
 				//spotLightSUN.lookAt ( spotLightRED.position );
 				
 				if ( record ){
-					if( frameCounter % 5 === 0 ){
+					if( frameCounter % 1 === 0 ){
 						imgData1 = renderer.domElement.toDataURL();
 						imgData2 = renderer2.domElement.toDataURL();
 						//websocket transmit
@@ -1085,7 +1086,7 @@ var parameters = {
 					}
 					if( frameCounter % 5 != 0 ){
 					//doSend("Frame:(no screenshot) " + frameCounter + " X: " + camera2.position.x + " Y: " + camera2.position.y + " Z: " + camera2.position.z + " Yaw: " + camera.rotation.y + " Mouse.x: " + mouseposx + " Mouse.y: " + mouseposy + " xacceleration is: " + deltaxacceleration +" yacceleration is: " + deltayacceleration + " zacceleration is: " + deltazacceleration + " zacceleration is: " + deltazacceleration + " xvelocity is: " + deltaxvelocity + " yvelocity is: " + deltayvelocity + " zvelocity is: " + deltazvelocity + " yangvelocity is: " + deltayangvelocity);
-					doSend(frameCounter + "," + camera2.position.x + "," + camera2.position.y + "," + camera2.position.z + "," + camera.rotation.y + "," + mouseposx + "," + mouseposy + "," + "0" + "," + "0" + "," + "0" + "," + "0");										
+					//doSend(frameCounter + "," + camera2.position.x + "," + camera2.position.y + "," + camera2.position.z + "," + camera.rotation.y + "," + mouseposx + "," + mouseposy + "," + "0" + "," + "0" + "," + "0" + "," + "0");										
 					}
 				}
 				frameCounter++;
@@ -1296,8 +1297,8 @@ var parameters = {
 					}
 				}
 				console.log("Total Points: " + totalPoints);
-				console.log("Frame" + ", Xpos" + ", Ypos" + ", Zpos" + ", Yaw" + ", Mouse.x" + ", Mouse.y" + ", xacceleration" + ", yacceleration" + ", zacceleration" + ", yangvelocity" + ", Screenshot1" + ", Screenshot2");
-				console.log(frameCounter + "," + camera2.position.x + "," + camera2.position.y + "," + camera2.position.z + "," + camera.rotation.y + "," + mouseposx + "," + mouseposy + "," + "0" + "," + "0" + "," + "0" + "," + "0");										
+				//console.log("Frame" + ", Xpos" + ", Ypos" + ", Zpos" + ", Yaw" + ", Mouse.x" + ", Mouse.y" + ", xacceleration" + ", yacceleration" + ", zacceleration" + ", yangvelocity" + ", Screenshot1" + ", Screenshot2");
+				//console.log(frameCounter + "," + camera2.position.x + "," + camera2.position.y + "," + camera2.position.z + "," + camera.rotation.y + "," + mouseposx + "," + mouseposy + "," + "0" + "," + "0" + "," + "0" + "," + "0");										
 				
 
 				///////////////////////////////////////////////////////////////
