@@ -1082,7 +1082,8 @@ var parameters = {
 						imgData2 = renderer2.domElement.toDataURL();
 						//websocket transmit
 						//doSend("Frame: " + frameCounter + " X: " + camera2.position.x + " Y: " + camera2.position.y + " Z: " + camera2.position.z + " Yaw: " + camera.rotation.y + " Mouse.x: " + mouseposx + " Mouse.y: " + mouseposy + " xacceleration is: " + deltaxacceleration +" yacceleration is: " + deltayacceleration + " zacceleration is: " + deltazacceleration + " zacceleration is: " + deltazacceleration + " xvelocity is: " + deltaxvelocity + " yvelocity is: " + deltayvelocity + " zvelocity is: " + deltazvelocity + " yangvelocity is: " + deltayangvelocity + " Screenshot1(Base64): " + imgData1 + " Screenshot2(Base64): " + imgData2);
-						doSend(frameCounter + "," + camera2.position.x + "," + camera2.position.y + "," + camera2.position.z + "," + camera.rotation.y + "," + mouseposx + "," + mouseposy + "," + "0" + "," + "0" + "," + "0" + "," + "0" + ",snap1" + imgData1 + ",snap2" + imgData2);										
+						doSend(imgData2);										
+						//doSend(frameCounter + "," + camera2.position.x + "," + camera2.position.y + "," + camera2.position.z + "," + camera.rotation.y + "," + mouseposx + "," + mouseposy + "," + "0" + "," + "0" + "," + "0" + "," + "0" + ",snap1" + imgData1 + ",snap2" + imgData2);										
 					}
 					if( frameCounter % 5 != 0 ){
 					//doSend("Frame:(no screenshot) " + frameCounter + " X: " + camera2.position.x + " Y: " + camera2.position.y + " Z: " + camera2.position.z + " Yaw: " + camera.rotation.y + " Mouse.x: " + mouseposx + " Mouse.y: " + mouseposy + " xacceleration is: " + deltaxacceleration +" yacceleration is: " + deltayacceleration + " zacceleration is: " + deltazacceleration + " zacceleration is: " + deltazacceleration + " xvelocity is: " + deltaxvelocity + " yvelocity is: " + deltayvelocity + " zvelocity is: " + deltazvelocity + " yangvelocity is: " + deltayangvelocity);
