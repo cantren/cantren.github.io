@@ -1011,12 +1011,9 @@ var parameters = {
 			
 			function animate() {
 				requestAnimationFrame( animate ); //animate the frame
-				if (frametime != tmpframetime || !record ){
+				if (frametime == tmpframetime || !record ){
 					render(); 
-					imgData1 = renderer.domElement.toDataURL();
-					imgData2 = renderer2.domElement.toDataURL();
-					doSend(5 + "," + imgData2 + "," + imgData2);
-					tmpframetime = frametime;
+					//tmpframetime = frametime;
 				} //render the frame
 				//composer.render();
 				}
@@ -1024,6 +1021,10 @@ var parameters = {
 
 			//source: MIT License OR "This code no longer appears to contain anything that belongs to josdirksen?"
 			function render() {
+				tmpframetime = frametime;
+				imgData1 = renderer.domElement.toDataURL();
+				imgData2 = renderer2.domElement.toDataURL();
+				doSend(5 + "," + imgData2 + "," + imgData2);
 				keyboard.update();
 				onmousemove = function(e){mouseposx = e.clientX; mouseposy = e.clientY;}
 				//camControls.update( clock.getDelta() ); //update First Person Camera
