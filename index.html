@@ -275,9 +275,13 @@ var parameters = {
 			function onOpen(evt) {console.log("Hello!");}//doSend("Frame" + ", Xpos" + ", Ypos" + ", Zpos" + ", Yaw" + ", Mouse.x" + ", Mouse.y" + ", xacceleration" + ", yacceleration" + ", zacceleration" + ", yangvelocity" + ", Screenshot1" + ", Screenshot2");}
 			function onClose(evt) {}
 			function onMessage(evt) {
+				if evt.data instanceof Blob
+        				reader = new FileReader()
+        				reader.onload = -> console.log reader.result
+					reader.readAsText evt.data
 				//console.log("RESPONSE:" + evt.data );
-				frametime = evt.data;
-				console.log("Frame Number:" + frametime ); 
+				//frametime = evt.data;
+				//console.log("Frame Number:" + frametime ); 
 				//websocket.close(); 
 			}
 			function onError(evt) {console.log(evt);}
