@@ -1019,9 +1019,11 @@ var parameters = {
 			function render() {
 				keyboard.update();
 				onmousemove = function(e){mouseposx = e.clientX; mouseposy = e.clientY;}
-				camControls.update( clock.getDelta() ); //update First Person Camera
-				camControls2.update( clock.getDelta() ); //update First Person Camera
-				console.log( clock.getDelta() );
+				//camControls.update( clock.getDelta() ); //update First Person Camera
+				//camControls2.update( clock.getDelta() ); //update First Person Camera
+				camControls.update( frametime/1000 ); //update First Person Camera
+				camControls2.update( frametime/1000 ); //update First Person Camera
+				console.log( (frametime/1000)-clock.getDelta() );
 				camera2.position.copy( camera.position );
 				camera2.rotation.copy( camera.rotation );
 				//camera2.rotation.z = camera3.rotation.z;
