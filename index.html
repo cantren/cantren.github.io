@@ -1011,7 +1011,7 @@ var parameters = {
 			
 			function animate() {
 				requestAnimationFrame( animate ); //animate the frame
-				if (frametime != tmpframetime){
+				if (frametime != tmpframetime || !record ){
 				render(); tmpframetime = frametime} //render the frame
 				//composer.render();
 				}
