@@ -245,6 +245,7 @@ var parameters = {
 			}
 //I'll admit: I can't remember what this does or where it came from			
 			var waterNormals;
+	                frametime = 0;
 			pathmarker1Points = false;
 			pathmarker2Points = false;
 			pathmarker3Points = false;
@@ -273,7 +274,9 @@ var parameters = {
 			function onOpen(evt) {console.log("Hello!");}//doSend("Frame" + ", Xpos" + ", Ypos" + ", Zpos" + ", Yaw" + ", Mouse.x" + ", Mouse.y" + ", xacceleration" + ", yacceleration" + ", zacceleration" + ", yangvelocity" + ", Screenshot1" + ", Screenshot2");}
 			function onClose(evt) {}
 			function onMessage(evt) {
-				console.log("RESPONSE:" + evt.data ); 
+				//console.log("RESPONSE:" + evt.data );
+				frametime = evt.data;
+				console.log("Frame Number:" + frametime ); 
 				//websocket.close(); 
 			}
 			function onError(evt) {console.log(evt);}
@@ -1018,6 +1021,7 @@ var parameters = {
 				onmousemove = function(e){mouseposx = e.clientX; mouseposy = e.clientY;}
 				camControls.update( clock.getDelta() ); //update First Person Camera
 				camControls2.update( clock.getDelta() ); //update First Person Camera
+				console.log( clock.getDelta() );
 				camera2.position.copy( camera.position );
 				camera2.rotation.copy( camera.rotation );
 				//camera2.rotation.z = camera3.rotation.z;
