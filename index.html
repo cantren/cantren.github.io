@@ -280,7 +280,7 @@ var parameters = {
 				console.log("Frame Number:" + frametime ); 
 				//websocket.close(); 
 			}
-			function onError(evt) {console.log(evt);}
+			function onError(evt) {frametime += 1; console.log(evt);}
 			function doSend(message) {websocket.send(message);}// console.log("mousex: " + "0" +" mousey: " + "0")}// console.log(message);}
 
 			//source: This entire "init()" function is very "boilerplate" from the examples at http://threejs.org/examples/ covered under the MIT License
