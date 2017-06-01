@@ -252,7 +252,7 @@ var parameters = {
 	                frametime = 0;
 			tmpframetime = 1;
 			runonce = false;
-	
+			oldtotalpoints = 0;
 			pathmarker1Points = false;
 			pathmarker2Points = false;
 			pathmarker3Points = false;
@@ -1025,7 +1025,7 @@ var parameters = {
 			function animate() {
 				//requestAnimationFrame( animate ); //animate the frame
 				//render(); 
-				if (!runonce) { runonce = true; render();}
+				if (!record) { render();}
 				//if (frametime == tmpframetime || !record ){
 					//render(); 
 					//tmpframetime = frametime;
@@ -1040,13 +1040,12 @@ var parameters = {
 				tmpframetime = frametime;
 				imgData1 = renderer.domElement.toDataURL();
 				imgData2 = renderer2.domElement.toDataURL();
-				doSend(5 + "," + imgData2 + "," + imgData2);
 				keyboard.update();
 				onmousemove = function(e){mouseposx = e.clientX; mouseposy = e.clientY;}
-				//camControls.update( clock.getDelta() ); //update First Person Camera
-				//camControls2.update( clock.getDelta() ); //update First Person Camera
-				camControls.update( frametime/1000 ); //update First Person Camera
-				camControls2.update( frametime/1000 ); //update First Person Camera
+				camControls.update( clock.getDelta() ); //update First Person Camera
+				camControls2.update( clock.getDelta() ); //update First Person Camera
+				//camControls.update( frametime/1000 ); //update First Person Camera
+				//camControls2.update( frametime/1000 ); //update First Person Camera
 				console.log( (frametime/1000)-clock.getDelta() );
 				camera2.position.copy( camera.position );
 				camera2.rotation.copy( camera.rotation );
@@ -1329,6 +1328,8 @@ var parameters = {
 					}
 				}
 				console.log("Total Points: " + totalPoints);
+				doSend((totalpoints - oldtotalpoints) + "," + imgData2 + "," + imgData2);
+				oldtotalpoints = totalpoints;
 				//console.log("Frame" + ", Xpos" + ", Ypos" + ", Zpos" + ", Yaw" + ", Mouse.x" + ", Mouse.y" + ", xacceleration" + ", yacceleration" + ", zacceleration" + ", yangvelocity" + ", Screenshot1" + ", Screenshot2");
 				//console.log(frameCounter + "," + camera2.position.x + "," + camera2.position.y + "," + camera2.position.z + "," + camera.rotation.y + "," + mouseposx + "," + mouseposy + "," + "0" + "," + "0" + "," + "0" + "," + "0");										
 				
