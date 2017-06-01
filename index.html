@@ -176,6 +176,7 @@ setTimeout("show()",1000)
 }
 window.onload=show
 
+
 //-->
 /*
 <p>This free script provided by<br/>
@@ -220,6 +221,9 @@ THE SOFTWARE.
 				Detector.addGetWebGLMessage();
 				document.getElementById( 'container' ).innerHTML = "";
 			}
+			document.addEventListener('DOMContentLoaded', function() {
+				render();
+			}, false);
 			//source: MIT License OR "This code no longer appears to contain anything that belongs to josdirksen?"
 
 			var container, container2, stats;//cargo cult code? comment out this line please(may be desired in future)
