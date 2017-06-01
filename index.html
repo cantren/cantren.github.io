@@ -252,7 +252,7 @@ var parameters = {
 	                frametime = 0;
 			tmpframetime = 1;
 			runonce = false;
-	
+	                oldtotalpoints = 0;
 			pathmarker1Points = false;
 			pathmarker2Points = false;
 			pathmarker3Points = false;
@@ -1328,6 +1328,8 @@ var parameters = {
 						totalPoints += 600;
 					}
 				}
+				doSend((totalpoints-oldtotalpoints) + "," + imgData2 + "," + imgData2);
+				oldtotalpoints = totalpoints;
 				console.log("Total Points: " + totalPoints);
 				//console.log("Frame" + ", Xpos" + ", Ypos" + ", Zpos" + ", Yaw" + ", Mouse.x" + ", Mouse.y" + ", xacceleration" + ", yacceleration" + ", zacceleration" + ", yangvelocity" + ", Screenshot1" + ", Screenshot2");
 				//console.log(frameCounter + "," + camera2.position.x + "," + camera2.position.y + "," + camera2.position.z + "," + camera.rotation.y + "," + mouseposx + "," + mouseposy + "," + "0" + "," + "0" + "," + "0" + "," + "0");										
