@@ -1040,7 +1040,54 @@ var parameters = {
 				tmpframetime = frametime;
 				imgData1 = renderer.domElement.toDataURL();
 				imgData2 = renderer2.domElement.toDataURL();
-				doSend(5 + "," + imgData2 + "," + imgData2);
+				var totalPoints = 0;
+				validationgatePoints = true;
+				if ( validationgatePoints ) {
+					totalPoints += 250;
+					if ( pathmarker1Points ) {
+						totalPoints += 100;
+					}
+					if ( pathmarker2Points ) {
+						totalPoints += 100;
+					}
+					if ( pathmarker3Points ) {
+						totalPoints += 100;
+					}
+					if ( pathmarker4Points ) {
+						totalPoints += 100;
+					}
+					if ( pathmarker5Points ) {
+						totalPoints += 100;
+					}
+					if ( pathmarker6Points ) {
+						totalPoints += 100;
+					}
+					if ( pathmarker7Points ) {
+						totalPoints += 100;
+					}
+					if ( octagon1Points ) {
+						totalPoints += 500;
+					}
+					if ( octagon2Points ) {
+						totalPoints += 2000;
+					}
+					if ( buoy1Points ) {
+						totalPoints += 400;
+					}
+					if ( buoy2Points ) {
+						totalPoints += 400;
+					}
+					if ( buoy3Points ) {
+						totalPoints += 400;
+					}
+					if ( maneuverPoints ) {
+						totalPoints += 600;
+					}
+				}
+				console.log("Total Points: " + totalPoints);
+				
+				reward = totalPoints; 
+				doSend(reward.toString()  + "," + imgData2 + "," + imgData2);
 				keyboard.update();
 				onmousemove = function(e){mouseposx = e.clientX; mouseposy = e.clientY;}
 				//camControls.update( clock.getDelta() ); //update First Person Camera
