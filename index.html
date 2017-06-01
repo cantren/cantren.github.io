@@ -1040,7 +1040,8 @@ var parameters = {
 				tmpframetime = frametime;
 				imgData1 = renderer.domElement.toDataURL();
 				imgData2 = renderer2.domElement.toDataURL();
-				doSend(5 + "," + imgData2 + "," + imgData2);
+				doSend((totalpoints-oldtotalpoints) + "," + imgData2 + "," + imgData2);
+				//doSend(5 + "," + imgData2 + "," + imgData2);
 				keyboard.update();
 				onmousemove = function(e){mouseposx = e.clientX; mouseposy = e.clientY;}
 				//camControls.update( clock.getDelta() ); //update First Person Camera
@@ -1328,7 +1329,6 @@ var parameters = {
 						totalPoints += 600;
 					}
 				}
-				doSend((totalpoints-oldtotalpoints) + "," + imgData2 + "," + imgData2);
 				oldtotalpoints = totalpoints;
 				console.log("Total Points: " + totalPoints);
 				//console.log("Frame" + ", Xpos" + ", Ypos" + ", Zpos" + ", Yaw" + ", Mouse.x" + ", Mouse.y" + ", xacceleration" + ", yacceleration" + ", zacceleration" + ", yangvelocity" + ", Screenshot1" + ", Screenshot2");
