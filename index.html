@@ -247,6 +247,8 @@ var parameters = {
 			var waterNormals;
 	                frametime = 0;
 			tmpframetime = 1;
+			runonce = false;
+	
 			pathmarker1Points = false;
 			pathmarker2Points = false;
 			pathmarker3Points = false;
@@ -1019,7 +1021,7 @@ var parameters = {
 			function animate() {
 				//requestAnimationFrame( animate ); //animate the frame
 				//render(); 
-					
+				if (!runonce) { runonce = true; render();}
 				//if (frametime == tmpframetime || !record ){
 					//render(); 
 					//tmpframetime = frametime;
