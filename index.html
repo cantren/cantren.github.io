@@ -280,7 +280,10 @@ var parameters = {
         			//	reader.onload = -> console.log reader.result
 				//	reader.readAsText evt.data
 				//console.log("RESPONSE:" + evt.data );
-				frametime = evt.data;
+				requestAnimationFrame( animate ); //animate the frame
+				render(); 
+				//frametime = evt.data;
+				
 				console.log("Frame Number:" + frametime ); 
 				//websocket.close(); 
 			}
@@ -1014,11 +1017,13 @@ var parameters = {
 			}
 			
 			function animate() {
-				requestAnimationFrame( animate ); //animate the frame
-				if (frametime == tmpframetime || !record ){
-					render(); 
+				//requestAnimationFrame( animate ); //animate the frame
+				//render(); 
+					
+				//if (frametime == tmpframetime || !record ){
+					//render(); 
 					//tmpframetime = frametime;
-				} //render the frame
+				//} //render the frame
 				//composer.render();
 				}
 			//source: MIT License OR "This code no longer appears to contain anything that belongs to josdirksen?"
