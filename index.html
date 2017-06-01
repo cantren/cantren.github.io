@@ -1041,7 +1041,8 @@ var parameters = {
 				tmpframetime = frametime;
 				imgData1 = renderer.domElement.toDataURL();
 				imgData2 = renderer2.domElement.toDataURL();
-				doSend((totalpoints-oldtotalpoints) + "," + imgData2 + "," + imgData2);
+				tmppoints = totalpoints-oldtotalpoints;
+				doSend(tmppoints + "," + imgData2 + "," + imgData2);
 				//doSend(5 + "," + imgData2 + "," + imgData2);
 				keyboard.update();
 				onmousemove = function(e){mouseposx = e.clientX; mouseposy = e.clientY;}
