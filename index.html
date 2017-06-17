@@ -21,8 +21,8 @@
 				
 			}
 			#inset  {
-				width: 300px;
-				height: 300px;
+				width: 80px;
+				height: 80px;
 				background-color: #fff; /* or transparent; will show through only if renderer alpha: true */
 				border: 1px solid black; /* or none; */
 				margin: 20px;
@@ -109,11 +109,7 @@
 		<script src="../js/info.js"></script>
 
 
-  		<div id='inset2'>
-		<object width="200" height="200"><param name="movie" value="http://127.0.0.1:8090/simbox.swf">
-		<embed src="http://127.0.0.1:8090/simbox.swf" width="200" height="200">
-		</embed></object></div>
-		
+  		
 					<span id="digitalclock" class="styling"></span>
 
 <script>
@@ -289,7 +285,7 @@ var parameters = {
 				record = false;
 				renderer = new THREE.WebGLRenderer( { antialias: false, preserveDrawingBuffer: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
-				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.setSize( 80, 80 );
 				//uncomment these lines for VR
 				//effect = new THREE.StereoEffect( renderer );
 				//effect.eyeSeparation = 10;
@@ -309,7 +305,7 @@ var parameters = {
 				// renderer
 				renderer2 = new THREE.WebGLRenderer( { antialias: false, preserveDrawingBuffer: true } );
 				renderer2.setClearColor( 0xf0f0f0, 1 );
-				renderer2.setSize( CANVAS_WIDTH, CANVAS_HEIGHT );
+				renderer2.setSize( 80, 80 );
 				container2.appendChild( renderer2.domElement );
 
 
