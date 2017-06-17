@@ -1003,7 +1003,7 @@ var parameters = {
 			
 			function animate() {
 				requestAnimationFrame( animate ); //animate the frame
-				render(); //render the frame
+				if(!record){render();} //render the frame
 				//composer.render();
 				}
 			//source: MIT License OR "This code no longer appears to contain anything that belongs to josdirksen?"
