@@ -269,6 +269,7 @@ var parameters = {
 			function onOpen(evt) {doSend("Frame" + ", Xpos" + ", Ypos" + ", Zpos" + ", Yaw" + ", Mouse.x" + ", Mouse.y" + ", xacceleration" + ", yacceleration" + ", zacceleration" + ", yangvelocity" + ", Screenshot1" + ", Screenshot2");}
 			function onClose(evt) {}
 			function onMessage(evt) {
+				render();
 				console.log("RESPONSE:" + evt.data ); 
 				//websocket.close(); 
 			}
