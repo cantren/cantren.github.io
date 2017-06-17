@@ -176,7 +176,6 @@ setTimeout("show()",1000)
 }
 window.onload=show
 
-
 //-->
 /*
 <p>This free script provided by<br/>
@@ -221,9 +220,6 @@ THE SOFTWARE.
 				Detector.addGetWebGLMessage();
 				document.getElementById( 'container' ).innerHTML = "";
 			}
-			document.addEventListener('DOMContentLoaded', function() {
-				render();
-			}, false);
 			//source: MIT License OR "This code no longer appears to contain anything that belongs to josdirksen?"
 
 			var container, container2, stats;//cargo cult code? comment out this line please(may be desired in future)
@@ -249,10 +245,6 @@ var parameters = {
 			}
 //I'll admit: I can't remember what this does or where it came from			
 			var waterNormals;
-	                frametime = 0;
-			tmpframetime = 1;
-			runonce = false;
-	
 			pathmarker1Points = false;
 			pathmarker2Points = false;
 			pathmarker3Points = false;
@@ -271,30 +263,20 @@ var parameters = {
 			init();
 			animate();
 			function testWebSocket() { 
-				//websocket = new WebSocket("ws://192.168.1.34:8081/");
-				websocket = new WebSocket("ws://127.0.0.01:8765/");
+				websocket = new WebSocket("ws://192.168.1.34:8081/");
 				websocket.onopen = function(evt) { onOpen(evt) };
 				websocket.onclose = function(evt) { onClose(evt) };
 				websocket.onmessage = function(evt) { onMessage(evt) };
 				websocket.onerror = function(evt) { onError(evt) }; 
 			} 
-			function onOpen(evt) {console.log("Hello!");}//doSend("Frame" + ", Xpos" + ", Ypos" + ", Zpos" + ", Yaw" + ", Mouse.x" + ", Mouse.y" + ", xacceleration" + ", yacceleration" + ", zacceleration" + ", yangvelocity" + ", Screenshot1" + ", Screenshot2");}
+			function onOpen(evt) {doSend("Frame" + ", Xpos" + ", Ypos" + ", Zpos" + ", Yaw" + ", Mouse.x" + ", Mouse.y" + ", xacceleration" + ", yacceleration" + ", zacceleration" + ", yangvelocity" + ", Screenshot1" + ", Screenshot2");}
 			function onClose(evt) {}
 			function onMessage(evt) {
-				//if evt.data instanceof Blob
-        			//	reader = new FileReader()
-        			//	reader.onload = -> console.log reader.result
-				//	reader.readAsText evt.data
-				//console.log("RESPONSE:" + evt.data );
-				requestAnimationFrame( animate ); //animate the frame
-				render(); 
-				//frametime = evt.data;
-				
-				console.log("Frame Number:" + frametime ); 
+				console.log("RESPONSE:" + evt.data ); 
 				//websocket.close(); 
 			}
 			function onError(evt) {console.log(evt);}
-			function doSend(message) {websocket.send(message);}// console.log("mousex: " + "0" +" mousey: " + "0")}// console.log(message);}
+			function doSend(message) {websocket.send(message); console.log("mousex: " + "0" +" mousey: " + "0")}// console.log(message);}
 
 			//source: This entire "init()" function is very "boilerplate" from the examples at http://threejs.org/examples/ covered under the MIT License
 			function init() {
@@ -1023,79 +1005,18 @@ var parameters = {
 			}
 			
 			function animate() {
-				//requestAnimationFrame( animate ); //animate the frame
-				//render(); 
-				//if (!runonce) { render();} //runonce = true; render();}
-				render();
-				//if (frametime == tmpframetime || !record ){
-					//render(); 
-					//tmpframetime = frametime;
-				//} //render the frame
+				requestAnimationFrame( animate ); //animate the frame
+				render(); //render the frame
 				//composer.render();
 				}
 			//source: MIT License OR "This code no longer appears to contain anything that belongs to josdirksen?"
 
 			//source: MIT License OR "This code no longer appears to contain anything that belongs to josdirksen?"
 			function render() {
-				//testWebSocket();
-				tmpframetime = frametime;
-				imgData1 = renderer.domElement.toDataURL();
-				imgData2 = renderer2.domElement.toDataURL();
-				var totalPoints = 0;
-				validationgatePoints = true;
-				if ( validationgatePoints ) {
-					totalPoints += 250;
-					if ( pathmarker1Points ) {
-						totalPoints += 100;
-					}
-					if ( pathmarker2Points ) {
-						totalPoints += 100;
-					}
-					if ( pathmarker3Points ) {
-						totalPoints += 100;
-					}
-					if ( pathmarker4Points ) {
-						totalPoints += 100;
-					}
-					if ( pathmarker5Points ) {
-						totalPoints += 100;
-					}
-					if ( pathmarker6Points ) {
-						totalPoints += 100;
-					}
-					if ( pathmarker7Points ) {
-						totalPoints += 100;
-					}
-					if ( octagon1Points ) {
-						totalPoints += 500;
-					}
-					if ( octagon2Points ) {
-						totalPoints += 2000;
-					}
-					if ( buoy1Points ) {
-						totalPoints += 400;
-					}
-					if ( buoy2Points ) {
-						totalPoints += 400;
-					}
-					if ( buoy3Points ) {
-						totalPoints += 400;
-					}
-					if ( maneuverPoints ) {
-						totalPoints += 600;
-					}
-				}
-				console.log("Total Points: " + totalPoints);
-				
-				//reward = totalPoints; 
-				doSend(totalPoints.toString()  + "," + imgData2 + "," + imgData2);
 				keyboard.update();
 				onmousemove = function(e){mouseposx = e.clientX; mouseposy = e.clientY;}
-				//camControls.update( clock.getDelta() ); //update First Person Camera
-				//camControls2.update( clock.getDelta() ); //update First Person Camera
-				camControls.update( frametime/1000 ); //update First Person Camera
-				camControls2.update( frametime/1000 ); //update First Person Camera
-				console.log( (frametime/1000)-clock.getDelta() );
+				camControls.update( clock.getDelta() ); //update First Person Camera
+				camControls2.update( clock.getDelta() ); //update First Person Camera
 				camera2.position.copy( camera.position );
 				camera2.rotation.copy( camera.rotation );
 				//camera2.rotation.z = camera3.rotation.z;
@@ -1155,18 +1076,16 @@ var parameters = {
 				//spotLightSUN.lookAt ( spotLightRED.position );
 				
 				if ( record ){
-					if( frameCounter % 1 === 0 ){
-						//imgData1 = renderer.domElement.toDataURL();
-						//imgData2 = renderer2.domElement.toDataURL();
+					if( frameCounter % 5 === 0 ){
+						imgData1 = renderer.domElement.toDataURL();
+						imgData2 = renderer2.domElement.toDataURL();
 						//websocket transmit
 						//doSend("Frame: " + frameCounter + " X: " + camera2.position.x + " Y: " + camera2.position.y + " Z: " + camera2.position.z + " Yaw: " + camera.rotation.y + " Mouse.x: " + mouseposx + " Mouse.y: " + mouseposy + " xacceleration is: " + deltaxacceleration +" yacceleration is: " + deltayacceleration + " zacceleration is: " + deltazacceleration + " zacceleration is: " + deltazacceleration + " xvelocity is: " + deltaxvelocity + " yvelocity is: " + deltayvelocity + " zvelocity is: " + deltazvelocity + " yangvelocity is: " + deltayangvelocity + " Screenshot1(Base64): " + imgData1 + " Screenshot2(Base64): " + imgData2);
-						//doSend(5 + "," + imgData2 + "," + imgData2);
-						//console.log(imgData2);
-						//doSend(frameCounter + "," + camera2.position.x + "," + camera2.position.y + "," + camera2.position.z + "," + camera.rotation.y + "," + mouseposx + "," + mouseposy + "," + "0" + "," + "0" + "," + "0" + "," + "0" + ",snap1" + imgData1 + ",snap2" + imgData2);										
+						doSend(frameCounter + "," + camera2.position.x + "," + camera2.position.y + "," + camera2.position.z + "," + camera.rotation.y + "," + mouseposx + "," + mouseposy + "," + "0" + "," + "0" + "," + "0" + "," + "0" + ",snap1" + imgData1 + ",snap2" + imgData2);										
 					}
 					if( frameCounter % 5 != 0 ){
 					//doSend("Frame:(no screenshot) " + frameCounter + " X: " + camera2.position.x + " Y: " + camera2.position.y + " Z: " + camera2.position.z + " Yaw: " + camera.rotation.y + " Mouse.x: " + mouseposx + " Mouse.y: " + mouseposy + " xacceleration is: " + deltaxacceleration +" yacceleration is: " + deltayacceleration + " zacceleration is: " + deltazacceleration + " zacceleration is: " + deltazacceleration + " xvelocity is: " + deltaxvelocity + " yvelocity is: " + deltayvelocity + " zvelocity is: " + deltazvelocity + " yangvelocity is: " + deltayangvelocity);
-					//doSend(frameCounter + "," + camera2.position.x + "," + camera2.position.y + "," + camera2.position.z + "," + camera.rotation.y + "," + mouseposx + "," + mouseposy + "," + "0" + "," + "0" + "," + "0" + "," + "0");										
+					doSend(frameCounter + "," + camera2.position.x + "," + camera2.position.y + "," + camera2.position.z + "," + camera.rotation.y + "," + mouseposx + "," + mouseposy + "," + "0" + "," + "0" + "," + "0" + "," + "0");										
 					}
 				}
 				frameCounter++;
@@ -1377,9 +1296,6 @@ var parameters = {
 					}
 				}
 				console.log("Total Points: " + totalPoints);
-				//console.log("Frame" + ", Xpos" + ", Ypos" + ", Zpos" + ", Yaw" + ", Mouse.x" + ", Mouse.y" + ", xacceleration" + ", yacceleration" + ", zacceleration" + ", yangvelocity" + ", Screenshot1" + ", Screenshot2");
-				//console.log(frameCounter + "," + camera2.position.x + "," + camera2.position.y + "," + camera2.position.z + "," + camera.rotation.y + "," + mouseposx + "," + mouseposy + "," + "0" + "," + "0" + "," + "0" + "," + "0");										
-				
 
 				///////////////////////////////////////////////////////////////
 				//This section tallys objective points that have been awarded//
