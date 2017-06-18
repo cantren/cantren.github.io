@@ -266,8 +266,8 @@ var parameters = {
 				websocket.onmessage = function(evt) { onMessage(evt) };
 				websocket.onerror = function(evt) { onError(evt) }; 
 			} 
-			function onOpen(evt) {console.log("You are connected."}//doSend("Frame" + ", Xpos" + ", Ypos" + ", Zpos" + ", Yaw" + ", Mouse.x" + ", Mouse.y" + ", xacceleration" + ", yacceleration" + ", zacceleration" + ", yangvelocity" + ", Screenshot1" + ", Screenshot2");}
-			function onClose(evt) {console.log("You are no longer connected."}
+			function onOpen(evt) {console.log("You are connected.")}//doSend("Frame" + ", Xpos" + ", Ypos" + ", Zpos" + ", Yaw" + ", Mouse.x" + ", Mouse.y" + ", xacceleration" + ", yacceleration" + ", zacceleration" + ", yangvelocity" + ", Screenshot1" + ", Screenshot2");}
+			function onClose(evt) {console.log("You are no longer connected.")}
 			function onMessage(evt) {
 				render();
 				console.log("RESPONSE:" + evt.data ); 
