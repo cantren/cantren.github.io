@@ -285,7 +285,7 @@ var parameters = {
 				mouseposx = 0;		
 				mouseposy = 0;		
 				record = false;
-				runonce = true;
+				//runonce = true;
 				renderer = new THREE.WebGLRenderer( { antialias: false, preserveDrawingBuffer: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( 80, 80 );
@@ -1006,7 +1006,7 @@ var parameters = {
 			function animate() {
 				requestAnimationFrame( animate ); //animate the frame
 				if(!record){render();} //render the frame
-				if(runonce){render(); runonce = false;}
+				//if(runonce){render(); runonce = false;}
 				//composer.render();
 				}
 			//source: MIT License OR "This code no longer appears to contain anything that belongs to josdirksen?"
