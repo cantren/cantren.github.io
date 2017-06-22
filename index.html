@@ -1095,6 +1095,7 @@ var parameters = {
 					imgData1 = renderer.domElement.toDataURL();
 					imgData2 = renderer2.domElement.toDataURL();
 					doSend(reward + "," + imgData2 + "," + imgData1 + "," + camera2.position.x + "," + camera2.position.y + "," + camera2.position.z);// + "," + imgData2);
+					console.log("reward: " + reward);
 					reward = 0;
 					/*
 					if( frameCounter % 5 === 0 ){
