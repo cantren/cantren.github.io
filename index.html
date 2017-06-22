@@ -1078,8 +1078,9 @@ var parameters = {
 				if ( record ){
 					//testWebSocket()
 					animate();
+					imgData1 = renderer.domElement.toDataURL();
 					imgData2 = renderer2.domElement.toDataURL();
-					doSend("250" + "," + imgData2);// + "," + imgData2);
+					doSend(str(reward) + "," + imgData2 + "," + imgData1 + "," + camera2.position.x + "," + camera2.position.y + "," + camera2.position.z);// + "," + imgData2);
 					/*
 					if( frameCounter % 5 === 0 ){
 						imgData1 = renderer.domElement.toDataURL();
