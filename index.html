@@ -1092,10 +1092,10 @@ var parameters = {
 				if ( record ){
 					//testWebSocket()
 					animate();
-					imgData1 = renderer.domElement.toDataURL();
+					//imgData1 = renderer.domElement.toDataURL();
 					imgData2 = renderer2.domElement.toDataURL();
 					console.log("test1");
-					doSend(reward + "," + imgData2 + "," + imgData1 + "," + camera2.position.x + "," + camera2.position.y + "," + camera2.position.z);// + "," + imgData2);
+					doSend(reward + "," + imgData2  + "," + camera2.position.x + "," + camera2.position.y + "," + camera2.position.z);// + "," + imgData2);
 					console.log("test2");
 					console.log("reward: " + reward);
 					reward = 0;
