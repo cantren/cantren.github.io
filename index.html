@@ -284,7 +284,21 @@ var parameters = {
 				frameCounter = 0;		
 				mouseposx = 0;		
 				mouseposy = 0;		
-				record = false;
+				record = false;	
+				reward = 0;
+				path1once = true;
+				path2once = true;
+				path3once = true;
+				path4once = true;
+				path5once = true;
+				path6once = true;
+				path7once = true;
+				buoy1once = true;
+				buoy2once = true;
+				buoy3once = true;
+				maneuveronce = true;
+				oct1once = true;
+				oct2once = true;
 				//runonce = true;
 				renderer = new THREE.WebGLRenderer( { antialias: false, preserveDrawingBuffer: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
@@ -1080,7 +1094,8 @@ var parameters = {
 					animate();
 					imgData1 = renderer.domElement.toDataURL();
 					imgData2 = renderer2.domElement.toDataURL();
-					doSend(str(350) + "," + imgData2 + "," + imgData1 + "," + camera2.position.x + "," + camera2.position.y + "," + camera2.position.z);// + "," + imgData2);
+					doSend(str(reward) + "," + imgData2 + "," + imgData1 + "," + camera2.position.x + "," + camera2.position.y + "," + camera2.position.z);// + "," + imgData2);
+					reward = 0;
 					/*
 					if( frameCounter % 5 === 0 ){
 						imgData1 = renderer.domElement.toDataURL();
@@ -1189,6 +1204,8 @@ var parameters = {
 					//guivalues.lightDepthFix();
 					guivalues.randomVis();
 				}
+				
+				
 				///////////////////////////////////////////////////////////////////////////////////////////////////
 				//This section determines if the camera position is within the "hitbox" to award objective points//
 				///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1258,47 +1275,61 @@ var parameters = {
 				///////////////////////////////////////////////////////////////
 												
 				var totalPoints = 0;
+				
 				validationgatePoints = true;
 				if ( validationgatePoints ) {
 					totalPoints += 250;
 					if ( pathmarker1Points ) {
 						totalPoints += 100;
+					        if ( path1once ) {reward = 100; path1once = false;}
 					}
 					if ( pathmarker2Points ) {
 						totalPoints += 100;
+					        if ( path2once ) {reward = 100; path2once = false;}
 					}
 					if ( pathmarker3Points ) {
 						totalPoints += 100;
+					        if ( path3once ) {reward = 100; path3once = false;}
 					}
 					if ( pathmarker4Points ) {
 						totalPoints += 100;
+					        if ( path4once ) {reward = 100; path4once = false;}
 					}
 					if ( pathmarker5Points ) {
 						totalPoints += 100;
+					        if ( path5once ) {reward = 100; path5once = false;}
 					}
 					if ( pathmarker6Points ) {
 						totalPoints += 100;
+					        if ( path6once ) {reward = 100; path6once = false;}
 					}
 					if ( pathmarker7Points ) {
 						totalPoints += 100;
+					        if ( path7once ) {reward = 100; path7once = false;}
 					}
 					if ( octagon1Points ) {
 						totalPoints += 500;
+					        if ( oct1once ) {reward = 500; oct1once = false;}
 					}
 					if ( octagon2Points ) {
 						totalPoints += 2000;
+					        if ( oct2once ) {reward = 2000; oct2once = false;}
 					}
 					if ( buoy1Points ) {
 						totalPoints += 400;
+						if ( buoy1once ) {reward = 400; buoy1once = false;}
 					}
 					if ( buoy2Points ) {
 						totalPoints += 400;
+						if ( buoy2once ) {reward = 400; buoy2once = false;}
 					}
 					if ( buoy3Points ) {
 						totalPoints += 400;
+						if ( buoy3once ) {reward = 400; buoy3once = false;}
 					}
 					if ( maneuverPoints ) {
 						totalPoints += 600;
+						if ( maneuveronce ) {reward = 600; maneuveronce = false;}
 					}
 				}
 				console.log("Total Points: " + totalPoints);
