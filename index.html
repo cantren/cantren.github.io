@@ -21,8 +21,8 @@
 				
 			}
 			#inset  {
-				width: 200px;
-				height: 200px;
+				width: 80px;
+				height: 80px;
 				background-color: #fff; /* or transparent; will show through only if renderer alpha: true */
 				border: 1px solid black; /* or none; */
 				margin: 20px;
@@ -274,7 +274,7 @@ var parameters = {
 				//websocket.close(); 
 			}
 			function onError(evt) {console.log(evt);}
-			function doSend(message) {websocket.send(message); console.log("mousex: " + "0" +" mousey: " + "0")}// console.log(message);}
+			function doSend(message) {websocket.send(message); } //console.log("mousex: " + "0" +" mousey: " + "0")}// console.log(message);}
 
 			//source: This entire "init()" function is very "boilerplate" from the examples at http://threejs.org/examples/ covered under the MIT License
 			function init() {
@@ -302,7 +302,7 @@ var parameters = {
 				//runonce = true;
 				renderer = new THREE.WebGLRenderer( { antialias: false, preserveDrawingBuffer: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
-				renderer.setSize( 800, 800 );
+				renderer.setSize( 80, 80 );
 				//uncomment these lines for VR
 				//effect = new THREE.StereoEffect( renderer );
 				//effect.eyeSeparation = 10;
@@ -1092,10 +1092,11 @@ var parameters = {
 				if ( record ){
 					//testWebSocket()
 					animate();
-					//imgData1 = renderer.domElement.toDataURL();
+					imgData1 = renderer.domElement.toDataURL();
 					imgData2 = renderer2.domElement.toDataURL();
+					console.log(camera2.position.x);
 					console.log("test1");
-					doSend(reward + "," + imgData2  + "," + camera2.position.x + "," + camera2.position.y + "," + camera2.position.z);// + "," + imgData2);
+					doSend(reward + "," + imgData2  + "," + imgData1  + "," + camera2.position.x + "," + camera2.position.y + "," + camera2.position.z);// + "," + imgData2);
 					console.log("test2");
 					console.log("reward: " + reward);
 					reward = 0;
