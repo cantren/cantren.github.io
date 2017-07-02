@@ -812,6 +812,21 @@ var parameters = {
 				    this.timeShift = 0;
 				    this.cameraNear = camera.near;
 				    this.cameraFar = camera.far;
+			            this.saveimage = function(){
+					var b = document.createElement('a');
+
+					var filename = 'test.png';
+
+					b.href = canvas.toDataURL("image/png");
+					b.download = filename;
+					b.target = '_self';
+					b.style.display = 'none';
+
+					// This step is needed for this to function in Firefox.
+					document.body.appendChild(b);
+					b.click();
+					    
+				    };
 				    this.getLostBoth = function(){
 				    	camera.position.x = (Math.random() * 90.0);
 				    	camera.position.x -=45.0;
@@ -1181,6 +1196,7 @@ var parameters = {
 				if ( keyboard.pressed("R") ){record = true; console.log("Recording NOW");}		
 				if ( keyboard.pressed("T") ){record = false; console.log("Recording STOP");}
 				if ( keyboard.pressed("N") ){console.log("imgData1: " + imgData1); console.log(", imgData2: " + imgData2);}
+				if ( keyboard.pressed("U") ){guivalues.saveimage(); }
 				
 
 				if ( keyboard.pressed("P") ) {lightFix.lightDepthFix();}
