@@ -257,7 +257,7 @@ var parameters = {
 			buoy3Points = false;
 			validationgatePoints = false;
 			maneuverPoints = false;
-			data = [["filename1", "filename2", "position.x", "position.y", "position.z", "rotation.z"], ["fwda00001.png", "dwna00001.png", "0", "0", "0", "3"]];
+			data = [["filename1", "filename2", "position.x", "position.y", "position.z", "rotation.y"]];
 			
 				
 			init();
@@ -823,25 +823,25 @@ var parameters = {
 					var filename2 = "dwn" + String.fromCharCode(imageletter) + imagenumber.toString() + ".png"
 					
 					var b = document.createElement('a');
+					var d = document.createElement('c');
+					
 					//var filename = 'test.png';
 					b.href = renderer.domElement.toDataURL("image/png");
+					d.href = renderer2.domElement.toDataURL("image/png");
 					b.download = filename1;
+					d.download = filename2;
+					
 					b.target = '_self';
+					d.target = '_self';
 					b.style.display = 'none';
+					d.style.display = 'none';
+
 
 					// This step is needed for this to function in Firefox.
 					document.body.appendChild(b);
-					b.click();
-					    
-					var d = document.createElement('c');
-					//var filename = 'test.png';
-					d.href = renderer2.domElement.toDataURL("image/png");
-					d.download = filename2;
-					d.target = '_self';
-					d.style.display = 'none';
-
-					// This step is needed for this to function in Firefox.
 					document.body.appendChild(d);
+					
+					b.click();
 					d.click();
 					    
 					data.push([filename1, filename2, camera.position.x.toString(), camera.position.y.toString(), camera.position.z.toString(), camera.rotation.y.toString()]);
