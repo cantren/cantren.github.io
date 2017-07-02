@@ -817,7 +817,7 @@ var parameters = {
 
 					var filename = 'test.png';
 
-					b.href = canvas.toDataURL("image/png");
+					b.href = renderer.domElement.toDataURL("image/png");
 					b.download = filename;
 					b.target = '_self';
 					b.style.display = 'none';
