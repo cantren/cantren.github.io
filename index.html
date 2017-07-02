@@ -241,6 +241,8 @@ var parameters = {
 			}
 //I'll admit: I can't remember what this does or where it came from			
 			var waterNormals;
+	                imagenumber = 0;
+	                imageletter = 65;
 			pathmarker1Points = false;
 			pathmarker2Points = false;
 			pathmarker3Points = false;
@@ -815,20 +817,35 @@ var parameters = {
 				    this.cameraNear = camera.near;
 				    this.cameraFar = camera.far;
 			            this.saveimage = function(){
+					imagenumber += 1;
+					
+					var filename1 = "fwd" + String.fromCharCode(imageletter) + imagenumber.toString() + ".png"
+					var filename2 = "dwn" + String.fromCharCode(imageletter) + imagenumber.toString() + ".png"
+					
 					var b = document.createElement('a');
-
-					var filename = 'test.png';
-
-					b.href = renderer2.domElement.toDataURL("image/png");
-					b.download = filename;
+					//var filename = 'test.png';
+					b.href = renderer.domElement.toDataURL("image/png");
+					b.download = filename1;
 					b.target = '_self';
 					b.style.display = 'none';
 
 					// This step is needed for this to function in Firefox.
 					document.body.appendChild(b);
 					b.click();
-					this.savetext();
 					    
+					var d = document.createElement('c');
+					//var filename = 'test.png';
+					d.href = renderer2.domElement.toDataURL("image/png");
+					d.download = filename2;
+					d.target = '_self';
+					d.style.display = 'none';
+
+					// This step is needed for this to function in Firefox.
+					document.body.appendChild(d);
+					d.click();
+					    
+					data.push([filename1, filename2, camera.position.x.toString(), camera.position.y.toString(), camera.position.z.toString(), camera.rotation.y.toString()]);
+					if(imagenumber = 10000){imagenumber = 0; imageletter++; this.savetext();}
 				    };
 				    this.savetext = function(){
 					    
