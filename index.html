@@ -817,7 +817,7 @@ var parameters = {
 				    this.cameraNear = camera.near;
 				    this.cameraFar = camera.far;
 			            this.saveimage = function(){
-					imagenumber += 1;
+					imagenumber++;
 					
 					var filename1 = "fwd" + String.fromCharCode(imageletter) + imagenumber.toString() + ".png"
 					var filename2 = "dwn" + String.fromCharCode(imageletter) + imagenumber.toString() + ".png"
@@ -845,7 +845,7 @@ var parameters = {
 					d.click();
 					    
 					data.push([filename1, filename2, camera.position.x.toString(), camera.position.y.toString(), camera.position.z.toString(), camera.rotation.y.toString()]);
-					if(imagenumber = 10000){imagenumber = 0; imageletter++; this.savetext();}
+					if(imagenumber === 10000){imagenumber = 0; imageletter++; this.savetext();}
 				    };
 				    this.savetext = function(){
 					    
