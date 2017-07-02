@@ -819,7 +819,7 @@ var parameters = {
 
 					var filename = 'test.png';
 
-					b.href = renderer.domElement.toDataURL("image/png");
+					b.href = renderer2.domElement.toDataURL("image/png");
 					b.download = filename;
 					b.target = '_self';
 					b.style.display = 'none';
@@ -827,7 +827,7 @@ var parameters = {
 					// This step is needed for this to function in Firefox.
 					document.body.appendChild(b);
 					b.click();
-					self.savetext();
+					this.savetext();
 					    
 				    };
 				    this.savetext = function(){
