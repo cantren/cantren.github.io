@@ -21,8 +21,8 @@
 				
 			}
 			#inset  {
-				width: 80px;
-				height: 80px;
+				width: 200px;
+				height: 200px;
 				background-color: #fff; /* or transparent; will show through only if renderer alpha: true */
 				border: 1px solid black; /* or none; */
 				margin: 20px;
@@ -294,7 +294,10 @@ var parameters = {
 				//runonce = true;
 				renderer = new THREE.WebGLRenderer( { antialias: false, preserveDrawingBuffer: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
-				renderer.setSize( 80, 80 );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				//renderer.setSize( 80, 80 );
+				
+				
 				//uncomment these lines for VR
 				//effect = new THREE.StereoEffect( renderer );
 				//effect.eyeSeparation = 10;
@@ -314,7 +317,7 @@ var parameters = {
 				// renderer
 				renderer2 = new THREE.WebGLRenderer( { antialias: false, preserveDrawingBuffer: true } );
 				renderer2.setClearColor( 0xf0f0f0, 1 );
-				renderer2.setSize( 80, 80 );
+				renderer2.setSize( 200, 200 );
 				container2.appendChild( renderer2.domElement );
 
 
