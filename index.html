@@ -243,6 +243,8 @@ var parameters = {
 			var waterNormals;
 	                imagenumber = 0;
 	                imageletter = 65;
+	                filename1 = "";
+	                filename2 = "";
 			pathmarker1Points = false;
 			pathmarker2Points = false;
 			pathmarker3Points = false;
@@ -816,36 +818,39 @@ var parameters = {
 				    this.timeShift = 0;
 				    this.cameraNear = camera.near;
 				    this.cameraFar = camera.far;
-			            this.saveimage = function(){
+				    this.saveimage = function(){
 					imagenumber++;
 					
-					var filename1 = "fwd" + String.fromCharCode(imageletter) + imagenumber.toString() + ".png"
-					var filename2 = "dwn" + String.fromCharCode(imageletter) + imagenumber.toString() + ".png"
+					filename1 = "fwd" + String.fromCharCode(imageletter) + imagenumber.toString() + ".png"
+					filename2 = "dwn" + String.fromCharCode(imageletter) + imagenumber.toString() + ".png"
+					this.saveimage1();
+					this.saveimage2();
 					
-					var b = document.createElement('a');
-					var d = document.createElement('c');
-					
-					//var filename = 'test.png';
-					b.href = renderer.domElement.toDataURL("image/png");
-					d.href = renderer2.domElement.toDataURL("image/png");
-					b.download = filename1;
-					d.download = filename2;
-					
-					b.target = '_self';
-					d.target = '_self';
-					b.style.display = 'none';
-					d.style.display = 'none';
-
-
-					// This step is needed for this to function in Firefox.
-					document.body.appendChild(b);
-					document.body.appendChild(d);
-					
-					b.click();
-					d.click();
 					    
 					data.push([filename1, filename2, camera.position.x.toString(), camera.position.y.toString(), camera.position.z.toString(), camera.rotation.y.toString()]);
-					if(imagenumber === 10000){imagenumber = 0; imageletter++; this.savetext();}
+					if(imagenumber === 100){imagenumber = 0; imageletter++; this.savetext();}
+				    };
+			            this.saveimage1 = function(){
+					var b = document.createElement('a');
+					//var filename = 'test.png';
+					b.href = renderer.domElement.toDataURL("image/png");
+					b.download = filename1;
+					b.target = '_self';
+					b.style.display = 'none';
+					// This step is needed for this to function in Firefox.
+					document.body.appendChild(b);
+					b.click();
+				    };
+			            this.saveimage2 = function(){
+					var b = document.createElement('a');
+					//var filename = 'test.png';
+					b.href = renderer2.domElement.toDataURL("image/png");
+					b.download = filename2;
+					b.target = '_self';
+					b.style.display = 'none';
+					// This step is needed for this to function in Firefox.
+					document.body.appendChild(b);
+					b.click();
 				    };
 				    this.savetext = function(){
 					    
@@ -879,6 +884,7 @@ var parameters = {
        				    	camera2.rotation.y = (Math.random() * (Math.PI*2.0));
        				    	camera2.rotation.y -= Math.PI;
        				    	camera.rotation.y = camera2.rotation.y;
+					this.saveimage();
 				    };
 				    this.getLostPract = function(){
 				    	camera.position.x = (Math.random() * 45.0);
