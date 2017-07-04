@@ -1041,7 +1041,7 @@ var parameters = {
 					var img = new Image();
 					img.onload = function(){
     						ctx.drawImage(img, 0, 0);
-						console.log(extra_canvas.toDataURL('image/png')));
+						console.log(extra_canvas.toDataURL('image/png'));
 					};
 					img.src = renderer.domElement.toDataURL("image/png");
         				ctx.drawImage(img, 0, 0, 167, 80);
