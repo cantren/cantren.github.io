@@ -328,8 +328,7 @@ var parameters = {
 			function resizedataURL(datas,targetWidth,targetHeight) {
 				var img = new Image;
 
-				img.onload = resizeImage;
-				img.src = originalDataUriHere;
+				img.src = datas;
     				var newDataUri = imageToDataUri(this, targetWidth, targetHeight);
 				
     				return newDataUri
