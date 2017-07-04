@@ -241,6 +241,7 @@ var parameters = {
 			}
 //I'll admit: I can't remember what this does or where it came from			
 			var waterNormals;
+	                savecsv = true;
 	                imagenumber = 0;
 			mouseposx = 0;
 	                mouseposy = 0;
@@ -1026,8 +1027,11 @@ var parameters = {
 					data.push([filename1, filename2, camera.position.x.toString(), camera.position.y.toString(), camera.position.z.toString(), camera.rotation.y.toString(), mouseposx.toString(), mouseposy.toString(), keyboard.pressed("W"), keyboard.pressed("A"), keyboard.pressed("S"), keyboard.pressed("D"),validationgatePoints,pathmarker1Points,buoy1Points,buoy2Points,buoy3Points,pathmarker2Points,maneuverPoints,pathmarker3Points,pathmarker4Points,pathmarker5Points,octagon1Points,pathmarker6Points,pathmarker7Points,octagon2Points]);
 					//if(imagenumber === 10000){imagenumber = 0; imageletter++; this.savetext();}
 				        //if(octagon2Points){
-					if(maneuverPoints){
-						imagenumber = 0; imageletter++; this.savetext();
+					if(maneuverPoints && savecsv){
+						imagenumber = 0; 
+						imageletter++; 
+						this.savetext();
+						savecsv = false;
 					}
 				    };
 			            this.saveimage1 = function(){
