@@ -1108,13 +1108,15 @@ var parameters = {
 					this.saveimage();
 				    };
 				    this.getLostPract = function(){
+				    	camControls.mouseX = ((Math.random() * 4900)+100);
 				    	camera.position.x = (Math.random() * 45.0);
 				    	camera.position.y = ((Math.random() * -4.55) - 0.95);
 				    	camera.position.z = (Math.random() * 60.0);
 				    	camera.position.z -= 30.0;
-
-       				    	camera.rotation.y = (Math.random() * (Math.PI*2.0));
-       				    	camera.rotation.y -= Math.PI;
+       				    	//camera.rotation.y = (Math.random() * (Math.PI*2.0));
+       				    	//camera.rotation.y -= Math.PI;
+					this.randomVis();
+					this.saveimage();
 				    };
 				    this.lookAtRedBuoy = function(){
 				    	camera.position.x = -23.14 + ((Math.random() * 10.0) - 5.0);
