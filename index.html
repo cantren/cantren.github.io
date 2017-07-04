@@ -336,15 +336,16 @@ var parameters = {
 				
 				camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.5, 3000000);
 //buoy closeup location
+				/*
 				camera.position.x = -16.73;//pool line of symetry is x axis
 				camera.position.y = -2.52;//water depth
 			        camera.position.z = -22.57;//how close to the wall are you
-
+				*/
 
 //normal starting location
-//				camera.position.x = 0.0;//pool line of symetry is x axis
-//				camera.position.y = -2.0;//water depth
-//			        camera.position.z = -28.0;//how close to the wall are you
+				camera.position.x = 0.0;//pool line of symetry is x axis
+				camera.position.y = -2.0;//water depth
+			        camera.position.z = -28.0;//how close to the wall are you
 //normal starting location
 			        camera.rotation.z = 3.06;
 			        camera.near = 0.5;
@@ -354,16 +355,19 @@ var parameters = {
 			        camera2.up = camera.up; // important!
 
 //buoy closeup location
+				/*
 			        camera2.position.x = -16.73;//pool line of symetry is x axis
 				camera2.position.y = -2.52;//water depth
 			        camera2.position.z = -22.57;//how close to the wall are you
+				*/
 //buoy closeup location
 
 //normal starting location
-//			        camera2.position.x = 0.0;//pool line of symetry is x axis
-//				camera2.position.y = -2.0;//water depth
-//			        camera2.position.z = -28.0;//how close to the wall are you
-			        camera2.rotation.z = 3.06;
+			        camera2.position.x = 0.0;//pool line of symetry is x axis
+				camera2.position.y = -2.0;//water depth
+			        camera2.position.z = -28.0;//how close to the wall are you
+			        camera2.rotation.z = 3.06;		
+//normal starting location
 				//camera.position.set( 0, -2, -28 );
 				
 				camera3 = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.5, 3000000);
