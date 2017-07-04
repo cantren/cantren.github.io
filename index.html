@@ -945,7 +945,7 @@ var parameters = {
 					this.saveimage1();
 					this.saveimage2();
 					    
-					data.push([filename1, filename2, camera.position.x.toString(), camera.position.y.toString(), camera.position.z.toString(), camera.rotation.y.toString(), mouseposx.toString(), mouseposy.toString(), keyboard.pressed("W").toString(), keyboard.pressed("A").toString(), keyboard.pressed("S").toString(), keyboard.pressed("D").toString(),validationgatePoints.toString(),pathmarker1Points.toString(),buoy1Points.toString(),buoy2Points.toString(),buoy3Points.toString(),pathmarker2Points.toString(),maneuverPoints.toString(),pathmarker3Points.toString(),pathmarker4Points.toString(),pathmarker5Points.toString(),octagon1Points.toString(),pathmarker6Points.toString(),pathmarker7Points.toString(),octagon2Points.toString()]);
+					data.push([filename1, filename2, camera.position.x.toString(), camera.position.y.toString(), camera.position.z.toString(), camera.rotation.y.toString(), mouseposx.toString(), mouseposy.toString(), keyboard.pressed("W"), keyboard.pressed("A"), keyboard.pressed("S"), keyboard.pressed("D"),validationgatePoints,pathmarker1Points,buoy1Points,buoy2Points,buoy3Points,pathmarker2Points,maneuverPoints,pathmarker3Points,pathmarker4Points,pathmarker5Points,octagon1Points,pathmarker6Points,pathmarker7Points,octagon2Points]);
 					//if(imagenumber === 10000){imagenumber = 0; imageletter++; this.savetext();}
 				        //if(octagon2Points){
 					if(maneuverPoints){
@@ -956,7 +956,8 @@ var parameters = {
 					var b = document.createElement('a');
 					//var filename = 'test.png';
 					//b.href = renderer.domElement.toDataURL("image/png");
-					b.href = resizedataURL(renderer.domElement.toDataURL("image/png"), 167, 80);
+					//b.href = resizedataURL(renderer.domElement.toDataURL("image/png"), 167, 80);
+					b.href = resizedataURL(renderer, 167, 80);
 					//b.href = extractRegion(renderer, 0, 0, 167, 80);
 					//b.href = imageToDataUri(renderer.domElement.toDataURL("image/png"), 167, 80);
 					b.download = filename1;
