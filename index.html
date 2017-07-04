@@ -381,8 +381,11 @@ var parameters = {
         // We put the Data URI in the image's src attribute
         img.src = datas;
 	//console.log(typeof img);
-	    
-	return toDataURL(img, "image/png");
+	var c = document.getElementById("myCanvas");
+        var ctx2 = c.getContext("2d");
+        var img2 = document.getElementById("img");
+        ctx2.drawImage(img2, 10, 10);
+        return c.toDataURL();
 	//return String(img).replace("<img src =\"", "").replace(">","");
     }
 	
