@@ -284,9 +284,8 @@ var parameters = {
 			
 	                //credit dotJayEss (source: http://www.html5gamedevs.com/topic/13638-renderer-canvas-to-image/#comment-141518)
 			//Returns a region of the canvas as a base64 dataURL
-	                function extractRegion(renderer, x, y, width, height){
-    				var sourceCanvas = renderer.extract.canvas();
-    				var sourceContext = sourceCanvas.getContext('2d');
+	                function extractRegion(datas, x, y, width, height){
+    				var sourceContext = datas.getContext('2d');
     				var extractCanvas = document.createElement('canvas');
     				var extractContext = extractCanvas.getContext('2d');
     				var imageData = sourceContext.getImageData(x, y, width, height);
