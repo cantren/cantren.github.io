@@ -241,7 +241,12 @@ var parameters = {
 			}
 //I'll admit: I can't remember what this does or where it came from			
 			var waterNormals;
-	                savecsv = true;
+	                savecsv1 = true;
+	                savecsv2 = true;
+	                savecsv3 = true;
+	                savecsv4 = true;
+	                savecsv5 = true;
+	                savecsv6 = true;
 	                imagenumber = 0;
 			mouseposx = 0;
 	                mouseposy = 0;
@@ -1027,11 +1032,11 @@ var parameters = {
 					data.push([filename1, filename2, camera.position.x.toString(), camera.position.y.toString(), camera.position.z.toString(), camera.rotation.y.toString(), mouseposx.toString(), mouseposy.toString(), keyboard.pressed("W"), keyboard.pressed("A"), keyboard.pressed("S"), keyboard.pressed("D"),validationgatePoints,pathmarker1Points,buoy1Points,buoy2Points,buoy3Points,pathmarker2Points,maneuverPoints,pathmarker3Points,pathmarker4Points,pathmarker5Points,octagon1Points,pathmarker6Points,pathmarker7Points,octagon2Points]);
 					//if(imagenumber === 10000){imagenumber = 0; imageletter++; this.savetext();}
 				        //if(octagon2Points){
-					if(maneuverPoints && savecsv){
+					if(maneuverPoints && savecsv1){
 						imagenumber = 0; 
 						imageletter++; 
-						this.savetext();
-						savecsv = false;
+						this.savetext("maneuversave");
+						savecsv1 = false;
 					}
 				    };
 			            this.saveimage1 = function(){
@@ -1065,7 +1070,7 @@ var parameters = {
 					document.body.appendChild(b);
 					b.click();
 				    };
-				    this.savetext = function(){
+				    this.savetext = function(filename3){
 					    
 					    //var data = [["filename1", "filename2", "position.x", "position.y", "position.z", "rotation.z"], ["fwda00001.png", "dwna00001.png", "0", "0", "0", "3"]];
 					    csvContent = "data:text/csv;charset=utf-8,";
@@ -1076,7 +1081,8 @@ var parameters = {
 					    var encodedUri = encodeURI(csvContent);
 					    var link = document.createElement("a");
 					    link.setAttribute("href", encodedUri);
-					    link.setAttribute("download", "my_data.csv");
+					    //link.setAttribute("download", "my_data.csv");
+					    link.setAttribute("download", filename3 + ".csv");
 					    document.body.appendChild(link); // Required for FF
 					    link.click();
 				    }
@@ -1471,10 +1477,22 @@ var parameters = {
 				if ( camera2.position.x < -15.57 && camera2.position.x > -15.97 && camera2.position.z < -21.93 && camera2.position.z > -22.33) {
 					pathmarker1Points = true;
 					console.log("Pathmarker1 Points!");
+					if(savecsv2){
+						imagenumber = 0; 
+						imageletter++; 
+						this.savetext("pathmarker1ssave");
+						savecsv2 = false;
+					}
 				}
 				if ( camera2.position.x < -24.56 && camera2.position.x > -24.96 && camera2.position.z < -19.14 && camera2.position.z > -19.54 ) {
 					pathmarker2Points = true;
 					console.log("Pathmarker2 Points!");
+					if(savecsv6){
+						imagenumber = 0; 
+						imageletter++; 
+						this.savetext("pathmarker2save");
+						savecsv6 = false;
+					}
 				}
 				if ( camera2.position.x < -24.5 && camera2.position.x > -24.9 && camera2.position.z < -19.21 && camera2.position.z > -19.61 ) {
 					pathmarker3Points = true;
@@ -1499,14 +1517,32 @@ var parameters = {
 				if ( camera2.position.x < -21.59 && camera2.position.x > -21.99 && camera2.position.y < -1.83 && camera2.position.y > -2.23 && camera2.position.z < -19.44 && camera2.position.z > -19.84 ) {
 					buoy1Points = true;
 					console.log("Buoy1 Points!");
+					if(savecsv3){
+						imagenumber = 0; 
+						imageletter++; 
+						this.savetext("buoy1save");
+						savecsv3 = false;
+					}
 				}
 				if ( camera2.position.x < -22.27 && camera2.position.x > -22.67 && camera2.position.y < -1.92 && camera2.position.y > -2.32 && camera2.position.z < -20.49 && camera2.position.z > -20.89 ) {
 					buoy2Points = true;
 					console.log("Buoy2 Points!");
+					if(savecsv4){
+						imagenumber = 0; 
+						imageletter++; 
+						this.savetext("buoy2save");
+						savecsv4 = false;
+					}
 				}
 				if ( camera2.position.x < -22.94 && camera2.position.x > -23.34 && camera2.position.y < -2.0 && camera2.position.y > -2.4 && camera2.position.z < -21.51 && camera2.position.z > -21.91 ) {
 					buoy3Points = true;
 					console.log("Buoy3 Points!");
+					if(savecsv5){
+						imagenumber = 0; 
+						imageletter++; 
+						this.savetext("buoy3save");
+						savecsv5 = false;
+					}
 				}
 				if ( (camera2.position.x < -29.09 && camera2.position.x > -29.39 && camera2.position.y < -1.3 && camera2.position.y > -2.12 && camera2.position.z < -13.43 && camera2.position.z > -13.83) || (camera2.position.x < -29.43 && camera2.position.x > -29.75 && camera2.position.y < -1.3 && camera2.position.y > -2.12 && camera2.position.z < -13.63 && camera2.position.z > -14.03)) {
 					maneuverPoints = true;
