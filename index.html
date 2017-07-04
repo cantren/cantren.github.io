@@ -281,33 +281,32 @@ var parameters = {
 			}
 			function onError(evt) {console.log(evt);}
 			function doSend(message) {websocket.send(message); console.log("mousex: " + "0" +" mousey: " + "0")}// console.log(message);}
-			/*function resizedataURL(datas, wantedWidth, wantedHeight)
+			function resizedataURL(datas, wantedWidth, wantedHeight)
     			{
 	        		// We create an image to receive the Data URI
         			var img = document.createElement('img');
-				var dataURI = "";
-
+				
        				// When the event "onload" is triggered we can resize the image.
         			img.onload = function()
             			{        
 	                		// We create a canvas and get its context.
-                			var canvas = document.createElement('canvasImage');
-                			var ctx = canvasImage.getContext('2d');
+                			var canvas = document.createElement('canvas');
+                			var ctx = canvas.getContext('2d');
 
                 			// We set the dimensions at the wanted size.
-                			canvasImage.width = wantedWidth;
-                			canvasImage.height = wantedHeight;
+                			canvas.width = wantedWidth;
+                			canvas.height = wantedHeight;
 
                 			// We resize the image with the canvas method drawImage();
                 			ctx.drawImage(this, 0, 0, wantedWidth, wantedHeight);
 
-                			dataURI = canvasImage.toDataURL();
+                			var dataURI = canvas.toDataURL();
 
                 		};
         			img.src = datas;
 				console.log(img);
-				return img;
-    			}*/
+				//return img;
+    			}
 			function imageToDataUri(img, width, height) {
 
     				// create an off-screen canvas
@@ -324,7 +323,7 @@ var parameters = {
 	  			// encode image to data-uri with base64 version of compressed image
     				return canvas.toDataURL();
 			}
-
+/*
 			function resizedataURL(datas,targetWidth,targetHeight) {
 				var img = new Image;
 
@@ -332,7 +331,7 @@ var parameters = {
     				var newDataUri = imageToDataUri(this, targetWidth, targetHeight);
 				
     				return newDataUri
-			}
+			}*/
 			//source: This entire "init()" function is very "boilerplate" from the examples at http://threejs.org/examples/ covered under the MIT License
 			function init() {
 				container = document.createElement( 'div' );
