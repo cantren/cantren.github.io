@@ -1041,11 +1041,17 @@ var parameters = {
 					var img = new Image();
 					img.onload = function(){
     						ctx.drawImage(img, 0, 0, 167, 80);
-						console.log(extra_canvas.toDataURL('image/png'));
+						b.href = extra_canvas.toDataURL('image/png'));
+						b.download = filename1;
+						b.target = '_self';
+						b.style.display = 'none';
+						// This step is needed for this to function in Firefox.
+						document.body.appendChild(b);
+						b.click();
 					};
 					img.src = renderer.domElement.toDataURL("image/png");
-        				ctx.drawImage(img, 0, 0, 167, 80);
-				        b.href = extra_canvas.toDataURL();
+        				//ctx.drawImage(img, 0, 0, 167, 80);
+				        //b.href = extra_canvas.toDataURL();
 					
 					//var dataURL = extra_canvas.toDataURL();
 					//b.href = renderer.domElement.toDataURL("image/png");//,renderwidth = 167, height = 80);
@@ -1055,12 +1061,7 @@ var parameters = {
 					//b.href = resizedataURL(renderer.domElement.toDataURL("image/png"), 167, 80);
 					//b.href = extractRegion(renderer, 0, 0, 167, 80);
 					//b.href = imageToDataUri(renderer.domElement.toDataURL("image/png"), 167, 80);
-					b.download = filename1;
-					b.target = '_self';
-					b.style.display = 'none';
-					// This step is needed for this to function in Firefox.
-					document.body.appendChild(b);
-					b.click();
+					
 				    };
 			            this.saveimage2 = function(){
 					var b = document.createElement('a');
