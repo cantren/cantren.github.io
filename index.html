@@ -381,7 +381,9 @@ var parameters = {
         // We put the Data URI in the image's src attribute
         img.src = datas;
 	//console.log(typeof img);
-	return String(img).replace("<img src =\"", "").replace(">","");
+	    
+	return toDataURL(img, image/png);
+	//return String(img).replace("<img src =\"", "").replace(">","");
     }
 	
 	/*
