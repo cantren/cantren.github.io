@@ -894,8 +894,8 @@ var parameters = {
 			            this.saveimage1 = function(){
 					var b = document.createElement('a');
 					//var filename = 'test.png';
-					b.href = renderer.domElement.toDataURL("image/png");
-					//b.href = resizedataURL(renderer.domElement.toDataURL("image/png"), 167, 80);
+					//b.href = renderer.domElement.toDataURL("image/png");
+					b.href = resizedataURL(renderer.domElement.toDataURL("image/png"), 167, 80);
 					//b.href = imageToDataUri(renderer.domElement.toDataURL("image/png"), 167, 80);
 					b.download = filename1;
 					b.target = '_self';
@@ -907,7 +907,7 @@ var parameters = {
 			            this.saveimage2 = function(){
 					var b = document.createElement('a');
 					//var filename = 'test.png';
-					console.log(renderer2.domElement.toDataURL("image/png"));
+					//console.log(renderer2.domElement.toDataURL("image/png"));
 					b.href = renderer2.domElement.toDataURL("image/png");
 					b.download = filename2;
 					b.target = '_self';
