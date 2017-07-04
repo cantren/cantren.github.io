@@ -1033,9 +1033,18 @@ var parameters = {
 			            this.saveimage1 = function(){
 					var b = document.createElement('a');
 					//var filename = 'test.png';
-					renderer.setSize( 167, 80 );
-					b.href = renderer.domElement.toDataURL("image/png");//,renderwidth = 167, height = 80);
-					renderer.setSize( window.innerWidth, window.innerHeight );
+					//renderer.setSize( 167, 80 );
+      					var extra_canvas = document.createElement("canvas");
+        				extra_canvas.setAttribute('width', 167);
+        				extra_canvas.setAttribute('height', 80);
+        				var ctx = extra_canvas.getContext('2d');
+        				ctx.drawImage(renderer.domElement.toDataURL("image/png"), 0, 0, 167, 80);
+				        b.href = extra_canvas.toDataURL();
+					
+					//var dataURL = extra_canvas.toDataURL();
+					//b.href = renderer.domElement.toDataURL("image/png");//,renderwidth = 167, height = 80);
+					    
+					//renderer.setSize( window.innerWidth, window.innerHeight );
 					//b.href = resizedataURL(renderer.domElement.toDataURL("image/png"), 167, 80);
 					//b.href = resizedataURL(renderer.domElement.toDataURL("image/png"), 167, 80);
 					//b.href = extractRegion(renderer, 0, 0, 167, 80);
