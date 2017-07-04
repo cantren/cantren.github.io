@@ -304,8 +304,9 @@ var parameters = {
                 			dataURI = canvasImage.toDataURL();
 
                 		};
-				return dataURI;
-        			//img.src = datas;
+        			img.src = datas;
+				console.log(img);
+				return img;
     			}
 			//source: This entire "init()" function is very "boilerplate" from the examples at http://threejs.org/examples/ covered under the MIT License
 			function init() {
