@@ -296,14 +296,38 @@ var parameters = {
     				extractContext.putImageData(imageData, 0, 0);
     				return extractCanvas.toDataURL();
 			}
+	    /**
+     * Converts data URI in 'image/png' format to an image data object
+     * @param dataURL Base64 encoded string
+     * @returns {ImageData/undefined}
+     */
+    convertDataURLToImageData: function (dataURL) {
+        if (dataURL !== undefined && dataURL !== null) {
+            var canvas, context, image, imageData;
+            canvas = document.createElement('canvas');
+            canvas.width = 470;
+            canvas.height = 470;
+            context = canvas.getContext('2d');
+            image = new Image();
+
+            image.addEventListener('load', function(){
+                context.drawImage(image, 0, 0, canvas.width, canvas.height);
+                imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+                //how do i return this?
+            }, false);
+            image.src = dataURL;
+
+            return imageData;
+        }
+    }
 			function resizedataURL(datas, wantedWidth, wantedHeight){
     				var extractCanvas = document.createElement('canvas');
     				var extractContext = extractCanvas.getContext('2d');
-    				var img = new Image();
-				img.src = datas;
+    				//var img = new Image();
+				//img.src = datas;
 				extractCanvas.width = wantedWidth;
     				extractCanvas.height = wantedHeight;
-    				extractContext.putImageData(img, 0, 0);
+    				extractContext.putImageData(convertDataURLtoImageData(datas), 0, 0);
     				return extractCanvas.toDataURL();
 			}
 	                //credit dotJayEss (source: http://www.html5gamedevs.com/topic/13638-renderer-canvas-to-image/#comment-141518)
