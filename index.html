@@ -242,7 +242,9 @@ var parameters = {
 //I'll admit: I can't remember what this does or where it came from			
 			var waterNormals;
 	                imagenumber = 0;
-	                imageletter = 65;
+			mouseposx = 0;
+	                mouseposy = 0;
+	                imageletter = 66;
 	                filename1 = "";
 	                filename2 = "";
 			pathmarker1Points = false;
@@ -259,7 +261,7 @@ var parameters = {
 			buoy3Points = false;
 			validationgatePoints = false;
 			maneuverPoints = false;
-			data = [["filename1", "filename2", "position.x", "position.y", "position.z", "rotation.y"]];
+			data = [["filename1", "filename2", "position.x", "position.y", "position.z", "rotation.y","mousex","mousey"]];
 			
 				
 			init();
@@ -830,8 +832,9 @@ var parameters = {
 					this.saveimage2();
 					
 					    
-					data.push([filename1, filename2, camera.position.x.toString(), camera.position.y.toString(), camera.position.z.toString(), camera.rotation.y.toString()]);
-					if(imagenumber === 10000){imagenumber = 0; imageletter++; this.savetext();}
+					data.push([filename1, filename2, camera.position.x.toString(), camera.position.y.toString(), camera.position.z.toString(), camera.rotatio.ton.y.toString(), mouseposx.toString(), mouseposy.toString()]);
+					//if(imagenumber === 10000){imagenumber = 0; imageletter++; this.savetext();}
+				        if(octagon2points){imagenumber = 0; imageletter++; this.savetext();}
 				    };
 			            this.saveimage1 = function(){
 					var b = document.createElement('a');
