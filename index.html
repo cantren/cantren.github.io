@@ -306,7 +306,7 @@ var parameters = {
                 		};
         			img.src = datas;
 				//console.log(img);
-				return imageToDataUri(img, wantedWidth, wantedHeight);
+				return img.toDataURL();
     			}
 			function imageToDataUri(img, width, height) {
 
