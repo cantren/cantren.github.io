@@ -1041,10 +1041,10 @@ var parameters = {
 					var img = new Image();
 					img.onload = function(){
     						ctx.drawImage(img, 0, 0);
-    						//alert(myCanvas.toDataURL('image/jpeg'));
+    						alert(extra_canvas.toDataURL('image/jpeg'));
 					};
 					img.src = renderer.domElement.toDataURL("image/png");
-        				ctx.drawImage(img, 0, 0, 167, 80);
+        				//ctx.drawImage(img, 0, 0, 167, 80);
 				        b.href = extra_canvas.toDataURL();
 					
 					//var dataURL = extra_canvas.toDataURL();
