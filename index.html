@@ -301,10 +301,11 @@ var parameters = {
                 			ctx.drawImage(this, 0, 0, wantedWidth, wantedHeight);
 
                 			var dataURI = canvas.toDataURL();
+					console.log(dataURI);
 
                 		};
         			img.src = datas;
-				console.log(img);
+				//console.log(img);
 				return img;
     			}
 			function imageToDataUri(img, width, height) {
