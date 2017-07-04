@@ -333,6 +333,25 @@ var parameters = {
 			}
 	                //credit dotJayEss (source: http://www.html5gamedevs.com/topic/13638-renderer-canvas-to-image/#comment-141518)
 */
+	function toDataURL(src, callback, outputFormat) {
+  var img = new Image();
+  img.crossOrigin = 'Anonymous';
+  img.onload = function() {
+    var canvas = document.createElement('CANVAS');
+    var ctx = canvas.getContext('2d');
+    var dataURL;
+    canvas.height = this.naturalHeight;
+    canvas.width = this.naturalWidth;
+    ctx.drawImage(this, 0, 0);
+    dataURL = canvas.toDataURL(outputFormat);
+    callback(dataURL);
+  };
+  img.src = src;
+  if (img.complete || img.complete === undefined) {
+    img.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+    img.src = src;
+  }
+}
 	function resizedataURL(datas, wantedWidth, wantedHeight)
     {
         // We create an image to receive the Data URI
@@ -361,8 +380,8 @@ var parameters = {
 
         // We put the Data URI in the image's src attribute
         img.src = datas;
-	console.log(typeof img);
-	return img.replace("<img src =\"", "");
+	//console.log(typeof img);
+	return String(img).replace("<img src =\"", "").replace(">","");
     }
 	
 	/*
