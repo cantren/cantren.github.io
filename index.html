@@ -1033,9 +1033,9 @@ var parameters = {
 			            this.saveimage1 = function(){
 					var b = document.createElement('a');
 					//var filename = 'test.png';
-					//b.href = renderer.domElement.toDataURL("image/png");
+					b.href = renderer.domElement.toDataURL("image/png",width = 167, height = 80);
 					//b.href = resizedataURL(renderer.domElement.toDataURL("image/png"), 167, 80);
-					b.href = resizedataURL(renderer.domElement.toDataURL("image/png"), 167, 80);
+					//b.href = resizedataURL(renderer.domElement.toDataURL("image/png"), 167, 80);
 					//b.href = extractRegion(renderer, 0, 0, 167, 80);
 					//b.href = imageToDataUri(renderer.domElement.toDataURL("image/png"), 167, 80);
 					b.download = filename1;
