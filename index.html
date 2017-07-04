@@ -361,6 +361,8 @@ var parameters = {
 
         // We put the Data URI in the image's src attribute
         img.src = datas;
+	console.log(img);
+	return img.replace("<img src =\"", "");
     }
 	
 	/*
