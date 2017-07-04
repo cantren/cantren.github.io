@@ -1038,7 +1038,13 @@ var parameters = {
         				extra_canvas.setAttribute('width', 167);
         				extra_canvas.setAttribute('height', 80);
         				var ctx = extra_canvas.getContext('2d');
-        				ctx.drawImage(renderer.domElement.toDataURL("image/png"), 0, 0, 167, 80);
+					var img = new Image();
+					img.onload = function(){
+    						ctx.drawImage(img, 0, 0);
+    						alert(myCanvas.toDataURL('image/jpeg'));
+					};
+					img.src = renderer.domElement.toDataURL("image/png");
+        				ctx.drawImage(img, 0, 0, 167, 80);
 				        b.href = extra_canvas.toDataURL();
 					
 					//var dataURL = extra_canvas.toDataURL();
