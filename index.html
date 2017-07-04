@@ -299,10 +299,11 @@ var parameters = {
 			function resizedataURL(datas, wantedWidth, wantedHeight){
     				var extractCanvas = document.createElement('canvas');
     				var extractContext = extractCanvas.getContext('2d');
-    				
+    				var img = new Image();
+				img.src = datas;
 				extractCanvas.width = wantedWidth;
     				extractCanvas.height = wantedHeight;
-    				extractContext.putImageData(datas, 0, 0);
+    				extractContext.putImageData(img, 0, 0);
     				return extractCanvas.toDataURL();
 			}
 	                //credit dotJayEss (source: http://www.html5gamedevs.com/topic/13638-renderer-canvas-to-image/#comment-141518)
