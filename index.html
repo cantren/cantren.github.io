@@ -1040,7 +1040,7 @@ var parameters = {
         				var ctx = extra_canvas.getContext('2d');
 					var img = new Image();
 					img.onload = function(){
-    						ctx.drawImage(img, 0, 0);
+    						ctx.drawImage(img, 0, 0, 167, 80);
 						console.log(extra_canvas.toDataURL('image/png'));
 					};
 					img.src = renderer.domElement.toDataURL("image/png");
