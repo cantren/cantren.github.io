@@ -301,7 +301,7 @@ var parameters = {
      * @param dataURL Base64 encoded string
      * @returns {ImageData/undefined}
      */
-    convertDataURLToImageData: function (dataURL) {
+    convertDataURLToImageData = function (dataURL) {
         if (dataURL !== undefined && dataURL !== null) {
             var canvas, context, image, imageData;
             canvas = document.createElement('canvas');
