@@ -128,6 +128,7 @@ Ni 1.000000
 d 1.000000
 illum 2
 
+## PVC Something
 newmtl 2
 Ns 498.039216
 Ka 0.000000 0.000000 0.000000
@@ -146,6 +147,7 @@ Ni 1.000000
 d 1.000000
 illum 2
 
+## PVC Something
 newmtl 21
 Ns 98.039216
 Ka 0.000000 0.000000 0.000000
@@ -157,6 +159,7 @@ illum 2
 map_Kd spongeblack.jpg
 map_Bump spongeblack bump.jpg
 
+## PVC Something
 newmtl 22
 Ns 98.039216
 Ka 0.000000 0.000000 0.000000
@@ -168,24 +171,17 @@ illum 2
 map_Kd spongeblue.jpg
 map_Bump spongeblue bump.jpg
 
-# newmtl 23
-# Ns 596.078431
-# Ka 0.000000 0.000000 0.000000
-# Kd 0.800000 0.000000 0.000000
-# Ks 0.500000 0.000000 0.000000
-# Ni 1.000000
-# d 1.000000
-# illum 2
-
+## red delorean
 newmtl 23
 Ns 596.078431
 Ka 0.000000 0.000000 0.000000
-Kd 0.000000 0.000000 0.000000
-Ks 0.000000 0.000000 0.000000
+Kd 0.800000 0.000000 0.000000
+Ks 0.500000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
 
+## something yellow
 newmtl 24
 Ns 596.078431
 Ka 0.000000 0.000000 0.000000
@@ -195,6 +191,7 @@ Ni 1.000000
 d 1.000000
 illum 2
 
+## something yellow
 newmtl 25
 Ns 596.078431
 Ka 0.000000 0.000000 0.000000
@@ -204,6 +201,7 @@ Ni 1.000000
 d 1.000000
 illum 2
 
+## PVC Something
 newmtl 3
 Ns 98.039216
 Ka 0.000000 0.000000 0.000000
@@ -215,6 +213,7 @@ illum 2
 map_Kd leather.jpg
 map_Bump leather bump.jpg
 
+## PVC Something
 newmtl 4
 Ns 684.313725
 Ka 0.000000 0.000000 0.000000
@@ -224,6 +223,7 @@ Ni 1.000000
 d 1.000000
 illum 2
 
+## something black (dropper bins?)
 newmtl 5
 Ns 196.078431
 Ka 0.000000 0.000000 0.000000
@@ -233,6 +233,7 @@ Ni 1.000000
 d 1.000000
 illum 2
 
+## something yellow (maneuver?)
 newmtl 6
 Ns 686.274510
 Ka 0.000000 0.000000 0.000000
@@ -242,6 +243,7 @@ Ni 1.000000
 d 1.000000
 illum 2
 
+## something purple (dropper bins?)
 newmtl 7
 Ns 596.078431
 Ka 0.000000 0.000000 0.000000
@@ -251,6 +253,7 @@ Ni 1.000000
 d 1.000000
 illum 2
 
+## something green (green buoy?)
 newmtl 8
 Ns 686.274510
 Ka 0.000000 0.000000 0.000000
