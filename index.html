@@ -253,6 +253,7 @@ var parameters = {
 	                imageletter = 66;
 	                filename1 = "";
 	                filename2 = "";
+			drivereverse = false;
 			pathmarker1Points = false;
 			pathmarker2Points = false;
 			pathmarker3Points = false;
@@ -264,9 +265,27 @@ var parameters = {
 			octagon2Points = false;
 			buoy1Points = false;
 			buoy2Points = false;
+			buoy1Backup = false;
+			buoy2Backup = false;
 			buoy3Points = false;
 			validationgatePoints = false;
 			maneuverPoints = false;
+	
+			pathmarker1Reward = false;
+			pathmarker2Reward = false;
+			pathmarker3Reward = false;
+			pathmarker4Reward = false;
+			pathmarker5Reward = false;
+			pathmarker6Reward = false;
+			pathmarker7Reward = false;
+			octagon1Reward = false;
+			octagon2Reward = false;
+			buoy1Reward = false;
+			buoy2Reward = false;
+			buoy3Reward = false;
+			validationgateReward = false;
+			maneuverReward = false;
+	
 			data = [["filename1", "filename2", "position.x", "position.y", "position.z", "rotation.y","mousex","mousey","W","A","S","D","validationgatePoints","pathmarker1Points","buoy1Points","buoy2Points","buoy3Points","pathmarker2Points","maneuverPoints","pathmarker3Points","pathmarker4Points","pathmarker5Points","octagon1Points","pathmarker6Points","pathmarker7Points","octagon2Points"]];	
 			init();
 			animate();
@@ -483,6 +502,25 @@ var parameters = {
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
 				testWebSocket();
+				
+				globalyawKp = 500; globalyawKi = 0.00001; globalyawKd = 0.000000001;
+
+				
+				frameCounter = 0;
+				previouserrorYaw = 0;
+				previousDeltaZ = 0;
+				integralYaw = 0;
+				previouserrorDepth = 0;
+				integralDepth = 0;
+				victoryCounter = 0;
+				turnCounter = 0;
+				lazybot = 0;
+				record = false;
+				
+				targetx =  0;
+				targety = -1.5;
+				targetz = 0;
+				
 				frameCounter = 0;		
 				mouseposx = 0;		
 				mouseposy = 0;		
@@ -1293,6 +1331,7 @@ var parameters = {
 			//source: MIT License OR "This code no longer appears to contain anything that belongs to josdirksen?"
 			function render() {
 				keyboard.update();
+				var reward = 0;
 				onmousemove = function(e){mouseposx = e.clientX; mouseposy = e.clientY;}
 				camControls.update( clock.getDelta() ); //update First Person Camera
 				camControls2.update( clock.getDelta() ); //update First Person Camera
@@ -1317,6 +1356,208 @@ var parameters = {
 				//var timeSolar = performance.now() * 0.000000003472 + 32470000 + 3 * 3600000; //Measure time for sun
 				//rapid time for testing
 				timeSolar = performance.now() * 0.00000003472 * 36000; //Measure time for sun
+				
+				
+				if ( !pathmarker1Points ) {
+						targetx = -15.77;
+						targetz = -22.13;
+					}else { 
+							if ( !buoy1Points ) {
+									targetx = -21.79;
+									targetz = -19.64;
+									targety = -2.03;
+									console.log("current target: buoy1");
+								}else {
+										if ( !buoy1Backup ) {
+												buoy1Backup = true;
+												//drivereverse = true;
+												//targetx = -15.77;
+												//targetz = -19.74;
+												camera.position.x = -15.77;
+												camera.position.z = -24.64;
+												camera2.position.x = -15.77;
+												camera2.position.z = -24.64;
+												console.log("current target: buoy1");
+											}else {
+													if ( !buoy2Points ) {
+															targetx = -22.47;
+															targetz = -20.69;
+															targety = -2.12;
+															console.log("current target: buoy2");
+														}else {
+																if ( !buoy2Backup ) {
+																	//	drivereverse = true;
+																		targetx = -18.77;																																				//camera.position.x = -15.77;
+																		targetz = -18.64;
+
+																		buoy2Backup = true;
+																		camera.position.x = -15.77;
+																		camera.position.z = -24.64;
+																		camera2.position.x = -15.77;
+																		camera2.position.z = -25.64;
+																		console.log("current target: buoy2");
+																	}else {
+																			if ( !buoy3Points ) {
+																					//drivereverse = false;
+																					targetx = -23.14;
+																					targetz = -21.71;
+																					targety = -2.2;
+																					console.log("current target: buoy3");
+																				}else {
+																						if ( !pathmarker2Points ) {
+																								targetx =  -24.76;
+																								targetz = -19.34;
+																								console.log("current target: pathmarker2");
+																							}else {
+																									if ( !pathmarker3Points ) {
+																											targetx = -24.7;
+																											targetz = -19.41;
+																											console.log("current target: pathmarker3");
+																										}else { 
+																												if ( !maneuverPoints ) {
+																														targetx = -29.55;
+																														targetz = -13.73;
+																														targety = -1.85;
+																														console.log("current target: maneuver");
+																													}else {
+																															if ( !pathmarker4Points ) {
+																																targetx = -29.85;
+																																targetz = -11.79;
+																																console.log("current target: pathmarker4");
+																															}else {
+																																	if ( !pathmarker5Points ) {
+																																		targetx = -31.29;
+																																		targetz = 1.86;
+																																		console.log("current target: pathmarker5");
+																																	}else {
+																																			if ( !pathmarker6Points ) {
+																																				targetx = -29.57;
+																																				targetz = 12.44;
+																																				targety = -3.5;
+																																				console.log("current target: pathmarker6");
+																																			}else {
+																																					if ( !octagon1Center ) {
+																																						targetx = -32.96;
+																																						targetz = 12.05;
+																																						console.log("current target: octagon1 center");
+																																						}else {
+																																								if ( !octagon1Points ) {
+																																									targety = -1.04;
+																																									console.log("current target: octagon1");
+																																								}else {
+																																										if ( !octagon1Done ) {
+																																											targety = -3.5;
+																																											console.log("current target: octagon1 dive");
+																																											}else {
+																																												if ( !pathmarker7Points ) {
+																																													targetx = -23.57;
+																																													targetz = 15.41;
+																																													console.log("current target: pathmarker7");
+																																												}else {
+																																														if ( !octagon2Center ) {
+																																															targetx = -21.08;
+																																															targetz = 17.98;
+																																															console.log("current target: octagon2 center");
+																																														}else {
+																																																if ( !octagon2Points ) {
+																																																	targety = -1.04;
+																																																	console.log("current target: octagon1");
+																																																}else {
+																																																	victoryCounter++;
+																																																	console.log("ALL YOUR BASE ARE BELONG TO US!");
+																																																//"you just beat the game" code goes here
+																																																	pathmarker1Points = false;
+																																																	pathmarker2Points = false;
+																																																	pathmarker3Points = false;
+																																																	pathmarker4Points = false;
+																																																	pathmarker5Points = false;
+																																																	pathmarker6Points = false;
+																																																	pathmarker7Points = false;
+																																																	octagon1Points = false;
+																																																	octagon2Points = false;
+																																																	octagon1Center = false;
+																																																	octagon2Center = false;
+																																																	octagon1Done = false;
+																																																	octagon2Done = false;
+																																																	buoy1Points = false;
+																																																	buoy2Points = false;
+																																																	buoy1Backup = false;
+																																																	buoy2Backup = false;
+																																																	buoy3Points = false;
+																																																	validationgatePoints = false;
+																																																	maneuverPoints = false;
+																																																	camera.position.x = -2.5;//pool line of symetry is x axis
+																																																	camera.position.y = -2.0;//water depth
+																																																	camera.position.z = -26.0;//how close to the wall are you
+																																																}}}}}}}}}}}}}}}}}}																	
+														
+				var newdistancetotarget = Math.pow((Math.pow((camera2.position.x-targetx),2)+Math.pow((camera2.position.y-targety),2)+Math.pow((camera2.position.z-targetz),2)),0.5);
+
+				deltatargetvelocity = lastTargetDistance - newdistancetotarget;
+				
+				if ((-.00021288497260888326)*(Math.abs(Math.pow(camera.position.x,3)))+(-.0038646361243415903)*(Math.pow(camera.position.x,2))+(-.044978127733920653)*(Math.abs(camera.position.x))+(30.78479999999999851)-(camera.position.z) < 2.0) {
+				//camera.position.x = oldcamerax; 
+				//camera.position.z = oldcameraz; 
+				//camera2.position.x = oldcamerax2; 
+				//camera2.position.z = oldcameraz2; 
+				reward = -1.0; 
+				reward -= 1.95;
+				camera.position.z -= 0.251; 
+				camera2.position.z -= 0.251;
+				}
+				if (((((-.00021288497260888326)*(Math.abs(Math.pow(camera.position.x,3)))+(-.0038646361243415903)*(Math.pow(camera.position.x,2))+(-.044978127733920653)*(Math.abs(camera.position.x))+(0.30479999999999851))*-1.0)-30.480)-(camera.position.z) > -3.0) {
+				//camera.position.x = oldcamerax; 
+				//camera.position.z = oldcameraz; 
+				//camera2.position.x = oldcamerax2; 
+				//camera2.position.z = oldcameraz2; 
+				reward = -1.0; 
+				reward -= 1.95; 
+				camera.position.z += 0.251; 
+				camera2.position.z += 0.251;
+				}
+				
+				//targetYaw = Math.atan2( (camera.position.z - targetz) , (camera.position.x - targetx) );
+				//this chunk of code addresses the the asymptotic behavior of arctan when x = 0;
+				//http://stackoverflow.com/a/3309658
+				if ( targetz-camera.position.z > 0.001 || targetz-camera.position.z < -0.001 )
+					{
+						targetYaw = Math.atan2( -1*( targetx - camera.position.x ), ( targetz - camera.position.z) );
+					} else{
+						if(previousDeltaZ !=0){targetYaw = Math.atan2( -1*( targetx - camera.position.x ), ( previousDeltaZ ));};
+					}
+				//this chunk of code addresses the the asymptotic behavior of arctan when x = 0;
+				if(drivereverse){targetYaw += Math.PI;}
+				targetYaw = (1.0*targetYaw) % (Math.PI*2);
+				//if(targetYaw > Math.PI){targetYaw -= Math.PI; targetYaw = -1.0*targetYaw; }				
+				//targetYaw = (-1.0*targetYaw) % (Math.PI/2);
+				
+				//the code modeled by the neural network
+				var currentYaw = camera.rotation.y;
+				var errorYaw = targetYaw - currentYaw;
+				
+				integralYaw += errorYaw;
+				var derivativeYaw = (errorYaw - previouserrorYaw);
+				var outputYaw = (globalyawKp*errorYaw) + (globalyawKi*integralYaw) + (globalyawKd*derivativeYaw);
+				previouserrorYaw = errorYaw;
+				previousDeltaZ = (targetz-camera.position.z);
+				//if(drivereverse){
+				//	camControls.mouseX  = -1.0*outputYaw;
+				//}else{
+					camControls.mouseX  = outputYaw;
+				//}
+				console.log("currentYaw: " + currentYaw + " targetYaw: " + targetYaw + " errorYaw: " + errorYaw + " outputYaw: " + outputYaw + " mouseX: " + camControls.mouseX);	
+				
+				var depthKp = 100; var depthKi = 0.00001; var depthKd = 0.000000001;
+				var currentDepth = camera.position.y;
+				var errorDepth = targety - currentDepth;
+				integralDepth += errorDepth;
+				var derivativeDepth = (errorDepth - previouserrorDepth);
+				var outputDepth = (depthKp*errorDepth) - (depthKi*integralDepth) + (depthKd*derivativeDepth);
+				previouserrorDepth = errorDepth;
+				camControls.mouseY  = -1*outputDepth;
+				console.log("currentDepth: " + currentDepth + " targetYaw: " + targety + " errorDepth: " + errorDepth + " outputDepth: " + outputDepth + " mouseY: " + camControls.mouseY);	
+
+				
 				
 				water.material.uniforms.time.value += 1.0 / 60.0; //speed of water motion(wind chop)
 				water.render(); //render water surface
@@ -1473,6 +1714,7 @@ var parameters = {
 					//guivalues.lightDepthFix();
 					guivalues.randomVis();
 				}
+				
 				///////////////////////////////////////////////////////////////////////////////////////////////////
 				//This section determines if the camera position is within the "hitbox" to award objective points//
 				///////////////////////////////////////////////////////////////////////////////////////////////////
