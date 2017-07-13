@@ -1060,6 +1060,7 @@ var parameters = {
 				    this.cameraNear = camera.near;
 				    this.cameraFar = camera.far;
 				    this.saveimage = function(){
+					if(record){
 					imagenumber++;
 					//this.randomVis();
 					filename1 = "hmnfwd" + String.fromCharCode(imageletter) + imagenumber.toString() + ".png"
@@ -1075,7 +1076,7 @@ var parameters = {
 						imageletter++; 
 						this.savetext("maneuversave");
 						savecsv1 = false;
-					}
+					}}
 				    };
 			            this.saveimage1 = function(){
 					var b = document.createElement('a');
