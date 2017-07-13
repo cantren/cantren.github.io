@@ -1429,14 +1429,14 @@ var parameters = {
 									console.log("current target: buoy1");
 								}else {
 										if ( !buoy1Backup ) {
-												buoy1Backup = true;
-												//drivereverse = true;
-												//targetx = -15.77;
-												//targetz = -19.74;
-												camera.position.x = -15.77;
-												camera.position.z = -24.64;
-												camera2.position.x = -15.77;
-												camera2.position.z = -24.64;
+												//buoy1Backup = true;
+												drivereverse = true;
+												targetx = -15.77;
+												targetz = -19.74;
+												//camera.position.x = -15.77;
+												//camera.position.z = -24.64;
+												//camera2.position.x = -15.77;
+												//camera2.position.z = -24.64;
 												console.log("current target: buoy1");
 											}else {
 													if ( !buoy2Points ) {
@@ -1446,19 +1446,19 @@ var parameters = {
 															console.log("current target: buoy2");
 														}else {
 																if ( !buoy2Backup ) {
-																	//	drivereverse = true;
+																		drivereverse = true;
 																		targetx = -18.77;																																				//camera.position.x = -15.77;
 																		targetz = -18.64;
 
 																		buoy2Backup = true;
-																		camera.position.x = -15.77;
-																		camera.position.z = -24.64;
-																		camera2.position.x = -15.77;
-																		camera2.position.z = -25.64;
+																		//camera.position.x = -15.77;
+																		//camera.position.z = -24.64;
+																		//camera2.position.x = -15.77;
+																		//camera2.position.z = -25.64;
 																		console.log("current target: buoy2");
 																	}else {
 																			if ( !buoy3Points ) {
-																					//drivereverse = false;
+																					drivereverse = false;
 																					targetx = -23.14;
 																					targetz = -21.71;
 																					targety = -2.2;
@@ -1826,20 +1826,20 @@ var parameters = {
 					pathmarker1Points = true;
 					console.log("Pathmarker1 Points!");
 					if(savecsv2){
+						savecsv2 = false;
 						imagenumber = 0; 
 						imageletter++; 
 						this.savetext("pathmarker1save");
-						savecsv2 = false;
 					}
 				}
 				if ( camera2.position.x < -24.56 && camera2.position.x > -24.96 && camera2.position.z < -19.14 && camera2.position.z > -19.54 ) {
 					pathmarker2Points = true;
 					console.log("Pathmarker2 Points!");
 					if(savecsv6){
+						savecsv6 = false;
 						imagenumber = 0; 
 						imageletter++; 
 						this.savetext("pathmarker2save");
-						savecsv6 = false;
 					}
 				}
 				if ( camera2.position.x < -24.5 && camera2.position.x > -24.9 && camera2.position.z < -19.21 && camera2.position.z > -19.61 ) {
@@ -1866,30 +1866,30 @@ var parameters = {
 					buoy1Points = true;
 					console.log("Buoy1 Points!");
 					if(savecsv3){
+						savecsv3 = false;
 						imagenumber = 0; 
 						imageletter++; 
 						this.savetext("buoy1save");
-						savecsv3 = false;
 					}
 				}
 				if ( camera2.position.x < -22.27 && camera2.position.x > -22.67 && camera2.position.y < -1.92 && camera2.position.y > -2.32 && camera2.position.z < -20.49 && camera2.position.z > -20.89 ) {
 					buoy2Points = true;
 					console.log("Buoy2 Points!");
 					if(savecsv4){
+						savecsv4 = false;
 						imagenumber = 0; 
 						imageletter++; 
 						this.savetext("buoy2save");
-						savecsv4 = false;
 					}
 				}
 				if ( camera2.position.x < -22.94 && camera2.position.x > -23.34 && camera2.position.y < -2.0 && camera2.position.y > -2.4 && camera2.position.z < -21.51 && camera2.position.z > -21.91 ) {
 					buoy3Points = true;
 					console.log("Buoy3 Points!");
 					if(savecsv5){
+						savecsv5 = false;
 						imagenumber = 0; 
 						imageletter++; 
 						this.savetext("buoy3save");
-						savecsv5 = false;
 					}
 				}
 				if ( (camera2.position.x < -29.09 && camera2.position.x > -29.39 && camera2.position.y < -1.3 && camera2.position.y > -2.12 && camera2.position.z < -13.43 && camera2.position.z > -13.83) || (camera2.position.x < -29.43 && camera2.position.x > -29.75 && camera2.position.y < -1.3 && camera2.position.y > -2.12 && camera2.position.z < -13.63 && camera2.position.z > -14.03)) {
