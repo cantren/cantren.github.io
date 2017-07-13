@@ -1391,10 +1391,10 @@ var parameters = {
 				camera.position.z += Math.sin( time * .76 ) * .001875;
 				camera.rotation.y += Math.sin( time ) * .00125;
 				camera.rotation.y += Math.sin( time * .25 ) * .00125;
-				camera.translateX = Math.sin( time * .99 ) * .001875;
-				camera.translateX = Math.sin( time * .74 ) * .001875;
-				camera.translateZ = Math.sin( time ) * .00125;
-				camera.translateZ = Math.sin( time * .75 ) * .00125;
+				camera.translateX(Math.sin( time * .99 ) * .001875);
+				camera.translateX(Math.sin( time * .74 ) * .001875);
+				camera.translateZ(Math.sin( time * 1.01) * .001875);
+				camera.translateZ(Math.sin( time * .76 ) * .001875);
 				
 				camControls.update( clock.getDelta() ); //update First Person Camera
 				camControls2.update( clock.getDelta() ); //update First Person Camera
