@@ -1370,8 +1370,8 @@ var parameters = {
 				var lastTargetDistance = Math.pow((Math.pow((camera2.position.x-targetx),2)+Math.pow((camera2.position.y-targety),2)+Math.pow((camera2.position.z-targetz),2)),0.5);
 				var reward = 0;
 				onmousemove = function(e){mouseposx = e.clientX; mouseposy = e.clientY;}
-				camControls.update( clock.getDelta() ); //update First Person Camera
-				camControls2.update( clock.getDelta() ); //update First Person Camera
+				
+				var time = performance.now() * 0.001; //Measure time for water
 				
 				camera.position.y += .00175;
 				camera.position.y += Math.sin( time ) * .00125;
@@ -1381,7 +1381,8 @@ var parameters = {
 				camera.position.z += Math.sin( time * 1.01) * .001875;
 				camera.position.z += Math.sin( time * .76 ) * .001875;
 				
-				
+				camControls.update( clock.getDelta() ); //update First Person Camera
+				camControls2.update( clock.getDelta() ); //update First Person Camera
 				camera2.position.copy( camera.position );
 				camera2.rotation.copy( camera.rotation );
 				//camera2.rotation.z = camera3.rotation.z;
@@ -1397,12 +1398,13 @@ var parameters = {
 				//camera.lookAt(camera3);
 				//camera2.lookAt(camera3);
 				//if (1==1){guivalues.lightDepthFix();}
-				var time = performance.now() * 0.001; //Measure time for water
+				
 				
 				//real time 24 hour day
 				//var timeSolar = performance.now() * 0.000000003472 + 32470000 + 3 * 3600000; //Measure time for sun
 				//rapid time for testing
 				timeSolar = performance.now() * 0.00000003472 * 36000; //Measure time for sun
+				
 				
 				if ( !pathmarker1Points ) {
 						targetx = -15.77;
@@ -1562,7 +1564,7 @@ var parameters = {
 				camera2.position.z += 0.251;
 				}
 				
-				targetYaw = Math.atan2( (camera.position.z - targetz) , (camera.position.x - targetx) );
+				//targetYaw = Math.atan2( (camera.position.z - targetz) , (camera.position.x - targetx) );
 				//this chunk of code addresses the the asymptotic behavior of arctan when x = 0;
 				//http://stackoverflow.com/a/3309658
 				if ( targetz-camera.position.z > 0.001 || targetz-camera.position.z < -0.001 )
