@@ -1308,7 +1308,34 @@ var parameters = {
 			//source: This code no longer appears to contain anything that belongs to Rudie Dirkx http://hotblocks.nl/tests/three/dat.gui.html 
 
 			//source: MIT License OR "This code no longer appears to contain anything that belongs to josdirksen?"
-			
+			/*
+			* Returns member of set with a given mean and standard deviation
+			* mean: mean
+			* standard deviation: std_dev 
+			*/
+			function createMemberInNormalDistribution(mean,std_dev){
+				return mean + (gaussRandom()*std_dev);
+			}
+
+			/*
+			* Returns random number in normal distribution centering on 0.
+			* ~95% of numbers returned should fall between -2 and 2
+			*/
+			function gaussRandom() {
+				var u = 2*Math.random()-1;
+				var v = 2*Math.random()-1;
+				var r = u*u + v*v;
+				/*if outside interval [0,1] start over*/
+				if(r == 0 || r > 1) return gaussRandom();
+
+				var c = Math.sqrt(-2*Math.log(r)/r);
+				return u*c;
+
+				/* todo: optimize this algorithm by caching (v*c) 
+				 * and returning next time gaussRandom() is called.
+				 * left out for simplicity */
+			}
+	
 			function onToggleShaders() {
 				composer = new THREE.EffectComposer( renderer);
 				//Add Shader Passes to Composer
