@@ -66,9 +66,8 @@
 		Movement controls: <br/>
 		<ul>
 		<li>W/S: Translate Forward/Backward
-		<li>A/D: Rotate Left/Right
-		<li>Q/E: Translate Left/Right
-		<li>R/F: Rotate Up/Down
+		<li>A/D: Translate Left/Right
+		<li>Mouse position: Up/Down for dive and surface, Left/Right to Rotate
 		<li>Z: Reset position and rotation.
 		</ul>
 		This page's source code can be found at
@@ -567,8 +566,9 @@ var parameters = {
 				//scene2.overrideMaterial = new THREE.MeshDepthMaterial();
 				
 				//add water colored fog
-				scene.fog = new THREE.FogExp2( 0x008080, 0.1875 );
-				scene2.fog = new THREE.FogExp2( 0x008080, 0.1875 );
+				var fogintensityrandom += ((Math.random() * 0.275) - 0.275)
+				scene.fog = new THREE.FogExp2( 0x008080, fogintensityrandom );
+				scene2.fog = new THREE.FogExp2( 0x008080, fogintensityrandom );
 				
 				camera = new THREE.PerspectiveCamera(41, window.innerWidth / window.innerHeight, 0.5, 3000000);
 //buoy closeup location
@@ -1388,6 +1388,10 @@ var parameters = {
 				camera.position.z += Math.sin( time * .76 ) * .001875;
 				camera.rotation.y += Math.sin( time ) * .00125;
 				camera.rotation.y += Math.sin( time * .25 ) * .00125;
+				camera.translateX = Math.sin( time * .99 ) * .001875;
+				camera.translateX = Math.sin( time * .74 ) * .001875;
+				camera.translateZ = Math.sin( time ) * .00125;
+				camera.translateZ = Math.sin( time * .75 ) * .00125;
 				
 				camControls.update( clock.getDelta() ); //update First Person Camera
 				camControls2.update( clock.getDelta() ); //update First Person Camera
