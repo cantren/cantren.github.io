@@ -1332,6 +1332,7 @@ var parameters = {
 			//source: MIT License OR "This code no longer appears to contain anything that belongs to josdirksen?"
 			function render() {
 				keyboard.update();
+				var lastTargetDistance = Math.pow((Math.pow((camera2.position.x-targetx),2)+Math.pow((camera2.position.y-targety),2)+Math.pow((camera2.position.z-targetz),2)),0.5);
 				var reward = 0;
 				onmousemove = function(e){mouseposx = e.clientX; mouseposy = e.clientY;}
 				camControls.update( clock.getDelta() ); //update First Person Camera
