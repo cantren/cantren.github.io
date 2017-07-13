@@ -1359,6 +1359,12 @@ var parameters = {
 			function animate() {
 				requestAnimationFrame( animate ); //animate the frame
 				if(!record){render();} //render the frame
+				
+				//////////////////comment out the line below for websocket controlled rendering///////////
+				if(record){render();} //render the frame
+				//////////////////comment out the line below for websocket controlled rendering///////////
+				
+				
 				//if(runonce){render(); runonce = false;}
 				//composer.render();
 				}
