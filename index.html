@@ -257,6 +257,8 @@ var parameters = {
 	                filename1 = "";
 	                filename2 = "";
 			drivereverse = false;
+	                autoForward = false;
+	                autoBackward = false;
 			pathmarker1Points = false;
 			pathmarker2Points = false;
 			pathmarker3Points = false;
@@ -1076,7 +1078,8 @@ var parameters = {
 					this.saveimage1();
 					this.saveimage2();
 					    
-					data.push([filename1, filename2, camera.position.x.toString(), camera.position.y.toString(), camera.position.z.toString(), camera.rotation.y.toString(), mouseposx.toString(), mouseposy.toString(), keyboard.pressed("W"), keyboard.pressed("A"), keyboard.pressed("S"), keyboard.pressed("D"),validationgatePoints,pathmarker1Points,buoy1Points,buoy2Points,buoy3Points,pathmarker2Points,maneuverPoints,pathmarker3Points,pathmarker4Points,pathmarker5Points,octagon1Points,pathmarker6Points,pathmarker7Points,octagon2Points]);
+					if(!record){data.push([filename1, filename2, camera.position.x.toString(), camera.position.y.toString(), camera.position.z.toString(), camera.rotation.y.toString(), mouseposx.toString(), mouseposy.toString(), keyboard.pressed("W"), keyboard.pressed("A"), keyboard.pressed("S"), keyboard.pressed("D"),validationgatePoints,pathmarker1Points,buoy1Points,buoy2Points,buoy3Points,pathmarker2Points,maneuverPoints,pathmarker3Points,pathmarker4Points,pathmarker5Points,octagon1Points,pathmarker6Points,pathmarker7Points,octagon2Points]);}
+					if(record){data.push([filename1, filename2, camera.position.x.toString(), camera.position.y.toString(), camera.position.z.toString(), camera.rotation.y.toString(), mouseposx.toString(), mouseposy.toString(), autoForward, keyboard.pressed("A"), autoBackward, keyboard.pressed("D"),validationgatePoints,pathmarker1Points,buoy1Points,buoy2Points,buoy3Points,pathmarker2Points,maneuverPoints,pathmarker3Points,pathmarker4Points,pathmarker5Points,octagon1Points,pathmarker6Points,pathmarker7Points,octagon2Points]);}
 					//if(imagenumber === 10000){imagenumber = 0; imageletter++; this.savetext();}
 				        //if(octagon2Points){
 					if(maneuverPoints && savecsv1){
@@ -1619,6 +1622,8 @@ var parameters = {
 
 				if(!drivereverse){
 					if( (Math.abs(outputYaw) < 1) && (Math.abs(errorYaw)<0.01)  && transdecLoaded && transdec2Loaded && obstaclesLoaded && obstacles2Loaded){
+						autoForward = true;
+						autoBackward = false;
 						camControls.moveBackward = false;
 						camControls2.moveBackward = false;
 
@@ -1629,6 +1634,8 @@ var parameters = {
 						//reward += 0.001; 
 						console.log("GOOD! Move Foreward towards target!");
 					}else{
+						autoForward = false;
+						autoBackward = false;
 						camControls.moveBackward = false;
 						camControls2.moveBackward = false;
 						
@@ -1641,6 +1648,8 @@ var parameters = {
 					}
 				}else{
 					if( (Math.abs(outputYaw) < 1) && (Math.abs(errorYaw)<0.01 && transdecLoaded && transdec2Loaded && obstaclesLoaded && obstacles2Loaded) ){
+						autoBackward = true;
+						autoForward = false;
 						camControls.moveBackward = true;
 						camControls2.moveBackward = true;
 
@@ -1651,6 +1660,8 @@ var parameters = {
 						//reward += 0.001; 
 						console.log("GOOD! Move Backward towards target!");
 					}else{
+						autoBackward = false;
+						autoFoward = true;
 						camControls.moveBackward = false;
 						camControls2.moveBackward = false;
 						
