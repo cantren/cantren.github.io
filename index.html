@@ -1372,6 +1372,16 @@ var parameters = {
 				onmousemove = function(e){mouseposx = e.clientX; mouseposy = e.clientY;}
 				camControls.update( clock.getDelta() ); //update First Person Camera
 				camControls2.update( clock.getDelta() ); //update First Person Camera
+				
+				camera.position.y += .00175;
+				camera.position.y += Math.sin( time ) * .00125;
+				camera.position.y += Math.sin( time * .75 ) * .00125;
+				camera.position.x += Math.sin( time * .99 ) * .001875;
+				camera.position.x += Math.sin( time * .74 ) * .001875;
+				camera.position.z += Math.sin( time * 1.01) * .001875;
+				camera.position.z += Math.sin( time * .76 ) * .001875;
+				
+				
 				camera2.position.copy( camera.position );
 				camera2.rotation.copy( camera.rotation );
 				//camera2.rotation.z = camera3.rotation.z;
@@ -1393,7 +1403,6 @@ var parameters = {
 				//var timeSolar = performance.now() * 0.000000003472 + 32470000 + 3 * 3600000; //Measure time for sun
 				//rapid time for testing
 				timeSolar = performance.now() * 0.00000003472 * 36000; //Measure time for sun
-				
 				
 				if ( !pathmarker1Points ) {
 						targetx = -15.77;
