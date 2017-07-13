@@ -1586,7 +1586,49 @@ var parameters = {
 				camControls.mouseY  = -1*outputDepth;
 				console.log("currentDepth: " + currentDepth + " targetYaw: " + targety + " errorDepth: " + errorDepth + " outputDepth: " + outputDepth + " mouseY: " + camControls.mouseY);	
 
-				
+				if(!drivereverse){
+					if( (Math.abs(outputYaw) < 1) && (Math.abs(errorYaw)<0.01) ){
+						camControls.moveBackward = false;
+						camControls2.moveBackward = false;
+
+					
+						camControls.moveForward = true;
+						camControls2.moveForward = true;
+						//reward += 0.001; 
+						console.log("GOOD! Move Foreward towards target!");
+					}else{
+						camControls.moveBackward = false;
+						camControls2.moveBackward = false;
+						
+					
+						camControls.moveForward = false;
+						camControls2.moveForward = false;
+						
+						//reward += 0.001; 
+						//console.log("STOP!");
+					}
+				}else{
+					if( (Math.abs(outputYaw) < 1) && (Math.abs(errorYaw)<0.01) ){
+						camControls.moveBackward = true;
+						camControls2.moveBackward = true;
+
+					
+						camControls.moveForward = false;
+						camControls2.moveForward = false;
+						//reward += 0.001; 
+						console.log("GOOD! Move Backward towards target!");
+					}else{
+						camControls.moveBackward = false;
+						camControls2.moveBackward = false;
+						
+					
+						camControls.moveForward = false;
+						camControls2.moveForward = false;
+						
+						//reward += 0.001; 
+						//console.log("STOP!");
+					}
+				}
 				
 				water.material.uniforms.time.value += 1.0 / 60.0; //speed of water motion(wind chop)
 				water.render(); //render water surface
