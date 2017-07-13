@@ -241,6 +241,10 @@ var parameters = {
 			}
 //I'll admit: I can't remember what this does or where it came from			
 			var waterNormals;
+			obstaclesLoaded = false;
+			obstacles2Loaded = false;
+			transdecLoaded = false;
+			transdec2Loaded = false;
 	                savecsv1 = true;
 	                savecsv2 = true;
 	                savecsv3 = true;
@@ -782,6 +786,7 @@ var parameters = {
 //					        object.children[i].material = new THREE.MeshDepthMaterial({color: 0x2194CE});
 //						}
 					scene.add( object );//to make a Robosub you would likely need to change it's name from "object"
+					transdecLoaded = true;
 					});
 //				loader.load('../obj/robosub obstacles/obstacles.obj', function ( object ) {
 				loader.load('../obj/robosub obstacles/obstacles.obj', '../obj/robosub obstacles/obstacles.mtl', function ( object ) {
@@ -790,16 +795,19 @@ var parameters = {
 //					        object.children[i].material = new THREE.MeshDepthMaterial({color: 0x2194CE});
 //						}
 					scene.add( object );//to make a Robosub you would likely need to change it's name from "object"
+					obstaclesLoaded = true;
 					});
 //				loader.load('../obj/transdec OBJ/transdec test.obj', function ( object ) {
 				loader.load('../obj/transdec OBJ/transdec test.obj', '../obj/transdec OBJ/transdec test.mtl', function ( object ) {
 					object.position.y = -12.975;//experimentally generated via trial and error
 					scene2.add( object );//to make a Robosub you would likely need to change it's name from "object"
+					transdec2Loaded = true;
 					});
 //				loader.load('../obj/robosub obstacles/obstacles.obj', function ( object ) {
 				loader.load('../obj/robosub obstacles/obstacles.obj', '../obj/robosub obstacles/obstacles.mtl', function ( object ) {
 					object.position.y = -12.975;//experimentally generated via trial and error
 					scene2.add( object );//to make a Robosub you would likely need to change it's name from "object"
+					obstacles2Loaded = true;
 					});
 
 				waterNormals = new THREE.ImageUtils.loadTexture( 'textures/waternormals.jpg' ); //potential for easy modification/obstacle reflections
@@ -1587,13 +1595,14 @@ var parameters = {
 				console.log("currentDepth: " + currentDepth + " targetYaw: " + targety + " errorDepth: " + errorDepth + " outputDepth: " + outputDepth + " mouseY: " + camControls.mouseY);	
 
 				if(!drivereverse){
-					if( (Math.abs(outputYaw) < 1) && (Math.abs(errorYaw)<0.01) ){
+					if( (Math.abs(outputYaw) < 1) && (Math.abs(errorYaw)<0.01)  && transdecLoaded && transdec2Loaded && obstaclesLoaded && obstacles2Loaded){
 						camControls.moveBackward = false;
 						camControls2.moveBackward = false;
 
 					
 						camControls.moveForward = true;
 						camControls2.moveForward = true;
+						if(record) {guivalues.saveimage();}
 						//reward += 0.001; 
 						console.log("GOOD! Move Foreward towards target!");
 					}else{
@@ -1603,18 +1612,19 @@ var parameters = {
 					
 						camControls.moveForward = false;
 						camControls2.moveForward = false;
-						
+						if(record) {guivalues.saveimage();}
 						//reward += 0.001; 
 						//console.log("STOP!");
 					}
 				}else{
-					if( (Math.abs(outputYaw) < 1) && (Math.abs(errorYaw)<0.01) ){
+					if( (Math.abs(outputYaw) < 1) && (Math.abs(errorYaw)<0.01 && transdecLoaded && transdec2Loaded && obstaclesLoaded && obstacles2Loaded) ){
 						camControls.moveBackward = true;
 						camControls2.moveBackward = true;
 
 					
 						camControls.moveForward = false;
 						camControls2.moveForward = false;
+						if(record) {guivalues.saveimage();}
 						//reward += 0.001; 
 						console.log("GOOD! Move Backward towards target!");
 					}else{
@@ -1624,7 +1634,7 @@ var parameters = {
 					
 						camControls.moveForward = false;
 						camControls2.moveForward = false;
-						
+						if(record) {guivalues.saveimage();}
 						//reward += 0.001; 
 						//console.log("STOP!");
 					}
@@ -1666,7 +1676,7 @@ var parameters = {
 				//spotLightSUN.position.set( -1900*ncos, 1900*nsin, 1425*ncos+1000);
 				//spotLightSUN.lookAt ( spotLightRED.position );
 				
-				if ( record ){
+				if ( record && false ){ // ATTENTION: remove the "&& false" for websocket!!
 					//testWebSocket()
 					animate();
 					imgData2 = renderer2.domElement.toDataURL();
