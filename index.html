@@ -1083,8 +1083,8 @@ var parameters = {
 					//if(imagenumber === 10000){imagenumber = 0; imageletter++; this.savetext();}
 				        //if(octagon2Points){
 					if(maneuverPoints && savecsv1){
-						imagenumber = 0; 
-						imageletter++; 
+						//imagenumber = 0; 
+						//imageletter++; 
 						this.savetext("maneuversave");
 						savecsv1 = false;
 					}}
@@ -1278,6 +1278,9 @@ var parameters = {
 					camera.position.x = -2.5 + (Math.random*1.0 + 0);//pool line of symetry is x axis
 					camera.position.y = -2.0;//water depth
 					camera.position.z = -26.0 + (Math.random*1.0 + 0);//how close to the wall are you
+					guidValues.savetext("run" + victoryCounter + ".csv");
+					data = [["filename1", "filename2", "position.x", "position.y", "position.z", "rotation.y","mousex","mousey","W","A","S","D","validationgatePoints","pathmarker1Points","buoy1Points","buoy2Points","buoy3Points","pathmarker2Points","maneuverPoints","pathmarker3Points","pathmarker4Points","pathmarker5Points","octagon1Points","pathmarker6Points","pathmarker7Points","octagon2Points"]];	
+			
 				    }
 				    this.randomVis = function(){
 				    	fdensity = (Math.random() * .75);
@@ -1867,8 +1870,8 @@ var parameters = {
 					console.log("Pathmarker1 Points!");
 					if(savecsv2){
 						savecsv2 = false;
-						imagenumber = 0; 
-						imageletter++; 
+						//imagenumber = 0; 
+						//imageletter++; 
 						this.savetext("pathmarker1save");
 					}
 				}
@@ -1877,8 +1880,8 @@ var parameters = {
 					console.log("Pathmarker2 Points!");
 					if(savecsv6){
 						savecsv6 = false;
-						imagenumber = 0; 
-						imageletter++; 
+						//imagenumber = 0; 
+						//imageletter++; 
 						this.savetext("pathmarker2save");
 					}
 				}
@@ -1907,8 +1910,8 @@ var parameters = {
 					console.log("Buoy1 Points!");
 					if(savecsv3){
 						savecsv3 = false;
-						imagenumber = 0; 
-						imageletter++; 
+						//imagenumber = 0; 
+						//imageletter++; 
 						this.savetext("buoy1save");
 					}
 				}
@@ -1917,8 +1920,8 @@ var parameters = {
 					console.log("Buoy2 Points!");
 					if(savecsv4){
 						savecsv4 = false;
-						imagenumber = 0; 
-						imageletter++; 
+						//imagenumber = 0; 
+						//imageletter++; 
 						this.savetext("buoy2save");
 					}
 				}
@@ -1927,8 +1930,8 @@ var parameters = {
 					console.log("Buoy3 Points!");
 					if(savecsv5){
 						savecsv5 = false;
-						imagenumber = 0; 
-						imageletter++; 
+						//imagenumber = 0; 
+						//imageletter++; 
 						this.savetext("buoy3save");
 					}
 				}
