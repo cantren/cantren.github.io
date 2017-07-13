@@ -1562,7 +1562,7 @@ var parameters = {
 				camera2.position.z += 0.251;
 				}
 				
-				//targetYaw = Math.atan2( (camera.position.z - targetz) , (camera.position.x - targetx) );
+				targetYaw = Math.atan2( (camera.position.z - targetz) , (camera.position.x - targetx) );
 				//this chunk of code addresses the the asymptotic behavior of arctan when x = 0;
 				//http://stackoverflow.com/a/3309658
 				if ( targetz-camera.position.z > 0.001 || targetz-camera.position.z < -0.001 )
