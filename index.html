@@ -1251,6 +1251,34 @@ var parameters = {
 				    	//scene.spotLight.intensity = (Math.random() * 5.0);
 				    	//scene2.spotLight2.intensity = (Math.random() * 5.0);
 				    };
+				    this.resetGame = function(){
+					victoryCounter++;
+					console.log("ALL YOUR BASE ARE BELONG TO US!");
+					//"you just beat the game" code goes here
+					pathmarker1Points = false;
+					pathmarker2Points = false;
+					pathmarker3Points = false;
+					pathmarker4Points = false;
+					pathmarker5Points = false;
+					pathmarker6Points = false;
+					pathmarker7Points = false;
+					octagon1Points = false;
+					octagon2Points = false;
+					octagon1Center = false;
+      					octagon2Center = false;
+				        octagon1Done = false;
+					octagon2Done = false;
+					buoy1Points = false;
+					buoy2Points = false;
+					buoy1Backup = false;
+					buoy2Backup = false;
+					buoy3Points = false;
+					validationgatePoints = false;
+					maneuverPoints = false;
+					camera.position.x = -2.5 + (Math.random*1.0 + 0);//pool line of symetry is x axis
+					camera.position.y = -2.0;//water depth
+					camera.position.z = -26.0 + (Math.random*1.0 + 0);//how close to the wall are you
+				    }
 				    this.randomVis = function(){
 				    	fdensity = (Math.random() * .75);
 					scene.fog.density = fdensity;
@@ -1430,7 +1458,8 @@ var parameters = {
 									targetz = -19.64;
 									targety = -2.03;
 									console.log("current target: buoy1");
-								}else {
+								}else { 
+										guiValues.resetGame();
 										if ( !buoy1Backup ) {
 												//buoy1Backup = true;
 												drivereverse = true;
