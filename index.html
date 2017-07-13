@@ -1386,6 +1386,8 @@ var parameters = {
 				camera.position.x += Math.sin( time * .74 ) * .001875;
 				camera.position.z += Math.sin( time * 1.01) * .001875;
 				camera.position.z += Math.sin( time * .76 ) * .001875;
+				camera.rotation.y += Math.sin( time ) * .00125;
+				camera.rotation.y += Math.sin( time * .25 ) * .00125;
 				
 				camControls.update( clock.getDelta() ); //update First Person Camera
 				camControls2.update( clock.getDelta() ); //update First Person Camera
