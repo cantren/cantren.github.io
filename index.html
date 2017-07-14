@@ -1420,16 +1420,16 @@ var parameters = {
 				camera.position.y += .00175;
 				camera.position.y += Math.sin( time ) * .00125;
 				camera.position.y += Math.sin( time * .75 ) * .00125;
-				camera.position.x += Math.sin( time * .99 ) * .001875;
-				camera.position.x += Math.sin( time * .74 ) * .001875;
-				camera.position.z += Math.sin( time * 1.01) * .001875;
-				camera.position.z += Math.sin( time * .76 ) * .001875;
-				camera.rotation.y += Math.sin( time ) * .00125;
-				camera.rotation.y += Math.sin( time * .25 ) * .00125;
-				camera.translateX(Math.sin( time * .99 ) * .001875);
-				camera.translateX(Math.sin( time * .74 ) * .001875);
-				camera.translateZ(Math.sin( time * 1.01) * .001875);
-				camera.translateZ(Math.sin( time * .76 ) * .001875);
+				camera.position.x += Math.sin( time * .99 ) * .001875 * 0.5;
+				camera.position.x += Math.sin( time * .74 ) * .001875 * 0.5;
+				camera.position.z += Math.sin( time * 1.01) * .001875 * 0.5;
+				camera.position.z += Math.sin( time * .76 ) * .001875 * 0.5;
+				camera.rotation.y += Math.sin( time ) * .00125 * 5;
+				camera.rotation.y += Math.sin( time * .25 ) * .00125 * 5;
+				camera.translateX(Math.sin( time * .99 ) * .001875 * 0.25);
+				camera.translateX(Math.sin( time * .74 ) * .001875 * 0.25);
+				camera.translateZ(Math.sin( time * 1.01) * .001875 * 0.25);
+				camera.translateZ(Math.sin( time * .76 ) * .001875 * 0.25);
 				
 				camControls.update( clock.getDelta() ); //update First Person Camera
 				camControls2.update( clock.getDelta() ); //update First Person Camera
@@ -1655,9 +1655,9 @@ var parameters = {
 				previouserrorDepth = errorDepth;
 				camControls.mouseY  = -1*outputDepth;
 				console.log("currentDepth: " + currentDepth + " targetYaw: " + targety + " errorDepth: " + errorDepth + " outputDepth: " + outputDepth + " mouseY: " + camControls.mouseY);	
-
+                                	
 				if(!drivereverse){
-					if( (Math.abs(outputYaw) < 1) && (Math.abs(errorYaw)<0.01)  && transdecLoaded && transdec2Loaded && obstaclesLoaded && obstacles2Loaded){
+					if( (Math.abs(outputYaw) < 1) && (Math.abs(errorYaw)<0.02)  && transdecLoaded && transdec2Loaded && obstaclesLoaded && obstacles2Loaded){
 						autoForward = true;
 						autoBackward = false;
 						camControls.moveBackward = false;
@@ -1670,6 +1670,13 @@ var parameters = {
 						//reward += 0.001; 
 						console.log("GOOD! Move Foreward towards target!");
 					}else{
+						var moveSpeed = ((camControls2.movementSpeed / Math.abs(errorYaw)) * (newdistancetotarget/20)) + 0.15 ;
+						var lookSpeed = (camControls2.lookSpeed / Math.abs(errorYaw));
+						camControls2.movementSpeed = moveSpeed; //0.25;//note: it also doesn't work properly
+			        		camControls2.lookSpeed = lookSpeed;//0.05;//note: it also doesn't work properly
+						camControls.movementSpeed = moveSpeed; //0.25;//note: it also doesn't work properly
+						camControls.lookSpeed = lookSpeed; //0.05;//note: it also doesn't work properly
+				
 						autoForward = false;
 						autoBackward = false;
 						camControls.moveBackward = false;
@@ -1683,7 +1690,7 @@ var parameters = {
 						//console.log("STOP!");
 					}
 				}else{
-					if( (Math.abs(outputYaw) < 1) && (Math.abs(errorYaw)<0.01 && transdecLoaded && transdec2Loaded && obstaclesLoaded && obstacles2Loaded) ){
+					if( (Math.abs(outputYaw) < 1) && (Math.abs(errorYaw)<0.02 && transdecLoaded && transdec2Loaded && obstaclesLoaded && obstacles2Loaded) ){
 						autoBackward = true;
 						autoForward = false;
 						camControls.moveBackward = true;
@@ -1695,7 +1702,13 @@ var parameters = {
 						if(record) {guivalues.saveimage();}
 						//reward += 0.001; 
 						console.log("GOOD! Move Backward towards target!");
-					}else{
+					}else{  var moveSpeed = ((camControls2.movementSpeed / Math.abs(errorYaw)) * (newdistancetotarget/20)) + 0.15 ;
+						var lookSpeed = (camControls2.lookSpeed / Math.abs(errorYaw));
+						camControls2.movementSpeed = moveSpeed; //0.25;//note: it also doesn't work properly
+			        		camControls2.lookSpeed = lookSpeed;//0.05;//note: it also doesn't work properly
+						camControls.movementSpeed = moveSpeed; //0.25;//note: it also doesn't work properly
+						camControls.lookSpeed = lookSpeed; //0.05;//note: it also doesn't work properly
+					      
 						autoBackward = false;
 						autoFoward = true;
 						camControls.moveBackward = false;
