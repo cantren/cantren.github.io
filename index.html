@@ -1253,6 +1253,7 @@ var parameters = {
 				    };
 				    this.resetGame = function(){
 					victoryCounter++;
+					guidValues.savetext("run" + victoryCounter + ".csv");
 					console.log("ALL YOUR BASE ARE BELONG TO US!");
 					//"you just beat the game" code goes here
 					pathmarker1Points = false;
