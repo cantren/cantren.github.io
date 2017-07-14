@@ -1254,9 +1254,10 @@ var parameters = {
 				    };
 				    this.resetGame = function(){
 					victoryCounter++;
-					guivalues.savetext("run" + victoryCounter + ".csv");
+					var resetfilename = "run" + victoryCounter + ".csv";
+					guivalues.savetext(resetfilename);
 					console.log("ALL YOUR BASE ARE BELONG TO US!");
-					var fogintensityrandom = ((Math.random() * 0.0225))
+					var fogintensityrandom = ((Math.random() * 0.0225)-0.0225);
 				        scene.fog = new THREE.FogExp2( 0x008080, 0.1275 + fogintensityrandom );
 				        scene2.fog = new THREE.FogExp2( 0x008080, 0.1275 + fogintensityrandom );
 					//"you just beat the game" code goes here
