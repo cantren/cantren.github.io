@@ -1255,7 +1255,7 @@ var parameters = {
 				    this.resetGame = function(){
 					victoryCounter++;
 					var resetfilename = "run" + victoryCounter + ".csv";
-					guivalues.savetext(resetfilename);
+					this.savetext(resetfilename);
 					console.log("ALL YOUR BASE ARE BELONG TO US!");
 					var fogintensityrandom = ((Math.random() * 0.0225)-0.0225);
 				        scene.fog = new THREE.FogExp2( 0x008080, 0.1275 + fogintensityrandom );
