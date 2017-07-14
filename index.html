@@ -1070,7 +1070,7 @@ var parameters = {
 				    this.cameraNear = camera.near;
 				    this.cameraFar = camera.far;
 				    this.saveimage = function(){
-					if(record){
+					if(record && transdecLoaded && transdec2Loaded && obstaclesLoaded && obstacles2Loaded){
 					imagenumber++;
 					console.log("Mouse x: " + camControls.mouseX.toString() + " Mouse y:" + camControls.mouseY.toString() );
 					//this.randomVis();
@@ -1668,7 +1668,8 @@ var parameters = {
 						camControls2.moveForward = true;
 						if(record) {guivalues.saveimage();}
 						//reward += 0.001; 
-						console.log("GOOD! Move Foreward towards target!");
+						console.log("GOOD! 
+					movForeward towards target!");
 					}else{
 						//var moveSpeed = ((camControls2.movementSpeed / Math.abs(errorYaw)) * (newdistancetotarget/20)) + 0.15 ;
 						//var lookSpeed = (camControls2.lookSpeed / Math.abs(errorYaw));
