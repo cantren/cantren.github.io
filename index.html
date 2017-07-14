@@ -1671,11 +1671,11 @@ var parameters = {
 						console.log("GOOD! Move Foreward towards target!");
 					}else{
 						var moveSpeed = ((camControls2.movementSpeed / Math.abs(errorYaw)) * (newdistancetotarget/20)) + 0.15 ;
-						var lookSpeed = (camControls2.lookSpeed / Math.abs(errorYaw));
+						//var lookSpeed = (camControls2.lookSpeed / Math.abs(errorYaw));
 						camControls2.movementSpeed = moveSpeed; //0.25;//note: it also doesn't work properly
-			        		camControls2.lookSpeed = lookSpeed;//0.05;//note: it also doesn't work properly
+			        		//camControls2.lookSpeed = lookSpeed;//0.05;//note: it also doesn't work properly
 						camControls.movementSpeed = moveSpeed; //0.25;//note: it also doesn't work properly
-						camControls.lookSpeed = lookSpeed; //0.05;//note: it also doesn't work properly
+						//camControls.lookSpeed = lookSpeed; //0.05;//note: it also doesn't work properly
 				
 						autoForward = false;
 						autoBackward = false;
@@ -1703,11 +1703,11 @@ var parameters = {
 						//reward += 0.001; 
 						console.log("GOOD! Move Backward towards target!");
 					}else{  var moveSpeed = ((camControls2.movementSpeed / Math.abs(errorYaw)) * (newdistancetotarget/20)) + 0.15 ;
-						var lookSpeed = (camControls2.lookSpeed / Math.abs(errorYaw));
+						//var lookSpeed = (camControls2.lookSpeed / Math.abs(errorYaw));
 						camControls2.movementSpeed = moveSpeed; //0.25;//note: it also doesn't work properly
-			        		camControls2.lookSpeed = lookSpeed;//0.05;//note: it also doesn't work properly
+			        		//camControls2.lookSpeed = lookSpeed;//0.05;//note: it also doesn't work properly
 						camControls.movementSpeed = moveSpeed; //0.25;//note: it also doesn't work properly
-						camControls.lookSpeed = lookSpeed; //0.05;//note: it also doesn't work properly
+						//camControls.lookSpeed = lookSpeed; //0.05;//note: it also doesn't work properly
 					      
 						autoBackward = false;
 						autoFoward = true;
