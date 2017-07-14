@@ -1072,6 +1072,7 @@ var parameters = {
 				    this.saveimage = function(){
 					if(record){
 					imagenumber++;
+					console.log("Mouse x: " + mouseposx.toString() + " Mouse y:" + mouseposy.toString() );
 					//this.randomVis();
 					filename1 = "autofwd" + String.fromCharCode(imageletter) + imagenumber.toString() + ".png"
 					filename2 = "autodwn" + String.fromCharCode(imageletter) + imagenumber.toString() + ".png"
@@ -1253,7 +1254,7 @@ var parameters = {
 				    };
 				    this.resetGame = function(){
 					victoryCounter++;
-					guidValues.savetext("run" + victoryCounter + ".csv");
+					guivalues.savetext("run" + victoryCounter + ".csv");
 					console.log("ALL YOUR BASE ARE BELONG TO US!");
 					//"you just beat the game" code goes here
 					pathmarker1Points = false;
@@ -1279,7 +1280,6 @@ var parameters = {
 					camera.position.x = -2.5 + (Math.random*1.0 + 0);//pool line of symetry is x axis
 					camera.position.y = -2.0;//water depth
 					camera.position.z = -26.0 + (Math.random*1.0 + 0);//how close to the wall are you
-					guidValues.savetext("run" + victoryCounter + ".csv");
 					data = [["filename1", "filename2", "position.x", "position.y", "position.z", "rotation.y","mousex","mousey","W","A","S","D","validationgatePoints","pathmarker1Points","buoy1Points","buoy2Points","buoy3Points","pathmarker2Points","maneuverPoints","pathmarker3Points","pathmarker4Points","pathmarker5Points","octagon1Points","pathmarker6Points","pathmarker7Points","octagon2Points"]];	
 			
 				    }
