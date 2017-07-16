@@ -259,6 +259,7 @@ var parameters = {
 			drivereverse = false;
 	                autoForward = false;
 	                autoBackward = false;
+			autopilotrun = true;
 			pathmarker1Points = false;
 			pathmarker2Points = false;
 			pathmarker3Points = false;
@@ -944,7 +945,60 @@ var parameters = {
 				scene2.add( mirrorMeshB2); //add water surface
 				scene2.add( mirrorMeshB3); //add water surface
 
+					///////////////////		
+				// CLOUDS VIDEO ///		
+				///////////////////		
+			
+				// create the video element		
+				video = document.createElement( 'video' );		
+				// video.id = 'video';		
+				// video.type = ' video/ogg; codecs="theora, vorbis" ';		
+				video.src = "images/clouds.mp4"; //source: https://www.youtube.com/watch?v=Zb3q_zzUSvQ		
+				video.loop = true;//alt source: https://www.youtube.com/watch?v=a96UbKNuNQY		
+				video.load(); // must call after setting/changing source		
+				video.play();		
+										
+				video2 = document.createElement( 'video' );		
+				// video.id = 'video';		
+				// video.type = ' video/ogg; codecs="theora, vorbis" ';		
+				video2.src = "images/clouds.mp4"; //source: //https://www.youtube.com/watch?v=Zb3q_zzUSvQ		
+				video2.loop = true;//alt source: https://www.youtube.com/watch?v=a96UbKNuNQY		
+				video2.load(); // must call after setting/changing source		
+				video2.play();		
 				
+				
+				// alternative method -- 		
+				// create DIV in HTML:		
+				// <video id="myVideo" autoplay style="display:none">		
+				//		<source src="videos/sintel.ogv" type='video/ogg; codecs="theora, vorbis"'>		
+				// </video>		
+				// and set JS variable:		
+				// video = document.getElementById( 'myVideo' );		
+			
+				videoImage = document.createElement( 'canvas' );		
+				videoImage.width = 640;		
+				videoImage.height = 480;		
+				videoImage2 = document.createElement( 'canvas' );		
+				videoImage2.width = 480;		
+				videoImage2.height = 480;		
+				videoImageContext = videoImage.getContext( '2d' );		
+				// background color if no video present		
+				videoImageContext.fillStyle = '#000000';		
+				videoImageContext.fillRect( 0, 0, videoImage.width, videoImage.height );		
+				videoImageContext2 = videoImage2.getContext( '2d' );		
+				// background color if no video present		
+				videoImageContext2.fillStyle = '#000000';		
+				videoImageContext2.fillRect( 0, 0, videoImage2.width, videoImage2.height );		
+				videoTexture = new THREE.Texture( videoImage );		
+				videoTexture.minFilter = THREE.LinearFilter;		
+				videoTexture.magFilter = THREE.LinearFilter;		
+						
+				videoTexture2 = new THREE.Texture( videoImage2 );		
+				videoTexture2.minFilter = THREE.LinearFilter;		
+				videoTexture2.magFilter = THREE.LinearFilter;		
+			
+				var movieMaterial = new THREE.MeshBasicMaterial( { map: videoTexture, overdraw: true, side:THREE.DoubleSide } );		
+				var movieMaterial2 = new THREE.MeshBasicMaterial( { map: videoTexture2, overdraw: true, side:THREE.DoubleSide } );
 				
 				// load skybox &/or (start example code copypasta: http://threejs.org/examples/#webgl_shaders_ocean)
 				var cubeMap = new THREE.CubeTexture( [] );//initialize/declare the texture object to be mapped to the skybox mesh var skyBox = new THREE.Mesh
@@ -1022,15 +1076,16 @@ var parameters = {
 				});
 				
 				//Create Mesh to map skybox material on to
-				var skyBox = new THREE.Mesh(
-					new THREE.BoxGeometry( 10000, 10000, 10000 ),
-					skyBoxMaterial
+				skyBox = new THREE.Mesh(
+					new THREE.BoxGeometry( 10000, 10000, 10000 ),							new THREE.BoxGeometry( 10000, 10000, 10000 ),
+					movieMaterial
 				);
-				var skyBox2 = new THREE.Mesh(
-					new THREE.BoxGeometry( 10000, 10000, 10000 ),
-					skyBoxMaterial2
+				skyBox.rotation.y += Math.PI/6;		
+				skyBox2 = new THREE.Mesh(
+					new THREE.BoxGeometry( 10000, 10000, 10000 ),							new THREE.BoxGeometry( 10000, 10000, 10000 ),
+					movieMaterial2
 				);
-				
+				skyBox2.rotation.y += Math.PI/6;		
 				scene.add( skyBox ); //create Point Loma Sky
 				scene2.add( skyBox2 ); //create Point Loma Sky
 
@@ -1253,10 +1308,9 @@ var parameters = {
 				    	//scene2.spotLight2.intensity = (Math.random() * 5.0);
 				    };
 				    this.resetGame = function(){
-					    /*
 					victoryCounter++;
-					var resetfilename = "run" + victoryCounter + ".csv";
-					this.savetext(resetfilename);
+					//var resetfilename = "run" + victoryCounter + ".csv";
+					//this.savetext(resetfilename);
 					console.log("ALL YOUR BASE ARE BELONG TO US!");
 					var fogintensityrandom = ((Math.random() * 0.0225)-0.0225);
 				        scene.fog = new THREE.FogExp2( 0x008080, 0.1275 + fogintensityrandom );
@@ -1280,13 +1334,12 @@ var parameters = {
 					buoy1Backup = false;
 					buoy2Backup = false;
 					buoy3Points = false;
-					validationgatePoints = false;
+					validationgatePoints = true;
 					maneuverPoints = false;
 					camera.position.x = -2.5 + (Math.random*1.0 + 0);//pool line of symetry is x axis
 					camera.position.y = -2.0;//water depth
 					camera.position.z = -26.0 + (Math.random*1.0 + 0);//how close to the wall are you
 					data = [["filename1", "filename2", "position.x", "position.y", "position.z", "rotation.y","mousex","mousey","W","A","S","D","validationgatePoints","pathmarker1Points","buoy1Points","buoy2Points","buoy3Points","pathmarker2Points","maneuverPoints","pathmarker3Points","pathmarker4Points","pathmarker5Points","octagon1Points","pathmarker6Points","pathmarker7Points","octagon2Points"]];	
-					*/
 			
 				    }
 				    this.randomVis = function(){
@@ -1419,7 +1472,7 @@ var parameters = {
 				onmousemove = function(e){mouseposx = e.clientX; mouseposy = e.clientY;}
 				
 				var time = performance.now() * 0.001; //Measure time for water
-				
+				/* //periodic noise
 				camera.position.y += .00175;
 				camera.position.y += Math.sin( time ) * .00125;
 				camera.position.y += Math.sin( time * .75 ) * .00125;
@@ -1433,6 +1486,15 @@ var parameters = {
 				camera.translateX(Math.sin( time * .74 ) * .001875 * 0.25);
 				camera.translateZ(Math.sin( time * 1.01) * .001875 * 0.25);
 				camera.translateZ(Math.sin( time * .76 ) * .001875 * 0.25);
+				*/
+				
+				// Teleport noise / "got lost" noise
+				if(Math.random()>=0.98){
+					camera.position.y += (Math.random()*0.5 - 0.25);
+					camera.position.x += (Math.random()*2 - 1);
+					camera.position.z += (Math.random()*2 - 1);
+				}
+				// Teleport noise / "got lost" noise
 				
 				camControls.update( clock.getDelta() ); //update First Person Camera
 				camControls2.update( clock.getDelta() ); //update First Person Camera
@@ -1443,7 +1505,23 @@ var parameters = {
 				camera2.rotateX(Math.PI/-2);
 				camera2.rotateZ((Math.PI/-2));
 				camera2.rotateZ(Math.PI/2);
-				
+				if ( video.readyState === video.HAVE_ENOUGH_DATA ) 		
+				{		
+					//video.play();		
+					videoImageContext.drawImage( video, 0, 0 );		
+					skyBox.rotation.y += Math.PI/180;		
+					if ( videoTexture ) 		
+						videoTexture.needsUpdate = true;		
+				}		
+			
+				if ( video2.readyState === video2.HAVE_ENOUGH_DATA ) 		
+				{			
+					//video.play();		
+					//skyBox2.rotation.y += Math.PI/180;		
+					videoImageContext2.drawImage( video2, 0, 0 );		
+					if ( videoTexture2 ) 		
+						videoTexture2.needsUpdate = true;		
+				}
 				//camera3.position.x =-23.14;
 				//camera3.position.y = -2.2
 				//camera3.position.z = -21.74;
@@ -1469,7 +1547,7 @@ var parameters = {
 									targety = -2.03;
 									console.log("current target: buoy1");
 								}else { 
-										guivalues.resetGame();
+										//guivalues.resetGame();
 										if ( !buoy1Backup ) {
 												//buoy1Backup = true;
 												drivereverse = true;
@@ -1645,7 +1723,7 @@ var parameters = {
 				//if(drivereverse){
 				//	camControls.mouseX  = -1.0*outputYaw;
 				//}else{
-					camControls.mouseX  = outputYaw;
+				if(autopilotrun){camControls.mouseX  = outputYaw;}
 				//}
 				console.log("currentYaw: " + currentYaw + " targetYaw: " + targetYaw + " errorYaw: " + errorYaw + " outputYaw: " + outputYaw + " mouseX: " + camControls.mouseX);	
 				
@@ -1656,23 +1734,27 @@ var parameters = {
 				var derivativeDepth = (errorDepth - previouserrorDepth);
 				var outputDepth = (depthKp*errorDepth) - (depthKi*integralDepth) + (depthKd*derivativeDepth);
 				previouserrorDepth = errorDepth;
-				camControls.mouseY  = -1*outputDepth;
+				if(autopilotrun){camControls.mouseY  = -1*outputDepth;}
 				console.log("currentDepth: " + currentDepth + " targetYaw: " + targety + " errorDepth: " + errorDepth + " outputDepth: " + outputDepth + " mouseY: " + camControls.mouseY);	
                                 	
 				if(!drivereverse){
 					if( (Math.abs(outputYaw) < 1) && (Math.abs(errorYaw)<0.02)  && transdecLoaded && transdec2Loaded && obstaclesLoaded && obstacles2Loaded){
 						autoForward = true;
 						autoBackward = false;
-						camControls.moveBackward = false;
-						camControls2.moveBackward = false;
+						if(autopilotrun){
+							camControls.moveBackward = false;
+							camControls2.moveBackward = false;
 
 					
-						camControls.moveForward = true;
-						camControls2.moveForward = true;
+							camControls.moveForward = true;
+							camControls2.moveForward = true;
+						}
 						if(record) {guivalues.saveimage();}
 						//reward += 0.001; 
 						console.log("GOOD! movForeward towards target!");
-					}else{
+					}
+					else{
+						
 						//var moveSpeed = ((camControls2.movementSpeed / Math.abs(errorYaw)) * (newdistancetotarget/20)) + 0.15 ;
 						//var lookSpeed = (camControls2.lookSpeed / Math.abs(errorYaw));
 						//camControls2.movementSpeed = moveSpeed; //0.25;//note: it also doesn't work properly
@@ -1682,12 +1764,14 @@ var parameters = {
 				
 						autoForward = false;
 						autoBackward = false;
-						camControls.moveBackward = false;
-						camControls2.moveBackward = false;
+						if(autopilotrun){
+							camControls.moveBackward = false;
+							camControls2.moveBackward = false;
 						
 					
-						camControls.moveForward = false;
-						camControls2.moveForward = false;
+							camControls.moveForward = false;
+							camControls2.moveForward = false;
+						}
 						if(record) {guivalues.saveimage();}
 						//reward += 0.001; 
 						//console.log("STOP!");
@@ -1696,12 +1780,14 @@ var parameters = {
 					if( (Math.abs(outputYaw) < 1) && (Math.abs(errorYaw)<0.02 && transdecLoaded && transdec2Loaded && obstaclesLoaded && obstacles2Loaded) ){
 						autoBackward = true;
 						autoForward = false;
-						camControls.moveBackward = true;
-						camControls2.moveBackward = true;
+						if(autopilotrun){
+							camControls.moveBackward = true;
+							camControls2.moveBackward = true;
 
 					
-						camControls.moveForward = false;
-						camControls2.moveForward = false;
+							camControls.moveForward = false;
+							camControls2.moveForward = false;
+						}
 						if(record) {guivalues.saveimage();}
 						//reward += 0.001; 
 						console.log("GOOD! Move Backward towards target!");
@@ -1714,12 +1800,14 @@ var parameters = {
 					      
 						autoBackward = false;
 						autoFoward = true;
-						camControls.moveBackward = false;
-						camControls2.moveBackward = false;
+						if(autopilotrun){
+							camControls.moveBackward = false;
+							camControls2.moveBackward = false;
 						
 					
-						camControls.moveForward = false;
-						camControls2.moveForward = false;
+							camControls.moveForward = false;
+							camControls2.moveForward = false;
+						}
 						if(record) {guivalues.saveimage();}
 						//reward += 0.001; 
 						//console.log("STOP!");
@@ -1864,13 +1952,15 @@ var parameters = {
 				if ( keyboard.pressed("D") ) {guivalues.saveimage();}
 				if ( keyboard.pressed("A") ) {guivalues.saveimage();}
 				if ( keyboard.pressed("S") ) {guivalues.saveimage();}
+				if ( keyboard.pressed("Q") ) {guivalues.resetGame();}
 				
 //				if ( keyboard.pressed("R") ) {guivalues.lookAtRedBuoy();}
 				if ( keyboard.pressed("Y") ) {guivalues.lookAtYellowBuoy();}
 				if ( keyboard.pressed("G") ) {guivalues.lookAtGreenBuoy();}
 				
 				if ( keyboard.pressed("R") ){record = true; console.log("Recording NOW");}		
-				if ( keyboard.pressed("T") ){record = false; console.log("Recording STOP");}
+				if ( keyboard.pressed("T") ){record = false; autopilotrun = false; console.log("Recording STOP");}
+				if ( keyboard.pressed("Y") ){record = true; autopilotrun = true;}
 				if ( keyboard.pressed("N") ){console.log("imgData1: " + imgData1); console.log(", imgData2: " + imgData2);}
 				if ( keyboard.pressed("U") ){guivalues.saveimage(); }
 				
