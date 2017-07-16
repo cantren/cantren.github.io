@@ -585,6 +585,10 @@ var parameters = {
 				camera.position.x = 0.0;//pool line of symetry is x axis
 				camera.position.y = -2.0;//water depth
 			        camera.position.z = -28.0;//how close to the wall are you
+				
+				camera.position.y += (Math.random()*0.5 - 0.5);
+				camera.position.x += (Math.random()*4 - 2);
+				camera.position.z += (Math.random()*4 - 2);
 //normal starting location
 			        camera.rotation.z = 3.06;
 			        camera.near = 0.5;
@@ -1489,11 +1493,11 @@ var parameters = {
 				*/
 				
 				// Teleport noise / "got lost" noise
-				if(Math.random()>=0.995){
+				/*if(Math.random()>=0.995){
 					camera.position.y += (Math.random()*0.5 - 0.25);
 					camera.position.x += (Math.random()*2 - 1);
 					camera.position.z += (Math.random()*2 - 1);
-				}
+				}*/
 				// Teleport noise / "got lost" noise
 				
 				camControls.update( clock.getDelta() ); //update First Person Camera
