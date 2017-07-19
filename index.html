@@ -1708,16 +1708,12 @@ var parameters = {
 				//targetYaw = Math.atan2( (camera.position.z - targetz) , (camera.position.x - targetx) );
 				//this chunk of code addresses the the asymptotic behavior of arctan when x = 0;
 				//http://stackoverflow.com/a/3309658
-				//if ( targetz-camera.position.z > 0.001 || targetz-camera.position.z < -0.001 )
-				//	{
-//						targetYaw = Math.atan2( -1*( targetx - camera.position.x ), ( targetz - camera.position.z) );
-						targetYaw += Math.acos2(-1*( targetx - camera.position.x ),Math.pow((Math.pow((camera2.position.x-targetx),2)+Math.pow((camera2.position.y-targety),2)+Math.pow((camera2.position.z-targetz),2)),0.5));
-						targetYaw += Math.asin2(-1*( targety - camera.position.y ),Math.pow((Math.pow((camera2.position.x-targetx),2)+Math.pow((camera2.position.y-targety),2)+Math.pow((camera2.position.z-targetz),2)),0.5));
-						targetYaw *= 0.5;
-					
-				//	} else{
-						//if(previousDeltaZ !=0){targetYaw = Math.atan2( -1*( targetx - camera.position.x ), ( previousDeltaZ ));};
-				//	}
+				if ( targetz-camera.position.z > 0.001 || targetz-camera.position.z < -0.001 )
+					{
+						targetYaw = Math.atan2( -1*( targetx - camera.position.x ), ( targetz - camera.position.z) );
+					} else{
+						if(previousDeltaZ !=0){targetYaw = Math.atan2( -1*( targetx - camera.position.x ), ( previousDeltaZ ));};
+					}
 				//this chunk of code addresses the the asymptotic behavior of arctan when x = 0;
 				targetYaw = (1.0*targetYaw) % (Math.PI*2);
 				//if(targetYaw > Math.PI){targetYaw -= Math.PI; targetYaw = -1.0*targetYaw; }				
