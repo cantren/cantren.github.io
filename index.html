@@ -337,7 +337,8 @@ var parameters = {
      * @returns {ImageData/undefined}
      */
 	/*
-    convertDataURLToImageData = function (dataURL) {
+    convertDataURLToImage
+    Data = function (dataURL) {
         if (dataURL !== undefined && dataURL !== null) {
             var canvas, context, image, imageData;
             canvas = document.createElement('canvas');
@@ -1142,8 +1143,9 @@ var parameters = {
 					filename2 = "autodwn" + String.fromCharCode(imageletter) + imagenumber.toString() + ".png"
 					this.saveimage1();
 					this.saveimage2();
-					    
-					if(!record){data.push([filename1, filename2, camera.position.x.toString(), camera.position.y.toString(), camera.position.z.toString(), camera.rotation.y.toString(), mouseposx.toString(), mouseposy.toString(), keyboard.pressed("W"), keyboard.pressed("A"), keyboard.pressed("S"), keyboard.pressed("D"),validationgatePoints,pathmarker1Points,buoy1Points,buoy1Backup,buoy2Points,buoy2Backup,buoy3Points,pathmarker2Points,maneuverPoints,pathmarker3Points,pathmarker4Points,pathmarker5Points,octagon1Points,pathmarker6Points,pathmarker7Points,octagon2Points]);}
+					console.log(["filename1", "filename2", "position.x", "position.y", "position.z", "rotation.y","mousex","mousey","W","A","S","D","validationgatePoints","pathmarker1Points","buoy1Points","buoy1Backup","buoy2Points","buoy2Backup","buoy3Points","pathmarker2Points","maneuverPoints","pathmarker3Points","pathmarker4Points","pathmarker5Points","octagon1Points","pathmarker6Points","pathmarker7Points","octagon2Points"]);
+					console.log([filename1, filename2, camera.position.x.toString(), camera.position.y.toString(), camera.position.z.toString(), camera.rotation.y.toString(), camControls.mouseX.toString(), camControls.mouseY.toString(), autoForward, keyboard.pressed("A"), autoBackward, keyboard.pressed("D"),validationgatePoints,pathmarker1Points,buoy1Points,buoy1Backup,buoy2Points,buoy2Backup,buoy3Points,pathmarker2Points,maneuverPoints,pathmarker3Points,pathmarker4Points,pathmarker5Points,octagon1Points,pathmarker6Points,pathmarker7Points,octagon2Points]); 
+					//if(!record){data.push([filename1, filename2, camera.position.x.toString(), camera.position.y.toString(), camera.position.z.toString(), camera.rotation.y.toString(), mouseposx.toString(), mouseposy.toString(), keyboard.pressed("W"), keyboard.pressed("A"), keyboard.pressed("S"), keyboard.pressed("D"),validationgatePoints,pathmarker1Points,buoy1Points,buoy1Backup,buoy2Points,buoy2Backup,buoy3Points,pathmarker2Points,maneuverPoints,pathmarker3Points,pathmarker4Points,pathmarker5Points,octagon1Points,pathmarker6Points,pathmarker7Points,octagon2Points]);}
 					if(record){data.push([filename1, filename2, camera.position.x.toString(), camera.position.y.toString(), camera.position.z.toString(), camera.rotation.y.toString(), camControls.mouseX.toString(), camControls.mouseY.toString(), autoForward, keyboard.pressed("A"), autoBackward, keyboard.pressed("D"),validationgatePoints,pathmarker1Points,buoy1Points,buoy1Backup,buoy2Points,buoy2Backup,buoy3Points,pathmarker2Points,maneuverPoints,pathmarker3Points,pathmarker4Points,pathmarker5Points,octagon1Points,pathmarker6Points,pathmarker7Points,octagon2Points]);}
 					//if(imagenumber === 10000){imagenumber = 0; imageletter++; this.savetext();}
 				        //if(octagon2Points){
@@ -1348,7 +1350,8 @@ var parameters = {
 					camera.position.x = -2.5 + (Math.random*1.0 + 0);//pool line of symetry is x axis
 					camera.position.y = -2.0;//water depth
 					camera.position.z = -26.0 + (Math.random*1.0 + 0);//how close to the wall are you
-					data = [["filename1", "filename2", "position.x", "position.y", "position.z", "rotation.y","mousex","mousey","W","A","S","D","validationgatePoints","pathmarker1Points","buoy1Points","buoy2Points","buoy3Points","pathmarker2Points","maneuverPoints","pathmarker3Points","pathmarker4Points","pathmarker5Points","octagon1Points","pathmarker6Points","pathmarker7Points","octagon2Points"]];	
+					data = [["filename1", "filename2", "position.x", "position.y", "position.z", "rotation.y","mousex","mousey","W","A","S","D","validationgatePoints","pathmarker1Points","buoy1Points","buoy1Backup","buoy2Points","buoy2Backup","buoy3Points","pathmarker2Points","maneuverPoints","pathmarker3Points","pathmarker4Points","pathmarker5Points","octagon1Points","pathmarker6Points","pathmarker7Points","octagon2Points"]];	
+			
 			
 				    }
 				    this.randomVis = function(){
