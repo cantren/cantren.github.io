@@ -1710,7 +1710,6 @@ var parameters = {
 						if(previousDeltaZ !=0){targetYaw = Math.atan2( -1*( targetx - camera.position.x ), ( previousDeltaZ ));};
 					}
 				//this chunk of code addresses the the asymptotic behavior of arctan when x = 0;
-				if(drivereverse){targetYaw += Math.PI;}
 				targetYaw = (1.0*targetYaw) % (Math.PI*2);
 				//if(targetYaw > Math.PI){targetYaw -= Math.PI; targetYaw = -1.0*targetYaw; }				
 				//targetYaw = (-1.0*targetYaw) % (Math.PI/2);
@@ -1724,11 +1723,10 @@ var parameters = {
 				var outputYaw = (globalyawKp*errorYaw) + (globalyawKi*integralYaw) + (globalyawKd*derivativeYaw);
 				previouserrorYaw = errorYaw;
 				previousDeltaZ = (targetz-camera.position.z);
-				//if(drivereverse){
-				//	camControls.mouseX  = -1.0*outputYaw;
+				if(drivereverse){camControls.mouseX  = -1.0*outputYaw;}
 				//}else{
 				//if(autopilotrun){
-					camControls.mouseX  = outputYaw;
+				camControls.mouseX  = outputYaw;
 				//}
 				//}
 				console.log("currentYaw: " + currentYaw + " targetYaw: " + targetYaw + " errorYaw: " + errorYaw + " outputYaw: " + outputYaw + " mouseX: " + camControls.mouseX);	
