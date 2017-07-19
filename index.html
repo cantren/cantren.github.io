@@ -292,7 +292,7 @@ var parameters = {
 			validationgateReward = false;
 			maneuverReward = false;
 	
-			data = [["filename1", "filename2", "position.x", "position.y", "position.z", "rotation.y","mousex","mousey","W","A","S","D","validationgatePoints","pathmarker1Points","buoy1Points","buoy2Points","buoy3Points","pathmarker2Points","maneuverPoints","pathmarker3Points","pathmarker4Points","pathmarker5Points","octagon1Points","pathmarker6Points","pathmarker7Points","octagon2Points"]];	
+			data = [["filename1", "filename2", "position.x", "position.y", "position.z", "rotation.y","mousex","mousey","W","A","S","D","validationgatePoints","pathmarker1Points","buoy1Points","buoy1Backup","buoy2Points","buoy2Backup","buoy3Points","pathmarker2Points","maneuverPoints","pathmarker3Points","pathmarker4Points","pathmarker5Points","octagon1Points","pathmarker6Points","pathmarker7Points","octagon2Points"]];	
 			init();
 			animate();
 			function testWebSocket() { 
@@ -512,7 +512,6 @@ var parameters = {
 				globalyawKp = 500; globalyawKi = 0.00001; globalyawKd = 0.000000001;
 
 				
-				frameCounter = 0;
 				previouserrorYaw = 0;
 				previousDeltaZ = 0;
 				integralYaw = 0;
@@ -527,7 +526,9 @@ var parameters = {
 				targety = -1.5;
 				targetz = 0;
 				
-				frameCounter = 0;		
+				frameCounter = 0;
+				desiredFrameCounter1 = 0;
+				desiredFrameCounter2 = 0;
 				mouseposx = 0;		
 				mouseposy = 0;		
 				record = false;
@@ -1555,8 +1556,8 @@ var parameters = {
 										if ( !buoy1Backup ) {
 												//buoy1Backup = true;
 												drivereverse = true;
-												targetx = -15.77;
-												targetz = -19.74;
+												//targetx = -15.77;
+												//targetz = -19.74;
 												//camera.position.x = -15.77;
 												//camera.position.z = -24.64;
 												//camera2.position.x = -15.77;
@@ -1723,10 +1724,10 @@ var parameters = {
 				var outputYaw = (globalyawKp*errorYaw) + (globalyawKi*integralYaw) + (globalyawKd*derivativeYaw);
 				previouserrorYaw = errorYaw;
 				previousDeltaZ = (targetz-camera.position.z);
-				if(drivereverse){camControls.mouseX  = -1.0*outputYaw;}
+				//if(drivereverse){camControls.mouseX  = -1.0*outputYaw;}
 				//}else{
 				//if(autopilotrun){
-				camControls.mouseX  = outputYaw;
+				if(!drivereverse){camControls.mouseX  = outputYaw;}
 				//}
 				//}
 				console.log("currentYaw: " + currentYaw + " targetYaw: " + targetYaw + " errorYaw: " + errorYaw + " outputYaw: " + outputYaw + " mouseX: " + camControls.mouseX);	
@@ -1777,7 +1778,7 @@ var parameters = {
 						//console.log("STOP!");
 					}
 				}else{
-					if( (Math.abs(outputYaw) < 1) && (Math.abs(errorYaw)<0.02 && transdecLoaded && transdec2Loaded && obstaclesLoaded && obstacles2Loaded) ){
+					if( transdecLoaded && transdec2Loaded && obstaclesLoaded && obstacles2Loaded ){
 						autoBackward = true;
 						autoForward = false;
 						camControls.moveBackward = true;
@@ -2011,11 +2012,14 @@ var parameters = {
 					pathmarker7Points = true;
 					console.log("Pathmarker7 Points!");
 				}
+				if ( frameCounter >= desiredFrameCounter1) {buoy1Backup = true;}
+				if ( frameCounter >= desiredFrameCounter2) {buoy2Backup = true;}
 				if ( camera2.position.x < -21.59 && camera2.position.x > -21.99 && camera2.position.y < -1.83 && camera2.position.y > -2.23 && camera2.position.z < -19.44 && camera2.position.z > -19.84 ) {
 					buoy1Points = true;
 					console.log("Buoy1 Points!");
 					if(savecsv3){
 						savecsv3 = false;
+						desiredFrameCounter1 = frameCounter +500;
 						//imagenumber = 0; 
 						//imageletter++; 
 						guivalues.savetext("buoy1save");
@@ -2026,6 +2030,7 @@ var parameters = {
 					console.log("Buoy2 Points!");
 					if(savecsv4){
 						savecsv4 = false;
+						desiredFrameCounter1 = frameCounter +500;
 						//imagenumber = 0; 
 						//imageletter++; 
 						guivalues.savetext("buoy2save");
