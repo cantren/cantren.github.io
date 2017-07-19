@@ -513,6 +513,7 @@ var parameters = {
 
 				
 				frameCounter = 0;
+				desiredFrameCount = 0;
 				previouserrorYaw = 0;
 				previousDeltaZ = 0;
 				integralYaw = 0;
@@ -527,7 +528,6 @@ var parameters = {
 				targety = -1.5;
 				targetz = 0;
 				
-				frameCounter = 0;		
 				mouseposx = 0;		
 				mouseposy = 0;		
 				record = false;
@@ -1555,8 +1555,8 @@ var parameters = {
 										if ( !buoy1Backup ) {
 												//buoy1Backup = true;
 												drivereverse = true;
-												targetx = -15.77;
-												targetz = -19.74;
+												//targetx = -15.77;
+												//targetz = -19.74;
 												//camera.position.x = -15.77;
 												//camera.position.z = -24.64;
 												//camera2.position.x = -15.77;
@@ -1710,7 +1710,7 @@ var parameters = {
 						if(previousDeltaZ !=0){targetYaw = Math.atan2( -1*( targetx - camera.position.x ), ( previousDeltaZ ));};
 					}
 				//this chunk of code addresses the the asymptotic behavior of arctan when x = 0;
-				if(drivereverse){targetYaw += Math.PI;}
+				//if(drivereverse){targetYaw += Math.PI;}
 				targetYaw = (1.0*targetYaw) % (Math.PI*2);
 				//if(targetYaw > Math.PI){targetYaw -= Math.PI; targetYaw = -1.0*targetYaw; }				
 				//targetYaw = (-1.0*targetYaw) % (Math.PI/2);
@@ -1718,7 +1718,7 @@ var parameters = {
 				//the code modeled by the neural network
 				var currentYaw = camera.rotation.y;
 				var errorYaw = targetYaw - currentYaw;
-				if(autopilotrun){
+				if(autopilotrun && !drivereverse){
 					integralYaw += errorYaw;
 				}
 				var derivativeYaw = (errorYaw - previouserrorYaw);
@@ -1728,7 +1728,7 @@ var parameters = {
 				//if(drivereverse){
 				//	camControls.mouseX  = -1.0*outputYaw;
 				//}else{
-				if(autopilotrun){
+				if(autopilotrun && !drivereverse){
 					camControls.mouseX  = outputYaw;
 				}
 				//}
@@ -1737,7 +1737,7 @@ var parameters = {
 				var depthKp = 100; var depthKi = 0.00001; var depthKd = 0.000000001;
 				var currentDepth = camera.position.y;
 				var errorDepth = targety - currentDepth;
-				if(autopilotrun){
+				if(autopilotrun && !drivereverse){
 					integralDepth += errorDepth;
 				}
 				var derivativeDepth = (errorDepth - previouserrorDepth);
@@ -1785,7 +1785,7 @@ var parameters = {
 						//console.log("STOP!");
 						]
 					}
-				}else{
+				}else{/*
 					if( (Math.abs(outputYaw) < 1) && (Math.abs(errorYaw)<0.02 && transdecLoaded && transdec2Loaded && obstaclesLoaded && obstacles2Loaded) ){
 						if(autopilotrun){
 							autoBackward = true;
@@ -1818,6 +1818,21 @@ var parameters = {
 							if(record) {guivalues.saveimage();}
 						//reward += 0.001; 
 						//console.log("STOP!");
+						}
+					*/
+					if(frameCounter>desiredFrameCount){framecounter = 0; drivereverse = false; if(!buoy1Backaup){buoy1Backup=true;}else{buoy2Backup=true;}}
+					else{
+						if(autopilotrun){
+							autoBackward = true;
+							autoForward = false;
+							camControls.moveBackward = true;
+							camControls2.moveBackward = true;
+						
+							camControls.moveForward = false;
+							camControls2.moveForward = false;							if(record) {guivalues.saveimage();}
+							//reward += 0.001; 
+							console.log("GOOD! Move Backward towards target!");
+							}
 						}
 					}
 				}
@@ -2028,6 +2043,7 @@ var parameters = {
 					console.log("Buoy1 Points!");
 					if(savecsv3){
 						savecsv3 = false;
+						desiredFrameCount = frameCounter + 500;												
 						//imagenumber = 0; 
 						//imageletter++; 
 						guivalues.savetext("buoy1save");
@@ -2038,6 +2054,7 @@ var parameters = {
 					console.log("Buoy2 Points!");
 					if(savecsv4){
 						savecsv4 = false;
+						desiredFrameCount = frameCounter + 500;												
 						//imagenumber = 0; 
 						//imageletter++; 
 						guivalues.savetext("buoy2save");
