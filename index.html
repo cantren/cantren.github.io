@@ -1320,8 +1320,8 @@ var parameters = {
 				    };
 				    this.resetGame = function(){
 					victoryCounter++;
-					//var resetfilename = "run" + victoryCounter + ".csv";
-					//this.savetext(resetfilename);
+					var resetfilename = "run" + victoryCounter + ".csv";
+					this.savetext(resetfilename);
 					console.log("ALL YOUR BASE ARE BELONG TO US!");
 					var fogintensityrandom = ((Math.random() * 0.0225)-0.0225);
 				        scene.fog = new THREE.FogExp2( 0x008080, 0.1275 + fogintensityrandom );
@@ -1630,7 +1630,7 @@ var parameters = {
 																																				targetz = 12.44;
 																																				targety = -3.5;
 																																				console.log("current target: pathmarker6");
-																																			}else {
+																																			}else { guivalues.resetGame();
 																																					if ( !octagon1Center ) {
 																																						targetx = -32.96;
 																																						targetz = 12.05;
