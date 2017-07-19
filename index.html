@@ -1554,12 +1554,12 @@ var parameters = {
 								}else { 
 										//guivalues.resetGame();
 										if ( !buoy1Backup ) {
-												//buoy1Backup = true;
-												drivereverse = true;
+												buoy1Backup = true;
+												//drivereverse = true;
 												//targetx = -15.77;
 												//targetz = -19.74;
-												//camera.position.x = -15.77;
-												//camera.position.z = -24.64;
+												camera.position.x = -15.77;
+												camera.position.z = -24.64;
 												//camera2.position.x = -15.77;
 												//camera2.position.z = -24.64;
 												console.log("current target: buoy1");
@@ -1571,13 +1571,13 @@ var parameters = {
 															console.log("current target: buoy2");
 														}else {
 																if ( !buoy2Backup ) {
-																		drivereverse = true;
-																		targetx = -18.77;																																				//camera.position.x = -15.77;
-																		targetz = -18.64;
+																		//drivereverse = true;
+																		//targetx = -18.77;																																				//camera.position.x = -15.77;
+																		//targetz = -18.64;
 
 																		buoy2Backup = true;
-																		//camera.position.x = -15.77;
-																		//camera.position.z = -24.64;
+																		camera.position.x = -15.77;
+																		camera.position.z = -24.64;
 																		//camera2.position.x = -15.77;
 																		//camera2.position.z = -25.64;
 																		console.log("current target: buoy2");
@@ -1727,7 +1727,8 @@ var parameters = {
 				//if(drivereverse){camControls.mouseX  = -1.0*outputYaw;}
 				//}else{
 				//if(autopilotrun){
-				if(!drivereverse && (Math.pow((Math.pow((camera2.position.x-targetx),2)+Math.pow((camera2.position.y-targety),2)+Math.pow((camera2.position.z-targetz),2)),0.5)>5.0)){camControls.mouseX  = outputYaw;}//else{camControls.mouseX = 0;}
+				camControls.mouseX  = outputYaw;
+				//if(!drivereverse && (Math.pow((Math.pow((camera2.position.x-targetx),2)+Math.pow((camera2.position.y-targety),2)+Math.pow((camera2.position.z-targetz),2)),0.5)>5.0)){camControls.mouseX  = outputYaw;}//else{camControls.mouseX = 0;}
 				//}
 				//}
 				//console.log("currentYaw: " + currentYaw + " targetYaw: " + targetYaw + " errorYaw: " + errorYaw + " outputYaw: " + outputYaw + " mouseX: " + camControls.mouseX);	
@@ -2012,14 +2013,14 @@ var parameters = {
 					pathmarker7Points = true;
 					console.log("Pathmarker7 Points!");
 				}
-				if ( frameCounter >= desiredFrameCounter1) {buoy1Backup = true;}
-				if ( frameCounter >= desiredFrameCounter2) {buoy2Backup = true;}
+//				if ( frameCounter >= desiredFrameCounter1) {buoy1Backup = true;}
+//				if ( frameCounter >= desiredFrameCounter2) {buoy2Backup = true;}
 				if ( camera2.position.x < -21.59 && camera2.position.x > -21.99 && camera2.position.y < -1.83 && camera2.position.y > -2.23 && camera2.position.z < -19.44 && camera2.position.z > -19.84 ) {
 					buoy1Points = true;
 					console.log("Buoy1 Points!");
 					if(savecsv3){
 						savecsv3 = false;
-						desiredFrameCounter1 = frameCounter +50000;
+						//desiredFrameCounter1 = frameCounter +50000;
 						//imagenumber = 0; 
 						//imageletter++; 
 						guivalues.savetext("buoy1save");
@@ -2030,7 +2031,7 @@ var parameters = {
 					console.log("Buoy2 Points!");
 					if(savecsv4){
 						savecsv4 = false;
-						desiredFrameCounter1 = frameCounter +50000;
+						//desiredFrameCounter1 = frameCounter +50000;
 						//imagenumber = 0; 
 						//imageletter++; 
 						guivalues.savetext("buoy2save");
