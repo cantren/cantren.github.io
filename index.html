@@ -1727,7 +1727,7 @@ var parameters = {
 				//if(drivereverse){camControls.mouseX  = -1.0*outputYaw;}
 				//}else{
 				//if(autopilotrun){
-				if(!drivereverse){camControls.mouseX  = outputYaw;}else{camControls.mouseX = 0;}
+				if(!drivereverse && (newdistancetotarget<0.25)){camControls.mouseX  = outputYaw;}else{camControls.mouseX = 0;}
 				//}
 				//}
 				console.log("currentYaw: " + currentYaw + " targetYaw: " + targetYaw + " errorYaw: " + errorYaw + " outputYaw: " + outputYaw + " mouseX: " + camControls.mouseX);	
