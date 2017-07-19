@@ -1749,8 +1749,7 @@ var parameters = {
 				console.log("currentDepth: " + currentDepth + " targetYaw: " + targety + " errorDepth: " + errorDepth + " outputDepth: " + outputDepth + " mouseY: " + camControls.mouseY);	
                                 	
 				if(!drivereverse){
-					if( (Math.abs(outputYaw) < 1) && (Math.abs(errorYaw)<0.02)  && transdecLoaded && transdec2Loaded && obstaclesLoaded && obstacles2Loaded){
-						if(autopilotrun){
+					if( (Math.abs(outputYaw) < 1) && (Math.abs(errorYaw)<0.02)  && transdecLoaded && transdec2Loaded && obstaclesLoaded && obstacles2Loaded && autopilotrun){
 							autoForward = true;
 							autoBackward = false;
 						
@@ -1763,8 +1762,9 @@ var parameters = {
 							if(record) {guivalues.saveimage();}
 						//reward += 0.001; 
 							console.log("GOOD! movForeward towards target!");
-						}
-					}else{
+						
+					}
+					else{
 						//var moveSpeed = ((camControls2.movementSpeed / Math.abs(errorYaw)) * (newdistancetotarget/20)) + 0.15 ;
 						//var lookSpeed = (camControls2.lookSpeed / Math.abs(errorYaw));
 						//camControls2.movementSpeed = moveSpeed; //0.25;//note: it also doesn't work properly
@@ -1785,7 +1785,8 @@ var parameters = {
 						//console.log("STOP!");
 						}
 					}
-				}else{/*
+				}
+				else{/*
 					if( (Math.abs(outputYaw) < 1) && (Math.abs(errorYaw)<0.02 && transdecLoaded && transdec2Loaded && obstaclesLoaded && obstacles2Loaded) ){
 						if(autopilotrun){
 							autoBackward = true;
