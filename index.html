@@ -1727,7 +1727,7 @@ var parameters = {
 				//if(drivereverse){camControls.mouseX  = -1.0*outputYaw;}
 				//}else{
 				//if(autopilotrun){
-				if(!drivereverse && (Math.pow((Math.pow((camera2.position.x-targetx),2)+Math.pow((camera2.position.y-targety),2)+Math.pow((camera2.position.z-targetz),2)),0.5)>2.0)){camControls.mouseX  = outputYaw;}//else{camControls.mouseX = 0;}
+				if(!drivereverse && (Math.pow((Math.pow((camera2.position.x-targetx),2)+Math.pow((camera2.position.y-targety),2)+Math.pow((camera2.position.z-targetz),2)),0.5)>5.0)){camControls.mouseX  = outputYaw;}//else{camControls.mouseX = 0;}
 				//}
 				//}
 				//console.log("currentYaw: " + currentYaw + " targetYaw: " + targetYaw + " errorYaw: " + errorYaw + " outputYaw: " + outputYaw + " mouseX: " + camControls.mouseX);	
