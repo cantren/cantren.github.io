@@ -288,6 +288,7 @@ var parameters = {
 			octagon2Reward = false;
 			octagon1Center = false;
       			octagon2Center = false;
+			octagon1Done = false;
 				        
 			buoy1Reward = false;
 			buoy2Reward = false;
@@ -1634,7 +1635,7 @@ var parameters = {
 																																									console.log("current target: octagon1");
 																																								}else {
 																																										if ( !octagon1Done ) {
-																																											targety = -3.5;
+																																											targety = -3.25;
 																																											console.log("current target: octagon1 dive");
 																																											}else {
 																																												if ( !pathmarker7Points ) {
@@ -2061,6 +2062,10 @@ var parameters = {
 				if ( camera2.position.x < -32.66 && camera2.position.x > -33.26 && camera2.position.y < -1.0 && camera2.position.y > -1.1 && camera2.position.z > 11.75 && camera2.position.z < 12.35 ) {
 					octagon1Points = true;
 					console.log("Octagon1 Points!");
+				}
+				if ( octagon1Points && camera2.position.x < -32.66 && camera2.position.x > -33.26 && camera2.position.y < -3.0 && camera2.position.y > -3.5 && camera2.position.z > 11.75 && camera2.position.z < 12.35 ) {
+					octagon1Done = true;
+					console.log("Octagon1done Points!");
 				}
 				if ( camera2.position.x < -20.78 && camera2.position.x > -21.38 && camera2.position.z > 17.68 && camera2.position.z < 18.28 ) {
 					octagon2Center = true;
