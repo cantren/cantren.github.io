@@ -1254,7 +1254,7 @@ var parameters = {
 				    	//camera.lookAt(-22.44,-2.15,-20.69);
 				    	//camera.rotation.z = camera3.rotation.z;
 
-       				    	//camera.rotation.z = (Math.random() * (Math.PI*2.0));
+       				    	//camera.z = (Math.random() * (Math.PI*2.0));
        				    	//camera.rotation.z -= Math.PI;
 				    };
 				    this.lookAtGreenBuoy = function(){
@@ -1727,7 +1727,7 @@ var parameters = {
 				//if(drivereverse){camControls.mouseX  = -1.0*outputYaw;}
 				//}else{
 				//if(autopilotrun){
-				if(!drivereverse){camControls.mouseX  = outputYaw;}
+				if(!drivereverse){camControls.mouseX  = outputYaw;}else{camControls.mouseX = 0;}
 				//}
 				//}
 				console.log("currentYaw: " + currentYaw + " targetYaw: " + targetYaw + " errorYaw: " + errorYaw + " outputYaw: " + outputYaw + " mouseX: " + camControls.mouseX);	
