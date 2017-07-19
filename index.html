@@ -1347,9 +1347,12 @@ var parameters = {
 					buoy3Points = false;
 					validationgatePoints = true;
 					maneuverPoints = false;
-					camera.position.x = -2.5 + (Math.random*1.0 + 0);//pool line of symetry is x axis
-					camera.position.y = -2.0;//water depth
-					camera.position.z = -26.0 + (Math.random*1.0 + 0);//how close to the wall are you
+					var randposx = (-2.5 + (Math.random()*1.0));
+					var randposy = -2.0;
+					var randposz = (-26.0 + (Math.random()*1.0 + 0));
+					camera.position.x = randposx;//pool line of symetry is x axis
+					camera.position.y = randposy;//water depth
+					camera.position.z = randposz;//how close to the wall are you
 					data = [["filename1", "filename2", "position.x", "position.y", "position.z", "rotation.y","mousex","mousey","W","A","S","D","validationgatePoints","pathmarker1Points","buoy1Points","buoy1Backup","buoy2Points","buoy2Backup","buoy3Points","pathmarker2Points","maneuverPoints","pathmarker3Points","pathmarker4Points","pathmarker5Points","octagon1Points","pathmarker6Points","pathmarker7Points","octagon2Points"]];	
 			
 			
