@@ -1719,7 +1719,7 @@ var parameters = {
 				var currentYaw = camera.rotation.y;
 				var errorYaw = targetYaw - currentYaw;
 				
-				integralYaw += errorYaw;
+				if(!drivereverse){integralYaw += errorYaw;}
 				var derivativeYaw = (errorYaw - previouserrorYaw);
 				var outputYaw = (globalyawKp*errorYaw) + (globalyawKi*integralYaw) + (globalyawKd*derivativeYaw);
 				previouserrorYaw = errorYaw;
@@ -1730,8 +1730,8 @@ var parameters = {
 				if(!drivereverse && (Math.pow((Math.pow((camera2.position.x-targetx),2)+Math.pow((camera2.position.y-targety),2)+Math.pow((camera2.position.z-targetz),2)),0.5)>0.25)){camControls.mouseX  = outputYaw;}//else{camControls.mouseX = 0;}
 				//}
 				//}
-				console.log("currentYaw: " + currentYaw + " targetYaw: " + targetYaw + " errorYaw: " + errorYaw + " outputYaw: " + outputYaw + " mouseX: " + camControls.mouseX);	
-				
+				//console.log("currentYaw: " + currentYaw + " targetYaw: " + targetYaw + " errorYaw: " + errorYaw + " outputYaw: " + outputYaw + " mouseX: " + camControls.mouseX);	
+				console.log(newdistancetotarget);
 				var depthKp = 100; var depthKi = 0.00001; var depthKd = 0.000000001;
 				var currentDepth = camera.position.y;
 				var errorDepth = targety - currentDepth;
