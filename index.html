@@ -1716,7 +1716,7 @@ var parameters = {
 						targetYaw = Math.acos(-1*( targetx - camera.position.x )/Math.pow((Math.pow((camera2.position.x-targetx),2)+Math.pow((camera2.position.y-targety),2)+Math.pow((camera2.position.z-targetz),2)),0.5));
 						targetYaw += Math.asin(-1*( targetz - camera.position.z )/Math.pow((Math.pow((camera2.position.x-targetx),2)+Math.pow((camera2.position.y-targety),2)+Math.pow((camera2.position.z-targetz),2)),0.5));
 						targetYaw *= 0.5;
-						targetYaw += Math.PI*(-0.5)
+						targetYaw += Math.PI*(0.5)
 					
 				}else{
 					console.log("yaw is DNE");//if(previousDeltaZ !=0){targetYaw = Math.atan2( -1*( targetx - camera.position.x ), ( previousDeltaZ ));};
