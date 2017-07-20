@@ -240,6 +240,7 @@ var parameters = {
 			}
 //I'll admit: I can't remember what this does or where it came from			
 			var waterNormals;
+			resetfilename = "";
 			obstaclesLoaded = false;
 			obstacles2Loaded = false;
 			transdecLoaded = false;
@@ -1147,11 +1148,9 @@ var parameters = {
 					this.saveimage1();
 					this.saveimage2();
 					console.log(["filename1", "filename2", "position.x", "position.y", "position.z", "rotation.y","mousex","mousey","W","A","S","D","validationgatePoints","pathmarker1Points","buoy1Points","buoy1Backup","buoy2Points","buoy2Backup","buoy3Points","pathmarker2Points","maneuverPoints","pathmarker3Points","pathmarker4Points","pathmarker5Points","octagon1Points","pathmarker6Points","pathmarker7Points","octagon2Points"]);
-					console.log([filename1, filename2, camera.position.x.toString(), camera.position.y.toString(), camera.position.z.toString(), camera.rotation.y.toString(), camControls.mouseX.toString(), camControls.mouseY.toString(), autoForward, keyboard.pressed("A"), autoBackward, keyboard.pressed("D"),validationgatePoints,pathmarker1Points,buoy1Points,buoy1Backup,buoy2Points,buoy2Backup,buoy3Points,pathmarker2Points,maneuverPoints,pathmarker3Points,pathmarker4Points,pathmarker5Points,octagon1Points,pathmarker6Points,pathmarker7Points,octagon2Points]); 
-					//if(!record){data.push([filename1, filename2, camera.position.x.toString(), camera.position.y.toString(), camera.position.z.toString(), camera.rotation.y.toString(), mouseposx.toString(), mouseposy.toString(), keyboard.pressed("W"), keyboard.pressed("A"), keyboard.pressed("S"), keyboard.pressed("D"),validationgatePoints,pathmarker1Points,buoy1Points,buoy1Backup,buoy2Points,buoy2Backup,buoy3Points,pathmarker2Points,maneuverPoints,pathmarker3Points,pathmarker4Points,pathmarker5Points,octagon1Points,pathmarker6Points,pathmarker7Points,octagon2Points]);}
-					if(record){data.push([filename1, filename2, camera.position.x.toString(), camera.position.y.toString(), camera.position.z.toString(), camera.rotation.y.toString(), camControls.mouseX.toString(), camControls.mouseY.toString(), autoForward, keyboard.pressed("A"), autoBackward, keyboard.pressed("D"),validationgatePoints,pathmarker1Points,buoy1Points,buoy1Backup,buoy2Points,buoy2Backup,buoy3Points,pathmarker2Points,maneuverPoints,pathmarker3Points,pathmarker4Points,pathmarker5Points,octagon1Points,pathmarker6Points,pathmarker7Points,octagon2Points]);}
-					//if(imagenumber === 10000){imagenumber = 0; imageletter++; this.savetext();}
-				        //if(octagon2Points){
+					console.log([filename1, filename2, camera.position.x.toString(), camera.position.y.toString(), camera.position.z.toString(), camera.rotation.y.toString(), camControls.mouseX.toString(), camControls.mouseY.toString(), keyboard.pressed("W"), keyboard.pressed("A"), keyboard.pressed("A"), keyboard.pressed("D"),validationgatePoints,pathmarker1Points,buoy1Points,buoy1Backup,buoy2Points,buoy2Backup,buoy3Points,pathmarker2Points,maneuverPoints,pathmarker3Points,pathmarker4Points,pathmarker5Points,octagon1Points,pathmarker6Points,pathmarker7Points,octagon2Points]); 
+					//if(record){data.push([filename1, filename2, camera.position.x.toString(), camera.position.y.toString(), camera.position.z.toString(), camera.rotation.y.toString(), camControls.mouseX.toString(), camControls.mouseY.toString(), camControls.autoForward, keyboard.pressed("A"), camControls.autoBackward, keyboard.pressed("D"),validationgatePoints,pathmarker1Points,buoy1Points,buoy1Backup,buoy2Points,buoy2Backup,buoy3Points,pathmarker2Points,maneuverPoints,pathmarker3Points,pathmarker4Points,pathmarker5Points,octagon1Points,pathmarker6Points,pathmarker7Points,octagon2Points]);}
+					if(record){data.push([filename1, filename2, camera.position.x.toString(), camera.position.y.toString(), camera.position.z.toString(), camera.rotation.y.toString(), camControls.mouseX.toString(), camControls.mouseY.toString(), keyboard.pressed("W"), keyboard.pressed("A"), keyboard.pressed("S"), keyboard.pressed("D"),validationgatePoints,pathmarker1Points,buoy1Points,buoy1Backup,buoy2Points,buoy2Backup,buoy3Points,pathmarker2Points,maneuverPoints,pathmarker3Points,pathmarker4Points,pathmarker5Points,octagon1Points,pathmarker6Points,pathmarker7Points,octagon2Points]);}
 					if(maneuverPoints && savecsv1){
 						//imagenumber = 0; 
 						//imageletter++; 
@@ -1323,9 +1322,9 @@ var parameters = {
 				    };
 				    this.resetGame = function(){
 					victoryCounter++;
-					var resetfilename = "run" + victoryCounter + ".csv";
-					this.savetext(resetfilename);
-					console.log("ALL YOUR BASE ARE BELONG TO US!");
+					resetfilename = "run" + victoryCounter + ".csv";
+					//this.savetext(resetfilename);
+					console.log(resetfilename);
 					var fogintensityrandom = ((Math.random() * 0.0225)-0.0225);
 					//var newMoveSpeed = (Math.random() * 3.75);
 				        scene.fog = new THREE.FogExp2( 0x008080, 0.1275 + fogintensityrandom );
@@ -1644,7 +1643,8 @@ var parameters = {
 																																				targetz = 12.44;
 																																				targety = -3.5;
 																																				console.log("current target: pathmarker6");
-																																			}else { guivalues.resetGame();
+																																			}else {
+																																					if(autopilotrun){guivalues.resetGame();}
 																																					if ( !octagon1Center ) {
 																																						targetx = -32.96;
 																																						targetz = 12.05;
@@ -1672,32 +1672,8 @@ var parameters = {
 																																																	targety = -1.04;
 																																																	console.log("current target: octagon1");
 																																																}else {
-																																																	victoryCounter++;
-																																																	console.log("ALL YOUR BASE ARE BELONG TO US!");
-																																																//"you just beat the game" code goes here
-																																																	pathmarker1Points = false;
-																																																	pathmarker2Points = false;
-																																																	pathmarker3Points = false;
-																																																	pathmarker4Points = false;
-																																																	pathmarker5Points = false;
-																																																	pathmarker6Points = false;
-																																																	pathmarker7Points = false;
-																																																	octagon1Points = false;
-																																																	octagon2Points = false;
-																																																	octagon1Center = false;
-																																																	octagon2Center = false;
-																																																	octagon1Done = false;
-																																																	octagon2Done = false;
-																																																	buoy1Points = false;
-																																																	buoy2Points = false;
-																																																	buoy1Backup = false;
-																																																	buoy2Backup = false;
-																																																	buoy3Points = false;
-																																																	validationgatePoints = false;
-																																																	maneuverPoints = false;
-																																																	camera.position.x = -2.5;//pool line of symetry is x axis
-																																																	camera.position.y = -2.0;//water depth
-																																																	camera.position.z = -26.0;//how close to the wall are you
+																																																	guivalues.savetext(resetfilename);
+																																																	guivalues.resetGame();
 																																																}}}}}}}}}}}}}}}}}}																	
 														
 				var newdistancetotarget = Math.pow((Math.pow((camera2.position.x-targetx),2)+Math.pow((camera2.position.y-targety),2)+Math.pow((camera2.position.z-targetz),2)),0.5);
