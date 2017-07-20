@@ -259,7 +259,7 @@ var parameters = {
 			drivereverse = false;
 	                autoForward = false;
 	                autoBackward = false;
-			autopilotrun = true;
+			autopilotrun = false;
 			pathmarker1Points = false;
 			pathmarker2Points = false;
 			pathmarker3Points = false;
@@ -1750,8 +1750,7 @@ var parameters = {
 				previousDeltaZ = (targetz-camera.position.z);
 				//if(drivereverse){camControls.mouseX  = -1.0*outputYaw;}
 				//}else{
-				//if(autopilotrun){
-				camControls.mouseX  = outputYaw;
+				if(autopilotrun)camControls.mouseX  = outputYaw;}
 				//if(!drivereverse && (Math.pow((Math.pow((camera2.position.x-targetx),2)+Math.pow((camera2.position.y-targety),2)+Math.pow((camera2.position.z-targetz),2)),0.5)>5.0)){camControls.mouseX  = outputYaw;}//else{camControls.mouseX = 0;}
 				//}
 				//}
@@ -1764,75 +1763,74 @@ var parameters = {
 				var derivativeDepth = (errorDepth - previouserrorDepth);
 				var outputDepth = (depthKp*errorDepth) - (depthKi*integralDepth) + (depthKd*derivativeDepth);
 				previouserrorDepth = errorDepth;
-				//if(autopilotrun){
-					camControls.mouseY  = -1*outputDepth;
-				//}
+				if(autopilotrun){camControls.mouseY  = -1*outputDepth;}
 				console.log("currentDepth: " + currentDepth + " targetYaw: " + targety + " errorDepth: " + errorDepth + " outputDepth: " + outputDepth + " mouseY: " + camControls.mouseY);	
-                                	
-				if(!drivereverse){
-					if( (Math.abs(outputYaw) < 1) && (Math.abs(errorYaw)<0.02)  && transdecLoaded && transdec2Loaded && obstaclesLoaded && obstacles2Loaded){
-						autoForward = true;
-						autoBackward = false;
-						camControls.moveBackward = false;
-						camControls2.moveBackward = false;
+                                if(autopilotrun){
+					if(!drivereverse){
+						if( (Math.abs(outputYaw) < 1) && (Math.abs(errorYaw)<0.02)  && transdecLoaded && transdec2Loaded && obstaclesLoaded && obstacles2Loaded){
+							autoForward = true;
+							autoBackward = false;
+							camControls.moveBackward = false;
+							camControls2.moveBackward = false;
 
 					
-						camControls.moveForward = true;
-						camControls2.moveForward = true;
-						if(record) {guivalues.saveimage();}
-						//reward += 0.001; 
-						console.log("GOOD! movForeward towards target!");
-					}else{
-						//var moveSpeed = ((camControls2.movementSpeed / Math.abs(errorYaw)) * (newdistancetotarget/20)) + 0.15 ;
-						//var lookSpeed = (camControls2.lookSpeed / Math.abs(errorYaw));
-						//camControls2.movementSpeed = moveSpeed; //0.25;//note: it also doesn't work properly
-			        		//camControls2.lookSpeed = lookSpeed;//0.05;//note: it also doesn't work properly
-						//camControls.movementSpeed = moveSpeed; //0.25;//note: it also doesn't work properly
-						//camControls.lookSpeed = lookSpeed; //0.05;//note: it also doesn't work properly
+							camControls.moveForward = true;
+							camControls2.moveForward = true;
+							if(record) {guivalues.saveimage();}
+							//reward += 0.001; 
+							console.log("GOOD! movForeward towards target!");
+						}else{
+							//var moveSpeed = ((camControls2.movementSpeed / Math.abs(errorYaw)) * (newdistancetotarget/20)) + 0.15 ;
+							//var lookSpeed = (camControls2.lookSpeed / Math.abs(errorYaw));
+							//camControls2.movementSpeed = moveSpeed; //0.25;//note: it also doesn't work properly
+				        		//camControls2.lookSpeed = lookSpeed;//0.05;//note: it also doesn't work properly
+							//camControls.movementSpeed = moveSpeed; //0.25;//note: it also doesn't work properly
+							//camControls.lookSpeed = lookSpeed; //0.05;//note: it also doesn't work properly
 				
-						autoForward = false;
-						autoBackward = false;
-						camControls.moveBackward = false;
-						camControls2.moveBackward = false;
+							autoForward = false;
+							autoBackward = false;
+							camControls.moveBackward = false;
+							camControls2.moveBackward = false;
 						
 					
-						camControls.moveForward = false;
-						camControls2.moveForward = false;
-						if(record) {guivalues.saveimage();}
-						//reward += 0.001; 
-						//console.log("STOP!");
-					}
-				}else{
-					if( transdecLoaded && transdec2Loaded && obstaclesLoaded && obstacles2Loaded ){
-						autoBackward = true;
-						autoForward = false;
-						camControls.moveBackward = true;
-						camControls2.moveBackward = true;
+							camControls.moveForward = false;
+							camControls2.moveForward = false;
+							if(record) {guivalues.saveimage();}
+							//reward += 0.001; 
+							//console.log("STOP!");
+						}
+					}else{
+						if( transdecLoaded && transdec2Loaded && obstaclesLoaded && obstacles2Loaded ){
+							autoBackward = true;
+							autoForward = false;
+							camControls.moveBackward = true;
+							camControls2.moveBackward = true;
 
 					
-						camControls.moveForward = false;
-						camControls2.moveForward = false;
-						if(record) {guivalues.saveimage();}
-						//reward += 0.001; 
-						console.log("GOOD! Move Backward towards target!");
-					}else{  //var moveSpeed = ((camControls2.movementSpeed / Math.abs(errorYaw)) * (newdistancetotarget/20)) + 0.15 ;
-						//var lookSpeed = (camControls2.lookSpeed / Math.abs(errorYaw));
-						//camControls2.movementSpeed = moveSpeed; //0.25;//note: it also doesn't work properly
-			        		//camControls2.lookSpeed = lookSpeed;//0.05;//note: it also doesn't work properly
-						//camControls.movementSpeed = moveSpeed; //0.25;//note: it also doesn't work properly
-						//camControls.lookSpeed = lookSpeed; //0.05;//note: it also doesn't work properly
+							camControls.moveForward = false;
+							camControls2.moveForward = false;
+							if(record) {guivalues.saveimage();}
+							//reward += 0.001; 
+							console.log("GOOD! Move Backward towards target!");
+						}else{  //var moveSpeed = ((camControls2.movementSpeed / Math.abs(errorYaw)) * (newdistancetotarget/20)) + 0.15 ;
+							//var lookSpeed = (camControls2.lookSpeed / Math.abs(errorYaw));
+							//camControls2.movementSpeed = moveSpeed; //0.25;//note: it also doesn't work properly
+			        			//camControls2.lookSpeed = lookSpeed;//0.05;//note: it also doesn't work properly
+							//camControls.movementSpeed = moveSpeed; //0.25;//note: it also doesn't work properly
+							//camControls.lookSpeed = lookSpeed; //0.05;//note: it also doesn't work properly
 					      
-						autoBackward = false;
-						autoFoward = true;
-						camControls.moveBackward = false;
-						camControls2.moveBackward = false;
+							autoBackward = false;
+							autoFoward = true;
+							camControls.moveBackward = false;
+							camControls2.moveBackward = false;
 						
 					
-						camControls.moveForward = false;
-						camControls2.moveForward = false;
-						if(record) {guivalues.saveimage();}
-						//reward += 0.001; 
-						//console.log("STOP!");
+							camControls.moveForward = false;
+							camControls2.moveForward = false;
+							if(record) {guivalues.saveimage();}
+							//reward += 0.001; 
+							//console.log("STOP!");
+						}
 					}
 				}
 				
@@ -1981,7 +1979,8 @@ var parameters = {
 				if ( keyboard.pressed("G") ) {guivalues.lookAtGreenBuoy();}
 				
 				if ( keyboard.pressed("R") ){record = true; console.log("Recording NOW");}		
-				if ( keyboard.pressed("T") ){record = false; autopilotrun = false; console.log("Recording STOP");}
+				if ( keyboard.pressed("T") ){autopilotrun = true; console.log("Engage Autopilot");}
+				if ( keyboard.pressed("M") ){record = false; autopilotrun = false; console.log("Recording STOP");}
 				if ( keyboard.pressed("Y") ){record = true; autopilotrun = true;}
 				if ( keyboard.pressed("N") ){console.log("imgData1: " + imgData1); console.log(", imgData2: " + imgData2);}
 				if ( keyboard.pressed("U") ){guivalues.saveimage(); }
