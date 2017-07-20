@@ -1726,7 +1726,7 @@ var parameters = {
 				previousDeltaZ = (targetz-camera.position.z);
 				//if(drivereverse){camControls.mouseX  = -1.0*outputYaw;}
 				//}else{
-				if(autopilotrun)camControls.mouseX  = outputYaw;}
+				if(autopilotrun){camControls.mouseX  = outputYaw;}
 				//if(!drivereverse && (Math.pow((Math.pow((camera2.position.x-targetx),2)+Math.pow((camera2.position.y-targety),2)+Math.pow((camera2.position.z-targetz),2)),0.5)>5.0)){camControls.mouseX  = outputYaw;}//else{camControls.mouseX = 0;}
 				//}
 				//}
@@ -1809,7 +1809,6 @@ var parameters = {
 						}
 					}
 				*/
-				
 				water.material.uniforms.time.value += 1.0 / 60.0; //speed of water motion(wind chop)
 				water.render(); //render water surface
 				water2.material.uniforms.time.value += 1.0 / 60.0; //speed of water motion(wind chop)
