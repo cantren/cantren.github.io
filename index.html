@@ -1353,9 +1353,9 @@ var parameters = {
 					buoy3Points = false;
 					validationgatePoints = true;
 					maneuverPoints = false;
-					var randposx = (-2.5 + (Math.random()*1.0));
+					var randposx = (-2.5 + (Math.random()*2.0)-1.0);
 					var randposy = -2.0;
-					var randposz = (-26.0 + (Math.random()*1.0 + 0));
+					var randposz = (-26.0 + (Math.random()*2.0)-1.0);
 					camera.position.x = randposx;//pool line of symetry is x axis
 					camera.position.y = randposy;//water depth
 					camera.position.z = randposz;//how close to the wall are you
@@ -1363,6 +1363,14 @@ var parameters = {
 			
 			
 				    }
+				    this.bumpPos = function(){
+				    	var randposx = (camera.position.x + (Math.random()*2.0)-1.0);
+					var randposy = (camera.position.y - Math.random());
+					var randposz = (camera.position.z + (Math.random()*2.0)-1.0);
+					camera.position.x = randposx;//pool line of symetry is x axis
+					camera.position.y = randposy;//water depth
+					camera.position.z = randposz;//how close to the wall are you
+					}
 				    this.randomVis = function(){
 				    	fdensity = (Math.random() * .75);
 					scene.fog.density = fdensity;
@@ -1977,6 +1985,8 @@ var parameters = {
 				if ( keyboard.pressed("Y") ){record = true; autopilotrun = true;}
 				if ( keyboard.pressed("N") ){console.log("imgData1: " + imgData1); console.log(", imgData2: " + imgData2);}
 				if ( keyboard.pressed("U") ){guivalues.saveimage(); }
+				if ( keyboard.pressed("B") ){guivalues.bumpPos(); }
+				
 				
 				
 
