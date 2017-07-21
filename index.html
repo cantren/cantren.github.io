@@ -300,8 +300,6 @@ var parameters = {
 			data = [["filename1", "filename2", "position.x", "position.y", "position.z", "rotation.y","mousex","mousey","W","A","S","D","validationgatePoints","pathmarker1Points","buoy1Points","buoy1Backup","buoy2Points","buoy2Backup","buoy3Points","pathmarker2Points","maneuverPoints","pathmarker3Points","pathmarker4Points","pathmarker5Points","octagon1Points","pathmarker6Points","pathmarker7Points","octagon2Points"]];	
 			init();
 			animate();
-			window.addEventListener( 'resize', onWindowResize, false );
-			
 			function testWebSocket() { 
 				//websocket = new WebSocket("ws://192.168.1.34:8081/");
 				websocket = new WebSocket("ws://127.0.0.01:8765/");
@@ -546,12 +544,6 @@ var parameters = {
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				//renderer.setSize( 80, 80 );
 				
-				function onWindowResize(){
-					    camera.aspect = window.innerWidth / window.innerHeight;
-    					    camera.updateProjectionMatrix();
-					    renderer.setSize( window.innerWidth, window.innerHeight );
-
-				}				
 				
 				//uncomment these lines for VR
 				//effect = new THREE.StereoEffect( renderer );
@@ -559,7 +551,6 @@ var parameters = {
 				//effect.setSize( window.innerWidth, window.innerHeight );
 				//uncomment these lines for VR
 				container.appendChild( renderer.domElement );
-
 				
 
 				
