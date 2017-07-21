@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -85,14 +86,16 @@
 		<script src="../js/Mirror.js"></script>
 		<script src="../js/WaterShader.js"></script>
 		<script src="../js/material.js"></script>
+
+
 		<script src="../js/Detector.js"></script>
 		<script src="../js/stats.min.js"></script>
-		<script src="../js/soundmanager2.js"></script>
 		
 		<script src="../js/josdirksen/dat.gui.js"></script> 
 		<script src="js/MTLLoader.js"></script>
 		<script type="text/javascript" src="js/OBJMTLLoader.js"></script>
 		<script type="text/javascript" src="js/OBJLoader.js"></script>
+
 		<script src="../js/CSS3DStereoRenderer.js"></script>
 		
 		
@@ -103,17 +106,24 @@
 		<script src="../js/CopyShader.js"></script>
 		<script src="../js/StereoEffect.js"></script>
 		<script src="../js/info.js"></script>
+
+
   		
 					<span id="digitalclock" class="styling"></span>
+
 <script>
 <!--
+
 //LCD Clock script- by javascriptkit.com
 //Visit JavaScript Kit (http://javascriptkit.com) for script
 //Credit must stay intact for use
+
 var alternate=0
 var standardbrowser=!document.all&&!document.getElementById
+
 if (standardbrowser)
 document.write('<form name="tick"><input type="text" name="tock" size="11"></form>')
+
 function show(){
 if (!standardbrowser)
 var clockobj=document.getElementById? document.getElementById("digitalclock") : document.all.digitalclock
@@ -130,11 +140,13 @@ var minutes=RealTime.getMinutes()
 //var minutesReal=RealTime.getMinutes()
 var seconds=RealTime.getSeconds()
 var dn="AM"
+
 if (hours==12) dn="PM" 
 if (hours>12){
 dn="PM"
 //hours=hours-12
 }
+
 if (hours==0) hours=12
 if (hours.toString().length==1)
 hours="0"+hours
@@ -158,6 +170,7 @@ alternate=(alternate==0)? 1 : 0
 setTimeout("show()",1000)
 }
 window.onload=show
+
 //-->
 /*
 <p>This free script provided by<br/>
@@ -165,18 +178,24 @@ window.onload=show
 Kit</a></p>
 */
 </script>
+
+
 <script>
 /*
 The MIT License
+
 Copyright © 2010-2015 three.js authors
+
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions:
+
 The above copyright notice and this permission notice shall be included in
 all copies or substantial portions of the Software.
+
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -184,6 +203,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+
 #Copyright Notes:
 1)SimBox started as a JavaScript "learning experiment" with modifications made to code which should be attributed to the authors of the three.js examples under the MIT License "http://threejs.org/examples/webgl_shaders_ocean.html" and "http://threejs.org/examples/webgl_loader_obj_mtl.html"
 2)Significant effort has been made to track, identify, and flag all "borrowed" code which was used to learn the dat.gui.js and three.js libraries
@@ -196,10 +216,12 @@ THE SOFTWARE.
 				document.getElementById( 'container' ).innerHTML = "";
 			}
 			//source: MIT License OR "This code no longer appears to contain anything that belongs to josdirksen?"
+
 			var container, container2, stats;//cargo cult code? comment out this line please(may be desired in future)
 			var camera, camera2, camera3, camControls, camControls2, camControls3, scene, scene2, renderer, renderer2;//these are actually usefull
 			var composer;
 			var testParams, testPass;			
+
 			var CANVAS_WIDTH = 300,
 			    CANVAS_HEIGHT = 300,
 			    CAM_DISTANCE = 300;//This doesn't look like cargo cult code but should be sanity checked at some point
@@ -327,12 +349,14 @@ var parameters = {
             canvas.height = 470;
             context = canvas.getContext('2d');
             image = new Image();
+
             image.addEventListener('load', function(){
                 context.drawImage(image, 0, 0, canvas.width, canvas.height);
                 imageData = context.getImageData(0, 0, canvas.width, canvas.height);
                 //how do i return this?
             }, false);
             image.src = dataURL;
+
             return imageData;
         }
     }*/
@@ -371,22 +395,28 @@ var parameters = {
     {
         // We create an image to receive the Data URI
         var img = document.createElement('img');
+
         // When the event "onload" is triggered we can resize the image.
         img.onload = function()
             {        
                 // We create a canvas and get its context.
                 var canvas = document.createElement('canvas');
                 var ctx = canvas.getContext('2d');
+
                 // We set the dimensions at the wanted size.
                 canvas.width = wantedWidth;
                 canvas.height = wantedHeight;
+
                 // We resize the image with the canvas method drawImage();
                 ctx.drawImage(this, 0, 0, wantedWidth, wantedHeight);
+
                 var dataURI = canvas.toDataURL();
+
                 /////////////////////////////////////////
                 // Use and treat your Data URI here !! //
                 /////////////////////////////////////////
             };
+
         // We put the Data URI in the image's src attribute
         img.src = datas;
 	//console.log(typeof img);
@@ -397,16 +427,6 @@ var parameters = {
         return c.toDataURL();
 	//return String(img).replace("<img src =\"", "").replace(">","");
     }
-/*
-soundManager.onready(function() {
-    soundManager.createSound({
-        id: 'mySound',
-        //url: '/path/to/an.mp3'
-    });
-
-    // ...and play it
-    soundManager.play('mySound');
-});*/
 	
 	/*
 	                function resizedataURL(srcUrl, dstW, dstH){
@@ -450,33 +470,42 @@ soundManager.onready(function() {
 	                		// We create a canvas and get its context.
                 			var canvas = document.createElement('canvas');
                 			var ctx = canvas.getContext('2d');
+
                 			// We set the dimensions at the wanted size.
                 			canvas.width = wantedWidth;
                 			canvas.height = wantedHeight;
+
                 			// We resize the image with the canvas method drawImage();
                 			ctx.drawImage(this, 0, 0, wantedWidth, wantedHeight);
+
                 			var dataURI = canvas.toDataURL();
 					//console.log(dataURI);
+
                 		};
         			img.src = datas;
 				//console.log(img);
 				return img.toDataURL();
     			}*/
 			function imageToDataUri(img, width, height) {
+
     				// create an off-screen canvas
     				var canvas = document.createElement('canvas'),
         			ctx = canvas.getContext('2d');
+
     				// set its dimension to target size
     				canvas.width = width;
     				canvas.height = height;
+
 	  			// draw source image into the off-screen canvas:
     				ctx.drawImage(img, 0, 0, width, height);
+
 	  			// encode image to data-uri with base64 version of compressed image
     				return canvas.toDataURL();
 			}
 /*
 			function resizedataURL(datas,targetWidth,targetHeight) {
 				var img = new Image;
+
 				img.src = datas;
     				var newDataUri = imageToDataUri(this, targetWidth, targetHeight);
 				
@@ -489,6 +518,7 @@ soundManager.onready(function() {
 				testWebSocket();
 				
 				globalyawKp = 500; globalyawKi = 0.00001; globalyawKd = 0.000000001;
+
 				
 				previouserrorYaw = 0;
 				previousDeltaZ = 0;
@@ -520,6 +550,7 @@ soundManager.onready(function() {
 					    camera.aspect = window.innerWidth / window.innerHeight;
     					    camera.updateProjectionMatrix();
 					    renderer.setSize( window.innerWidth, window.innerHeight );
+
 				}				
 				
 				//uncomment these lines for VR
@@ -528,7 +559,9 @@ soundManager.onready(function() {
 				//effect.setSize( window.innerWidth, window.innerHeight );
 				//uncomment these lines for VR
 				container.appendChild( renderer.domElement );
+
 				
+
 				
 				
 				//renderer = new THREE.CSS3DStereoRenderer();
@@ -542,7 +575,10 @@ soundManager.onready(function() {
 				renderer2.setClearColor( 0xf0f0f0, 1 );
 				renderer2.setSize( 200, 200 );
 				container2.appendChild( renderer2.domElement );
+
+
 	
+
 				scene = new THREE.Scene();
 				//scene.overrideMaterial = new THREE.MeshDepthMaterial();
 				scene2 = new THREE.Scene();
@@ -560,6 +596,7 @@ soundManager.onready(function() {
 				camera.position.y = -2.52;//water depth
 			        camera.position.z = -22.57;//how close to the wall are you
 				*/
+
 //normal starting location
 				camera.position.x = 0.0;//pool line of symetry is x axis
 				camera.position.y = -2.0;//water depth
@@ -575,6 +612,7 @@ soundManager.onready(function() {
 			        
 			        camera2 = new THREE.PerspectiveCamera(85, window.innerWidth / window.innerHeight, 0.5, 3000000);
 			        camera2.up = camera.up; // important!
+
 //buoy closeup location
 				/*
 			        camera2.position.x = -16.73;//pool line of symetry is x axis
@@ -582,6 +620,7 @@ soundManager.onready(function() {
 			        camera2.position.z = -22.57;//how close to the wall are you
 				*/
 //buoy closeup location
+
 //normal starting location
 			        camera2.position.x = 0.0;//pool line of symetry is x axis
 				camera2.position.y = -2.0;//water depth
@@ -633,6 +672,7 @@ soundManager.onready(function() {
 				lightRed.position.set( - 1, 1, - 1 ); //my hemisphere flipped upside down
 				lightRed.intensity = .25;
 				scene.add( lightRed );//I changed the name to distinguish a negative y value from "sunlight"
+
 				light2Red = new THREE.HemisphereLight( 0xff0000, 0x008080, 1 );//I tried changing the light color here to see what would happen
 				light2Red.position.set( - 1, 1, - 1 ); //my hemisphere flipped upside down
 				light2Red.intensity = .25;
@@ -642,6 +682,7 @@ soundManager.onready(function() {
 				lightGreen.position.set( - 1, 1, - 1 ); //my hemisphere flipped upside down
 				lightGreen.intensity = .25;
 				scene.add( lightGreen );//I changed the name to distinguish a negative y value from "sunlight"
+
 				light2Green = new THREE.HemisphereLight( 0x5eff00, 0x008080, 1 );//I tried changing the light color here to see what would happen
 				light2Green.position.set( - 1, 1, - 1 ); //my hemisphere flipped upside down
 				light2Green.intensity = .25;
@@ -651,6 +692,7 @@ soundManager.onready(function() {
 				lightBlue.position.set( - 1, 1, - 1 ); //my hemisphere flipped upside down
 				lightBlue.intensity = .25;
 				scene.add( lightBlue );//I changed the name to distinguish a negative y value from "sunlight"
+
 				light2Blue = new THREE.HemisphereLight( 0x00a9ff, 0x008080, 1 );//I tried changing the light color here to see what would happen
 				light2Blue.position.set( - 1, 1, - 1 ); //my hemisphere flipped upside down
 				light2Blue.intensity = .25;
@@ -683,6 +725,7 @@ soundManager.onready(function() {
 				ambientLight2Blue = new THREE.AmbientLight(0x00a9ff);
 				ambientLight2Blue.intensity = .375;
 				scene2.add(ambientLight2Blue);
+
 				/*
 				//HemisphereLight details
 				lightRed lightRed.intensity = .25;
@@ -692,6 +735,7 @@ soundManager.onready(function() {
 				lightBlue lightBlue.intensity = .25;
 				light2Blue light2Blue.intensity = .25;
 				//HemisphereLight details
+
 				//ambient light details
 				ambientLightRed ambientLightRed.intensity = .375;
 				ambientLight2Red ambientLight2Red.intensity = .375;
@@ -701,6 +745,7 @@ soundManager.onready(function() {
 				ambientLight2Blue ambientLight2Blue.intensity = .375;
 				//ambient light details
 				*/
+
 				
 				//light up the sun
 				//spotLightSUN = new THREE.SpotLight(0xFFFFFF);
@@ -753,6 +798,8 @@ soundManager.onready(function() {
 				spotLight2.intensity = 2;
 				scene2.add(spotLight2);
 				*/
+
+
 				//load and insert the obj meshes and mtl textures
 				//the "secret sauce" is in these .obj and .mtl files.
 //				var loader = new THREE.OBJLoader(); //this object does the work
@@ -788,6 +835,7 @@ soundManager.onready(function() {
 					scene2.add( object );//to make a Robosub you would likely need to change it's name from "object"
 					obstacles2Loaded = true;
 					});
+
 				waterNormals = new THREE.ImageUtils.loadTexture( 'textures/waternormals.jpg' ); //potential for easy modification/obstacle reflections
 				waterNormals.wrapS = waterNormals.wrapT = THREE.RepeatWrapping; //recycle that .jpg like a TV re-run
 				
@@ -843,6 +891,7 @@ soundManager.onready(function() {
 					distortionScale: 6.25,
 					fog: true,
 				} );
+
 				/*
 				water = new THREE.Water( renderer, camera, scene, { //three.js has a specific thing for water, this is it
 					textureWidth: 512, //size of waves I think, maybe the waternormals.jpg stretch?
@@ -857,6 +906,7 @@ soundManager.onready(function() {
 					fog: true,
 				});
 				*/
+
 				//initialize/declare new planes for holding the "water" texture mapping
 				mirrorMesh = new THREE.Mesh(
 					new THREE.PlaneBufferGeometry( parameters.width * 500, parameters.height * 500 ),
@@ -882,6 +932,7 @@ soundManager.onready(function() {
 					new THREE.PlaneBufferGeometry( parameters.width * 500, parameters.height * 500 ),
 					caustic2.material
 				);
+
 			
 				mirrorMesh.add( water ); //add water shader to otherwise boring underwater PlaneBufferGeometry
 				mirrorMesh2.add( water ); //add water shader to otherwise boring PlaneBufferGeometry
@@ -890,13 +941,16 @@ soundManager.onready(function() {
 				mirrorMeshB.add( water2 ); //add water shader to otherwise boring underwater PlaneBufferGeometry
 				mirrorMeshB2.add( water2 ); //add water shader to otherwise boring PlaneBufferGeometry
 				mirrorMeshB3.add( caustic2 ); //add water shader to otherwise boring PlaneBufferGeometry
+
 				
 				mirrorMesh.rotation.x = - Math.PI * 1.5; //rotate undwater water surface to point down
 				mirrorMesh2.rotation.x = - Math.PI * 0.5; //rotate water surface to point up
 				mirrorMesh3.rotation.x = - Math.PI * 0.5; //rotate undwater water surface to point down
+
 				mirrorMeshB.rotation.x = - Math.PI * 1.5; //rotate undwater water surface to point down
 				mirrorMeshB2.rotation.x = - Math.PI * 0.5; //rotate water surface to point up
 				mirrorMeshB3.rotation.x = - Math.PI * 0.5; //rotate undwater water surface to point down
+
 				mirrorMesh.position.y = -.95;//water height experimentally generated via trial and error
 				mirrorMesh2.position.y = -.95;//water height experimentally generated via trial and error
 				mirrorMesh3.position.y = -5.65;//water height experimentally generated via trial and error
@@ -904,6 +958,7 @@ soundManager.onready(function() {
 				mirrorMeshB.position.y = -.95;//water height experimentally generated via trial and error
 				mirrorMeshB2.position.y = -.95;//water height experimentally generated via trial and error
 				mirrorMeshB3.position.y = -5.65;//water height experimentally generated via trial and error
+
 				
 				scene.add( mirrorMesh ); //add underwater water surface
 				scene.add( mirrorMesh2); //add water surface
@@ -912,6 +967,7 @@ soundManager.onready(function() {
 				scene2.add( mirrorMeshB ); //add underwater water surface
 				scene2.add( mirrorMeshB2); //add water surface
 				scene2.add( mirrorMeshB3); //add water surface
+
 					///////////////////		
 				// CLOUDS VIDEO ///		
 				///////////////////		
@@ -995,6 +1051,7 @@ soundManager.onready(function() {
 					cubeMap.images[ 5 ] = getSide( 3, 1 ); // nz
 					cubeMap.needsUpdate = true;
 				} );
+
 				var loader2 = new THREE.ImageLoader();
 				loader2.load( '../textures/skyboxsun25degtest.png', function ( image ) {
 					var getSide = function ( x, y ) {
@@ -1014,11 +1071,14 @@ soundManager.onready(function() {
 					cubeMap2.images[ 5 ] = getSide( 3, 1 ); // nz
 					cubeMap2.needsUpdate = true;
 				} );
+
+
 				var cubeShader = THREE.ShaderLib['cube'];
 				cubeShader.uniforms['tCube'].value = cubeMap;
 				
 				var cubeShader2 = THREE.ShaderLib['cube'];
 				cubeShader2.uniforms['tCube'].value = cubeMap2;
+
 				//Create skybox material 
 				var skyBoxMaterial = new THREE.ShaderMaterial( {
 					fragmentShader: cubeShader.fragmentShader,
@@ -1051,6 +1111,8 @@ soundManager.onready(function() {
 				skyBox2.rotation.y += Math.PI/6;		
 				scene.add( skyBox ); //create Point Loma Sky
 				scene2.add( skyBox2 ); //create Point Loma Sky
+
+
 				var geometry = new THREE.IcosahedronGeometry( 30, 4 );
 				for ( var i = 0, j = geometry.faces.length; i < j; i ++ ) {
 					geometry.faces[ i ].color.setHex( 0xffffff );
@@ -1078,6 +1140,7 @@ soundManager.onready(function() {
 			}
 			//source: This entire "init()" function is very "boilerplate" from the examples at http://threejs.org/examples/ covered under the MIT License
 			//attribution: Please see the "MIT License" included in this document
+
 			//source: This code no longer appears to contain anything that belongs to http://www.smartjava.org/ltjs/chapter-09/02-selecting-objects.html
 			var guivalues = new function () {
 					
@@ -1196,6 +1259,7 @@ soundManager.onready(function() {
 				    	//camera.lookAt(-23.14,-2.2,-21.74);
 				    	//camera2.lookAt(camera3);
 				    	//camera.rotation.z = camera3.rotation.z;
+
        				    	//camera.rotation.z = (Math.random() * (Math.PI*2.0));
        				    	//camera.rotation.z -= Math.PI;
 				    };
@@ -1206,6 +1270,7 @@ soundManager.onready(function() {
 				    	//camera3.position.copy(camera);
 				    	//camera.lookAt(-22.44,-2.15,-20.69);
 				    	//camera.rotation.z = camera3.rotation.z;
+
        				    	//camera.z = (Math.random() * (Math.PI*2.0));
        				    	//camera.rotation.z -= Math.PI;
 				    };
@@ -1216,6 +1281,7 @@ soundManager.onready(function() {
 				    	//camera3.position.copy(camera);
 				    	//camera.lookAt(-21.8,-2.05,-19.65);
 				    	//camera.rotation.z = camera3.rotation.z;
+
        				    	//camera.rotation.z = (Math.random() * (Math.PI*2.0));
        				    	//camera.rotation.z -= Math.PI;
 				    };
@@ -1251,6 +1317,7 @@ soundManager.onready(function() {
 					light2Green.intensity = nintensity2;
 					lightBlue.intensity = nintensity2;
 					light2Blue.intensity = nintensity2;
+
 					//ambient light set
 					ambientLightRed.intensity = nintensity3;
 					ambientLight2Red.intensity = nintensity3;
@@ -1258,6 +1325,7 @@ soundManager.onready(function() {
 					ambientLight2Green.intensity = nintensity3;
 					ambientLightBlue.intensity = nintensity3;
 					ambientLight2Blue.intensity = nintensity3;
+
 				    	//scene.spotLight.intensity = (Math.random() * 5.0);
 				    	//scene2.spotLight2.intensity = (Math.random() * 5.0);
 				    };
@@ -1324,6 +1392,7 @@ soundManager.onready(function() {
 					spotLightGREEN2.intensity = rintensity;
 					spotLightBLUE.intensity = rintensity;
 					spotLightBLUE2.intensity = rintensity;
+
 				    };
 				}
 			//source: This code no longer appears to contain anything that belongs to http://www.smartjava.org/ltjs/chapter-09/02-selecting-objects.html
@@ -1334,6 +1403,7 @@ soundManager.onready(function() {
 			//source: This code no longer appears to contain anything that belongs to http://nuevil.com/index3.html
 			var gui = new dat.GUI({resizable : false});
 			gui.add(shaderParams, 'binaryThreshold').onChange(onToggleShaders);
+
 			gui.add(guivalues, 'cameraNear', 0, 25).onChange(function (e) {
         		    camera.near = e;
         		});
@@ -1361,11 +1431,13 @@ soundManager.onready(function() {
   			var rPosHeadComp = gui.add(guivalues, 'getLostComp');
   			var rPosHeadPract = gui.add(guivalues, 'getLostPract');
   			//source: This code no longer appears to contain anything that belongs to http://nuevil.com/index3.html
+
   			posX.onChange( function(value){   camera2.position.x = value; camera.position.x = value;   } );
   			posY.onChange( function(value){   camera2.position.y = value; camera.position.y = value;   } );
 			posZ.onChange( function(value){   camera2.position.z = value; camera.position.z = value;   } );
 			rotY.onChange( function(value){   camera2.rotation.y = value; camera.rotation.y = value;   } );
 			//source:http://nuevil.com/index3.html
+
 			//source: This code no longer appears to contain anything that belongs to Rudie Dirkx http://hotblocks.nl/tests/three/dat.gui.html 
 			fogDensity.onChange( function(value){   scene2.fog.density = value; scene.fog.density = value;   });
   			rotSpeed.onChange( function(value){   camControls2.lookSpeed = value; camControls.lookSpeed = value;   });
@@ -1373,6 +1445,7 @@ soundManager.onready(function() {
 			lightIntensity.onChange( function(value){   spotLightRED2.intensity = value; spotLightRED.intensity = value;   });
 			timeOfDay.onChange( function(value){   guivalues.timeShift = value; });
 			//source: This code no longer appears to contain anything that belongs to Rudie Dirkx http://hotblocks.nl/tests/three/dat.gui.html 
+
 			//source: MIT License OR "This code no longer appears to contain anything that belongs to josdirksen?"
 			/*
 			* Returns member of set with a given mean and standard deviation
@@ -1382,6 +1455,7 @@ soundManager.onready(function() {
 			function createMemberInNormalDistribution(mean,std_dev){
 				return mean + (gaussRandom()*std_dev);
 			}
+
 			/*
 			* Returns random number in normal distribution centering on 0.
 			* ~95% of numbers returned should fall between -2 and 2
@@ -1392,8 +1466,10 @@ soundManager.onready(function() {
 				var r = u*u + v*v;
 				/*if outside interval [0,1] start over*/
 				if(r == 0 || r > 1) return gaussRandom();
+
 				var c = Math.sqrt(-2*Math.log(r)/r);
 				return u*c;
+
 				/* todo: optimize this algorithm by caching (v*c) 
 				 * and returning next time gaussRandom() is called.
 				 * left out for simplicity */
@@ -1424,6 +1500,7 @@ soundManager.onready(function() {
 				//composer.render();
 				}
 			//source: MIT License OR "This code no longer appears to contain anything that belongs to josdirksen?"
+
 			//source: MIT License OR "This code no longer appears to contain anything that belongs to josdirksen?"
 			function render() {
 				keyboard.update();
@@ -1529,6 +1606,7 @@ soundManager.onready(function() {
 																		//drivereverse = true;
 																		//targetx = -18.77;																																				//camera.position.x = -15.77;
 																		//targetz = -18.64;
+
 																		buoy2Backup = true;
 																		camera.position.x = -15.77;
 																		camera.position.z = -24.64;
@@ -1608,6 +1686,7 @@ soundManager.onready(function() {
 																																																}}}}}}}}}}}}}}}}}}																	
 														
 				var newdistancetotarget = Math.pow((Math.pow((camera2.position.x-targetx),2)+Math.pow((camera2.position.y-targety),2)+Math.pow((camera2.position.z-targetz),2)),0.5);
+
 				deltatargetvelocity = lastTargetDistance - newdistancetotarget;
 				
 				if ((-.00021288497260888326)*(Math.abs(Math.pow(camera.position.x,3)))+(-.0038646361243415903)*(Math.pow(camera.position.x,2))+(-.044978127733920653)*(Math.abs(camera.position.x))+(30.78479999999999851)-(camera.position.z) < 2.0) {
@@ -1678,6 +1757,7 @@ soundManager.onready(function() {
 							autoBackward = false;
 							camControls.moveBackward = false;
 							camControls2.moveBackward = false;
+
 					
 							camControls.moveForward = true;
 							camControls2.moveForward = true;
@@ -1710,6 +1790,7 @@ soundManager.onready(function() {
 							autoForward = false;
 							camControls.moveBackward = true;
 							camControls2.moveBackward = true;
+
 					
 							camControls.moveForward = false;
 							camControls2.moveForward = false;
@@ -1792,8 +1873,11 @@ soundManager.onready(function() {
 					}*/
 				}
 				frameCounter++;
+
+
 				sphere.position.copy( spotLightRED.position );
 				//sphere2.position.copy( spotLightSUN.position );
+
 				var lightFix = new function(){
 					//this function uses a spectra specific implementation of the beer-lambert law to modify lighting intensity as a function of depth
 					//when combined with colored exponential fog, it is a reasonable approximation for the color specific light attenuation observed underwater 
@@ -1815,6 +1899,7 @@ soundManager.onready(function() {
 					adjIntensity3RED = (intensity3 * (Math.exp(-.006 * depthcm)));
 					adjIntensity3GREEN = (intensity3 * (Math.exp(-.00032 * depthcm)));
 					adjIntensity3BLUE = (intensity3 * (Math.exp(-.000247 * depthcm)));
+
 					
 					//artificial sun light set
 					spotLightRED.intensity = adjIntensity1RED;
@@ -1831,6 +1916,7 @@ soundManager.onready(function() {
 					light2Green.intensity = adjIntensity2GREEN;
 					lightBlue.intensity = adjIntensity2BLUE;
 					light2Blue.intensity = adjIntensity2BLUE;
+
 					//ambient light set
 					ambientLightRed.intensity = adjIntensity3RED;
 					ambientLight2Red.intensity = adjIntensity3RED;
@@ -1886,6 +1972,7 @@ soundManager.onready(function() {
 				
 				
 				
+
 				if ( keyboard.pressed("P") ) {guivalues.savetext("labels");}//lightFix.lightDepthFix();}
 				if ( keyboard.pressed("V") ) {
 					//guivalues.lightDepthFix();
@@ -1937,7 +2024,7 @@ soundManager.onready(function() {
 				}
 //				if ( frameCounter >= desiredFrameCounter1) {buoy1Backup = true;}
 //				if ( frameCounter >= desiredFrameCounter2) {buoy2Backup = true;}
-				if ( camera2.position.x < -22.94 && camera2.position.x > -23.34 && camera2.position.y < -2.0 && camera2.position.y > -2.4 && camera2.position.z < -21.51 && camera2.position.z > -21.91 ) {
+				if ( camera2.position.x < -21.59 && camera2.position.x > -21.99 && camera2.position.y < -1.83 && camera2.position.y > -2.23 && camera2.position.z < -19.44 && camera2.position.z > -19.84 ) {
 					buoy1Points = true;
 					console.log("Buoy1 Points!");
 					if(savecsv3){
@@ -1959,7 +2046,7 @@ soundManager.onready(function() {
 						guivalues.savetext("buoy2save");
 					}
 				}
-				if ( camera2.position.x < -21.59 && camera2.position.x > -21.99 && camera2.position.y < -1.83 && camera2.position.y > -2.23 && camera2.position.z < -19.44 && camera2.position.z > -19.84 ) {
+				if ( camera2.position.x < -22.94 && camera2.position.x > -23.34 && camera2.position.y < -2.0 && camera2.position.y > -2.4 && camera2.position.z < -21.51 && camera2.position.z > -21.91 ) {
 					buoy3Points = true;
 					console.log("Buoy3 Points!");
 					if(savecsv5){
@@ -1993,9 +2080,15 @@ soundManager.onready(function() {
 					octagon2Points = true;
 					console.log("Octagon2 Points!");
 				}
+
+
+
+
+
 				///////////////////////////////////////////////////////////////////////////////////////////////////
 				//This section determines if the camera position is within the "hitbox" to award objective points//
 				///////////////////////////////////////////////////////////////////////////////////////////////////
+
 				///////////////////////////////////////////////////////////////
 				//This section tallys objective points that have been awarded//
 				///////////////////////////////////////////////////////////////
@@ -2045,12 +2138,15 @@ soundManager.onready(function() {
 					}
 				}
 				console.log("Total Points: " + totalPoints);
+
 				///////////////////////////////////////////////////////////////
 				//This section tallys objective points that have been awarded//
 				///////////////////////////////////////////////////////////////
+
 				lightFix.lightDepthFix();
 				//if ( true ) {
 					//guivalues.lightDepthFix();
+
 				//}
 				if ( camera2.position.y > -0.80) { //cheap hack to bypass the fog entangling impact of using a single .obj/.mtl file above and below water
 						scene2.fog.density = 0.0; 
@@ -2071,14 +2167,17 @@ soundManager.onready(function() {
 				if ( camera2.position.y > -1.04 ) { //cheap hack to bound behavior
 						//camera2.position.y = 5.5; 
 						//camera.position.y = 5.5; 
+
 						camera2.position.y = -1.04; 
 						camera.position.y = -1.04; 
 					}
+
 				
 				renderer.render( scene, camera ); //render everything else
 				renderer2.render( scene2, camera2 ); //render everything else
 			}
 			//source: MIT License OR "This code no longer appears to contain anything that belongs to josdirksen?"
+
 		</script>
 	</body>
 </html>
