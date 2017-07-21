@@ -240,6 +240,7 @@ var parameters = {
 			}
 //I'll admit: I can't remember what this does or where it came from			
 			var waterNormals;
+			var audio = new Audio('images/bell.mp3');
 			resetfilename = "";
 			obstaclesLoaded = false;
 			obstacles2Loaded = false;
@@ -1155,6 +1156,7 @@ var parameters = {
 						//imagenumber = 0; 
 						//imageletter++; 
 						this.savetext("maneuversave");
+						audio.play();
 						savecsv1 = false;
 					}}
 				    };
@@ -1980,6 +1982,7 @@ var parameters = {
 						savecsv2 = false;
 						//imagenumber = 0; 
 						//imageletter++; 
+						audio.play();
 						guivalues.savetext("pathmarker1save");
 					}
 				}
@@ -1990,6 +1993,7 @@ var parameters = {
 						savecsv6 = false;
 						//imagenumber = 0; 
 						//imageletter++; 
+						audio.play();
 						guivalues.savetext("pathmarker2save");
 					}
 				}
@@ -2015,7 +2019,7 @@ var parameters = {
 				}
 //				if ( frameCounter >= desiredFrameCounter1) {buoy1Backup = true;}
 //				if ( frameCounter >= desiredFrameCounter2) {buoy2Backup = true;}
-				if ( camera2.position.x < -21.59 && camera2.position.x > -21.99 && camera2.position.y < -1.83 && camera2.position.y > -2.23 && camera2.position.z < -19.44 && camera2.position.z > -19.84 ) {
+				if ( camera2.position.x < -22.94 && camera2.position.x > -23.34 && camera2.position.y < -2.0 && camera2.position.y > -2.4 && camera2.position.z < -21.51 && camera2.position.z > -21.91 ) {
 					buoy1Points = true;
 					console.log("Buoy1 Points!");
 					if(savecsv3){
@@ -2023,6 +2027,7 @@ var parameters = {
 						//desiredFrameCounter1 = frameCounter +50000;
 						//imagenumber = 0; 
 						//imageletter++; 
+						audio.play();
 						guivalues.savetext("buoy1save");
 					}
 				}
@@ -2033,17 +2038,19 @@ var parameters = {
 						savecsv4 = false;
 						//desiredFrameCounter1 = frameCounter +50000;
 						//imagenumber = 0; 
-						//imageletter++; 
+						//imageletter++;
+						audio.play();
 						guivalues.savetext("buoy2save");
 					}
 				}
-				if ( camera2.position.x < -22.94 && camera2.position.x > -23.34 && camera2.position.y < -2.0 && camera2.position.y > -2.4 && camera2.position.z < -21.51 && camera2.position.z > -21.91 ) {
+				if ( camera2.position.x < -21.59 && camera2.position.x > -21.99 && camera2.position.y < -1.83 && camera2.position.y > -2.23 && camera2.position.z < -19.44 && camera2.position.z > -19.84 ) {
 					buoy3Points = true;
 					console.log("Buoy3 Points!");
 					if(savecsv5){
 						savecsv5 = false;
 						//imagenumber = 0; 
 						//imageletter++; 
+						audio.play();
 						guivalues.savetext("buoy3save");
 					}
 				}
