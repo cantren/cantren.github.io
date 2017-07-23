@@ -1144,18 +1144,20 @@ var parameters = {
 					imagenumber++;
 					console.log("Mouse x: " + camControls.mouseX.toString() + " Mouse y:" + camControls.mouseY.toString() );
 					//this.randomVis();
-					filename1 = "hmnfwd" + String.fromCharCode(imageletter) + imagenumber.toString() + ".png"
-					filename2 = "hmndwn" + String.fromCharCode(imageletter) + imagenumber.toString() + ".png"
+					filename1 = "testfwd" + String.fromCharCode(imageletter) + imagenumber.toString() + ".png"
+					filename2 = "testdwn" + String.fromCharCode(imageletter) + imagenumber.toString() + ".png"
 					this.saveimage1();
 					this.saveimage2();
 					console.log(["filename1", "filename2", "position.x", "position.y", "position.z", "rotation.y","mousex","mousey","W","A","S","D","validationgatePoints","pathmarker1Points","buoy1Points","buoy1Backup","buoy2Points","buoy2Backup","buoy3Points","pathmarker2Points","maneuverPoints","pathmarker3Points","pathmarker4Points","pathmarker5Points","octagon1Points","pathmarker6Points","pathmarker7Points","octagon2Points"]);
 					console.log([filename1, filename2, camera.position.x.toString(), camera.position.y.toString(), camera.position.z.toString(), camera.rotation.y.toString(), camControls.mouseX.toString(), camControls.mouseY.toString(), keyboard.pressed("W"), keyboard.pressed("A"), keyboard.pressed("S"), keyboard.pressed("D"),validationgatePoints,pathmarker1Points,buoy1Points,buoy1Backup,buoy2Points,buoy2Backup,buoy3Points,pathmarker2Points,maneuverPoints,pathmarker3Points,pathmarker4Points,pathmarker5Points,octagon1Points,pathmarker6Points,pathmarker7Points,octagon2Points]); 
 					//if(record){data.push([filename1, filename2, camera.position.x.toString(), camera.position.y.toString(), camera.position.z.toString(), camera.rotation.y.toString(), camControls.mouseX.toString(), camControls.mouseY.toString(), camControls.autoForward, keyboard.pressed("A"), camControls.autoBackward, keyboard.pressed("D"),validationgatePoints,pathmarker1Points,buoy1Points,buoy1Backup,buoy2Points,buoy2Backup,buoy3Points,pathmarker2Points,maneuverPoints,pathmarker3Points,pathmarker4Points,pathmarker5Points,octagon1Points,pathmarker6Points,pathmarker7Points,octagon2Points]);}
+					//data = [["filename1", "filename2", "position.x", "position.y", "position.z", "rotation.z"], ["fwda00001.png", "dwna00001.png", "0", "0", "0", "3"]];
 					if(record){data.push([filename1, filename2, camera.position.x.toString(), camera.position.y.toString(), camera.position.z.toString(), camera.rotation.y.toString(), camControls.mouseX.toString(), camControls.mouseY.toString(), keyboard.pressed("W"), keyboard.pressed("A"), keyboard.pressed("S"), keyboard.pressed("D"),validationgatePoints,pathmarker1Points,buoy1Points,buoy1Backup,buoy2Points,buoy2Backup,buoy3Points,pathmarker2Points,maneuverPoints,pathmarker3Points,pathmarker4Points,pathmarker5Points,octagon1Points,pathmarker6Points,pathmarker7Points,octagon2Points]);}
+					this.savetext("labels.csv");
 					if(maneuverPoints && savecsv1){
 						//imagenumber = 0; 
 						//imageletter++; 
-						this.savetext("maneuversave");
+						//this.savetext("maneuversave");
 						audio.play();
 						savecsv1 = false;
 					}}
@@ -1499,7 +1501,7 @@ var parameters = {
 				keyboard.update();
 				var lastTargetDistance = Math.pow((Math.pow((camera2.position.x-targetx),2)+Math.pow((camera2.position.y-targety),2)+Math.pow((camera2.position.z-targetz),2)),0.5);
 				var reward = 0;
-				onmousemove = function(e){mouseposx = e.clientX; mouseposy = e.clientY;}
+				onmousemove = function(e){mouseposx = e.clientX; mouseposy = e.clientY; guivalues.saveimage(); guivalues.savetext();}
 				
 				var time = performance.now() * 0.001; //Measure time for water
 				/* //periodic noise
@@ -1983,7 +1985,7 @@ var parameters = {
 						//imagenumber = 0; 
 						//imageletter++; 
 						audio.play();
-						guivalues.savetext("pathmarker1save");
+						//guivalues.savetext("pathmarker1save");
 					}
 				}
 				if ( camera2.position.x < -24.56 && camera2.position.x > -24.96 && camera2.position.z < -19.14 && camera2.position.z > -19.54 ) {
@@ -1994,7 +1996,7 @@ var parameters = {
 						//imagenumber = 0; 
 						//imageletter++; 
 						audio.play();
-						guivalues.savetext("pathmarker2save");
+						//guivalues.savetext("pathmarker2save");
 					}
 				}
 				if ( camera2.position.x < -24.5 && camera2.position.x > -24.9 && camera2.position.z < -19.21 && camera2.position.z > -19.61 ) {
@@ -2028,7 +2030,7 @@ var parameters = {
 						//imagenumber = 0; 
 						//imageletter++; 
 						audio.play();
-						guivalues.savetext("buoy1save");
+						//guivalues.savetext("buoy1save");
 					}
 				}
 				if ( camera2.position.x < -21.59 && camera2.position.x > -21.99 && camera2.position.y < -1.83 && camera2.position.y > -2.23 && camera2.position.z < -19.44 && camera2.position.z > -19.84 ) {
@@ -2040,7 +2042,7 @@ var parameters = {
 						//imagenumber = 0; 
 						//imageletter++;
 						audio.play();
-						guivalues.savetext("buoy2save");
+						//guivalues.savetext("buoy2save");
 					}
 				}
 				if ( camera2.position.x < -22.27 && camera2.position.x > -22.67 && camera2.position.y < -1.92 && camera2.position.y > -2.32 && camera2.position.z < -20.49 && camera2.position.z > -20.89 ) {					
@@ -2051,7 +2053,7 @@ var parameters = {
 						//imagenumber = 0; 
 						//imageletter++; 
 						audio.play();
-						guivalues.savetext("buoy3save");
+						//guivalues.savetext("buoy3save");
 					}
 				}
 				if ( (camera2.position.x < -29.09 && camera2.position.x > -29.39 && camera2.position.y < -1.3 && camera2.position.y > -2.12 && camera2.position.z < -13.43 && camera2.position.z > -13.83) || (camera2.position.x < -29.43 && camera2.position.x > -29.75 && camera2.position.y < -1.3 && camera2.position.y > -2.12 && camera2.position.z < -13.63 && camera2.position.z > -14.03)) {
