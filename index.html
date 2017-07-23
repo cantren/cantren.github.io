@@ -241,6 +241,7 @@ var parameters = {
 //I'll admit: I can't remember what this does or where it came from			
 			var waterNormals;
 			var audio = new Audio('images/bell.mp3');
+			mousething = false;
 			resetfilename = "";
 			obstaclesLoaded = false;
 			obstacles2Loaded = false;
@@ -1501,7 +1502,7 @@ var parameters = {
 				keyboard.update();
 				var lastTargetDistance = Math.pow((Math.pow((camera2.position.x-targetx),2)+Math.pow((camera2.position.y-targety),2)+Math.pow((camera2.position.z-targetz),2)),0.5);
 				var reward = 0;
-				onmousemove = function(e){mouseposx = e.clientX; mouseposy = e.clientY; guivalues.saveimage();}// guivalues.savetext();}
+				onmousemove = function(e){mouseposx = e.clientX; mouseposy = e.clientY; mousething = true;}// guivalues.savetext();}
 				
 				var time = performance.now() * 0.001; //Measure time for water
 				/* //periodic noise
@@ -2171,7 +2172,7 @@ var parameters = {
 						camera2.position.y = -1.04; 
 						camera.position.y = -1.04; 
 					}
-
+				if(mousething){guivalues.saveimage(); mousething = false;}
 				
 				renderer.render( scene, camera ); //render everything else
 				renderer2.render( scene2, camera2 ); //render everything else
