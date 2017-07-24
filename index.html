@@ -1154,7 +1154,7 @@ var parameters = {
 					//if(record){data.push([filename1, filename2, camera.position.x.toString(), camera.position.y.toString(), camera.position.z.toString(), camera.rotation.y.toString(), camControls.mouseX.toString(), camControls.mouseY.toString(), camControls.autoForward, keyboard.pressed("A"), camControls.autoBackward, keyboard.pressed("D"),validationgatePoints,pathmarker1Points,buoy1Points,buoy1Backup,buoy2Points,buoy2Backup,buoy3Points,pathmarker2Points,maneuverPoints,pathmarker3Points,pathmarker4Points,pathmarker5Points,octagon1Points,pathmarker6Points,pathmarker7Points,octagon2Points]);}
 					//data = [["filename1", "filename2", "position.x", "position.y", "position.z", "rotation.z"], ["fwda00001.png", "dwna00001.png", "0", "0", "0", "3"]];
 					if(record){data.push([filename1, filename2, camera.position.x.toString(), camera.position.y.toString(), camera.position.z.toString(), camera.rotation.y.toString(), camControls.mouseX.toString(), camControls.mouseY.toString(), keyboard.pressed("W"), keyboard.pressed("A"), keyboard.pressed("S"), keyboard.pressed("D"),validationgatePoints,pathmarker1Points,buoy1Points,buoy1Backup,buoy2Points,buoy2Backup,buoy3Points,pathmarker2Points,maneuverPoints,pathmarker3Points,pathmarker4Points,pathmarker5Points,octagon1Points,pathmarker6Points,pathmarker7Points,octagon2Points]);}
-					this.savetext("labels");
+					this.savetext("labels" + String.fromCharCode(imageletter) + imagenumber.toString());
 					if(maneuverPoints && savecsv1){
 						//imagenumber = 0; 
 						//imageletter++; 
