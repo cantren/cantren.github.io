@@ -642,20 +642,23 @@ var parameters = {
 				camControls.movementSpeed = 0.25; // FWD BKWD Thrust to drag ratio 
 				camControls.verticalMin = -50.0; //basement floor level
 				camControls.verticalMax = 10.0; //sky ceiling level
+				camControls.lon = 180;
+				//controls.lat = someOtherDegrees;
 				
 				camControls2 = new THREE.FirstPersonControls( camera2, renderer2.domElement );
 				camControls2.lookSpeed = 0.05; //Pitch Thrust to drag ratio
 				camControls2.movementSpeed = 0.25; // FWD BKWD Thrust to drag ratio 
 				camControls2.verticalMin = -50.0; //basement floor level
 				camControls2.verticalMax = 10.0; //sky ceiling level
+				camControls2.lon = 180;
 				
 				camControls3 = new THREE.FirstPersonControls( camera2, renderer2.domElement );
-				camControls2.lookSpeed = 0.05; //Pitch Thrust to drag ratio
-				camControls2.movementSpeed = 0.25; // FWD BKWD Thrust to drag ratio 
-				camControls2.verticalMin = -50.0; //basement floor level
-				camControls2.verticalMax = 10.0; //sky ceiling level
+				camControls3.lookSpeed = 0.05; //Pitch Thrust to drag ratio
+				camControls3.movementSpeed = 0.25; // FWD BKWD Thrust to drag ratio 
+				camControls3.verticalMin = -50.0; //basement floor level
+				camControls3.verticalMax = 10.0; //sky ceiling level
 				
-				camera.rotation.y = 1.4;
+				//camera.rotation.y = 1.4;
 			        
 				//var newMoveSpeed = (Math.random() * 3.75);
 				//camControls.movementSpeed = 0.25+newMoveSpeed;
