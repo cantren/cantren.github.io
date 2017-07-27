@@ -600,8 +600,7 @@ var parameters = {
 				camera.position.z += (Math.random()*4 - 2);
 //normal starting location
 			        camera.rotation.z = 3.06;
-				camera.rotation.y = 1.4;
-			        camera.near = 0.5;
+				camera.near = 0.5;
 				camera.far = 21.5;
 			        
 			        camera2 = new THREE.PerspectiveCamera(85, window.innerWidth / window.innerHeight, 0.5, 3000000);
@@ -656,6 +655,8 @@ var parameters = {
 				camControls2.verticalMin = -50.0; //basement floor level
 				camControls2.verticalMax = 10.0; //sky ceiling level
 				
+				camera.rotation.y = 1.4;
+			        
 				//var newMoveSpeed = (Math.random() * 3.75);
 				//camControls.movementSpeed = 0.25+newMoveSpeed;
 				//camControls2.movementSpeed = 0.25+newMoveSpeed;
