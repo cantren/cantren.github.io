@@ -802,6 +802,11 @@ var parameters = {
 				//the "secret sauce" is in these .obj and .mtl files.
 //				var loader = new THREE.OBJLoader(); //this object does the work
 				var loader = new THREE.OBJMTLLoader(); //this object does the work
+				var jsonloader = new THREE.OBJLoader();
+				
+				jsonloader.load('../obj/dante/octopus-obj.json', function ( object ) {
+				 	scene.add( object );
+				});
 //
 //				loader.load('../obj/transdec OBJ/transdec test.obj', function ( object ) {
 				loader.load('../obj/transdec OBJ/transdec test.obj', '../obj/transdec OBJ/transdec test.mtl', function ( object ) {
