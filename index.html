@@ -823,7 +823,7 @@ var parameters = {
 //					for(var i in object.children) {
 //					        object.children[i].material = new THREE.MeshDepthMaterial({color: 0x2194CE});
 //						}
-					scene.add( object );//to make a Robosub you would likely need to change it's name from "object"
+					//scene.add( object );//to make a Robosub you would likely need to change it's name from "object"
 					obstaclesLoaded = true;
 					});
 //				loader.load('../obj/transdec OBJ/transdec test.obj', function ( object ) {
@@ -835,7 +835,7 @@ var parameters = {
 //				loader.load('../obj/robosub obstacles/obstacles.obj', function ( object ) {
 				loader.load('../obj/robosub obstacles/obstacles.obj', '../obj/robosub obstacles/obstacles.mtl', function ( object ) {
 					object.position.y = -12.975;//experimentally generated via trial and error
-					scene2.add( object );//to make a Robosub you would likely need to change it's name from "object"
+					//scene2.add( object );//to make a Robosub you would likely need to change it's name from "object"
 					obstacles2Loaded = true;
 					});
 
