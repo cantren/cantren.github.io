@@ -1755,7 +1755,7 @@ var parameters = {
 				var outputDepth = (depthKp*errorDepth) - (depthKi*integralDepth) + (depthKd*derivativeDepth);
 				previouserrorDepth = errorDepth;
 				if(autopilotrun){camControls.mouseY  = -1*outputDepth;}
-				console.log("currentDepth: " + currentDepth + " targetYaw: " + targety + " errorDepth: " + errorDepth + " outputDepth: " + outputDepth + " mouseY: " + camControls.mouseY);	
+				//console.log("currentDepth: " + currentDepth + " targetYaw: " + targety + " errorDepth: " + errorDepth + " outputDepth: " + outputDepth + " mouseY: " + camControls.mouseY);	
                                 /*
 					if(!drivereverse){
 						if( (Math.abs(outputYaw) < 1) && (Math.abs(errorYaw)<0.02)  && transdecLoaded && transdec2Loaded && obstaclesLoaded && obstacles2Loaded){
