@@ -1,116 +1,428 @@
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>three.js webgl - loaders - Clara.io JSON loader</title>
+		<title>SimBox - Robosub Simulator</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-		<link type="text/css" rel="stylesheet" href="main.css">
+		<style>
+			body {
+				color: #000;
+				font-family:Monospace;
+				font-size:13px;
+				margin: 0px;
+				overflow: hidden;
+			}
+
+			#info {
+				position: absolute;
+				top: 0px; width: 100%;
+				text-align:center;
+				padding: 5px;
+			}
+			
+			#inset  {
+				width: 200px;
+				height: 200px;
+				background-color: #fff; /* or transparent; will show through only if renderer alpha: true */
+				border: 1px solid black; /* or none; */
+				margin: 20px;
+				padding: 0px;
+				position: absolute;
+				left: 0px;
+				bottom: 0px;
+    				z-index: 100;
+			}
+
+			a {
+
+				color: #000000;
+			}
+
+		</style>
 	</head>
-
 	<body>
-		<div id="info">
-		<a href="http://threejs.org" target="_blank" rel="noopener">three.js</a> - <a href="https://clara.io" target="_blank" rel="noopener">Clara.io</a> JSON THREE.Scene/Object Load Test<br/>
-		More Information: <a href="https://clara.io/learn/user-guide/data_exchange/threejs_export" target="_blank" rel="noopener">Clara.io ThreeJS Export Documentation</a>
-		</div>
 
-                <script type="module">
+		<div id="info"><a href="https://github.com/cantren/cantren.github.io/" target="_blank">Code</a></a> - Please "fork" as this page changes often.</div>
+		<div id="container">
+		<div id="inset">
+		<script src="../js/three.min.js"></script>
 
-			import * as THREE from '../js/three.module.js';
-			var container;
+		<script src="../js/FirstPersonControls.js"></script>
+		<script src="../js/Mirror.js"></script>
+		<script src="../js/WaterShader.js"></script>
 
-			var camera, scene, renderer;
+		<script src="../js/Detector.js"></script>
+		<script src="../js/stats.min.js"></script>
 
-			var mouseX = 0, mouseY = 0;
+		<script src="js/MTLLoader.js"></script>
+		<script src="js/OBJMTLLoader.js"></script>
+		
+  
+		<script>
 
-			var windowHalfX = window.innerWidth / 2;
-			var windowHalfY = window.innerHeight / 2;
+			if ( ! Detector.webgl ) {
 
+				Detector.addGetWebGLMessage();
+				document.getElementById( 'container' ).innerHTML = "";
+
+			}
+
+			var container, container2, stats;//cargo cult code comment out this line please(may be desired in future)
+			var camera, camera2, camControls, camControls2, scene, scene2, renderer, renderer2;//these are actually usefull
+			var sphere;//cargo cult code delete this line please
+			var CANVAS_WIDTH = 200,
+			    CANVAS_HEIGHT = 200,
+			    CAM_DISTANCE = 300;
+			
+			
+			var clock = new THREE.Clock();//I spent a long time debugging because I forgot to initialize this
+			//smartjava.org
+			//var ws = new WebSocket("ws://localhost:8889/");
+			//var frame = 0;
+			//var isOpen = false;
+			//ws.onopen = function(e) {
+			//    console.log('opening');
+			//    isOpen = true;
+			//    };
+			//ws.onclose = function(e) {
+			//    console.log('closing');
+			//    console.log(e);
+			//    isOpen = false;
+			//    };
+			//ws.onerror = function(e) {
+			//    console.log('error');
+			//    console.log(e);
+			//    };
+			//smartjava.org    
+			    
+			var parameters = {
+				width: 2000,
+				height: 2000,
+				widthSegments: 250,
+				heightSegments: 250,
+				depth: 1500,
+				param: 4,
+				filterparam: 1
+			}
+			
+			var waterNormals;
 
 			init();
 			animate();
-
+			//setInterval(animate(), 2000);//uncomment out this line if on autopilot
 
 			function init() {
 
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
-
-				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 2000 );
-				camera.position.z = 4;
-
-				// scene
-
-				scene = new THREE.Scene();
-
-				var ambient = new THREE.AmbientLight( 0x444444 );
-				scene.add( ambient );
-
-				var directionalLight = new THREE.DirectionalLight( 0xffeedd );
-				directionalLight.position.set( 0, 0, 1 ).normalize();
-				scene.add( directionalLight );
-
-				// BEGIN Clara.io JSON loader code
-				var objectLoader = new THREE.ObjectLoader();
-				objectLoader.load( "https://raw.githubusercontent.com/cantren/cantren.github.io/master/obj/dante/octopus-obj.json", function ( geometry) {
-                                    var material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
-                                    var mesh = new THREE.Mesh(geometry, material);
-                                    scene.add(mesh);
-				} );
-				// END Clara.io JSON loader code
-
+				
 				renderer = new THREE.WebGLRenderer();
 				renderer.setPixelRatio( window.devicePixelRatio );
-				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.setSize( (window.innerWidth), (window.innerHeight) );
 				container.appendChild( renderer.domElement );
 
-				document.addEventListener( 'mousemove', onDocumentMouseMove, false );
 
-				//
+				container2 = document.getElementById('inset');
+				// renderer
+				renderer2 = new THREE.WebGLRenderer();
+				renderer2.setClearColor( 0xf0f0f0, 1 );
+				renderer2.setSize( CANVAS_WIDTH, CANVAS_HEIGHT );
+				container2.appendChild( renderer2.domElement );
 
-				window.addEventListener( 'resize', onWindowResize, false );
 
-			}
+				scene = new THREE.Scene();
+				scene2 = new THREE.Scene();
+				
+				//add water colored fog
+				//scene.fog = new THREE.FogExp2( 0x008080, 0.1875 );
+				scene.fog = new THREE.FogExp2( 0x008080, 0.1375 );
+				scene2.fog = new THREE.FogExp2( 0x008080, 0.1875 );
+				
+				camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.5, 3000000);
+				
+				camera.position.x = 0;//pool line of symetry is x axis
+        			camera.position.y = -2;//water depth
+			        camera.position.z = -28;//how close to the wall are you
+			        
+			        camera2 = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.5, 3000000);
+			        camera2.up = camera.up; // important!
+			        
+			        camera2.position.x = 0;//pool line of symetry is x axis
+        			camera2.position.y = -2;//water depth
+			        camera2.position.z = -28;//how close to the wall are you
+				//camera.position.set( 0, -2, -28 );
+        			
+        			camControls = new THREE.FirstPersonControls( camera );
+        			camControls.lookSpeed = 0.05; //Pitch Thrust to drag ratio
+        			camControls.movementSpeed = 0.25; // FWD BKWD Thrust to drag ratio 
+        			camControls.verticalMin = -100.0; //basement floor level
+        			camControls.verticalMax = 50.0; //sky ceiling level
+        			
+        			camControls2 = new THREE.FirstPersonControls( camera2 );
+        			camControls2.lookSpeed = 0.05; //Pitch Thrust to drag ratio
+        			camControls2.movementSpeed = 0.25; // FWD BKWD Thrust to drag ratio 
+        			camControls2.verticalMin = -100.0; //basement floor level
+        			camControls2.verticalMax = 50.0; //sky ceiling level
+        			
+        			
+				//Add scene lighting
+				var light = new THREE.HemisphereLight( 0xffffbb, 0x008080, 1 );//I tried changing the light color here to see what would happen
+				light.position.set( - 1, 1, - 1 ); //my hemisphere flipped upside down
+				scene.add( light );//I changed the name to distinguish a negative y value from "sunlight"
 
-			function onWindowResize() {
+				var light2 = new THREE.HemisphereLight( 0xffffbb, 0x008080, 1 );//I tried changing the light color here to see what would happen
+				light2.position.set( - 1, 1, - 1 ); //my hemisphere flipped upside down
+				scene2.add( light2 );//I changed the name to distinguish a negative y value from "sunlight"
+				
+				//More scene lighting
+				var ambientLight = new THREE.AmbientLight(0x383838);
+        			scene.add(ambientLight);
+        			
+        			var ambientLight2 = new THREE.AmbientLight(0x383838);
+				scene2.add(ambientLight2);
+				
+        			// add spotlight for the shadows
+        			var spotLight = new THREE.SpotLight(0xffffff);
+        			spotLight.position.set(100, 140, 130);
+        			spotLight.intensity = 2;
+        			scene.add(spotLight);
+        			
+        			var spotLight2 = new THREE.SpotLight(0xffffff);
+        			spotLight2.position.set(100, 140, 130);
+        			spotLight2.intensity = 2;
+        			scene2.add(spotLight2);
 
-				windowHalfX = window.innerWidth / 2;
-				windowHalfY = window.innerHeight / 2;
 
-				camera.aspect = window.innerWidth / window.innerHeight;
-				camera.updateProjectionMatrix();
+				//load and insert the obj meshes and mtl textures
+				//the "secret sauce" is in these .obj and .mtl files.
+				var loader = new THREE.OBJMTLLoader(); //this object does the work
+				loader.load('../obj/transdec OBJ/transdec test.obj', '../obj/transdec OBJ/transdec test.mtl', function ( object ) {
+					object.position.y = -12.975;//experimentally generated via trial and error
+					scene.add( object );//to make a Robosub you would likely need to change it's name from "object"
+					});
+        			loader.load('../obj/robosub obstacles/obstacles.obj', '../obj/robosub obstacles/obstacles.mtl', function ( object ) {
+					object.position.y = -12.975;//experimentally generated via trial and error
+					scene.add( object );//to make a Robosub you would likely need to change it's name from "object"
+					});
+				loader.load('../obj/transdec OBJ/transdec test.obj', '../obj/transdec OBJ/transdec test.mtl', function ( object ) {
+					object.position.y = -12.975;//experimentally generated via trial and error
+					scene2.add( object );//to make a Robosub you would likely need to change it's name from "object"
+					});
+        			loader.load('../obj/robosub obstacles/obstacles.obj', '../obj/robosub obstacles/obstacles.mtl', function ( object ) {
+					object.position.y = -12.975;//experimentally generated via trial and error
+					scene2.add( object );//to make a Robosub you would likely need to change it's name from "object"
+					});
 
-				renderer.setSize( window.innerWidth, window.innerHeight );
+				waterNormals = new THREE.ImageUtils.loadTexture( 'textures/waternormals.jpg' ); //potential for easy modification/obstacle reflections
+				waterNormals.wrapS = waterNormals.wrapT = THREE.RepeatWrapping; //recycle that .jpg like a TV re-run
+				//initialize/declare water shader and provide parameters
+				water = new THREE.Water( renderer, camera, scene, { //three.js has a specific thing for water, this is it
+					textureWidth: 512, //size of waves I think, maybe the waternormals.jpg stretch?
+					textureHeight: 512, //size of waves I think, maybe the waternormals.jpg stretch?
+					waterNormals: waterNormals, //provides the .jpg Texture
+					alpha: 	1.0, //how transparent is the water?
+					//sunDirection: new THREE.Vector3( 0.70707, -0.70707, 0 ), 
+					sunDirection: light.position.clone().normalize(), // I think this makes the reflection normal to the texture
+					sunColor: 0xffffff, //Light has to hit the water, what color is it?
+					waterColor: 0xe7e7ec,//,0x000000,//0x001e0f,//0xe7e7ec,//0x001e0f,//water color for different effects
+					distortionScale: 50.0, //also related to size of waves?
+				});
 
-			}
+				//initialize/declare new planes for holding the "water" texture mapping
+				mirrorMesh = new THREE.Mesh(
+					new THREE.PlaneBufferGeometry( parameters.width * 500, parameters.height * 500 ),
+					water.material
+				);
+				mirrorMesh2 = new THREE.Mesh(
+					new THREE.PlaneBufferGeometry( parameters.width * 500, parameters.height * 500 ),
+					water.material
+				);
 
-			function onDocumentMouseMove( event ) {
+				mirrorMesh.add( water ); //add water shader to otherwise boring underwater PlaneBufferGeometry
+				mirrorMesh2.add( water ); //add water shader to otherwise boring PlaneBufferGeometry
+				mirrorMesh.rotation.x = - Math.PI * 1.5; //rotate undwater water surface to point down
+				mirrorMesh2.rotation.x = - Math.PI * 0.5; //rotate water surface to point up
+				scene.add( mirrorMesh ); //add underwater water surface
+				scene.add( mirrorMesh2); //add water surface 
 
-				mouseX = ( event.clientX - windowHalfX ) / 2;
-				mouseY = ( event.clientY - windowHalfY ) / 2;
+				// load skybox &/or (start example code copypasta: http://threejs.org/examples/#webgl_shaders_ocean)
+				var cubeMap = new THREE.CubeTexture( [] );//initialize/declare the texture object to be mapped to the skybox mesh var skyBox = new THREE.Mesh
+				cubeMap.format = THREE.RGBFormat;//don't know or care
+				cubeMap.flipY = false;//if you make this true the walls of the box go below the horizon
+
+				//var cubeMap2 = new THREE.CubeTexture( [] );//initialize/declare the texture object to be mapped to the skybox mesh var skyBox = new THREE.Mesh
+				//cubeMap2.format = THREE.RGBFormat;//don't know or care
+				//cubeMap2.flipY = true;//if you make this true the walls of the box go below the horizon
+
+				var loader = new THREE.ImageLoader();
+				loader.load( '../textures/skyboxsun25degtest.png', function ( image ) {
+
+					var getSide = function ( x, y ) {
+
+						var size = 1024;
+
+						var canvas = document.createElement( 'canvas' );
+						canvas.width = size;
+						canvas.height = size;
+
+						var context = canvas.getContext( '2d' );
+						context.drawImage( image, - x * size, - y * size );
+
+						return canvas;
+
+					};
+
+					cubeMap.images[ 0 ] = getSide( 2, 1 ); // px
+					cubeMap.images[ 1 ] = getSide( 0, 1 ); // nx
+					cubeMap.images[ 2 ] = getSide( 1, 0 ); // py
+					cubeMap.images[ 3 ] = getSide( 1, 2 ); // ny
+					cubeMap.images[ 4 ] = getSide( 1, 1 ); // pz
+					cubeMap.images[ 5 ] = getSide( 3, 1 ); // nz
+					cubeMap.needsUpdate = true;
+
+				} );
+				
+				//var loader2 = new THREE.ImageLoader();
+				//loader2.load( '../textures/skyboxsun25degtest.png', function ( image2 ) {
+
+
+				//	var getSide = function ( x, y ) {
+
+//						var size = 1024;
+
+//						var canvas2 = document.createElement( 'canvas2' );
+//						canvas2.width = size;
+//						canvas2.height = size;
+
+//						var context2 = canvas2.getContext( '2d' );
+//						context2.drawImage( image2, - x * size, - y * size );
+
+//						return canvas2;
+
+//					};
+
+//					cubeMap2.images[ 0 ] = getSide( 2, 1 ); // px
+//					cubeMap2.images[ 1 ] = getSide( 0, 1 ); // nx
+//					cubeMap2.images[ 2 ] = getSide( 1, 0 ); // py
+//					cubeMap2.images[ 3 ] = getSide( 1, 2 ); // ny
+//					cubeMap2.images[ 4 ] = getSide( 1, 1 ); // pz
+//					cubeMap2.images[ 5 ] = getSide( 3, 1 ); // nz
+//					cubeMap2.needsUpdate = true;
+
+//				} );
+				//Initialize/declare the shader for the skybox
+				var cubeShader = THREE.ShaderLib['cube'];
+				cubeShader.uniforms['tCube'].value = cubeMap;
+				
+//				var cubeShader2 = THREE.ShaderLib['cube'];
+//				cubeShader2.uniforms['tCube'].value = cubeMap2;
+				
+				//Create skybox material 
+				var skyBoxMaterial = new THREE.ShaderMaterial( {
+					fragmentShader: cubeShader.fragmentShader,
+					vertexShader: cubeShader.vertexShader,
+					uniforms: cubeShader.uniforms,
+					depthWrite: false,
+					side: THREE.BackSide
+				});
+//				var skyBoxMaterial2 = new THREE.ShaderMaterial( {
+//					fragmentShader: cubeShader2.fragmentShader,
+//					vertexShader: cubeShader2.vertexShader,
+//					uniforms: cubeShader2.uniforms,
+//					depthWrite: false,
+//					side: THREE.BackSide
+//				});
+
+				//Create Mesh to map skybox material on to
+				var skyBox = new THREE.Mesh(
+					new THREE.BoxGeometry( 10000, 10000, 10000 ),
+					skyBoxMaterial
+				);
+				scene.add( skyBox ); //create Point Loma Sky
+
+//				var skyBox2 = new THREE.Mesh(
+//					new THREE.BoxGeometry( 10000, 10000, 10000 ),
+//					skyBoxMaterial2
+//				);
+
+				//var skyBox2 = new THREE.Mesh(
+				//	new THREE.BoxGeometry( 10000, -10000, 10000 ),
+				//	skyBoxMaterial
+				//);
+//				scene.add( skyBox2 );
+
 
 			}
 
 			//
 
-			function animate() {
-
-				requestAnimationFrame( animate );
-				render();
-
+			var fps = 1000; //source: http://creativejs.com/resources/requestanimationframe/
+			function animate() { 
+				requestAnimationFrame( animate ); //animate the frame
+				render(); //render the frame
+				
+				/* Autopilot specific
+				setTimeout(function() {//source: http://creativejs.com/resources/requestanimationframe/
+				        requestAnimationFrame( animate ); //animate the frame
+					//setInterval(requestAnimationFrame( animate ), 2000); //animate the frame
+					render(); //render the frame
+					//setInterval(render(), 2000);//uncomment out this line if on autopilot
+				}, 1000 / fps);*/
 			}
 
 			function render() {
+				
+				camControls.update( clock.getDelta() ); //update First Person Camera
+				camControls2.update( clock.getDelta() ); //update First Person Camera
+				camera2.position.copy( camera.position );
+				camera2.rotation.copy( camera.rotation );
+				camera2.up = new THREE.Vector3(-1,-1,-1);
+				camera2.rotateX(Math.PI/-2);
+				camera2.rotateZ((Math.PI/-2));
+				//camera2.rotateY(Math.PI/-1);
+				//camera2.up = new THREE.Vector3(0,-1,0);
+				//camera2.lookAt(new THREE.Vector3(-1, -1, -1));
+				//camera2.rotation.y = Math.PI;
+				camera2.rotateZ(Math.PI/2);
+				var time = performance.now() * 0.001; //Measure time for water
+				water.material.uniforms.time.value += 1.0 / 60.0; //speed of water motion(wind chop)
 
-				camera.position.x += ( mouseX - camera.position.x ) * .05;
-				camera.position.y += ( - mouseY - camera.position.y ) * .05;
-
-				camera.lookAt( scene.position );
-
-				renderer.render( scene, camera );
-
+				//setInterval(water.render(), 2000); //animate the frame
+				water.render(); //render water surface
+				//AutoPilot Specific Code:
+				renderer.render( scene, camera ); //render everything else
+				//^comment out this line if on autopilot
+				renderer2.render( scene2, camera2 );
+				//^comment out this line if on autopilot
+				//setInterval(renderer.render( scene, camera ), 2000);//uncomment out this line if on autopilot
+				//setInterval(renderer2.render( scene2, camera2 ), 2000);//uncomment out this line if on autopilot
+				
+				
+				//uncomment these lines if code is running on autopilot
+				/*sendToServer();//smartjava.org
+			        //requestAnimationFrame( render );//smartjava.org
+				//renderer2.render( scene2, camera2 );
+				//sendToServer();//smartjava.org
+			        //requestAnimationFrame( render );//smartjava.org
+			        */
 			}
+			function sendToServer() {//this whole thing = smartjava.org
+        		var asString = renderer.domElement.toDataURL();
+        		 if (isOpen) {
+        		 	frame++;
+        		 	ws.send(str2ab(frame+asString));
+        			}
+    			}
+    			function str2ab(str) {//this whole thing = smartjava.org
+        			var buf = new ArrayBuffer(str.length);
+        			var bufView = new Uint8Array(buf);
+        			for (var i=0, strLen=str.length; i<strLen; i++) {
+            				bufView[i] = str.charCodeAt(i);
+        				}
+        			return buf;
+    			}
 
 		</script>
-
 	</body>
 </html>
